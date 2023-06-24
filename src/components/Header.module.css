@@ -1,0 +1,203 @@
+.header{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+                        /* HAMBURGER MENU */
+.box {
+    background: #3faf8200;
+    z-index: 1000;
+}
+.navBtn { 
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    cursor: pointer;
+}
+.menu-burguer{
+    display: block;
+    width: 100%;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.7);
+    border-radius: 3px;
+    height: 1px;
+    background: #000;
+    transition: all .3s;
+    position: relative;
+}
+.menu-burguer + .menu-burguer{
+    margin-top: 14px;
+}  
+.active .menu-burguer:nth-child(1) {
+    background-color: #f0fdd7;
+    box-shadow: 0 1px 5px 0 rgb(173,192,128);
+    transition: color 0.7s ease;
+    animation: ease .7s top forwards;
+}
+.not-active .menu-burguer:nth-child(1) {
+    animation: ease .7s top-2 forwards;
+}
+.active .menu-burguer:nth-child(2) {
+    background-color: #f0fdd7;
+    box-shadow: 0 1px 5px 0 rgb(173,192,128);
+    transition: color 0.7s ease;
+    animation: ease .7s scaled forwards;
+}
+.not-active .menu-burguer:nth-child(2) {
+    animation: ease .7s scaled-2 forwards;
+}
+.active .menu-burguer:nth-child(3) {
+    background-color: #f0fdd7;
+    box-shadow: 0 1px 5px 0 rgb(173,192,128);
+    transition: color 0.7s ease;
+    animation: ease .7s bottom forwards;
+}
+.not-active .menu-burguer:nth-child(3) {
+    animation: ease .7s bottom-2 forwards;
+}
+@keyframes top {
+    0% {
+        top: 0;
+        transform: rotate(0);
+    }
+    50% {
+        top: 15px;
+        transform: rotate(0);
+    }
+    100% {
+        top: 15px;
+        transform: rotate(45deg);
+    }
+}
+@keyframes top-2 {
+    0% {
+        top: 15px;
+        transform: rotate(45deg);
+    }
+    50% {
+        top: 15px;
+        transform: rotate(0deg);
+    }
+    100% {
+        top: 0;
+        transform: rotate(0deg);
+    }
+}
+@keyframes bottom {
+    0% {
+        bottom: 0;
+        transform: rotate(0);
+    }
+    50% {
+        bottom: 15px;
+        transform: rotate(0);
+    }
+    100% {
+        bottom: 15px;
+        transform: rotate(135deg);
+    }
+}
+@keyframes bottom-2 {
+    0% {
+        bottom: 16px;
+        transform: rotate(135deg);
+    }
+    50% {
+        bottom: 16px;
+        transform: rotate(0);
+    }
+    100% {
+        bottom: 0;
+        transform: rotate(0);
+    }
+}
+@keyframes scaled {
+    50% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes scaled-2 {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+                        /* THE MENU AND THE CONTENT */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 100px;
+    text-align:center;
+    border: 1px solid #adc181;
+
+    transition: all 1s ease-in-out;
+    background-color: #111;
+}  
+.nav-links {
+    padding: 8px 8px 8px 28px;
+    text-decoration: none;
+    font-size: 42px;
+    color: #111;
+    display: block;
+    transition: 0.3s;
+    z-index: 1000;
+    text-shadow: 0 0 5px #111;
+    transition: all .25s ease;
+}
+.activeNavLinks{
+    color: #ecece0;
+    transition: all 1.5s ease;
+}
+.nav-links:hover{
+    color: #9eba62;
+}
+.activeNav{
+    width: 100vw;
+    transition: 1s ease;
+}
+.not-activeNav{
+    width: 0;
+    transition: 1s ease;
+}
+
+                        /* HOME LINK WITH LOGO */
+.home-link{
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all .7s ease-in-out;
+}
+.img-link{
+    width: 75px;
+    height: 75px;
+    border: 1px solid rgb(146, 221, 75);
+    border-radius: 50%;
+    padding: 4px;
+    background-color: #ecece051;
+
+    transition: all 0.7s;
+}
+.home-link:hover{
+    transform: rotate(15deg);
+}
