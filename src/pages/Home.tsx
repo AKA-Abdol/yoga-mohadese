@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import styles from "../pages/styles/Home.module.css";
-import homeIcon from "../assets/images/icon.png"
+import homeIcon from "../assets/images/icon.png";
 
 export default function Home() {
   const [loadState, setLoadState] = useState(false);
@@ -27,6 +27,7 @@ export default function Home() {
     return (
       <div className={loadState ? `${styles.homeBody}` : `${styles.disable}`}>
         <Header />
+        <div className={styles.ball}></div>
         <h2 className={styles.centerWords}>
           <span className={styles["three-words1"]}>آب</span>
           <span className={styles["three-words2"]}>جاری</span>

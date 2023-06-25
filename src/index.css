@@ -13,7 +13,7 @@
 		 url('./assets/font/fonts/ttf/IRAN Rounded.ttf') format('truetype');
 }
 /*    FOR PERSIAN FONTS */
-h1, h2, h3, h4, h5, h6,input, textarea,  a {
+h1, h2, h3, h4, h5, h6,input, textarea,  a, p {
 	font-family: IRANRounded !important;
 }
 

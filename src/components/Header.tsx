@@ -21,14 +21,13 @@ export default function Header() {
             <div className={styles['home-link']}>
             <a href="./index.html"><img src={homeIcon} alt="home" className={styles['img-link']} /></a>
             </div>
-            <div className={`${styles.sidenav} ${menuState ? styles.activeNav : styles['not-activeNav']}`} id="mySidenav">
-                <a className={`${styles['nav-links']} ${menuState ? styles.activeNavLinks : ``}`} href="./index.html">خانه</a>
-                <a className={`${styles['nav-links']} ${menuState ? styles.activeNavLinks : ``}`} href="./index.html">ورود</a>
-                <a className={`${styles['nav-links']} ${menuState ? styles.activeNavLinks : ``}`} href="./aboutMohadese/about.html">محدثه</a>
-                <a className={`${styles['nav-links']} ${menuState ? styles.activeNavLinks : ``}`} href="./aboutMohadese/about.html#container2">کلاس ها</a>
-                <a className={`${styles['nav-links']} ${menuState ? styles.activeNavLinks : ``}`} href="./reserve/reserve.html">رزرو کلاس</a>
-                <a className={`${styles['nav-links']} ${menuState ? styles.activeNavLinks : ``}`} href="./terms/terms.html">قوانین</a>
-                <a className={`${styles['nav-links']} ${menuState ? styles.activeNavLinks : ``}`} href="./contanct/contact.html">ارتباط با ما</a>
+            <div className={`${styles.sidenav} ${styles['grid-container']} ${menuState ? styles.activeNav : styles['not-activeNav']}`}>
+                <a className={`${styles['nav-links']} ${styles.item1} ${menuState ? styles.activeNavLinks : ``}`} href="./index.html">خانه</a>
+                <a className={`${styles['nav-links']} ${styles.item2} ${menuState ? styles.activeNavLinks : ``}`} href="./index.html">ثبت نام / ورود</a>
+                <a className={`${styles['nav-links']} ${styles.item3} ${menuState ? styles.activeNavLinks : ``}`} href="./aboutMohadese/about.html">یوگا با محدثه</a>
+                <a className={`${styles['nav-links']} ${styles.item4} ${menuState ? styles.activeNavLinks : ``}`} href="./reserve/reserve.html">رزرو کلاس حضوری</a>
+                <a className={`${styles['nav-links']} ${styles.item5} ${menuState ? styles.activeNavLinks : ``}`} href="./terms/terms.html">قوانین</a>
+                <a className={`${styles['nav-links']} ${styles.item6} ${menuState ? styles.activeNavLinks : ``}`} href="./contanct/contact.html">ارتباط با ما</a>
             </div>
         </div>
     )
