@@ -29,12 +29,12 @@ export default function Home() {
         <Header />
         <div className={styles.ball}></div>
         <h2 className={styles.centerWords}>
-          <span className={styles["three-words1"]}>آب</span>
-          <span className={styles["three-words2"]}>جاری</span>
-          <span className={styles["three-words3"]}>باش</span>
+          <span className={styles["three-words1"]}>برخیز</span>
+          <span className={styles["three-words2"]}>و</span>
+          <span className={styles["three-words3"]}>بدرخش</span>
         </h2>
         <div className={styles.centerBtn}>
-          <a className={styles.ywm} href="/about.html">
+          <a className={styles.ywm} href="./About.tsx">
             یوگا با محدثه
           </a>
         </div>

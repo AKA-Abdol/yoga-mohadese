@@ -1,0 +1,191 @@
+  /*    HOME WEB PAGE WITH ALIVE BALL */
+  .body{
+    width: 100vw;
+    background-color: #3b5f32;
+    
+    direction: rtl;
+    font-family: IRANRounded!important;
+  }
+
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #3b5f32 50%, #a6e995 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+}
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+}
+ 
+.bg3 {
+    animation-duration:5s;
+}
+@keyframes slide {
+    0% {
+        transform:translateX(-25%);
+    }
+ 
+    100% {
+        transform:translateX(25%);
+    }
+}
+
+.content {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+
+    margin: 1rem;
+    padding: 2.5rem 1rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title{
+    padding: 1rem;
+}
+
+.content h1{
+    font-size: 36px;
+}
+
+.content h2{
+    font-size: 26px;
+}
+ 
+.content form{
+    display: flex;
+    flex-direction: column;
+}
+ 
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+form textarea,
+form button,
+form input{
+    border-radius: 3px;
+    border: none;
+}
+
+form input{
+    padding: 0.75rem;
+}
+
+form label{
+    margin-top: 0.5rem;
+    font-size: 18px;
+}
+
+form button{
+    padding: 0.5rem;
+    margin: 0.75rem 5rem;
+    background-color: #3b5f32;
+    color: #a6e995;
+    font-size: 22px;
+    font-family: inherit;
+}
+
+/*    FOR IPAD */
+@media only screen and (min-width: 767px)  {
+#img-link{
+    width: 100px;
+    height: 100px;
+
+    margin-top: 0.5rem;
+    }
+    
+    .content h1{
+        font-size: 52px;
+    }
+    
+    .content h2{
+        font-size: 30px;
+    }
+     
+    form {
+        width: 60%;
+    }
+    
+    form input{
+        padding: 0.75rem;
+    }
+    
+    form label{
+        margin-top: 0.75rem;
+        font-size: 22px;
+    }
+}
+    
+    /*    FOR NEST HUB */
+@media only screen and (min-width: 1020px)  {
+    #img-link{
+        width: 100px;
+        height: 100px;
+
+        margin-top: 0.25rem;
+    }
+    
+    .content h1{
+        font-size: 32px;
+    }
+    
+    .content h2{
+        font-size: 22px;
+    }
+     
+    form {
+        width: 30%;
+    }
+        
+    form input{
+        padding: 0.75rem;
+    }
+    
+    form label{
+        margin-top: 0.5rem;
+        font-size: 16px;
+    }
+    
+}
+    
+      /*    FOR NEST HUB MAX*/
+@media only screen and (min-width: 1279px)  {
+    #img-link{
+    width: 100px;
+    height: 100px;
+    
+    margin-top: 0.15rem;
+    }
+    .content h1{
+        font-size: 56px;
+    }
+    
+    .content h2{
+        font-size: 36px;
+    }
+
+    form {
+        width: 30%;
+    }
+    
+    form input{
+        padding: 0.75rem;
+    }
+    
+    form label{
+        margin-top: 0.75rem;
+        font-size: 22px;
+    }
+    
+}

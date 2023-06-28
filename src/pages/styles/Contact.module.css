@@ -1,0 +1,38 @@
+.body{
+    height: 100vh;
+    width: 100vw;
+
+    background:  radial-gradient(
+      circle at top right,
+      #b9e7c0, 
+      #295225
+    );
+    
+    overflow: hidden;
+    direction: rtl;
+    font-family: IRANRounded!important;
+}
+
+h1, h2, h3, h4, h5, h6,input, textarea, li {
+	font-family: IRANRounded !important;
+}
+/* CONTENT OF WEB PAGE */ 
+.container{
+  padding: 5rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+ul{
+  margin-top: 2rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+li{
+  margin: 1rem;
+}
+.link-styling{
+  font-size: 30px;
+}

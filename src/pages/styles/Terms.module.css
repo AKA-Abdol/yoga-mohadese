@@ -1,0 +1,25 @@
+.body{
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: rgb(171,182,127);
+    color: black;
+    direction: rtl;
+    font-family: IRANRounded!important;
+}
+h1, h2, h3, h4, h5, h6,input, textarea, a, button {
+    font-family: IRANRounded !important;
+}
+.terms{
+    padding: 2rem;
+    margin: 5rem 2rem 2rem 2rem;
+    background: linear-gradient(0deg, rgba(171,182,127,1) 0%, rgba(143,236,138,1) 100%);
+}
+.terms ul {
+    list-style: none;
+}
+.terms ul li{
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 2rem;
+}

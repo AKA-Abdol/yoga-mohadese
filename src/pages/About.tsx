@@ -8,17 +8,17 @@ export default function About() {
   const sampleList: MultiBtnContentPair[] = [
     {
       content:
-        "محتوای متنی هر کلاس بهصورت جداگانه اینجا قرار خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته با خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته باشد محتوای متنی هر کلاس بهصورت جداگانه اینجا قرار خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته باشد",
+        "این دوره آنلاین برای پرتوجویانی که آشنایی با یوگا ندارند، در ۱۰ جلسه طراحی شده و برای کسانی که سابقه ی ورزشی ندارند هم مناسب است.",
       data: "مبتدی",
     },
     {
       content:
-        "محتوای متنی هر کلاس بهصورت جداگانه اینجا قرار خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته با خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته باشد محتوای متنی هر کلاس بهصورت جداگانه اینجا قرار خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته باشد",
+        "اگر آشنا با یوگا هستید یا دوره ی مبتدی را گذرانده اید، می توانید از این دوره استفاده کنید. هر ترم ۸ جلسه ی جدید برای سطح مبتدی تا متوسط به صورت آنلاین ارائه می شود.",
       data: "متوسط",
     },
     {
       content:
-        "محتوای متنی هر کلاس بهصورت جداگانه اینجا قرار خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته با خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته باشد محتوای متنی هر کلاس بهصورت جداگانه اینجا قرار خواهد گرفات انتظار میرود هر کلاس تقریبا ۵ خ محتوا داشته باشد",
+        "این دوره آنلاین برای پرتوجویانی که حداقل یک سال سابقه ی یوگا دارند مناسب است. هر ترم شامل ۸ جلسه با تمرین های متنوع برای سطح متوسط تا پیشرفته می باشد.",
       data: "پیشرفته",
     },
   ];
@@ -36,7 +36,7 @@ export default function About() {
             محدثه تلاش می‌کند آموزش‌های یوگا را برای همه کسانی که به دنبال یک
             پاسخ کامل برای ذهن و بدنشان هستند فراهم کند. پاسخی که خود محدثه بعد
             از یک تصادف سنگین دریافت کرد. او ورزشکار سابق در رشته شنا بود تا
-            اینکه حادثه‌ای مسیر زندگی‌اش را عوض کرد. بعد از این تصادف تا ۱۲ ماه
+            اینکه حادثه‌ای مسیر زندگی‌اش را عوض کرد. بعد از این تصادف تا ۸ ماه
             مجبور به استراحت مطلق شد. در این مدت توانایی‌های فیزیکی خود را
             تقریبا به طور کامل از دست داد و به صورت معجزه آسایی از قطع نخاع در
             امان ماند. بعد از این ماجرا با یوگا آشنا شد. رشته‌ای که به گفته خودش
@@ -68,13 +68,14 @@ export default function About() {
         <MultiBtn contents={sampleList} />
       </div>
       <div
-        className={`${styles.container3} bg-gradient-to-r from-lime-900 via-green-900 to-lime-900`}
+        className={`${styles.container3} bg-gradient-to-r from-lime-900 via-lime-950 to-lime-900`}
       >
         <a href="">رزرو کلاس های حضوری</a>
       </div>
       {/* FAQ */}
-      <div className="join join-vertical w-full">
-        <div className="collapse collapse-arrow join-item border border-base-300">
+      <div className={`w-full ${styles.customBG}`}>
+      <div className="join join-vertical m-8 bg-none">
+        <div className="collapse collapse-arrow join-item border border-lime-300">
           <input type="radio" name="my-accordion-4" checked={true} />
           <div className="collapse-title text-xl font-medium">
             کلاس‌ها به صورت آنلاین برگزار می‌شوند یا حضوری ؟
@@ -86,7 +87,7 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-arrow join-item border border-base-300">
+        <div className="collapse collapse-arrow join-item border border-lime-300">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
             کلاس‌ها به صورت زنده پخش می‌شوند ؟
@@ -97,11 +98,11 @@ export default function About() {
               زندگی پر مشغله کنونی برای شما پرتوجویان فرصتی فراهم شده است تا
               بتوانید در هر زمان که مایل هستید کلاس‌ها را تماشا کنید. البته
               ویدیو ها کلاس ها به صورت ماهانه ضبط و بارگذاری می‌شوند و همگی به
-              روز و حاوی آخرین نکات استاد هستند.
+              روز و حاوی آخرین نکات هستند.
             </p>
           </div>
         </div>
-        <div className="collapse collapse-arrow join-item border border-base-300">
+        <div className="collapse collapse-arrow join-item border border-lime-300">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
             مدت زمان کلاس ها و تعداد جلسات هر دوره چقدر است ؟
@@ -112,6 +113,7 @@ export default function About() {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
