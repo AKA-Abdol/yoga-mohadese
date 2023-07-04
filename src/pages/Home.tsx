@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import styles from "../pages/styles/Home.module.css";
 import homeIcon from "../assets/images/icon.png";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [loadState, setLoadState] = useState(false);
@@ -15,11 +16,7 @@ export default function Home() {
   if (!loadState) {
     return (
       <div className={styles.load}>
-        <img
-          src={homeIcon}
-          alt=""
-          className={styles['loading-img']}
-        />
+        <img src={homeIcon} alt="" className={styles["loading-img"]} />
         <p className={styles.loading}>یه نفس عمیق بکش</p>
       </div>
     );
@@ -34,9 +31,9 @@ export default function Home() {
           <span className={styles["three-words3"]}>بدرخش</span>
         </h2>
         <div className={styles.centerBtn}>
-          <a className={styles.ywm} href="./About.tsx">
+          <Link to={"/about"} className={styles.ywm}>
             یوگا با محدثه
-          </a>
+          </Link>
         </div>
       </div>
     );
