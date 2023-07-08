@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import styles from "./styles/About.module.css";
 import MultiBtn, { MultiBtnContentPair } from "../components/MultiBtn";
 import img1 from "../assets/images/about-img.png";
+import { Link } from "react-router-dom";
 
 export default function About() {
   const sampleList: MultiBtnContentPair[] = [
@@ -70,7 +71,7 @@ export default function About() {
       <div
         className={`${styles.container3} bg-gradient-to-r from-lime-900 via-lime-950 to-lime-900`}
       >
-        <a href="">رزرو کلاس های حضوری</a>
+        <Link to={"/reserve"} preventScrollReset={false}>رزرو کلاس های حضوری</Link>
       </div>
       {/* FAQ */}
       <div className={`w-full ${styles.customBG}`}>

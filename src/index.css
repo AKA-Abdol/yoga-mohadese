@@ -2,21 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-                        /* FONT */
+/* FONT */
 @font-face {
-	font-family: IRANRounded;
-	font-style: normal;
-	font-weight: 900;
-	src: url('./assets/font/fonts/eot/IRAN-Rounded.eot');
-	src: url('./assets/font/fonts/eot/IRAN-Rounded.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-		 url('./assets/font/fonts/woff/IRAN-Rounded.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('./assets/font/fonts/ttf/IRAN Rounded.ttf') format('truetype');
+  font-family: IRANRounded;
+  font-style: normal;
+  font-weight: 900;
+  src: url("./assets/font/fonts/eot/IRAN-Rounded.eot");
+  src: url("./assets/font/fonts/eot/IRAN-Rounded.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-8 */ url("./assets/font/fonts/woff/IRAN-Rounded.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("./assets/font/fonts/ttf/IRAN Rounded.ttf") format("truetype");
 }
 /*    FOR PERSIAN FONTS */
-h1, h2, h3, h4, h5, h6,input, textarea,  a, p {
-	font-family: IRANRounded !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+a,
+p {
+  font-family: IRANRounded !important;
 }
 
-*{
-    direction: rtl;
+* {
+  direction: rtl;
 }
