@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       colors:{
         /*  PUT YOUR VARIABLES HERE  */
+        primary: {
+
+          DEFAULT: "rgb(173,192,128)"
+        }
       }
     },
   },
