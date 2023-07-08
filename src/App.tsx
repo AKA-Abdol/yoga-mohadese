@@ -19,8 +19,8 @@ function App() {
           <Route path="terms" element={<Terms />} />
           <Route path="reserve" element={<Reserve />} />
 
-          <Route path="/" element={<Navigate to={"/auth"} />} />
-          <Route path="/redirect" element={<Navigate to={"/"} />} />
+          <Route path="" element={<Navigate to={"/auth"} />} />
+          <Route path="redirect" element={<Navigate to={"/"} />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -59,7 +59,7 @@
 .content h2{
     font-size: 26px;
 }
- 
+/*  
 .content form{
     display: flex;
     flex-direction: column;
@@ -94,7 +94,7 @@ form button{
     color: #a6e995;
     font-size: 22px;
     font-family: inherit;
-}
+} */
 
 /*    FOR IPAD */
 @media only screen and (min-width: 767px)  {
