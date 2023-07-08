@@ -7,7 +7,11 @@
       #b9e7c0, 
       #295225
     );
-    
+      
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     direction: rtl;
     font-family: IRANRounded!important;
@@ -16,9 +20,13 @@
 h1, h2, h3, h4, h5, h6,input, textarea, li {
 	font-family: IRANRounded !important;
 }
+
 /* CONTENT OF WEB PAGE */ 
 .container{
-  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
@@ -34,5 +42,5 @@ li{
   margin: 1rem;
 }
 .link-styling{
-  font-size: 30px;
+  font-size: 26px;
 }

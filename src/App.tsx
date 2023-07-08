@@ -7,7 +7,7 @@ import Reserve from "./pages/Reserve"
 function App() {
   return (
     <div className="w-full h-screen bg-green-300 text-black">
-      <Reserve />
+      <Contact />
     </div>
   );
 }
