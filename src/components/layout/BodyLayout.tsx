@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const BodyLayout: FC = () => {
   return (
-    <div className={"w-full h-screen bg-green-300 text-black"}>
+    <div className={"w-full h-screen bg-primary text-black"}>
       <Outlet />
     </div>
   );
