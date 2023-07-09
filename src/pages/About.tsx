@@ -28,7 +28,7 @@ export default function About() {
     <div className={styles.bodyStyle}>
       <Header />
       <div className={styles.content}>
-        <h1>درباره محدثه</h1>
+        <h1 className={styles.h1styles}>درباره محدثه</h1>
         <div className={styles["img1-container"]}>
           <img src={img1} alt="" className={styles.img1} />
         </div>
@@ -52,7 +52,7 @@ export default function About() {
       </div>
       <div className={styles.titleText}>
         <div className={styles.parallax}>
-          <h2>یوگا را با محدثه شروع کنید</h2>
+          <h2 className={styles.h2Styles}>یوگا را با محدثه شروع کنید</h2>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export default function About() {
       <div
         className={`${styles.container3} bg-gradient-to-r from-lime-900 via-lime-950 to-lime-900`}
       >
-        <Link to={"/reserve"} preventScrollReset={false}>رزرو کلاس های حضوری</Link>
+        <Link to={"/reserve"} preventScrollReset={false}>رزرو کلاس های حضوری</Link> {/* DOROOD BE SHARAFET ABDOLI */}
       </div>
       {/* FAQ */}
       <div className={`w-full ${styles.customBG}`}>

@@ -5,7 +5,7 @@
     font-family: IRANRounded!important;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow: hidden; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,7 +22,7 @@
     align-items: start;
     flex-direction: column;
 }
-h2{
+.homeh2{
     transform: scale(0.94);
     animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
 }

@@ -3,45 +3,6 @@ import Header from "../components/Header";
 import { SetStateAction, useState } from "react";
 
 export default function Reserve() {
-  /*
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxDrcpY4wFgxJzm8Xgz76thDOa-RqprQCjJaUKE3jg0iM8x5y0tHYYWvePb54oJ_c2f/exec'
-const form = document.forms['submit-to-google-sheet']
-const msg = document.getElementById("msg");
-const phoneno = /^\d{11}$/;
-
-form.addEventListener('submit', e => {
-    e.preventDefault()
-    const name = document.getElementById('name').value;
-    const number = document.getElementById('phoneNumber').value;
-    
-    const nameErr = document.getElementById('err2');
-    const numErr = document.getElementById('err3');
-    
-    if (name == "" || name.length < 3) {
-      nameErr.innerText = "نام و نام خانوادگی را کامل وارد نمایید"
-      return false;
-    } else {
-      nameErr.innerText = ""
-    }
-    
-    if (!(number.match(phoneno)) || number == "") {
-      numErr.innerText = "شماره تلفن همراه خود را با اعداد انگیلیسی و کامل وارد نمایید"
-      return false;
-    }     else {
-      numErr.innerText = ""
-      msg.innerHTML = "لطفا چند صبر کنید."
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-          msg.innerHTML = "اطلاعات شما ثبت شد. کارشناسان ما با شما تماس خواهند گرفت"
-          setTimeout(function(){
-              msg.innerHTML = ""
-          },10000)
-          form.reset();
-      })
-      .catch(error => console.error('Error!', error.message))
-    }
-})
- */
   const scriptURL =
     "https://script.google.com/macros/s/AKfycbxlsmny036LQVKVs_tW6NyRsygUWLTt3CnGbZeV9sixbSR3IXB8N6gTfHs6TEByjoXE/exec";
 
@@ -101,7 +62,6 @@ form.addEventListener('submit', e => {
           جهت رزرو برای کلاس های حضوری و کسب اطلاعات بیشتر می‌توانید فرم زیر را
           برای ما ارسال کنید تا در واتس‌اپ به شما پیام دهیم.
         </h2>
-
         <form className={styles.myForm} action="">
           <label htmlFor="name">
             نام <span className={styles.makeItred}>*</span>
@@ -112,7 +72,6 @@ form.addEventListener('submit', e => {
             value={name}
             onChange={handleNameChange}
           />
-
           <label htmlFor="number">
             شماره تماس <span className={styles.makeItred}>*</span>
           </label>
@@ -122,7 +81,6 @@ form.addEventListener('submit', e => {
             value={number}
             onChange={handleNumberChange}
           />
-
           <label htmlFor="mail">ایمیل</label>
           <input
             type="text"
@@ -130,7 +88,6 @@ form.addEventListener('submit', e => {
             value={mail}
             onChange={handleMailChange}
           />
-
           <p className={styles.errMsgStyle}>{errMsg}</p>
           <button type="submit" onClick={handleSubmit}>
             ارسال

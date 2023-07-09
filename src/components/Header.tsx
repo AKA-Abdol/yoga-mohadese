@@ -5,11 +5,9 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   const [menuState, setMenuState] = useState(false);
-
   function handleMenu() {
     setMenuState(!menuState);
   }
-
   return (
     <div className={styles.header}>
       <div className={styles.box} onClick={handleMenu}>
@@ -24,7 +22,7 @@ export default function Header() {
         </div>
       </div>
       <div className={styles["home-link"]}>
-        <Link to={"/"}>
+        <Link to={"/home"}>
           <img src={homeIcon} alt="home" className={styles["img-link"]} />
         </Link>
       </div>
@@ -33,54 +31,54 @@ export default function Header() {
           menuState ? styles.activeNav : styles["not-activeNav"]
         }`}
       >
-        <a
+        <Link
+          to={"/home"}
           className={`${styles["nav-links"]} ${styles.item1} ${
             menuState ? styles.activeNavLinks : ``
           }`}
-          href="./index.html"
         >
           خانه
-        </a>
-        <a
+        </Link>
+        <Link
+          to={"/auth"}
           className={`${styles["nav-links"]} ${styles.item2} ${
             menuState ? styles.activeNavLinks : ``
           }`}
-          href="./index.html"
         >
           ثبت نام / ورود
-        </a>
-        <a
+        </Link>
+        <Link
+          to={"/about"}
           className={`${styles["nav-links"]} ${styles.item3} ${
             menuState ? styles.activeNavLinks : ``
           }`}
-          href="./aboutMohadese/about.html"
         >
           یوگا با محدثه
-        </a>
-        <a
+        </Link>
+        <Link
+          to={"/reserve"}
           className={`${styles["nav-links"]} ${styles.item4} ${
             menuState ? styles.activeNavLinks : ``
           }`}
-          href="./reserve/reserve.html"
         >
           رزرو کلاس حضوری
-        </a>
-        <a
+        </Link>
+        <Link
+          to={"/terms"}
           className={`${styles["nav-links"]} ${styles.item5} ${
             menuState ? styles.activeNavLinks : ``
           }`}
-          href="./terms/terms.html"
         >
           قوانین
-        </a>
-        <a
+        </Link>
+        <Link
+          to={"/contact"}
           className={`${styles["nav-links"]} ${styles.item6} ${
             menuState ? styles.activeNavLinks : ``
           }`}
-          href="./contanct/contact.html"
         >
           ارتباط با ما
-        </a>
+        </Link>
       </div>
     </div>
   );
