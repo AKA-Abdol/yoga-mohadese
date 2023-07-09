@@ -33,7 +33,7 @@ p {
 }
 
 .input-primary-theme {
-  @apply text-primary-dark placeholder-primary-dark focus:outline-1 focus:outline-primary-dark;
+  @apply text-primary-dark placeholder-primary-dark focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
 }
 
 .btn-primary-theme {

@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require("tailwindcss/colors"); 
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -12,6 +15,7 @@ module.exports = {
         },
         secondary: {},
         white: "#ecece0",
+        error: colors.red
       },
       padding: {
         sm: "0.5rem",
