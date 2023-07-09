@@ -37,6 +37,7 @@
     margin-bottom: 2rem;
 }
 
+
 .myForm {
     width: 100%;
     display: flex;
@@ -69,7 +70,7 @@
     color: #a6e995;
     font-size: 22px;
     font-family: inherit;
-}
+} */
 
 .errMsgStyle{
     color: #ffbebe;

@@ -31,3 +31,11 @@ p {
 * {
   direction: rtl;
 }
+
+.input-primary-theme {
+  @apply text-primary-dark placeholder-primary-dark focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
+}
+
+.btn-primary-theme {
+  @apply text-primary-dark border-normal border-primary-dark hover:bg-primary-dark hover:text-primary-light;
+}
