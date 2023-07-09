@@ -9,11 +9,6 @@ import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
 function App() {
   return (
-<<<<<<< HEAD
-    <div className="w-full h-screen bg-green-300 text-black">
-      <Contact />
-    </div>
-=======
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<BodyLayout />}>
@@ -29,7 +24,6 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
->>>>>>> 62caaff5ebcbd022672ba157f8447ecc7a471d92
   );
 }
 
