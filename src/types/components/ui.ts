@@ -41,4 +41,12 @@ export interface SelectProps {
   options: Array<string>;
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
   value?: string;
+  classnames?: string;
+  disabled?: boolean;
+}
+
+export interface SubmitCancelButtonProps {
+  classnames?: string;
+  onSubmit: () => void;
+  onCancel: () => void;
 }

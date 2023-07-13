@@ -4,10 +4,14 @@ import { EditButtonProps } from "./types";
 const EditButton: FC<EditButtonProps> = (props) => {
   return (
     <button
-      className={`h-full`}
+      className={`h-full object-contain ${props.classnames}`}
       onClick={props.onClick}
     >
-      <img src={EditIcon} alt="edit" className={`h-full object-contain`} />
+      <img
+        src={EditIcon}
+        alt="edit"
+        className={`h-full w-full object-contain`}
+      />
     </button>
   );
 };
