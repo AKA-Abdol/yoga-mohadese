@@ -39,3 +39,7 @@ p {
 .btn-primary-theme {
   @apply text-primary-dark border-normal border-primary-dark hover:bg-primary-dark hover:text-primary-light;
 }
+
+.btn-primary-active {
+  @apply text-primary-light border-primary-light bg-primary-dark;
+}

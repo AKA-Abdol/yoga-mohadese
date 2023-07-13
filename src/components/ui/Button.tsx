@@ -13,6 +13,7 @@ export const Button: FC<ButtonProps> = (props) => {
     <button
       className={`btn btn-outline ${props.className}`}
       type={props.type}
+      onClick={props.onClick}
     >
       {props.children}
     </button>

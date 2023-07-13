@@ -1,4 +1,4 @@
-import { ChangeEvent, HTMLInputTypeAttribute } from "react";
+import { ChangeEvent, HTMLInputTypeAttribute, ReactNode } from "react";
 
 export interface WithChildren<T> {
   children: T;
@@ -24,4 +24,21 @@ export interface ButtonProps extends WithChildren<string> {
 export interface AttentionSpanProps extends WithChildren<string> {
   className?: string;
   onClick?: () => void;
+}
+
+export interface ButtonGroupProps {
+  buttonNames: Array<string>;
+  data: Array<ReactNode>;
+}
+
+export interface CardProps extends WithChildren<Array<ReactNode>> {
+  flexDirection: "row" | "col";
+  justify?: "center" | "between";
+  classnames?: string;
+}
+
+export interface SelectProps {
+  options: Array<string>;
+  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
+  value?: string;
 }

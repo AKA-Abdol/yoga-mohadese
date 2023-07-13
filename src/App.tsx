@@ -7,6 +7,7 @@ import Reserve from "./pages/Reserve";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
+import Admin from "./pages/Admin";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
           <Route path="terms" element={<Terms />} />
           <Route path="reserve" element={<Reserve />} />
 
+          <Route path="admin" element={<Admin />} />
           <Route path="" element={<Navigate to={"/auth"} />} />
           <Route path="redirect" element={<Navigate to={"/"} />} />
         </Route>
