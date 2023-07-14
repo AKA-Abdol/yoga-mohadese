@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
 import Admin from "./pages/Admin";
+import PageNotFound from "./pages/PageNotFound";
 function App() {
   return (
     <BrowserRouter>
@@ -19,10 +20,11 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="terms" element={<Terms />} />
           <Route path="reserve" element={<Reserve />} />
-
           <Route path="admin" element={<Admin />} />
+          <Route path="404" element={<PageNotFound />} />
+
           <Route path="" element={<Navigate to={"/auth"} />} />
-          <Route path="redirect" element={<Navigate to={"/"} />} />
+          <Route path="*" element={<Navigate to={"/404"} />} />
         </Route>
       </Routes>
     </BrowserRouter>
