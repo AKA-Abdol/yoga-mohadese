@@ -9,6 +9,7 @@ import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
 import Admin from "./pages/Admin";
 import PageNotFound from "./pages/PageNotFound";
+import TermById from "./pages/Admin/Terms/id";
 function App() {
   return (
     <BrowserRouter>
@@ -20,7 +21,12 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="terms" element={<Terms />} />
           <Route path="reserve" element={<Reserve />} />
-          <Route path="admin" element={<Admin />} />
+
+          <Route path="admin/">
+            <Route path="" element={<Admin />} />
+            <Route path="term/:id" element={<TermById />}/>
+          </Route>
+
           <Route path="404" element={<PageNotFound />} />
 
           <Route path="" element={<Navigate to={"/auth"} />} />

@@ -1,12 +1,13 @@
 import { FC, useState } from "react";
 import Card from "../../../components/ui/Card";
-import { UserItemMode, UserItemProps } from "./types";
+import { UserItemProps } from "./types";
+import { ItemMode } from "../types";
 import EditButton from "./EditButton";
 import Select from "../../../components/ui/Select";
 import SubmitCancelButton from "../../../components/ui/SubmitCancelButton";
 
 const UserItem: FC<UserItemProps> = (props) => {
-  const [mode, setMode] = useState<UserItemMode>("show");
+  const [mode, setMode] = useState<ItemMode>("show");
   const [termState, setTermState] = useState(props.state);
   const [tempTermState, setTempTermState] = useState("");
   return (

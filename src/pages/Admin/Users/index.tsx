@@ -18,10 +18,10 @@ const Users: FC = () => {
 };
 
 const MOCK_USERS = [
-  { username: "alvand", state: "tir-A" },
-  { username: "arman", state: "tir-B" },
-  { username: "arsam", state: "tir-C" },
-  { username: "amirhossein", state: "tir-A" },
+  { username: "الوند", state: "tir-A" },
+  { username: "آرمان", state: "tir-B" },
+  { username: "آرسام", state: "tir-C" },
+  { username: "امیرحسین", state: "tir-A" },
 ];
 
 export default Users;

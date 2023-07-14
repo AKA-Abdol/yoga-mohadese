@@ -50,3 +50,8 @@ export interface SubmitCancelButtonProps {
   onSubmit: () => void;
   onCancel: () => void;
 }
+
+export interface DeleteButtonProps {
+  onClick: () => void;
+  classnames?: string;
+}
