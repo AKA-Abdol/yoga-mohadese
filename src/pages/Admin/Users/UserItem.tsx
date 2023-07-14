@@ -10,7 +10,7 @@ const UserItem: FC<UserItemProps> = (props) => {
   const [termState, setTermState] = useState(props.state);
   return (
     <Card flexDirection="row" justify="between" classnames={`h-14`}>
-      <p className="w-1/4 text-sm">{props.username}</p>
+      <p className="w-2/5 text-center text-sm">{props.username}</p>
       <Select
         options={["tir-A", "tir-B", "tir-C"]}
         value={termState}
@@ -19,14 +19,11 @@ const UserItem: FC<UserItemProps> = (props) => {
           setTermState(event.target.value);
         }}
         disabled={mode === "show"}
-        classnames="w-1/2 text-center mr-2"
+        classnames="w-3/5 text-center mr-2 h-full"
       />
-      <div className="w-1/4 h-full">
+      <div className={"h-full w-24"}>
         {mode === "show" && (
-          <EditButton
-            onClick={() => setMode("edit")}
-            classnames="w-full mr-2"
-          />
+          <EditButton onClick={() => setMode("edit")} classnames="" />
         )}
         {mode === "edit" && (
           <SubmitCancelButton

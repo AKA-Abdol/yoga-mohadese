@@ -4,7 +4,7 @@ import { EditButtonProps } from "./types";
 const EditButton: FC<EditButtonProps> = (props) => {
   return (
     <button
-      className={`h-full object-contain ${props.classnames}`}
+      className={`h-full w-full object-contain ${props.classnames}`}
       onClick={props.onClick}
     >
       <img
