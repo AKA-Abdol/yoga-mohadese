@@ -6,8 +6,7 @@ import TextArea from "../../../../components/ui/TextArea";
 import SelectLevel from "../SelectLevel";
 import SelectMonth from "../../../../components/ui/SelectMonth";
 import { termValidationSchema } from "../types";
-import { useLocation, useNavigate } from "react-router-dom";
-import useLastLocation from "../../../../hooks/useCustomLocation";
+import { useNavigate } from "react-router-dom";
 
 const AddTerm: FC = () => {
   const navigate = useNavigate();
