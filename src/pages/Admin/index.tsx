@@ -7,6 +7,7 @@ const Admin: FC = () => {
   return (
     <ButtonGroup
       buttonNames={["کاربران", "ترم ها"]}
+      routes={["users", "terms"]}
       data={[<Users />, <Terms />]}
     />
   );

@@ -29,6 +29,7 @@ export interface AttentionSpanProps extends WithChildren<string> {
 export interface ButtonGroupProps {
   buttonNames: Array<string>;
   data: Array<ReactNode>;
+  routes: Array<string>;
 }
 
 export interface CardProps extends WithChildren<Array<ReactNode>> {
@@ -43,6 +44,10 @@ export interface SelectProps {
   value?: string;
   classnames?: string;
   disabled?: boolean;
+  id?: string;
+  name?: string;
+  placeholder?: string;
+  optionsClassnames?: string;
 }
 
 export interface SubmitCancelButtonProps {

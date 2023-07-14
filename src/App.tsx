@@ -9,7 +9,8 @@ import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
 import Admin from "./pages/Admin";
 import PageNotFound from "./pages/PageNotFound";
-import TermById from "./pages/Admin/Terms/id";
+import TermById from "./pages/Admin/Terms/[id]";
+import AddTerm from "./pages/Admin/Terms/add";
 function App() {
   return (
     <BrowserRouter>
@@ -23,8 +24,17 @@ function App() {
           <Route path="reserve" element={<Reserve />} />
 
           <Route path="admin/">
-            <Route path="" element={<Admin />} />
-            <Route path="term/:id" element={<TermById />}/>
+            <Route path="" element={<Navigate to={"/admin/users"} />} />
+
+            <Route path="users/">
+              <Route path="" element={<Admin />} />
+            </Route>
+
+            <Route path="terms/">
+              <Route path="" element={<Admin />} />
+              <Route path=":id" element={<TermById />} />
+              <Route path="add" element={<AddTerm />} />
+            </Route>
           </Route>
 
           <Route path="404" element={<PageNotFound />} />

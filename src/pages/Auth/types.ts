@@ -1,5 +1,5 @@
-import { Persian2English } from "../../types/utils/converts";
-import { isPersianPhoneNumber } from "../../types/utils/validations";
+import { Persian2English } from "../../utils/converts";
+import { isPersianPhoneNumber } from "../../utils/validations";
 import * as Yup from "yup";
 
 export interface AuthFormProps {

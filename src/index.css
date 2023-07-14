@@ -23,6 +23,7 @@ h5,
 h6,
 input,
 textarea,
+select,
 a,
 p {
   font-family: IRANRounded !important;
@@ -42,4 +43,8 @@ p {
 
 .btn-primary-active {
   @apply text-primary-light border-primary-light bg-primary-dark;
+}
+
+.btn-cancel {
+  @apply text-error-300 border-normal border-error-300 hover:bg-error-300 hover:text-primary-dark;
 }
