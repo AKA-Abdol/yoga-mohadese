@@ -8,15 +8,16 @@ import SubmitCancelButton from "../../../components/ui/SubmitCancelButton";
 const UserItem: FC<UserItemProps> = (props) => {
   const [mode, setMode] = useState<UserItemMode>("show");
   const [termState, setTermState] = useState(props.state);
+  const [tempTermState, setTempTermState] = useState("");
   return (
     <Card flexDirection="row" justify="between" classnames={`h-14`}>
       <p className="w-2/5 text-center text-sm">{props.username}</p>
       <Select
         options={["tir-A", "tir-B", "tir-C"]}
-        value={termState}
+        value={mode === "edit" ? tempTermState : termState}
         onChange={(event) => {
           console.log(event.target.value);
-          setTermState(event.target.value);
+          setTempTermState(event.target.value);
         }}
         disabled={mode === "show"}
         classnames="w-3/5 text-center mr-2 h-full"
@@ -29,7 +30,10 @@ const UserItem: FC<UserItemProps> = (props) => {
           <SubmitCancelButton
             classnames="justify-between pr-2"
             onCancel={() => setMode("show")}
-            onSubmit={() => {}}
+            onSubmit={() => {
+              setTermState(tempTermState);
+              setMode("show");
+            }}
           />
         )}
       </div>
