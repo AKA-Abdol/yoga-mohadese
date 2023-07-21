@@ -1,24 +1,38 @@
 import { AttentionSpan } from "../../../components/ui/AttentionSpan";
-import { Button } from "../../../components/ui/Button";
-import { Input } from "../../../components/ui/Input";
+import Button from "../../../components/ui/Button";
+import Input from "../../../components/ui/Input";
 import { FC } from "react";
 import { AuthFormProps } from "../types";
 import { useFormik } from "formik";
 import { SignupInitialValues } from "../data";
 import { signupHandleValidation } from "../utils";
+import Error from "../../../components/ui/Error";
+import { useMutation } from "@tanstack/react-query";
+import { SIGNUP_URL } from "../api.data";
+import api from "../../../services";
+import { signupFormValues2api } from "../api.converter";
+import { tokenPersistor } from "../../../persistors/auth";
+import { useNavigate } from "react-router-dom";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
+  const navigate = useNavigate();
+  const mutation = useMutation(api.post(SIGNUP_URL, signupFormValues2api));
   const formik = useFormik({
     initialValues: SignupInitialValues,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: (values) => mutation.mutate(values),
     validate: signupHandleValidation,
     validateOnChange: false,
   });
+
+  if (mutation.isSuccess) {
+    tokenPersistor.set(mutation.data.token);
+    navigate("/home");
+  }
+
   return (
     <form className="h-full w-full lg:w-2/3" onSubmit={formik.handleSubmit}>
       <div className="w-full h-full flex flex-col justify-center space-y-sm lg:space-y-md">
+        <Error>{mutation.isError && (mutation.error as any).message}</Error>
         <Input
           onChange={formik.handleChange}
           placeholder="نام کاربری"
@@ -85,7 +99,11 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
           value={formik.values.passwordConfirm}
         />
         <Button type="submit" className={"w-full btn-primary-theme"}>
-          ثبت نام
+          {mutation.isLoading ? (
+            <span className="loading loading-infinity loading-lg" />
+          ) : (
+            "ثبت نام"
+          )}
         </Button>
         <p className="text-primary-dark text-xs text-center">
           قبلا اکانت داشتید؟{" "}

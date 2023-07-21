@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
-import { Button } from "../../../../components/ui/Button";
-import { Input } from "../../../../components/ui/Input";
+import Button from "../../../../components/ui/Button";
+import Input from "../../../../components/ui/Input";
 import { FC } from "react";
 import TextArea from "../../../../components/ui/TextArea";
 import SelectLevel from "../SelectLevel";

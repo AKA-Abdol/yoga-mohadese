@@ -15,7 +15,7 @@ export interface InputProps {
   name: string;
 }
 
-export interface ButtonProps extends WithChildren<string> {
+export interface ButtonProps extends WithChildren<ReactNode> {
   className?: string;
   type?: "button" | "reset" | "submit";
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;

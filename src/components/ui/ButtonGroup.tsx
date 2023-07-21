@@ -1,6 +1,6 @@
 import { ButtonGroupProps } from "@/types/components/ui";
 import { FC, useCallback, useState } from "react";
-import { Button } from "./Button";
+import Button from "./Button";
 import useCustomLocation from "../../hooks/useCustomLocation";
 import { useNavigate } from "react-router-dom";
 

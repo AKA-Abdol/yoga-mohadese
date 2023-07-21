@@ -1,7 +1,7 @@
 import { InputProps } from "@/types/components/ui";
 import { FC } from "react";
 
-export const Input: FC<InputProps> = (props) => {
+const Input: FC<InputProps> = (props) => {
   return (
     <div className="flex flex-col items-center space-y-1">
       <input
@@ -23,3 +23,5 @@ export const Input: FC<InputProps> = (props) => {
     </div>
   );
 };
+
+export default Input;

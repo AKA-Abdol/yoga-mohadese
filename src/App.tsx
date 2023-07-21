@@ -11,39 +11,45 @@ import Admin from "./pages/Admin";
 import PageNotFound from "./pages/PageNotFound";
 import TermById from "./pages/Admin/Terms/[id]";
 import AddTerm from "./pages/Admin/Terms/add";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<BodyLayout />}>
-          <Route path="auth" element={<Auth />} />
-          <Route path="home" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="reserve" element={<Reserve />} />
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<BodyLayout />}>
+            <Route path="auth" element={<Auth />} />
+            <Route path="home" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="terms" element={<Terms />} />
+            <Route path="reserve" element={<Reserve />} />
 
-          <Route path="admin/">
-            <Route path="" element={<Navigate to={"/admin/users"} />} />
+            <Route path="admin/">
+              <Route path="" element={<Navigate to={"/admin/users"} />} />
 
-            <Route path="users/">
-              <Route path="" element={<Admin />} />
+              <Route path="users/">
+                <Route path="" element={<Admin />} />
+              </Route>
+
+              <Route path="terms/">
+                <Route path="" element={<Admin />} />
+                <Route path=":id" element={<TermById />} />
+                <Route path="add" element={<AddTerm />} />
+              </Route>
             </Route>
 
-            <Route path="terms/">
-              <Route path="" element={<Admin />} />
-              <Route path=":id" element={<TermById />} />
-              <Route path="add" element={<AddTerm />} />
-            </Route>
+            <Route path="404" element={<PageNotFound />} />
+
+            <Route path="" element={<Navigate to={"/auth"} />} />
+            <Route path="*" element={<Navigate to={"/404"} />} />
           </Route>
-
-          <Route path="404" element={<PageNotFound />} />
-
-          <Route path="" element={<Navigate to={"/auth"} />} />
-          <Route path="*" element={<Navigate to={"/404"} />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

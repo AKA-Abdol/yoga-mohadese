@@ -1,7 +1,7 @@
 import { ButtonProps } from "@/types/components/ui";
 import { FC, useCallback } from "react";
 
-export const Button: FC<ButtonProps> = (props) => {
+const Button: FC<ButtonProps> = (props) => {
   const preventDefaultOnClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
@@ -19,3 +19,5 @@ export const Button: FC<ButtonProps> = (props) => {
     </button>
   );
 };
+
+export default Button;

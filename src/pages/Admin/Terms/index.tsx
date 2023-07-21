@@ -1,7 +1,7 @@
 import SearchInput from "../../../components/ui/SearchInput";
 import { FC } from "react";
 import TermItem from "./TermItem";
-import { Button } from "../../../components/ui/Button";
+import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 
 const Terms: FC = () => {
