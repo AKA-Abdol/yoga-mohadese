@@ -28,7 +28,20 @@ const post = <T>(
   };
 };
 
+const get = <T, O>(url: string, queryParams: T) => {
+  return async () => {
+    try {
+      const response = await instance.get(url, { params: queryParams });
+      return response.data as O;
+    } catch (e) {
+      const error = e as AxiosError;
+      return Promise.reject(error.response?.data ?? UNKNOWN_ERROR);
+    }
+  };
+};
+
 const api = {
+  get,
   post,
 };
 

@@ -39,7 +39,7 @@ export interface CardProps extends WithChildren<Array<ReactNode>> {
 }
 
 export interface SelectProps {
-  options: Array<string>;
+  options: string[] | readonly string[];
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
   value?: string;
   classnames?: string;

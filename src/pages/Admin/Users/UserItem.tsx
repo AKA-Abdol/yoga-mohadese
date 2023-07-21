@@ -11,10 +11,10 @@ const UserItem: FC<UserItemProps> = (props) => {
   const [termState, setTermState] = useState(props.state);
   const [tempTermState, setTempTermState] = useState("");
   return (
-    <Card flexDirection="row" justify="between" classnames={`h-14`}>
+    <Card flexDirection="row" justify="between" classnames={`h-14 w-full`}>
       <p className="w-2/5 text-center text-sm">{props.username}</p>
       <Select
-        options={["tir-A", "tir-B", "tir-C"]}
+        options={["تیر A", "تیر B", "تیر C"]}
         value={mode === "edit" ? tempTermState : termState}
         onChange={(event) => {
           console.log(event.target.value);

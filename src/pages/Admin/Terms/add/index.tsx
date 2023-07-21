@@ -7,23 +7,27 @@ import SelectLevel from "../SelectLevel";
 import SelectMonth from "../../../../components/ui/SelectMonth";
 import { termValidationSchema } from "../types";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import api from "../../../../services";
+import { TermInitialValues } from "./types";
+import { ADD_TERM_URL } from "./api.data";
+import { localTerm2api } from "./api.converter";
 
 const AddTerm: FC = () => {
   const navigate = useNavigate();
+  const mutation = useMutation(api.post(ADD_TERM_URL, localTerm2api));
   const formik = useFormik({
-    initialValues: {
-      title: "",
-      level: "",
-      sessionCount: "",
-      month: "",
-      description: "",
-    },
+    initialValues: TermInitialValues,
     validationSchema: termValidationSchema,
     validateOnChange: false,
-    onSubmit: (value) => {
-      console.log(value);
-    },
+    onSubmit: (values) => mutation.mutate(values),
   });
+
+  if (mutation.isSuccess) {
+    // snackbar issues
+    navigate("/admin/terms");
+  }
+
   return (
     <div className={`w-full h-full px-lg py-sm flex justify-center`}>
       <form className="h-full w-full lg:w-1/2" onSubmit={formik.handleSubmit}>
@@ -74,7 +78,11 @@ const AddTerm: FC = () => {
           />
           <div className="w-full flex flex-row justify-around">
             <Button type="submit" className={"w-36 md:w-64 btn-primary-theme"}>
-              تایید
+              {mutation.isLoading ? (
+                <span className="loading loading-infinity loading-lg" />
+              ) : (
+                "تایید"
+              )}
             </Button>
             <Button
               className={"w-36 md:w-64 btn-cancel"}

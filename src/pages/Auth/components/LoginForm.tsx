@@ -24,6 +24,7 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
 
   if (mutation.isSuccess) {
     tokenPersistor.set(mutation.data.token);
+    console.log("token: ", mutation.data.token);
     navigate("/admin");
   }
 

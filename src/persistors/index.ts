@@ -4,8 +4,8 @@ class LocalStoragePersistor {
     this._key = key;
   }
 
-  public set(value: any): void {
-    localStorage.setItem(this._key, JSON.stringify(value));
+  public set(value: string): void {
+    localStorage.setItem(this._key, value);
   }
 
   public get(): string {
