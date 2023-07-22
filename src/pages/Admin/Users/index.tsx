@@ -9,7 +9,7 @@ import { IUsersList } from "./types";
 const Users: FC = () => {
   const users = useQuery({
     queryKey: ["users", "users-list"],
-    queryFn: api.get<{ page: number; num: number }, IUsersList>(ALL_USERS_URL, {
+    queryFn: api.get<IUsersList>(ALL_USERS_URL, (api) => api, {
       num: 10,
       page: 1,
     }),

@@ -19,7 +19,7 @@ const Terms: FC = () => {
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md">
         {MOCK_TERMS.map((term) => (
-          <TermItem title={term.title} />
+          <TermItem title={term.title} id="64bc2cac086c6eec71c4ad72"/>
         ))}
       </div>
     </div>

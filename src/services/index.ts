@@ -28,7 +28,11 @@ const post = <T>(
   };
 };
 
-const get = <T, O>(url: string, queryParams: T) => {
+const get = <O>(
+  url: string,
+  api2local: (api: any) => O = (api) => api,
+  queryParams: any = {}
+) => {
   return async () => {
     try {
       const response = await instance.get(url, { params: queryParams });

@@ -6,6 +6,7 @@ export interface WithChildren<T> {
 
 export interface InputProps {
   className?: string;
+  containerClassName?: string;
   type?: HTMLInputTypeAttribute;
   onChange: (e: ChangeEvent<any>) => void;
   value: string;
@@ -13,6 +14,7 @@ export interface InputProps {
   error?: string;
   id?: string;
   name: string;
+  errorBorderOnly?: boolean;
 }
 
 export interface ButtonProps extends WithChildren<ReactNode> {
@@ -32,7 +34,7 @@ export interface ButtonGroupProps {
   routes: Array<string>;
 }
 
-export interface CardProps extends WithChildren<Array<ReactNode>> {
+export interface CardProps extends WithChildren<Array<ReactNode> | ReactNode> {
   flexDirection: "row" | "col";
   justify?: "center" | "between";
   classnames?: string;
@@ -60,3 +62,5 @@ export interface DeleteButtonProps {
   onClick: () => void;
   classnames?: string;
 }
+
+export type LinkButtonProps = Partial<DeleteButtonProps>;

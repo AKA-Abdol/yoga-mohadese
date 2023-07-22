@@ -2,6 +2,7 @@ import * as Yup from "yup";
 
 export interface TermItemProps {
   title: string;
+  id: string;
 }
 
 export interface VideoButtonProps {
