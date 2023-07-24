@@ -1,4 +1,4 @@
-import { SelectProps } from "@/types/components/ui";
+import { SelectProps } from "src/types/components/ui";
 import Select from "../../../components/ui/Select";
 import { FC } from "react";
 

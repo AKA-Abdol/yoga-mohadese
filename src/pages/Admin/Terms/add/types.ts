@@ -1,4 +1,4 @@
-import { PersianMonth } from "@/utils/dates";
+import { PersianMonth } from "src/utils/dates";
 
 export type Level = "سطح A" | "سطح B" | "سطح C";
 

@@ -1,6 +1,6 @@
-import { InputProps } from "@/types/components/ui";
 import classNames from "classnames";
 import { FC } from "react";
+import { InputProps } from "src/types/components/ui";
 
 const Input: FC<InputProps> = (props) => {
   return (

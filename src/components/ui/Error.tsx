@@ -1,5 +1,5 @@
-import { WithChildren } from "@/types/components/ui";
 import { FC } from "react";
+import { WithChildren } from "src/types/components/ui";
 
 const Error: FC<WithChildren<String | undefined | null | false>> = (props) => {
   return (

@@ -1,5 +1,5 @@
-import { AttentionSpanProps } from "@/types/components/ui";
 import { FC } from "react";
+import { AttentionSpanProps } from "src/types/components/ui";
 
 export const AttentionSpan: FC<AttentionSpanProps> = (props) => {
   return (

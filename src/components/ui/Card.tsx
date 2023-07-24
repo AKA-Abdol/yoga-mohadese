@@ -1,6 +1,6 @@
-import { CardProps } from "@/types/components/ui";
 import classNames from "classnames";
 import { FC } from "react";
+import { CardProps } from "src/types/components/ui";
 
 const Card: FC<CardProps> = (props) => {
   return (

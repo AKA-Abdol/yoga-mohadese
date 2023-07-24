@@ -1,4 +1,4 @@
-import { ContentPair } from "@/types/base";
+import { ContentPair } from "src/types/base";
 import styles from "./MultiBtn.module.css";
 import { useState } from "react";
 

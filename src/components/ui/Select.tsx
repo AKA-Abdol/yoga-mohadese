@@ -1,6 +1,6 @@
-import { SelectProps } from "@/types/components/ui";
 import classNames from "classnames";
 import { FC } from "react";
+import { SelectProps } from "src/types/components/ui";
 
 const Select: FC<SelectProps> = (props) => {
   return (

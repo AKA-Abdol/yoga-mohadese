@@ -12,6 +12,7 @@ import PageNotFound from "./pages/PageNotFound";
 import TermById from "./pages/Admin/Terms/[id]";
 import AddTerm from "./pages/Admin/Terms/add";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import User from "./pages/User";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,8 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="terms" element={<Terms />} />
             <Route path="reserve" element={<Reserve />} />
+
+            <Route path="user" element={<User />} />
 
             <Route path="admin/">
               <Route path="" element={<Navigate to={"/admin/users"} />} />

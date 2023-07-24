@@ -1,6 +1,6 @@
 import { FC } from "react";
 import LinkIcon from "../../assets/images/link-icon.png";
-import { LinkButtonProps } from "@/types/components/ui";
+import { LinkButtonProps } from "src/types/components/ui";
 
 const LinkButton: FC<LinkButtonProps> = (props) => {
   return (

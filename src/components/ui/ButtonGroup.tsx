@@ -1,8 +1,8 @@
-import { ButtonGroupProps } from "@/types/components/ui";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback } from "react";
 import Button from "./Button";
 import useCustomLocation from "../../hooks/useCustomLocation";
 import { useNavigate } from "react-router-dom";
+import { ButtonGroupProps } from "src/types/components/ui";
 
 const ButtonGroup: FC<ButtonGroupProps> = (props) => {
   const [basePath, endPath] = useCustomLocation();

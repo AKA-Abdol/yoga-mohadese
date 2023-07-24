@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import SubmitBtn from "../../assets/images/submit-btn.png";
 import CancelBtn from "../../assets/images/cancel-btn.png";
-import { SubmitCancelButtonProps } from "@/types/components/ui";
+import { SubmitCancelButtonProps } from "src/types/components/ui";
 
 const SubmitCancelButton: FC<SubmitCancelButtonProps> = (props) => {
   return (

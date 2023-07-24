@@ -1,6 +1,6 @@
 import { FC } from "react";
 import DeleteBtn from "../../assets/images/cancel-btn.png";
-import { DeleteButtonProps } from "@/types/components/ui";
+import { DeleteButtonProps } from "src/types/components/ui";
 
 const DeleteButton: FC<DeleteButtonProps> = (props) => {
   return (
