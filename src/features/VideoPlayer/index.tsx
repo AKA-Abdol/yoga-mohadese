@@ -3,14 +3,24 @@ import { FC } from "react";
 import SideControl from "./components/SideControl";
 import Modal from "./components/Modal";
 import SessionList from "./components/SessionList";
+import SessionInfo from "./components/SessionInfo";
 
 const VideoPlayer: FC = () => {
   return (
     <div className={`w-full h-full relative`}>
-      <Modal id="_modal_">
+      <Modal id="session_modal">
         <SessionList />
       </Modal>
-      <SideControl modalId="_modal_"/>
+      <Modal id="info_modal" className="md:w-1/2">
+        <SessionInfo
+          session={{ num: 2, title: "عنوان جلسه" }}
+          term={{ level: "سطح A", month: "آبان", title: "عنوان ترم" }}
+        />
+      </Modal>
+      <SideControl
+        sessionListModalId="session_modal"
+        infoModalId="info_modal"
+      />
       <video
         className={`w-full h-full object-contain`}
         controls

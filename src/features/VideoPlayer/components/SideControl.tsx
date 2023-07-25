@@ -25,13 +25,13 @@ const SideControl: FC<SideControlProps> = (props) => {
           alt="اطلاعات"
           subtitle="اطلاعات"
           className="space-y-1"
-          id={props.modalId}
+          id={props.infoModalId}
         />
         <ModalImageButton
           src={playlistIcon}
           alt="جلسات"
           subtitle="جلسات"
-          id={props.modalId}
+          id={props.sessionListModalId}
         />
         <ImageButton
           onClick={() => setVisibility(false)}
