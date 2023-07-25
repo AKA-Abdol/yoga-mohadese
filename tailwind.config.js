@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const colors = require("tailwindcss/colors"); 
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -15,7 +15,7 @@ module.exports = {
         },
         secondary: {},
         white: "#ecece0",
-        error: colors.red
+        error: colors.red,
       },
       padding: {
         sm: "0.5rem",
@@ -31,7 +31,7 @@ module.exports = {
         sm: "0.5rem",
         md: "1rem",
         lg: "2rem",
-        xl: "3rem"
+        xl: "3rem",
       },
       borderRadius: {
         sm: "5px",
