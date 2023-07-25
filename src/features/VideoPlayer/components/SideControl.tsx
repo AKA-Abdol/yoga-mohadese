@@ -5,8 +5,10 @@ import infoIcon from "src/assets/images/info-icon.png";
 import playlistIcon from "src/assets/images/playlist-icon.png";
 import hideIcon from "src/assets/images/hide-icon.png";
 import showIcon from "src/assets/images/show-icon.png";
+import ModalImageButton from "./ModalImageButton";
+import { SideControlProps } from "./types";
 
-const SideControl: FC = () => {
+const SideControl: FC<SideControlProps> = (props) => {
   const [visiblity, setVisibility] = useState<boolean>(true);
   return (
     <div
@@ -18,18 +20,18 @@ const SideControl: FC = () => {
       )}
     >
       <div className={classNames("w-full", !visiblity && "hidden")}>
-        <ImageButton
-          onClick={() => {}}
+        <ModalImageButton
           src={infoIcon}
           alt="اطلاعات"
           subtitle="اطلاعات"
           className="space-y-1"
+          id={props.modalId}
         />
-        <ImageButton
-          onClick={() => {}}
+        <ModalImageButton
           src={playlistIcon}
           alt="جلسات"
           subtitle="جلسات"
+          id={props.modalId}
         />
         <ImageButton
           onClick={() => setVisibility(false)}
