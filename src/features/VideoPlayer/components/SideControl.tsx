@@ -13,13 +13,20 @@ const SideControl: FC<SideControlProps> = (props) => {
   return (
     <div
       className={classNames(
-        "flex flex-col justify-end items-center space-y-2 pb-20 px-1",
-        "h-full w-12",
+        "flex flex-col justify-start items-center pt-sm px-1",
+        "w-12",
         "absolute right-0 top-0",
         "z-10"
       )}
     >
-      <div className={classNames("w-full", !visiblity && "hidden")}>
+      <div className={classNames("w-full space-y-sm", !visiblity && "hidden")}>
+        <ImageButton
+          onClick={() => setVisibility(false)}
+          src={hideIcon}
+          alt="پنهان"
+          subtitle="پنهان"
+          className="-space-y-1"
+        />
         <ModalImageButton
           src={infoIcon}
           alt="اطلاعات"
@@ -32,13 +39,6 @@ const SideControl: FC<SideControlProps> = (props) => {
           alt="جلسات"
           subtitle="جلسات"
           id={props.sessionListModalId}
-        />
-        <ImageButton
-          onClick={() => setVisibility(false)}
-          src={hideIcon}
-          alt="پنهان"
-          subtitle="پنهان"
-          className="-space-y-1"
         />
       </div>
       <div className={classNames("w-full", visiblity && "hidden")}>
