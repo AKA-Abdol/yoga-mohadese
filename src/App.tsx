@@ -13,6 +13,7 @@ import TermById from "./pages/Admin/Terms/[id]";
 import AddTerm from "./pages/Admin/Terms/add";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import User from "./pages/User";
+import AdminContextProvider from "./pages/Admin/ContextProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,7 +38,7 @@ function App() {
 
             <Route path="user" element={<User />} />
 
-            <Route path="admin/">
+            <Route path="admin/" element={<AdminContextProvider />}>
               <Route path="" element={<Navigate to={"/admin/users"} />} />
 
               <Route path="users/">

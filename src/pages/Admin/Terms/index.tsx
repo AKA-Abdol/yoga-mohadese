@@ -1,11 +1,21 @@
 import SearchInput from "../../../components/ui/SearchInput";
-import { FC } from "react";
+import { FC, useContext, useEffect } from "react";
 import TermItem from "./TermItem";
 import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import { AdminContext } from "../ContextProvider";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Terms: FC = () => {
+  const adminContext = useContext(AdminContext);
+  console.log("context: ", adminContext);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ["admin-context"] });
+  }, []);
+
   return (
     <div className={`w-full h-full p-sm flex flex-col items-center`}>
       <div className="w-full lg:w-3/5 flex flex-col justify-center items-center space-y-lg">
@@ -19,7 +29,7 @@ const Terms: FC = () => {
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md">
         {MOCK_TERMS.map((term) => (
-          <TermItem title={term.title} id="64bc2cac086c6eec71c4ad72"/>
+          <TermItem title={term.title} id="64bc2cac086c6eec71c4ad72" />
         ))}
       </div>
     </div>
