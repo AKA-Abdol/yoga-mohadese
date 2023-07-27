@@ -3,7 +3,11 @@ import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
 import Error from "../../../components/ui/Error";
 import { FC } from "react";
-import { AuthFormProps, LoginFormValidationSchema } from "../types";
+import {
+  AuthFormProps,
+  ILoginFormValues,
+  LoginFormValidationSchema,
+} from "../types";
 import { useFormik } from "formik";
 import { LoginInitialValues } from "../data";
 import { useMutation } from "@tanstack/react-query";
@@ -11,10 +15,13 @@ import { useNavigate } from "react-router-dom";
 import { tokenPersistor } from "../../../persistors/auth";
 import api from "../../../services";
 import { LOGIN_URL } from "../api.data";
+import { IApiPostLogin } from "../api.types";
 
 export const LoginForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
-  const mutation = useMutation(api.post(LOGIN_URL));
+  const mutation = useMutation(
+    api.post<ILoginFormValues, IApiPostLogin>(LOGIN_URL)
+  );
   const formik = useFormik({
     initialValues: LoginInitialValues,
     onSubmit: (values) => mutation.mutate(values),
@@ -24,8 +31,13 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
 
   if (mutation.isSuccess) {
     tokenPersistor.set(mutation.data.token);
-    console.log("token: ", mutation.data.token);
-    navigate("/admin");
+    switch (mutation.data.is_admin) {
+      case true:
+        navigate("/admin");
+        break;
+      case false:
+        navigate("/user");
+    }
   }
 
   if (mutation.isError) console.log("Error:", mutation.error);

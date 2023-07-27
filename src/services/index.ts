@@ -13,14 +13,15 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-const post = <T>(
+const post = <T, O>(
   url: string,
-  local2api: (local: T) => any = (local: T) => local
+  local2api: (local: T) => any = (local: T) => local,
+  api2local: (api: any) => O = (api: any) => api
 ) => {
   return async (body: T) => {
     try {
       const response = await instance.post(url, local2api(body));
-      return response.data;
+      return api2local(response.data) as O;
     } catch (e) {
       const error = e as AxiosError;
       return Promise.reject(error.response?.data ?? UNKNOWN_ERROR);
@@ -36,7 +37,7 @@ const get = <O>(
   return async () => {
     try {
       const response = await instance.get(url, { params: queryParams });
-      return response.data as O;
+      return api2local(response.data) as O;
     } catch (e) {
       const error = e as AxiosError;
       return Promise.reject(error.response?.data ?? UNKNOWN_ERROR);

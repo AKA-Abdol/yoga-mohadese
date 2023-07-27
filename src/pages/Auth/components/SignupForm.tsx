@@ -2,7 +2,7 @@ import { AttentionSpan } from "../../../components/ui/AttentionSpan";
 import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
 import { FC } from "react";
-import { AuthFormProps } from "../types";
+import { AuthFormProps, ISignupFormValues } from "../types";
 import { useFormik } from "formik";
 import { SignupInitialValues } from "../data";
 import { signupHandleValidation } from "../utils";
@@ -13,10 +13,16 @@ import api from "../../../services";
 import { signupFormValues2api } from "../api.converter";
 import { tokenPersistor } from "../../../persistors/auth";
 import { useNavigate } from "react-router-dom";
+import { IApiPostSignup } from "../api.types";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
-  const mutation = useMutation(api.post(SIGNUP_URL, signupFormValues2api));
+  const mutation = useMutation(
+    api.post<ISignupFormValues, IApiPostSignup>(
+      SIGNUP_URL,
+      signupFormValues2api
+    )
+  );
   const formik = useFormik({
     initialValues: SignupInitialValues,
     onSubmit: (values) => mutation.mutate(values),
@@ -26,7 +32,13 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
 
   if (mutation.isSuccess) {
     tokenPersistor.set(mutation.data.token);
-    navigate("/home");
+    switch (mutation.data.is_admin) {
+      case true:
+        navigate("/admin");
+        break;
+      case false:
+        navigate("/user");
+    }
   }
 
   return (
