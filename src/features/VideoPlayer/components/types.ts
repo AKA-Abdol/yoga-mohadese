@@ -36,3 +36,8 @@ export interface SessionInfoProps {
     level: Level;
   };
 }
+
+export interface DrawerProps {
+  children?: ReactNode;
+  show: boolean;
+}

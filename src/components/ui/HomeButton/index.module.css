@@ -1,0 +1,19 @@
+.img-link {
+  width: 75px;
+  height: 75px;
+  border: 2px solid rgb(173, 192, 128);
+  border-radius: 50%;
+  padding: 4px;
+  background-color: #ecece0c4;
+
+  transition: all 0.7s;
+}
+
+.home-link {
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.7s ease-in-out;
+}
