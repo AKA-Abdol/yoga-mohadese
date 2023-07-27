@@ -6,7 +6,7 @@ const OpenCloseButton: FC<{
   onToggle: () => void;
 }> = (props) => {
   return (
-    <label className="swap swap-rotate">
+    <label className="swap swap-rotate z-10">
       <input type="checkbox" onChange={props.onToggle} />
 
       <svg
