@@ -8,8 +8,7 @@ export const apiTerm2local = ({
 }): ITerm & { id: string } => ({
   description: "some description",
   level: course.level,
-  month: "مرداد",
-  sessionCount: "10",
   title: course.title,
   id: course.id,
+  range: [],
 });

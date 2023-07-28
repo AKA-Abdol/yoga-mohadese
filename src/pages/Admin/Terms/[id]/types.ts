@@ -1,4 +1,4 @@
-import { Level } from "../add/types";
+import { Level } from "src/types/base";
 
 export interface IApiTerm {
   id: string;

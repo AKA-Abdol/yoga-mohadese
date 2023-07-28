@@ -4,7 +4,6 @@ import Input from "../../../../components/ui/Input";
 import { FC } from "react";
 import TextArea from "../../../../components/ui/TextArea";
 import SelectLevel from "../SelectLevel";
-import SelectMonth from "../../../../components/ui/SelectMonth";
 import { termValidationSchema } from "../types";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
@@ -12,6 +11,7 @@ import api from "../../../../services";
 import { TermInitialValues } from "./types";
 import { ADD_TERM_URL } from "./api.data";
 import { localTerm2api } from "./api.converter";
+import RangePicker from "src/components/ui/RangePicker";
 
 const AddTerm: FC = () => {
   const navigate = useNavigate();
@@ -23,6 +23,11 @@ const AddTerm: FC = () => {
     onSubmit: (values) => mutation.mutate(values),
   });
 
+  console.log(formik.values);
+
+  if (formik.values.range.length)
+    console.log(formik.values.range[0].toDate().toISOString());
+
   if (mutation.isSuccess) {
     // snackbar issues
     navigate("/admin/terms");
@@ -31,7 +36,10 @@ const AddTerm: FC = () => {
   return (
     <div className={`w-full h-full px-lg py-sm flex justify-center`}>
       <form className="h-full w-full lg:w-1/2" onSubmit={formik.handleSubmit}>
-        <div className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg">
+        <div
+          className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg"
+          style={{ direction: "ltr" }}
+        >
           <Input
             onChange={formik.handleChange}
             placeholder="عنوان"
@@ -43,29 +51,17 @@ const AddTerm: FC = () => {
           />
           <SelectLevel
             onChange={formik.handleChange}
-            value={formik.values.level}
+            value={`${formik.values.level}`}
             id="level"
             name="level"
             classnames="text-center bg-inherit"
             placeholder="انتخاب سطح"
           />
-          <Input
-            onChange={formik.handleChange}
-            placeholder="تعداد جلسات"
-            className="text-center w-full input-primary-theme"
-            id="sessionCount"
-            name="sessionCount"
-            type="number"
-            error={formik.errors.sessionCount}
-            value={formik.values.sessionCount}
-          />
-          <SelectMonth
-            onChange={formik.handleChange}
-            value={formik.values.month}
-            id="month"
-            name="month"
-            classnames="text-center"
-            placeholder="انتخاب ماه"
+          <RangePicker
+            value={formik.values.range}
+            onChange={(newRange) => {
+              formik.setFieldValue("range", newRange);
+            }}
           />
           <TextArea
             onChange={formik.handleChange}

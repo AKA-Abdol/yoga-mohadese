@@ -14,3 +14,13 @@ export const PERSIAN_MONTHS = [
 ] as const;
 
 export type PersianMonth = (typeof PERSIAN_MONTHS)[number];
+
+export const PERSIAN_WEEKDAYS = [
+  "شنبه",
+  "یکشنبه",
+  "دوشنبه",
+  "سه شنبه",
+  "چهارشنبه",
+  "پنجشنبه",
+  "جمعه",
+];

@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import { Level } from "src/pages/Admin/Terms/add/types";
-import { PersianMonth } from "src/utils/dates";
+import { Level, PersianMonth } from "src/types/base";
 
 export interface ImageButtonProps {
   onClick: () => void;

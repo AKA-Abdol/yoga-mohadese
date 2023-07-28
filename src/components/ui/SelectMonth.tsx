@@ -7,6 +7,7 @@ const SelectMonth: FC<Omit<SelectProps, "options">> = (props) => {
   return (
     <Select
       options={PERSIAN_MONTHS}
+      optionTexts={PERSIAN_MONTHS}
       onChange={props.onChange}
       value={props.value}
       id={props.id}

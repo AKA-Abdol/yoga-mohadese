@@ -15,6 +15,7 @@ const UserItem: FC<UserItemProps> = (props) => {
       <p className="w-2/5 text-center text-sm">{props.username}</p>
       <Select
         options={["تیر A", "تیر B", "تیر C"]}
+        optionTexts={["تیر A", "تیر B", "تیر C"]}
         value={mode === "edit" ? tempTermState : termState}
         onChange={(event) => {
           console.log(event.target.value);

@@ -1,19 +1,16 @@
-import { PersianMonth } from "src/utils/dates";
-
-export type Level = "سطح A" | "سطح B" | "سطح C";
+import { Level } from "src/types/base";
+import { DateRange } from "src/types/components/ui";
 
 export interface ITerm {
   title: string;
   level: Level;
-  sessionCount: string;
-  month: PersianMonth | "";
   description: string;
+  range: DateRange;
 }
 
 export const TermInitialValues: ITerm = {
   title: "",
-  level: "سطح A",
-  sessionCount: "",
-  month: "",
+  level: "1",
   description: "",
+  range: [],
 };

@@ -22,8 +22,8 @@ const Select: FC<SelectProps> = (props) => {
           {props.placeholder}
         </option>
       )}
-      {props.options.map((option) => (
-        <option>{option}</option>
+      {props.options.map((option, index) => (
+        <option value={option}>{props.optionTexts[index]}</option>
       ))}
     </select>
   );

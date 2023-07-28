@@ -29,7 +29,7 @@ const Terms: FC = () => {
           + ایجاد ترم جدید
         </Button>
       </div>
-      <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md">
+      <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md items-center">
         {adminContext.terms ? (
           adminContext.terms.count !== 0 ? (
             adminContext.terms.values.map((term) => (

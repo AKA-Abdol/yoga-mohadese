@@ -6,6 +6,6 @@ export const signupFormValues2api = (signupFormValues: ISignupFormValues) => ({
     username: signupFormValues.username,
     password: signupFormValues.password,
     email: signupFormValues.email,
-    phone: +signupFormValues.phoneNumber,
+    phone: signupFormValues.phoneNumber,
   });
   

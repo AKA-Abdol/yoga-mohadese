@@ -1,4 +1,5 @@
 import { ChangeEvent, HTMLInputTypeAttribute, ReactNode } from "react";
+import DateObject from "react-date-object";
 
 export interface WithChildren<T> {
   children: T;
@@ -41,7 +42,8 @@ export interface CardProps extends WithChildren<Array<ReactNode> | ReactNode> {
 }
 
 export interface SelectProps {
-  options: string[] | readonly string[];
+  optionTexts: string[] | readonly string[];
+  options: any[] | readonly any[];
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
   value?: string;
   classnames?: string;
@@ -68,4 +70,10 @@ export type LinkButtonProps = Partial<DeleteButtonProps>;
 export interface LoadingProps {
   size?: "sm" | "md" | "lg";
   textColor?: string;
+}
+
+export type DateRange = Array<DateObject>;
+export interface RangePickerProps {
+  value: DateRange;
+  onChange: (newRange: DateRange) => void;
 }
