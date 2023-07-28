@@ -64,3 +64,8 @@ export interface DeleteButtonProps {
 }
 
 export type LinkButtonProps = Partial<DeleteButtonProps>;
+
+export interface LoadingProps {
+  size?: "sm" | "md" | "lg";
+  textColor?: string;
+}

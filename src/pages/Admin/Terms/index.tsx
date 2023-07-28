@@ -5,17 +5,19 @@ import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../ContextProvider";
 import { useQueryClient } from "@tanstack/react-query";
+import Loading from "src/components/ui/Loading";
 
 const Terms: FC = () => {
   const adminContext = useContext(AdminContext);
-  console.log("context: ", adminContext);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   useEffect(() => {
+    console.log("hook invoked!");
     queryClient.invalidateQueries({ queryKey: ["admin-context"] });
   }, []);
 
+  console.log("term: ", adminContext.terms);
   return (
     <div className={`w-full h-full p-sm flex flex-col items-center`}>
       <div className="w-full lg:w-3/5 flex flex-col justify-center items-center space-y-lg">
@@ -28,28 +30,20 @@ const Terms: FC = () => {
         </Button>
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md">
-        {MOCK_TERMS.map((term) => (
-          <TermItem title={term.title} id="64bc2cac086c6eec71c4ad72" />
-        ))}
+        {adminContext.terms ? (
+          adminContext.terms.count !== 0 ? (
+            adminContext.terms.values.map((term) => (
+              <TermItem title={`${term.title}-${term.level}`} id={term.id} />
+            ))
+          ) : (
+            <p>ترمی یافت نشد!</p>
+          )
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );
 };
-
-const MOCK_TERMS = [
-  {
-    title: "بهار - ۱۴۰۱",
-    // id
-  },
-  {
-    title: "اردیبهشت - ۱۴۰۲",
-  },
-  {
-    title: "اردیبهشت - ۱۴۰۲",
-  },
-  {
-    title: "اردیبهشت - ۱۴۰۲",
-  },
-];
 
 export default Terms;
