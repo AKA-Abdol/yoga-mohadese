@@ -1,11 +1,9 @@
-import { Level } from "src/types/base";
+import { WithId } from "src/types/base";
+import { ModalProps } from "src/types/components/ui";
 import * as Yup from "yup";
+import { ITerm } from "./add/types";
 
-export interface TermItemProps {
-  title: string;
-  id: string;
-  level: Level;
-}
+export type TermItemProps = ITerm & WithId;
 
 export interface VideoButtonProps {
   onClick: () => void;
@@ -18,3 +16,23 @@ export const termValidationSchema = Yup.object().shape({
   description: Yup.string().required("الزامی"),
   range: Yup.array().min(2, "بازه انتخاب کنید").required("الزامی"),
 });
+
+export interface DeleteModalProps extends Omit<ModalProps, "children"> {
+  term: TermItemProps;
+}
+
+export interface IDeleteModalState {
+  show: boolean;
+  term: TermItemProps;
+}
+
+export const initialDeleteModalState: IDeleteModalState = {
+  show: false,
+  term: {
+    id: "",
+    level: "1",
+    title: "",
+    description: "",
+    range: [],
+  },
+};

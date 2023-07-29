@@ -29,6 +29,12 @@ const AdminContextProvider: FC = () => {
     queryFn: api.get<IAdminTerms>(TERM_URL),
   });
 
+  let localTerms = undefined;
+  if (termData.data)
+    localTerms = termData.data.values.map(apiTerm => {
+      
+    })
+
   return (
     <AdminContext.Provider value={{ terms: termData.data }}>
       <Outlet />

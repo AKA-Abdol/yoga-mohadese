@@ -4,6 +4,8 @@ export interface IApiTerm {
   id: string;
   level: Level;
   title: string;
+  start_data: string;
+  end_date: string;
 }
 
 export interface IVideo {

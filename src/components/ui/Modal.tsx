@@ -13,7 +13,8 @@ const Modal: FC<ModalProps> = (props) => {
         "fixed top-0 left-0 right-0 z-50 w-full p-md overflow-x-hidden overflow-y-auto md:inset-0 h-full",
         "flex justify-center items-center",
         "bg-black bg-opacity-40",
-        !props.show && "hidden"
+        !props.show && "hidden",
+        !props.children && "hidden"
       )}
       onClick={props.onClose}
     >

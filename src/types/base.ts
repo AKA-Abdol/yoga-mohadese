@@ -5,6 +5,10 @@ export interface ContentPair<T> {
   data: T;
 }
 
+export interface WithId {
+  id: string;
+}
+
 export type PersianMonth = (typeof PERSIAN_MONTHS)[number];
 
 export const LEVELS = ["1", "2", "3"] as const;
