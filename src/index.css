@@ -25,7 +25,8 @@ input,
 textarea,
 select,
 a,
-p {
+p,
+div {
   font-family: IRANRounded !important;
 }
 

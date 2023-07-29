@@ -77,3 +77,12 @@ export interface RangePickerProps {
   value: DateRange;
   onChange: (newRange: DateRange) => void;
 }
+
+export interface BadgeProps extends WithChildren<string> {
+  className?: string;
+}
+
+export interface ModalProps extends WithChildren<ReactNode> {
+  onClose: () => void;
+  show: boolean;
+}

@@ -23,11 +23,6 @@ const AddTerm: FC = () => {
     onSubmit: (values) => mutation.mutate(values),
   });
 
-  console.log(formik.values);
-
-  if (formik.values.range.length)
-    console.log(formik.values.range[0].toDate().toISOString());
-
   if (mutation.isSuccess) {
     // snackbar issues
     navigate("/admin/terms");
