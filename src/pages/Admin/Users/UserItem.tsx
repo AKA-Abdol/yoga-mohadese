@@ -25,9 +25,7 @@ const UserItem: FC<UserItemProps> = (props) => {
         classnames="w-3/5 text-center mr-2 h-full"
       />
       <div className={"h-full w-24"}>
-        {mode === "show" && (
-          <EditButton onClick={() => setMode("edit")} classnames="" />
-        )}
+        {mode === "show" && <EditButton onClick={() => setMode("edit")} />}
         {mode === "edit" && (
           <SubmitCancelButton
             classnames="justify-between pr-2"

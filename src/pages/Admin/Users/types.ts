@@ -5,8 +5,8 @@ export interface UserItemProps {
 }
 
 export interface EditButtonProps {
-  onClick: () => void;
-  classnames?: string;
+  onClick?: () => void;
+  className?: string;
 }
 
 export interface IUser {

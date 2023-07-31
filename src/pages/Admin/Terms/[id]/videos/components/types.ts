@@ -1,9 +1,8 @@
+import { WithId } from "src/types/base";
+import { ITerm } from "../../../add/types";
 import { IVideo } from "../types";
 
-export interface TermInfoProps {
-  title: string;
-  description: string;
-}
+export type TermInfoProps = Omit<ITerm, "range"> & WithId;
 
 export interface VideoItemProps {
   num: number;

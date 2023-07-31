@@ -1,6 +1,6 @@
-import Card from "../../../../../components/ui/Card";
-import Input from "../../../../../components/ui/Input";
-import SubmitCancelButton from "../../../../../components/ui/SubmitCancelButton";
+import Card from "../../../../../../components/ui/Card";
+import Input from "../../../../../../components/ui/Input";
+import SubmitCancelButton from "../../../../../../components/ui/SubmitCancelButton";
 import { useFormik } from "formik";
 import { FC } from "react";
 import { AddVideoItemProps } from "./types";

@@ -1,7 +1,7 @@
-import LinkButton from "../../../../../components/ui/LinkButton";
+import LinkButton from "../../../../../../components/ui/LinkButton";
 import { FC } from "react";
 import { VideoItemProps } from "./types";
-import Card from "../../../../../components/ui/Card";
+import Card from "../../../../../../components/ui/Card";
 
 const VideoItem: FC<VideoItemProps> = (props) => {
   return (

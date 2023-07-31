@@ -9,7 +9,7 @@ import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
 import Admin from "./pages/Admin";
 import PageNotFound from "./pages/PageNotFound";
-import TermById from "./pages/Admin/Terms/[id]";
+import TermById from "./pages/Admin/Terms/[id]/videos";
 import AddTerm from "./pages/Admin/Terms/add";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import User from "./pages/User";
@@ -47,7 +47,7 @@ function App() {
 
               <Route path="terms/">
                 <Route path="" element={<Admin />} />
-                <Route path=":id" element={<TermById />} />
+                <Route path=":id/videos" element={<TermById />} />
                 <Route path="add" element={<AddTerm />} />
               </Route>
             </Route>

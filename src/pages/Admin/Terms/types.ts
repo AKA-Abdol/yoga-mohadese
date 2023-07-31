@@ -6,7 +6,7 @@ import { ITerm } from "./add/types";
 export type TermItemProps = ITerm & WithId;
 
 export interface VideoButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   classnames?: string;
 }
 
