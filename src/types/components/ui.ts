@@ -86,3 +86,11 @@ export interface ModalProps extends WithChildren<ReactNode> {
   onClose: () => void;
   show: boolean;
 }
+
+export interface CheckboxProps {
+  onToggle?: () => void;
+  className?: string;
+  span?: string;
+  size?: "xs" | "sm" | "md" | "lg";
+  checked?: boolean;
+}
