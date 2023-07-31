@@ -13,6 +13,7 @@ import {
   TermItemProps,
   initialDeleteModalState,
 } from "./types";
+import DateObject from "react-date-object";
 
 const Terms: FC = () => {
   const adminContext = useContext(AdminContext);
@@ -52,7 +53,13 @@ const Terms: FC = () => {
         {adminContext.terms ? (
           adminContext.terms.count !== 0 ? (
             adminContext.terms.values.map((term) => (
-              <TermItem title={term.title} level={term.level} id={term.id} />
+              <TermItem
+                title={term.title}
+                level={term.level}
+                id={term.id}
+                description=""
+                range={[new DateObject(), new DateObject()]}
+              />
             ))
           ) : (
             <p>ترمی یافت نشد!</p>
