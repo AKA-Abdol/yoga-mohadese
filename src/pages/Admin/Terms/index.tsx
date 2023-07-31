@@ -51,14 +51,14 @@ const Terms: FC = () => {
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md items-center">
         {adminContext.terms ? (
-          adminContext.terms.count !== 0 ? (
-            adminContext.terms.values.map((term) => (
+          adminContext.terms.length !== 0 ? (
+            adminContext.terms.map((term) => (
               <TermItem
                 title={term.title}
                 level={term.level}
                 id={term.id}
-                description=""
-                range={[new DateObject(), new DateObject()]}
+                description={term.description}
+                range={term.range}
               />
             ))
           ) : (

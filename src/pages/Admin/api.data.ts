@@ -1,0 +1,1 @@
+export const TERM_URL = "courses";

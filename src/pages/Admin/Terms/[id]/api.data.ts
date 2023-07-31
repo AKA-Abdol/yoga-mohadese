@@ -1,1 +1,0 @@
-export const BASE_TERM_VIDEOS_URL = "courses";

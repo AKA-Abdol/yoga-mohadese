@@ -3,8 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { FC, useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ITerm } from "../add/types";
-import { apiTerm2local } from "./api.converter";
-import { BASE_TERM_VIDEOS_URL } from "./api.data";
 import TermInfo from "./components/TermInfo";
 import Button from "../../../../components/ui/Button";
 import VideoItem from "./components/VideoItem";
