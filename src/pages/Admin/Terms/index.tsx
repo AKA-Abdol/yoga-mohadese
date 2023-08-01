@@ -13,7 +13,6 @@ import {
   TermItemProps,
   initialDeleteModalState,
 } from "./types";
-import DateObject from "react-date-object";
 
 const Terms: FC = () => {
   const adminContext = useContext(AdminContext);

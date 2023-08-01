@@ -93,4 +93,6 @@ export interface CheckboxProps {
   span?: string;
   size?: "xs" | "sm" | "md" | "lg";
   checked?: boolean;
+  disabled?: boolean;
+  hasSpan?: boolean;
 }

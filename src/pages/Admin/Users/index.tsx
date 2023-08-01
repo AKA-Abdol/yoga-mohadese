@@ -28,7 +28,7 @@ const Users: FC = () => {
               id={user.id}
               key={user.id}
               username={`${user.firstname} ${user.lastname}`}
-              state="تیر A"
+              terms={user.courses}
             />
           ))
         )}

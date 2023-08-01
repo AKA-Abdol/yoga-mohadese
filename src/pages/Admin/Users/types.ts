@@ -1,6 +1,9 @@
+import { WithId } from "src/types/base";
+import { ITerm } from "../Terms/add/types";
+
 export interface UserItemProps {
   username: string;
-  state: string;
+  terms: Array<ITerm & WithId>;
   id: string;
 }
 
@@ -16,10 +19,12 @@ export interface IUser {
   lastname: string;
   email: string;
   phone: number;
-  courses: string[];
+  courses: Array<ITerm & WithId>;
 }
 
 export interface IUsersList {
   count: number;
   values: IUser[];
 }
+
+export const SELECT_PLACEHOLDER = "انتخاب ترم";
