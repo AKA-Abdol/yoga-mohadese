@@ -4,7 +4,7 @@ import TermInfo from "./components/TermInfo";
 import Button from "src/components/ui/Button";
 import VideoItem from "./components/VideoItem";
 import AddVideoItem from "./components/AddVideoItem";
-import { AddStateType, IVideo, WithVideos } from "./types";
+import { AddStateType, IVideo, WithThumbnail, WithVideos } from "./types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "src/services";
 import { WithId } from "src/types/base";
@@ -25,7 +25,9 @@ const TermById: FC = () => {
   });
 
   const addVideo = useMutation(
-    api.post<IVideo, unknown>(`${BASE_TERM_URL}/${id}/${TERM_VIDEO_URL}`)
+    api.post<IVideo & WithThumbnail, unknown>(
+      `${BASE_TERM_URL}/${id}/${TERM_VIDEO_URL}`
+    )
   );
 
   const [addState, setAddState] = useState<AddStateType>("readyToAdd");
@@ -54,7 +56,7 @@ const TermById: FC = () => {
         {addState === "adding" && (
           <AddVideoItem
             onCancel={() => setAddState("readyToAdd")}
-            onSubmit={(video: IVideo) => {
+            onSubmit={(video: IVideo & WithThumbnail) => {
               addVideo.mutate(video);
               setAddState("readyToAdd");
             }}

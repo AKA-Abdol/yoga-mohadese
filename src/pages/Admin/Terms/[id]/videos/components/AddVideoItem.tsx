@@ -11,12 +11,14 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
       title: "",
       link: "",
       num: "",
+      thumbnailLink: "",
     },
     onSubmit: (values) => {
       props.onSubmit({
         link: values.link,
         title: values.title,
         num: +values.num,
+        thumbnail: values.thumbnailLink,
       });
     },
   });
@@ -38,7 +40,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             errorBorderOnly={true}
           />
         </div>
-        <div className="w-1/2 h-full">
+        <div className="w-1/3 h-full">
           <Input
             name="title"
             id="title"
@@ -50,7 +52,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             errorBorderOnly={true}
           />
         </div>
-        <div className="w-1/2 h-full">
+        <div className="w-1/3 h-full">
           <Input
             name="link"
             id="link"
@@ -58,6 +60,18 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.link}
+            containerClassName="h-full"
+            errorBorderOnly={true}
+          />
+        </div>
+        <div className="w-1/3 h-full">
+          <Input
+            name="thumbnailLink"
+            id="thumbnailLink"
+            placeholder="لینک نمایه"
+            className="w-full h-full input-primary-theme text-center"
+            onChange={formik.handleChange}
+            value={formik.values.thumbnailLink}
             containerClassName="h-full"
             errorBorderOnly={true}
           />

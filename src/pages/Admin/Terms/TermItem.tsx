@@ -1,15 +1,18 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import Card from "../../../components/ui/Card";
 import EditButton from "../Users/EditButton";
-import { TermItemProps } from "./types";
 import VideoButton from "./VideoButton";
 import DeleteButton from "../../../components/ui/DeleteButton";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Badge from "src/components/ui/Badge";
 import { getLevelTitle } from "./utils";
+import { ITerm } from "./add/types";
+import { WithId } from "src/types/base";
+import { ModalInvoker } from "./types";
 
-const TermItem: FC<TermItemProps> = (props) => {
-  
+const TermItem: FC<ITerm & WithId & ModalInvoker<ITerm & WithId>> = (props) => {
+  const { invokeModal: _, ...termProps } = props;
+
   return (
     <Card flexDirection="row" justify="between" classnames={`h-14 w-full`}>
       <div className="w-full flex items-center justify-start">
@@ -27,7 +30,7 @@ const TermItem: FC<TermItemProps> = (props) => {
             console.log("clicked");
           }}
         />
-        <DeleteButton onClick={() => {}} />
+        <DeleteButton onClick={() => props.invokeModal(termProps)} />
       </div>
     </Card>
   );

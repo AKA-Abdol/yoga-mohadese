@@ -6,6 +6,10 @@ export interface IVideo {
   link: string;
 }
 
+export interface WithThumbnail {
+  thumbnail: string;
+}
+
 export interface WithVideos {
   videos: Array<IVideo & WithId>;
 }

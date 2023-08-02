@@ -3,7 +3,9 @@ import { ModalProps } from "src/types/components/ui";
 import * as Yup from "yup";
 import { ITerm } from "./add/types";
 
-export type TermItemProps = ITerm & WithId;
+export interface ModalInvoker<T> {
+  invokeModal: (value: T) => void;
+}
 
 export interface VideoButtonProps {
   onClick?: () => void;
@@ -18,12 +20,12 @@ export const termValidationSchema = Yup.object().shape({
 });
 
 export interface DeleteModalProps extends Omit<ModalProps, "children"> {
-  term: TermItemProps;
+  term: ITerm & WithId;
 }
 
 export interface IDeleteModalState {
   show: boolean;
-  term: TermItemProps;
+  term: ITerm & WithId;
 }
 
 export const initialDeleteModalState: IDeleteModalState = {

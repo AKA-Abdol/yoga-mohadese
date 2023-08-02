@@ -8,11 +8,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import Loading from "src/components/ui/Loading";
 import Modal from "src/components/ui/Modal";
 import DeleteModal from "./DeleteModal";
-import {
-  IDeleteModalState,
-  TermItemProps,
-  initialDeleteModalState,
-} from "./types";
+import { IDeleteModalState, initialDeleteModalState } from "./types";
+import { WithId } from "src/types/base";
+import { ITerm } from "./add/types";
 
 const Terms: FC = () => {
   const adminContext = useContext(AdminContext);
@@ -26,7 +24,7 @@ const Terms: FC = () => {
     setModalState((prevState) => ({ ...prevState, show: false }));
   }, []);
 
-  const invokeModalWith = useCallback((term: TermItemProps) => {
+  const invokeModalWith = useCallback((term: ITerm & WithId) => {
     setModalState({
       show: true,
       term,
@@ -58,6 +56,7 @@ const Terms: FC = () => {
                 id={term.id}
                 description={term.description}
                 range={term.range}
+                invokeModal={invokeModalWith}
               />
             ))
           ) : (

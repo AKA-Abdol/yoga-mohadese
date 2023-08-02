@@ -1,6 +1,6 @@
 import { WithId } from "src/types/base";
 import { ITerm } from "../../../add/types";
-import { IVideo } from "../types";
+import { IVideo, WithThumbnail } from "../types";
 
 export type TermInfoProps = Omit<ITerm, "range"> & WithId;
 
@@ -11,6 +11,6 @@ export interface VideoItemProps {
 }
 
 export interface AddVideoItemProps {
-  onSubmit: (video: IVideo) => void;
+  onSubmit: (video: IVideo & WithThumbnail) => void;
   onCancel: () => void;
 }
