@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from "react";
 import Card from "../../../components/ui/Card";
-import { SELECT_PLACEHOLDER, UserItemProps } from "./types";
+import { UserItemProps } from "./types";
 import { ItemMode } from "../types";
 import EditButton from "./EditButton";
 import Select from "../../../components/ui/Select";
@@ -8,17 +8,29 @@ import SubmitCancelButton from "../../../components/ui/SubmitCancelButton";
 import Checkbox from "src/components/ui/Checkbox";
 import { AdminContext } from "../ContextProvider";
 import { getLevelTitle } from "../Terms/utils";
+import { useMutation } from "@tanstack/react-query";
+import api from "src/services";
+import { BASE_USER_URL } from "./api.data";
 
 const UserItem: FC<UserItemProps> = (props) => {
-  console.log(props);
   const notBeginnerTerms = props.terms.filter((term) => term.level != "1");
   const initialTermState = notBeginnerTerms.length
     ? notBeginnerTerms[0].id
     : "no-term";
   console.log("term:", initialTermState);
 
-  const initialBeginnerTermState =
-    props.terms.findIndex((term) => term.level == "1") != -1;
+  const beginnerTerm = props.terms.filter((term) => term.level == "1");
+  const initialBeginnerTermState = beginnerTerm.length ? true : false;
+
+  const unGrantTerm = useMutation(
+    api.delete<{ course_id: string }>(`${BASE_USER_URL}/${props.id}/access`)
+  );
+
+  const grantTerm = useMutation(
+    api.post<{ course_id: string; level: number }, unknown>(
+      `${BASE_USER_URL}/${props.id}/access`
+    )
+  );
 
   const [mode, setMode] = useState<ItemMode>("show");
   const [termState, setTermState] = useState(initialTermState);
@@ -93,6 +105,19 @@ const UserItem: FC<UserItemProps> = (props) => {
             classnames="justify-between pr-2"
             onCancel={() => setMode("show")}
             onSubmit={() => {
+              if (termState !== "no-term")
+                unGrantTerm.mutate({ course_id: termState });
+              if (tempTermState !== "no-term")
+                grantTerm.mutate({ course_id: tempTermState, level: 2 });
+
+              if (tempBeginnerTermState)
+                grantTerm.mutate({
+                  course_id: beginnerLevelTerm?.id ?? "",
+                  level: 1,
+                });
+              else
+                unGrantTerm.mutate({ course_id: beginnerLevelTerm?.id ?? "" });
+
               setTermState(tempTermState);
               setBeginnerTermState(tempBeginnerTermState);
               setMode("show");

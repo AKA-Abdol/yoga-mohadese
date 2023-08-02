@@ -45,9 +45,22 @@ const get = <O>(
   };
 };
 
+const _delete = <T>(url: string) => {
+  return async (queryParams: T) => {
+    try {
+      const response = await instance.delete(url, { params: queryParams });
+      return response.data;
+    } catch (e) {
+      const error = e as AxiosError;
+      return Promise.reject(error.response?.data ?? UNKNOWN_ERROR);
+    }
+  };
+};
+
 const api = {
   get,
   post,
+  delete: _delete,
 };
 
 export default api;
