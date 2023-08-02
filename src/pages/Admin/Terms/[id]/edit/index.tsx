@@ -1,27 +1,48 @@
 import { useFormik } from "formik";
 import Button from "src/components/ui/Button";
 import Input from "src/components/ui/Input";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import TextArea from "src/components/ui/TextArea";
-import SelectLevel from "../SelectLevel";
-import { termValidationSchema } from "../types";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "src/services";
-import { TermInitialValues } from "./types";
-import { ADD_TERM_URL } from "./api.data";
-import { localTerm2api } from "./api.converter";
 import RangePicker from "src/components/ui/RangePicker";
+import { ITermInput, TermInitialValues } from "../../add/types";
+import { termValidationSchema } from "../../types";
+import SelectLevel from "../../SelectLevel";
+import { BASE_TERM_URL } from "../../api.data";
+import { ITermApi } from "src/pages/Admin/types";
+import { apiTerm2local } from "src/pages/Admin/api.converter";
+import { localTerm2api } from "../../add/api.converter";
 
-const AddTerm: FC = () => {
+const TermEdit: FC = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const mutation = useMutation(api.post(ADD_TERM_URL, localTerm2api));
+  const term = useQuery({
+    queryKey: ["term-data"],
+    queryFn: api.get<{ course: ITermApi }>(`${BASE_TERM_URL}/${id}`),
+  });
+  const mutation = useMutation(
+    api.put<ITermInput>(`${BASE_TERM_URL}/${id}`, localTerm2api)
+  );
   const formik = useFormik({
     initialValues: TermInitialValues,
     validationSchema: termValidationSchema,
     validateOnChange: false,
-    onSubmit: (values) => mutation.mutate(values),
+    onSubmit: (values) => {
+      mutation.mutate(values);
+    },
   });
+
+  useEffect(() => {
+    if (term.isSuccess) {
+      console.log(term.data.course);
+      formik.setValues({
+        ...apiTerm2local(term.data.course),
+        level: `${term.data.course.level}`,
+      });
+    }
+  }, [term.isSuccess, term.data?.course]);
 
   if (mutation.isSuccess) {
     // snackbar issues
@@ -51,7 +72,6 @@ const AddTerm: FC = () => {
             name="level"
             classnames="text-center bg-inherit"
             placeholder="انتخاب سطح"
-            error={formik.errors.level}
           />
           <RangePicker
             value={formik.values.range}
@@ -89,4 +109,4 @@ const AddTerm: FC = () => {
   );
 };
 
-export default AddTerm;
+export default TermEdit;

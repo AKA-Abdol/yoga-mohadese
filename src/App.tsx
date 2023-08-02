@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -9,11 +8,12 @@ import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
 import Admin from "./pages/Admin";
 import PageNotFound from "./pages/PageNotFound";
-import TermById from "./pages/Admin/Terms/[id]/videos";
 import AddTerm from "./pages/Admin/Terms/add";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import User from "./pages/User";
 import AdminContextProvider from "./pages/Admin/ContextProvider";
+import TermVideos from "./pages/Admin/Terms/[id]/videos";
+import TermEdit from "./pages/Admin/Terms/[id]/edit";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,7 +47,8 @@ function App() {
 
               <Route path="terms/">
                 <Route path="" element={<Admin />} />
-                <Route path=":id/videos" element={<TermById />} />
+                <Route path=":id/videos" element={<TermVideos />} />
+                <Route path=":id/edit" element={<TermEdit />} />
                 <Route path="add" element={<AddTerm />} />
               </Route>
             </Route>

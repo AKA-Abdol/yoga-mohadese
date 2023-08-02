@@ -52,6 +52,7 @@ export interface SelectProps {
   name?: string;
   placeholder?: string;
   optionsClassnames?: string;
+  error?: string;
 }
 
 export interface SubmitCancelButtonProps {

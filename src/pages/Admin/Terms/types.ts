@@ -14,7 +14,7 @@ export interface VideoButtonProps {
 
 export const termValidationSchema = Yup.object().shape({
   title: Yup.string().required("الزامی"),
-  level: Yup.string().required("الزامی"),
+  level: Yup.string().max(1, "انتخاب کنید").required("الزامی"),
   description: Yup.string().required("الزامی"),
   range: Yup.array().min(2, "بازه انتخاب کنید").required("الزامی"),
 });

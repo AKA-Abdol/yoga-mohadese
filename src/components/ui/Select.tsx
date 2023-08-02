@@ -6,19 +6,24 @@ const Select: FC<SelectProps> = (props) => {
   return (
     <select
       onChange={props.onChange}
-      value={!props.placeholder ? props.value : undefined}
+      value={props.value ? props.value : props.placeholder}
       defaultValue={props.placeholder}
       className={classNames(
         "select",
         "bg-primary-dark text-primary-light disabled:bg-primary-dark disabled:text-primary-light",
-        props.classnames
+        props.classnames,
+        props.error && "ring-2 ring-error-300"
       )}
       disabled={props.disabled}
       id={props.id}
       name={props.name}
     >
       {props.placeholder && (
-        <option disabled className={props.optionsClassnames}>
+        <option
+          disabled
+          className={props.optionsClassnames}
+          value={props.placeholder}
+        >
           {props.placeholder}
         </option>
       )}

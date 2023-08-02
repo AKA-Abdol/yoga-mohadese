@@ -10,7 +10,6 @@ import { BASE_TERM_URL } from "./api.data";
 
 const DeleteModal: FC<DeleteModalProps> = (props) => {
   const { id, level, title } = props.term;
-  console.log(props.term);
 
   const queryClient = useQueryClient();
   const deleteTerm = useMutation(api.delete(`${BASE_TERM_URL}/${id}`));
@@ -18,7 +17,6 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
   if (deleteTerm.isError || deleteTerm.isLoading)
     console.log("error deleting!");
   if (deleteTerm.isSuccess) {
-    console.log("success");
     deleteTerm.reset();
     queryClient.invalidateQueries(["admin-context"]);
     props.onClose();

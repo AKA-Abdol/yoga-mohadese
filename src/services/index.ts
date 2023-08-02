@@ -57,10 +57,26 @@ const _delete = <T>(url: string) => {
   };
 };
 
+const put = <T>(
+  url: string,
+  local2api: (local: T) => any = (local: T) => local
+) => {
+  return async (body: T) => {
+    try {
+      const response = await instance.put(url, local2api(body));
+      return response.data;
+    } catch (e) {
+      const error = e as AxiosError;
+      return Promise.reject(error.response?.data ?? UNKNOWN_ERROR);
+    }
+  };
+};
+
 const api = {
   get,
   post,
   delete: _delete,
+  put,
 };
 
 export default api;

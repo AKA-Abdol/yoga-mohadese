@@ -14,7 +14,7 @@ import Loading from "src/components/ui/Loading";
 import { BASE_TERM_URL } from "../../api.data";
 import { TERM_VIDEO_URL } from "./api.data";
 
-const TermById: FC = () => {
+const TermVideos: FC = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const term = useQuery({
@@ -73,4 +73,4 @@ const TermById: FC = () => {
   );
 };
 
-export default TermById;
+export default TermVideos;

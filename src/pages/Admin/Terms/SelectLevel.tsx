@@ -16,6 +16,7 @@ const SelectLevel: FC<Omit<SelectProps, "options" | "optionTexts">> = (
       name={props.name}
       classnames={props.classnames}
       placeholder={props.placeholder}
+      error={props.error}
     />
   );
 };

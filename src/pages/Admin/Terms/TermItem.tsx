@@ -25,11 +25,9 @@ const TermItem: FC<ITerm & WithId & ModalInvoker<ITerm & WithId>> = (props) => {
         <Link to={`/admin/terms/${props.id}/videos`} className="h-full w-full">
           <VideoButton />
         </Link>
-        <EditButton
-          onClick={() => {
-            console.log("clicked");
-          }}
-        />
+        <Link to={`/admin/terms/${props.id}/edit`} className="h-full w-full">
+          <EditButton />
+        </Link>
         <DeleteButton onClick={() => props.invokeModal(termProps)} />
       </div>
     </Card>
