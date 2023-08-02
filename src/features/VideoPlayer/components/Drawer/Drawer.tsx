@@ -13,7 +13,7 @@ const Drawer: FC<DrawerProps> = (props) => {
         props.show ? "visible opacity-100" : "invisible opacity-0"
       )}
     >
-      {props.children && props.children}
+      {props.children}
     </div>
   );
 };

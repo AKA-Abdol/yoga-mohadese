@@ -2,8 +2,9 @@ import classNames from "classnames";
 import { FC } from "react";
 import HomeButton from "src/components/ui/HomeButton";
 import RemainedDays from "./RemainedDays";
+import { TermControllerProps } from "./types";
 
-const TermController: FC = (props) => {
+const TermController: FC<TermControllerProps> = (props) => {
   return (
     <div
       className={classNames(
@@ -17,7 +18,7 @@ const TermController: FC = (props) => {
         <HomeButton />
       </div>
       <div className={classNames("w-full flex justify-center")}>
-        <p className="text-4xl">سلام کاربر محدثه</p>
+        <p className="text-4xl">{props.title}</p>
       </div>
       <div className={classNames("w-full h-full")}></div>
       <RemainedDays count={14} />

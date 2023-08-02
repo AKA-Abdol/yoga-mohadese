@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Level, PersianMonth } from "src/types/base";
+import { Level, PersianMonth, WithId } from "src/types/base";
 
 export interface ImageButtonProps {
   onClick: () => void;
@@ -9,9 +9,7 @@ export interface ImageButtonProps {
   subtitle?: string;
 }
 
-export type ModalImageButtonProps = Omit<ImageButtonProps, "onClick"> & {
-  id: string;
-};
+export type ModalImageButtonProps = Omit<ImageButtonProps, "onClick"> & WithId;
 
 export interface ModalProps {
   children: ReactNode;
