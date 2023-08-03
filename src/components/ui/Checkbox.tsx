@@ -12,7 +12,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
       )}
     >
       {props.span && (
-        <span className="label-text mx-sm text-primary-dark text-center">
+        <span className="label-text mx-sm text-primary-dark text-center text-xs lg:text-sm">
           {props.span}
         </span>
       )}

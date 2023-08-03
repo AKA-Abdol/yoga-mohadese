@@ -55,7 +55,7 @@ function App() {
 
             <Route path="404" element={<PageNotFound />} />
 
-            <Route path="" element={<Navigate to={"/auth"} />} />
+            <Route path="" element={<Navigate to={"/home"} />} />
             <Route path="*" element={<Navigate to={"/404"} />} />
           </Route>
         </Routes>

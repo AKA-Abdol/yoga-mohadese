@@ -17,7 +17,7 @@ const TermData: FC = () => {
     ),
   });
   return (
-    <div className="h-full w-full flex flex-col space-y-lg">
+    <div className="h-full w-full flex flex-col justify-around">
       <SessionList term={term} />
       <RemainedDays term={term} />
     </div>

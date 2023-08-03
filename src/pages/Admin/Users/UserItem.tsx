@@ -27,7 +27,7 @@ const UserItem: FC<UserItemProps> = (props) => {
   );
 
   const grantTerm = useMutation(
-    api.post<{ course_id: string; level: number }, unknown>(
+    api.post<{ course_id: string }, unknown>(
       `${BASE_USER_URL}/${props.id}/access`
     )
   );
@@ -108,12 +108,11 @@ const UserItem: FC<UserItemProps> = (props) => {
               if (termState !== "no-term")
                 unGrantTerm.mutate({ course_id: termState });
               if (tempTermState !== "no-term")
-                grantTerm.mutate({ course_id: tempTermState, level: 2 });
+                grantTerm.mutate({ course_id: tempTermState });
 
               if (tempBeginnerTermState)
                 grantTerm.mutate({
                   course_id: beginnerLevelTerm?.id ?? "",
-                  level: 1,
                 });
               else
                 unGrantTerm.mutate({ course_id: beginnerLevelTerm?.id ?? "" });

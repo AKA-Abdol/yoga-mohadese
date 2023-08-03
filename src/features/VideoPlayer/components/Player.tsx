@@ -11,7 +11,11 @@ import Loading from "src/components/ui/Loading";
 const Player: FC = (props) => {
   const videoContext = useContext(VideoContext);
   const term = useQuery({
-    queryKey: ["session-video", videoContext.selected.termId],
+    queryKey: [
+      "session-video",
+      videoContext.selected.termId,
+      videoContext.selected.sessionNum,
+    ],
     queryFn: api.get<{ course: ITermApi & WithVideos }>(
       `${BASE_TERM_URL}/${videoContext.selected.termId}`
     ),
