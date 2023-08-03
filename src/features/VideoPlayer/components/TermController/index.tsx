@@ -1,9 +1,7 @@
 import classNames from "classnames";
 import { FC } from "react";
 import HomeButton from "src/components/ui/HomeButton";
-import RemainedDays from "./RemainedDays";
 import { TermControllerProps } from "./types";
-import SessionList from "../SessionList";
 import TermSelect from "./TermSelect";
 import TermData from "./TermData";
 
