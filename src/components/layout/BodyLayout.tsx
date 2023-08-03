@@ -5,7 +5,9 @@ import { tokenPersistor } from "src/persistors/auth";
 import api from "src/services";
 import { WithId } from "src/types/base";
 
-export const MyContext = createContext<{ firstname: string }>({ firstname: "" });
+export const MyContext = createContext<{ firstname: string }>({
+  firstname: "",
+});
 
 const BodyLayout: FC = () => {
   const location = useLocation();
@@ -26,7 +28,8 @@ const BodyLayout: FC = () => {
     if (
       myData.data.user.is_admin &&
       !location.pathname.startsWith("/admin") &&
-      !location.pathname.startsWith("/user")
+      !location.pathname.startsWith("/user") &&
+      !location.pathname.startsWith("/auth")
     )
       navigate("/admin");
     if (!myData.data.user.is_admin && !location.pathname.startsWith("/user"))
@@ -41,7 +44,9 @@ const BodyLayout: FC = () => {
     navigate("/user");
 
   return (
-    <MyContext.Provider value={{firstname: myData.data?.user.firstname ?? ""}}>
+    <MyContext.Provider
+      value={{ firstname: myData.data?.user.firstname ?? "" }}
+    >
       <div className={"w-full h-screen bg-primary text-black"}>
         <Outlet />
       </div>

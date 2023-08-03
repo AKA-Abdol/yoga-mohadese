@@ -18,7 +18,7 @@ const TermVideos: FC = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const term = useQuery({
-    queryKey: ["term-videos", "term"],
+    queryKey: ["term-videos-list", "term"],
     queryFn: api.get<{ course: WithId & ITermApi & WithVideos }>(
       `${TERM_URL}/${id}`
     ),
@@ -32,7 +32,8 @@ const TermVideos: FC = () => {
 
   const [addState, setAddState] = useState<AddStateType>("readyToAdd");
 
-  if (addVideo.isSuccess) queryClient.invalidateQueries(["term-videos"]);
+  if (addVideo.isSuccess)
+    queryClient.invalidateQueries({ queryKey: ["term-videos-list"] });
 
   if (term.isLoading || term.isError || !term.data)
     return <Loading size="lg" />;
@@ -51,7 +52,12 @@ const TermVideos: FC = () => {
         {term.data.course.videos
           .sort((first, second) => first.num - second.num)
           .map((video) => (
-            <VideoItem link={video.link} num={video.num} title={video.title} />
+            <VideoItem
+              link={video.link}
+              num={video.num}
+              title={video.title}
+              id={video.id}
+            />
           ))}
         {addState === "adding" && (
           <AddVideoItem
@@ -59,6 +65,7 @@ const TermVideos: FC = () => {
             onSubmit={(video: IVideo & WithThumbnail) => {
               addVideo.mutate(video);
               setAddState("readyToAdd");
+              console.log("here");
             }}
           />
         )}
