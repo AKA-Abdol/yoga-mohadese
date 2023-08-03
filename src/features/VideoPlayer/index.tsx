@@ -1,16 +1,18 @@
-import { FC, createContext, useCallback, useState } from "react";
+import { FC, createContext, useCallback, useContext, useState } from "react";
 import Drawer from "./components/Drawer/Drawer";
 import classNames from "classnames";
 import Player from "./components/Player";
 import TermController from "./components/TermController";
 import VideoContextProvider from "./VideoContext";
 import OpenCloseButton from "./components/Drawer/OpenCloseButton";
+import { MyContext } from "src/components/layout/BodyLayout";
 
 export const DrawerContext = createContext<{ onClose: () => void }>({
   onClose: () => {},
 });
 
 const VideoPlayer: FC = () => {
+  const myContext = useContext(MyContext);
   const [drawerShowState, setDrawerShowState] = useState<"show" | "hidden">(
     "show"
   );
@@ -30,7 +32,7 @@ const VideoPlayer: FC = () => {
       <DrawerContext.Provider value={{ onClose: closeDrawerState }}>
         <div className={classNames("w-full h-full", "relative", "bg-black")}>
           <Drawer show={drawerShowState === "show"}>
-            <TermController title="سلام کاربر محدثه" />
+            <TermController title={`سلام ${myContext.firstname}`} />
           </Drawer>
           <div className="absolute top-0 right-0 p-sm z-10">
             <OpenCloseButton

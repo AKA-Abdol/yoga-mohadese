@@ -1,11 +1,51 @@
-import { FC } from "react";
-import { Outlet } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { FC, createContext } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { tokenPersistor } from "src/persistors/auth";
+import api from "src/services";
+import { WithId } from "src/types/base";
+
+export const MyContext = createContext<{ firstname: string }>({ firstname: "" });
 
 const BodyLayout: FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const myData = useQuery({
+    queryKey: ["my-data", location],
+    queryFn: api.get<{
+      user: { firstname: string; is_admin: boolean } & WithId;
+    }>(`user/my`),
+  });
+
+  if (myData.isError) {
+    tokenPersistor.delete();
+    navigate("/");
+  }
+
+  if (myData.isSuccess) {
+    if (
+      myData.data.user.is_admin &&
+      !location.pathname.startsWith("/admin") &&
+      !location.pathname.startsWith("/user")
+    )
+      navigate("/admin");
+    if (!myData.data.user.is_admin && !location.pathname.startsWith("/user"))
+      navigate("/user");
+  }
+
+  if (
+    myData.isSuccess &&
+    !myData.data.user.is_admin &&
+    location.pathname.startsWith("/admin")
+  )
+    navigate("/user");
+
   return (
-    <div className={"w-full h-screen bg-primary text-black"}>
-      <Outlet />
-    </div>
+    <MyContext.Provider value={{firstname: myData.data?.user.firstname ?? ""}}>
+      <div className={"w-full h-screen bg-primary text-black"}>
+        <Outlet />
+      </div>
+    </MyContext.Provider>
   );
 };
 
