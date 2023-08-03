@@ -3,6 +3,9 @@ import { FC } from "react";
 import HomeButton from "src/components/ui/HomeButton";
 import RemainedDays from "./RemainedDays";
 import { TermControllerProps } from "./types";
+import SessionList from "../SessionList";
+import TermSelect from "./TermSelect";
+import TermData from "./TermData";
 
 const TermController: FC<TermControllerProps> = (props) => {
   return (
@@ -20,8 +23,14 @@ const TermController: FC<TermControllerProps> = (props) => {
       <div className={classNames("w-full flex justify-center")}>
         <p className="text-4xl">{props.title}</p>
       </div>
-      <div className={classNames("w-full h-full")}></div>
-      <RemainedDays count={14} />
+      <div className={classNames("w-full h-full")}>
+        <div className="h-1/3 w-full flex justify-center items-center">
+          <TermSelect />
+        </div>
+        <div className="h-2/3 w-full">
+          <TermData />
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,23 +1,41 @@
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import Drawer from "./components/Drawer/Drawer";
-import OpenCloseButton from "./components/Drawer/OpenCloseButton";
 import classNames from "classnames";
 import Player from "./components/Player";
 import TermController from "./components/TermController";
+import VideoContextProvider from "./VideoContext";
+import OpenCloseButton from "./components/Drawer/OpenCloseButton";
 
 const VideoPlayer: FC = () => {
-  const [drawerShow, setDrawerShow] = useState(true);
-  const toggleDrawerShow = () => setDrawerShow((prevState) => !prevState);
+  const [drawerShowState, setDrawerShowState] = useState<"show" | "hidden">(
+    "show"
+  );
+
+  const toggleDrawerState = useCallback(() => {
+    setDrawerShowState((prevState) =>
+      prevState === "show" ? "hidden" : "show"
+    );
+  }, []);
+
+  const closeDrawerState = useCallback(() => {
+    setDrawerShowState("hidden");
+  }, []);
+
   return (
-    <div className={classNames("w-full h-full", "relative", "bg-black")}>
-      <Drawer show={drawerShow}>
-        <TermController />
-      </Drawer>
-      <div className="absolute top-0 right-0 p-sm">
-        <OpenCloseButton defaultShow={true} onToggle={toggleDrawerShow} />
+    <VideoContextProvider>
+      <div className={classNames("w-full h-full", "relative", "bg-black")}>
+        <Drawer show={drawerShowState === "show"}>
+          <TermController title="سلام کاربر محدثه" />
+        </Drawer>
+        <div className="absolute top-0 right-0 p-sm z-10">
+          <OpenCloseButton
+            onToggle={toggleDrawerState}
+            show={drawerShowState === "show"}
+          />
+        </div>
+        <Player />
       </div>
-      <Player />
-    </div>
+    </VideoContextProvider>
   );
 };
 

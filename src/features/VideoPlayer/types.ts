@@ -6,7 +6,7 @@ export interface ITermApi {
   level: Level;
   title: string;
   description: string;
-  start_data: string;
+  start_date: string;
   end_date: string;
 }
 
@@ -16,5 +16,11 @@ export interface ApiTermSchema {
 }
 
 export interface IVideoContext {
-  terms: Array<WithId & ITerm> | undefined;
+  terms: Array<WithId & ITerm>;
+  selected: {
+    termId: string | undefined;
+    sessionNum: number | undefined;
+    setTermId: (termId: string) => void;
+    setSessionNum: (sessionNum: number) => void;
+  };
 }

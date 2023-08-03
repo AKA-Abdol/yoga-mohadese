@@ -1,14 +1,43 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import SessionItem from "./SessionItem";
+import classNames from "classnames";
+import { VideoContext } from "../../VideoContext";
+import Loading from "src/components/ui/Loading";
+import { WithTerm } from "../TermController/types";
 
-const SessionList: FC = () => {
-    return (
-        <div className={`h-full w-full flex flex-row py-sm overflow-x-auto`}>
-            <SessionItem />
-            <SessionItem />
-            <SessionItem />
-        </div>
-    )
-}
+const SessionList: FC<WithTerm> = (props) => {
+  const videoContext = useContext(VideoContext);
+  const term = props.term;
+
+  console.log(videoContext.selected.termId);
+  return (
+    <div
+      className={classNames(
+        "h-full w-full flex flex-row py-sm overflow-x-auto",
+        "bg-primary-dark",
+        "pr-sm",
+        !videoContext.selected.termId && "justify-center items-center"
+      )}
+    >
+      {!videoContext.selected.termId ? (
+        <p className="text-primary-light">ترمی برای شما وجود ندارد!</p>
+      ) : term.isError ? (
+        <p className="text-primary-light">مشکلی رخ داده است.</p>
+      ) : term.isLoading ? (
+        <Loading textColor="light" />
+      ) : (
+        <>
+          {term.data.course.videos.length ? (
+            term.data.course.videos.map((video) => <SessionItem data={video} />)
+          ) : (
+            <div className="w-full h-full flex justify-center items-center">
+              <p className="text-primary-light">هنوز جلسه ای وجود ندارد!</p>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+};
 
 export default SessionList;

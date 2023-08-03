@@ -11,7 +11,7 @@ export interface WithThumbnail {
 }
 
 export interface WithVideos {
-  videos: Array<IVideo & WithId>;
+  videos: Array<IVideo & WithId & WithThumbnail>;
 }
 
 export type AddStateType = "adding" | "readyToAdd";

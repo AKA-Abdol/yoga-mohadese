@@ -8,5 +8,5 @@ export const apiTerm2local = (term: ITermApi): WithId & ITerm => ({
   description: term.description,
   level: term.level,
   title: term.title,
-  range: [new DateObject(term.start_data), new DateObject(term.end_date)],
+  range: [new DateObject(term.start_date), new DateObject(term.end_date)],
 });

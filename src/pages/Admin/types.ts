@@ -8,7 +8,7 @@ export interface ITermApi {
   level: Level;
   title: string;
   description: string;
-  start_data: string;
+  start_date: string;
   end_date: string;
 }
 
