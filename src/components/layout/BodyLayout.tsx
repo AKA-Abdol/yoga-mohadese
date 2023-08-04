@@ -17,22 +17,24 @@ const BodyLayout: FC = () => {
     queryFn: api.get<{
       user: { firstname: string; is_admin: boolean } & WithId;
     }>(`user/my`),
+    retry: 1,
   });
 
-  if (myData.isError) {
+  if (
+    myData.isError &&
+    (location.pathname.startsWith("/admin") ||
+      location.pathname.startsWith("/user"))
+  ) {
     tokenPersistor.delete();
     navigate("/");
   }
 
   if (myData.isSuccess) {
     if (
-      myData.data.user.is_admin &&
-      !location.pathname.startsWith("/admin") &&
-      !location.pathname.startsWith("/user") &&
-      !location.pathname.startsWith("/auth")
+      myData.data.user.is_admin && location.pathname.startsWith("/auth")
     )
       navigate("/admin");
-    if (!myData.data.user.is_admin && !location.pathname.startsWith("/user"))
+    if (!myData.data.user.is_admin && location.pathname.startsWith("/auth"))
       navigate("/user");
   }
 

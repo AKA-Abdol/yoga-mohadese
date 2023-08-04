@@ -17,7 +17,10 @@ const TermSelect: FC = () => {
         (term) => `${term.title} (${getLevelTitle(term.level)})`
       )}
       options={videoContext.terms.map((term) => term.id)}
-      onChange={(event) => videoContext.selected.setTermId(event.target.value)}
+      onChange={(event) => {
+        videoContext.selected.setTermId(event.target.value);
+        videoContext.selected.setSessionNum(undefined);
+      }}
       classnames="w-4/5 text-center"
       optionsClassnames="text-center"
     />
