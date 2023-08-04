@@ -17,9 +17,14 @@ const BodyLayout: FC = () => {
     queryFn: api.get<{
       user: { firstname: string; is_admin: boolean } & WithId;
     }>(`user/my`),
+    retry: 1,
   });
 
-  if (myData.isError) {
+  if (
+    myData.isError &&
+    (location.pathname.startsWith("/admin") ||
+      location.pathname.startsWith("/user"))
+  ) {
     tokenPersistor.delete();
     navigate("/");
   }
