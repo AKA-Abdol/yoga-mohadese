@@ -13,7 +13,7 @@ const SessionList: FC<WithTerm> = (props) => {
   return (
     <div
       className={classNames(
-        "h-80 w-full flex flex-row py-sm overflow-x-auto",
+        "h-64 w-full flex flex-row py-sm overflow-x-auto md:h-80",
         "bg-primary-dark",
         "pr-sm",
         !videoContext.selected.termId && "justify-center items-center"

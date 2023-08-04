@@ -3,7 +3,6 @@ import { VideoContext } from "../VideoContext";
 import { useQuery } from "@tanstack/react-query";
 import api from "src/services";
 import { BASE_TERM_URL } from "src/pages/Admin/Terms/api.data";
-import { ITerm } from "src/pages/Admin/Terms/add/types";
 import { WithVideos } from "src/pages/Admin/Terms/[id]/videos/types";
 import { ITermApi } from "../types";
 import Loading from "src/components/ui/Loading";
@@ -28,7 +27,15 @@ const Player: FC = (props) => {
       </div>
     );
 
-  if (term.isLoading || term.isError) return <Loading />;
+  if (!videoContext.selected.sessionNum)
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <p className="text-primary-light">یک جلسه انتخاب کنید!</p>
+      </div>
+    );
+
+  if (term.isLoading || term.isError)
+    return <Loading textColor="primary-light" />;
 
   const selectedSessionVideo = term.data.course.videos.filter(
     (video) => video.num === videoContext.selected.sessionNum

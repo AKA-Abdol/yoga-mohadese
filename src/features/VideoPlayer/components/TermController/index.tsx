@@ -22,10 +22,10 @@ const TermController: FC<TermControllerProps> = (props) => {
         <p className="text-4xl">{props.title}</p>
       </div>
       <div className={classNames("w-full h-full")}>
-        <div className="h-1/3 w-full flex justify-center items-center">
+        <div className="h-1/4 w-full flex justify-center items-center">
           <TermSelect />
         </div>
-        <div className="h-2/3 w-full">
+        <div className="h-3/4 w-full">
           <TermData />
         </div>
       </div>
