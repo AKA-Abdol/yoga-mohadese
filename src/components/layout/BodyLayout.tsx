@@ -31,13 +31,10 @@ const BodyLayout: FC = () => {
 
   if (myData.isSuccess) {
     if (
-      myData.data.user.is_admin &&
-      !location.pathname.startsWith("/admin") &&
-      !location.pathname.startsWith("/user") &&
-      !location.pathname.startsWith("/auth")
+      myData.data.user.is_admin && location.pathname.startsWith("/auth")
     )
       navigate("/admin");
-    if (!myData.data.user.is_admin && !location.pathname.startsWith("/user"))
+    if (!myData.data.user.is_admin && location.pathname.startsWith("/auth"))
       navigate("/user");
   }
 

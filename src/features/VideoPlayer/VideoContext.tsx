@@ -43,13 +43,13 @@ const VideoContextProvider: FC<WithChildren<ReactNode>> = (props) => {
   }
 
   const setTermId = useCallback(
-    (termId: string) =>
+    (termId: string | undefined) =>
       setControllerState((prevState) => ({ ...prevState, termId })),
     []
   );
 
   const setSessionNum = useCallback(
-    (sessionNum: number) =>
+    (sessionNum: number | undefined) =>
       setControllerState((prevState) => ({ ...prevState, sessionNum })),
     []
   );
