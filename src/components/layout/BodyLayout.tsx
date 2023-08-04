@@ -26,7 +26,7 @@ const BodyLayout: FC = () => {
       location.pathname.startsWith("/user"))
   ) {
     tokenPersistor.delete();
-    navigate("/");
+    navigate("/auth");
   }
 
   if (myData.isSuccess) {
