@@ -8,6 +8,7 @@ export default function Header() {
   function handleMenu() {
     setMenuState(!menuState);
   }
+  
   return (
     <div className={styles.header}>
       <div className={styles.box} onClick={handleMenu}>
@@ -22,7 +23,7 @@ export default function Header() {
         </div>
       </div>
       <div className={styles["home-link"]}>
-        <Link to={"/home"}>
+        <Link to={"/home"} onClick={handleMenu}>
           <img src={homeIcon} alt="home" className={styles["img-link"]} />
         </Link>
       </div>
@@ -36,6 +37,7 @@ export default function Header() {
           className={`${styles["nav-links"]} ${styles.item1} ${
             menuState ? styles.activeNavLinks : ``
           }`}
+          onClick={handleMenu}
         >
           خانه
         </Link>
@@ -44,6 +46,7 @@ export default function Header() {
           className={`${styles["nav-links"]} ${styles.item2} ${
             menuState ? styles.activeNavLinks : ``
           }`}
+          onClick={handleMenu}
         >
           ثبت نام / ورود
         </Link>
@@ -52,6 +55,7 @@ export default function Header() {
           className={`${styles["nav-links"]} ${styles.item3} ${
             menuState ? styles.activeNavLinks : ``
           }`}
+          onClick={handleMenu}
         >
           یوگا با محدثه
         </Link>
@@ -60,6 +64,7 @@ export default function Header() {
           className={`${styles["nav-links"]} ${styles.item4} ${
             menuState ? styles.activeNavLinks : ``
           }`}
+          onClick={handleMenu}
         >
           رزرو کلاس حضوری
         </Link>
@@ -68,6 +73,7 @@ export default function Header() {
           className={`${styles["nav-links"]} ${styles.item5} ${
             menuState ? styles.activeNavLinks : ``
           }`}
+          onClick={handleMenu}
         >
           قوانین
         </Link>
@@ -76,6 +82,7 @@ export default function Header() {
           className={`${styles["nav-links"]} ${styles.item6} ${
             menuState ? styles.activeNavLinks : ``
           }`}
+          onClick={handleMenu}
         >
           ارتباط با ما
         </Link>
