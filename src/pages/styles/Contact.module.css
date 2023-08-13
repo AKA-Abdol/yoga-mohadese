@@ -2,11 +2,7 @@
   height: 100vh;
   width: 100vw;
 
-  background:  radial-gradient(
-    circle at top right,
-    #e6dfa5, 
-    #f0ffed
-  );
+  background:  #B5DDA4;
     
   display: flex;
   flex-direction: column;
@@ -32,11 +28,7 @@ justify-content: space-evenly;
 flex-direction: column;
 padding: 2rem;
 
-background:  radial-gradient(
-  circle at top right,
-  #f0ffed, 
-  #e6dfa0
-);
+background:  #B5DDA4;
   
 }
 .contactUL{
@@ -88,5 +80,5 @@ filter: blur(10px);
 100% { --ANGLE: 360deg; }
 }
 .bg-gradient-to-l {
-background-image: linear-gradient(to left, var(--tw-gradient-stops));
+  background-image: linear-gradient(to left, var(--tw-gradient-stops));
 }

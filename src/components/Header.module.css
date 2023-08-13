@@ -13,7 +13,7 @@
 }
                         /* HAMBURGER MENU */
 .box {
-    background: #3faf8200;
+    background: transparent;
     z-index: 1000;
 }
 .navBtn { 
@@ -36,8 +36,8 @@
     margin-top: 14px;
 }  
 .active .menu-burguer:nth-child(1) {
-    background-color: #f0fdd7;
-    box-shadow: 0 1px 5px 0 rgb(173,192,128);
+    background-color: #B5DDA4;
+    box-shadow: 0 1px 5px 1px #00814870;
     transition: color 0.7s ease;
     animation: ease .7s top forwards;
 }
@@ -45,8 +45,8 @@
     animation: ease .7s top-2 forwards;
 }
 .active .menu-burguer:nth-child(2) {
-    background-color: #f0fdd7;
-    box-shadow: 0 1px 5px 0 rgb(173,192,128);
+    background-color: #B5DDA4;
+    box-shadow: 0 1px 5px 1px #00814870;
     transition: color 0.7s ease;
     animation: ease .7s scaled forwards;
 }
@@ -54,8 +54,8 @@
     animation: ease .7s scaled-2 forwards;
 }
 .active .menu-burguer:nth-child(3) {
-    background-color: #f0fdd7;
-    box-shadow: 0 1px 5px 0 rgb(173,192,128);
+    background-color: #B5DDA4;
+    box-shadow: 0 1px 5px 1px #00814870;
     transition: color 0.7s ease;
     animation: ease .7s bottom forwards;
 }
@@ -151,30 +151,27 @@
     transition: 0.5s;
     padding-top: 100px;
     text-align:center;
-    border: 1px solid #adc181;
+    border: 1px solid #B5DDA4;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     transition: all 1s ease-in-out;
-    background-color: #111;
+    background-color: #000;
 }  
 .nav-links {
     padding: .8rem;
     text-decoration: none;
     font-size: 42px;
-    color: #111;
     display: block;
-    transition: 0.3s;
     z-index: 1000;
-    text-shadow: 0 0 5px #111;
-    transition: all .25s ease;
+    transition: all .15s ease;
 }
 .activeNavLinks{
-    color: #ecece0;
+    color: #B5DDA4;
     transition: all 1.5s ease;
 }
 .nav-links:hover{
-    color: #bbdd71;
+    color: #034732;
 }
 .activeNav{
     width: 100vw;
@@ -191,17 +188,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    transition: all .7s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 .img-link{
     width: 75px;
     height: 75px;
-    border: 2px solid rgb(173,192,128);
+    border: 2px solid #B5DDA4;
     border-radius: 50%;
     padding: 4px;
-    background-color: #ecece0c4;
-
+    background-color: #B5DDA4;
     transition: all 0.7s;
 }
 .home-link:hover{

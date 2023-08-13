@@ -14,7 +14,7 @@ const SessionItem: FC<SessionItemProps> = (props) => {
         "py-sm px-sm rounded-lg",
 
         videoContext.selected.sessionNum === props.data.num
-          ? "border-lg border-error-400"
+          ? "border-lg border-error"
           : "border-normal border-primary-light"
       )}
       onClick={() => {

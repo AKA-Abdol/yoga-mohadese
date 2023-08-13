@@ -47,7 +47,7 @@ div {
 }
 
 .btn-cancel {
-  @apply text-error-300 border-normal border-error-300 hover:bg-error-300 hover:text-primary-dark;
+  @apply text-error border-normal border-error hover:bg-error hover:text-primary-dark;
 }
 
 .checkbox-primary-theme {

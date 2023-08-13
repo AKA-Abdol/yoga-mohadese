@@ -12,7 +12,7 @@ export default function Contact() {
   return (
     <div className={styles.body}>
       <Header />
-      <div className={`w-full rounded-md from-[#032146] via-[#C3F2FF] to-[#b00]  transition duration-1`} style={{backgroundImage:`linear-gradient(${deg}deg, var(--tw-gradient-stops))`}}>
+      <div className={`rounded-md from-[#034732] via-[#008148] to-[#B5DDA4]  transition duration-1`} style={{backgroundImage:`linear-gradient(${deg}deg, var(--tw-gradient-stops))`}}>
         <div className={`${styles.container} rounded-md relative  after:-inset-1 before:-inset-1 z-1 m-1 to`}>
           <h1 className="text-4xl">با ما در ارتباط باشید</h1>
           <ul className={styles.contactUL}>

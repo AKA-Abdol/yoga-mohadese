@@ -12,7 +12,7 @@ const Input: FC<InputProps> = (props) => {
     >
       <input
         className={`input input-md bg-inherit ${props.className} ${
-          props.error && "border-error-300"
+          props.error && "border-error"
         }`}
         type={props.type ?? "text"}
         onChange={props.onChange}
@@ -23,7 +23,7 @@ const Input: FC<InputProps> = (props) => {
       />
       <p
         className={classNames(
-          "text-xs text-error-300 font-bold",
+          "text-xs text-error font-bold",
           !props.errorBorderOnly && props.error ? "block" : "hidden"
         )}
       >

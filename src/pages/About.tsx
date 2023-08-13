@@ -69,14 +69,14 @@ export default function About() {
         <MultiBtn contents={sampleList} />
       </div>
       <div
-        className={`${styles.container3} bg-gradient-to-r from-lime-900 via-lime-950 to-lime-900`}
+        className={`${styles.container3}`}
       >
         <Link to={"/reserve"} preventScrollReset={false}>رزرو کلاس های حضوری</Link> {/* DOROOD BE SHARAFET ABDOLI */}
       </div>
       {/* FAQ */}
       <div className={`w-full ${styles.customBG}`}>
       <div className="join join-vertical m-8 bg-none">
-        <div className="collapse collapse-arrow join-item border border-lime-300">
+        <div className="collapse collapse-arrow join-item">
           <input type="radio" name="my-accordion-4" checked={true} />
           <div className="collapse-title text-xl font-medium">
             کلاس‌ها به صورت آنلاین برگزار می‌شوند یا حضوری ؟
@@ -88,7 +88,7 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-arrow join-item border border-lime-300">
+        <div className="collapse collapse-arrow join-item">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
             کلاس‌ها به صورت زنده پخش می‌شوند ؟
@@ -103,7 +103,7 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="collapse collapse-arrow join-item border border-lime-300">
+        <div className="collapse collapse-arrow join-item">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
             مدت زمان کلاس ها و تعداد جلسات هر دوره چقدر است ؟

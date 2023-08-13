@@ -3,7 +3,7 @@
   /* Firefox */
   * {
     scrollbar-width: auto;
-    scrollbar-color: #5aa054 #ffffff00;
+    scrollbar-color: #008148 #ffffff00;
   }
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
@@ -13,7 +13,7 @@
     background: #ffffff00;
   }
   *::-webkit-scrollbar-thumb {
-    background-color: #5aa054;
+    background-color: #008148;
     border-radius: 10px;
     border: 0px solid #ffffff00;
   }
@@ -32,8 +32,8 @@
   align-items: center;
   flex-direction: column;
   
-  background: radial-gradient(farthest-corner at 40px 40px,#222917 0%,#79885a 100%);
-  color: #ecece0;
+  background: radial-gradient(farthest-corner at 40px 40px,#034732 0%,#008148 100%);
+  color: #B5DDA4;
 
   direction: rtl;
 
@@ -66,14 +66,15 @@
 .vertical-line {
   width: 2px; 
   height: 20vh;
-  box-shadow: 0 0 10px 5px #616e45;
-  background-color: #ecece0;
+  box-shadow: 0 0 10px 5px #B5DDA4;
+  background-color: #B5DDA4;
   display: inline-block;
 }
 /* BUTTON */
 .h2Styles{
   margin-bottom: 1rem;
   font-size: 36px;
+  color: #034732;
 }
 /* PARALLEX */
 .parallax {
@@ -98,7 +99,7 @@
   align-items: center;
   flex-direction: column;
 
-  background: radial-gradient(farthest-corner at 40px 40px,#d7ff881e 0%,#d7ff88 100%);
+  background: radial-gradient(farthest-corner at 0px 0px,#008148 0%,#B5DDA4 100%);
 }
 .container1{
   width: 100vw;
@@ -115,8 +116,9 @@
   flex-direction: column;
 }
 .divider{
-  border: 1px solid #9fbd65;
-  box-shadow: 0 0 3px #3b4e13;
+  border: 1px solid #034732;
+  box-shadow: 0 0 3px #008148;
+  background-color: #034732;
   width: 90%;
   height: 2px;
   margin-bottom: 1rem;
@@ -139,7 +141,7 @@
 }
 .arrow:before,
 .arrow:after {
-  background: #9fbd65;
+  background: #034732;
   content: '';
   display: block;
   height: 3px;
@@ -176,8 +178,8 @@
   width: 100vw;
   height: 5vh;
   background-image: url("https://www.transparenttextures.com/patterns/swirl.png");
-  background-color: #323b207d;
-  color: #dae9bd;
+  background-color: #034732;
+  color: #B5DDA4;
   padding: 2rem;
 }
 .container3 a{
@@ -188,8 +190,8 @@
   margin: 1rem;
 }
 .customBG{
-  background-color: #d7ff88;
-  color: #222917;
+  background-color: #B5DDA4;
+  color: #034732;
 }
 /*    FOR IPAD */
 @media only screen and (min-width: 767px)  {

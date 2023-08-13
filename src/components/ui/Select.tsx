@@ -12,7 +12,7 @@ const Select: FC<SelectProps> = (props) => {
         "select",
         "bg-primary-dark text-primary-light disabled:bg-primary-dark disabled:text-primary-light",
         props.classnames,
-        props.error && "ring-2 ring-error-300"
+        props.error && "ring-2 ring-error"
       )}
       disabled={props.disabled}
       id={props.id}

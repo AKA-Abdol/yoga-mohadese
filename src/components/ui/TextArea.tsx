@@ -7,7 +7,7 @@ const TextArea: FC<InputProps> = (props) => {
       <textarea
         className={`textarea textarea-lg text-normal resize-none bg-inherit ${
           props.className
-        } ${props.error && "border-error-300"}`}
+        } ${props.error && "border-error"}`}
         onChange={props.onChange}
         placeholder={props.placeholder}
         id={props.id}
@@ -15,7 +15,7 @@ const TextArea: FC<InputProps> = (props) => {
         value={props.value}
       />
       <p
-        className={`_error_ text-xs text-error-300 font-bold ${
+        className={`_error_ text-xs text-error font-bold ${
           props.error ? "block" : "hidden"
         }`}
       >

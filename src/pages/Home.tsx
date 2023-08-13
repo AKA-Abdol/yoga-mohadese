@@ -16,7 +16,7 @@ export default function Home() {
       </h2>
       <div className={styles.centerBtn}>
         <Link to={"/about"} className={styles.ywm}>
-          شروع
+          شروع کنید
         </Link>
       </div>
     </div>
