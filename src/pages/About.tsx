@@ -2,24 +2,24 @@ import { useState } from "react";
 import Header from "../components/Header";
 import styles from "./styles/About.module.css";
 import MultiBtn, { MultiBtnContentPair } from "../components/MultiBtn";
-import img1 from "../assets/images/about-img.png";
+import img1 from "../assets/images/about-img.jpg";
 import { Link } from "react-router-dom";
 
 export default function About() {
   const sampleList: MultiBtnContentPair[] = [
     {
       content:
-        "این دوره آنلاین برای پرتوجویانی که آشنایی با یوگا ندارند، در ۱۰ جلسه طراحی شده و برای کسانی که سابقه ی ورزشی ندارند هم مناسب است.",
+        "این دوره برای پرتوجویانی که سابقه ی ورزشی یا آشنایی با یوگا ندارند، در هشت جلسه طراحی شده است. از تاریخ ثبت نام سه ماه به ویدیوها دسترسی خواهید داشت.",
       data: "مبتدی",
     },
     {
       content:
-        "اگر آشنا با یوگا هستید یا دوره ی مبتدی را گذرانده اید، می توانید از این دوره استفاده کنید. هر ترم ۸ جلسه ی جدید برای سطح مبتدی تا متوسط به صورت آنلاین ارائه می شود.",
+        "اگر با مبانی یوگا آشنا هستید یا دوره ی مبتدی را گذرانده اید، این دوره برایتان مناسب هست. هر ترم هشت جلسه بوده و هر ماه سیکل جدید ارائه می شود. از تاریخ ثبت نام فقط یک ماه فرصت دارید که از این جلسات استفاده کنید.",
       data: "متوسط",
     },
     {
       content:
-        "این دوره آنلاین برای پرتوجویانی که حداقل یک سال سابقه ی یوگا دارند مناسب است. هر ترم شامل ۸ جلسه با تمرین های متنوع برای سطح متوسط تا پیشرفته می باشد.",
+        "این دوره برای پرتوجویانی که حداقل یک سال سابقه ی یوگا دارند مناسب است. هر ترم شامل هشت جلسه با تمرین های متنوع و جدید برای سطح متوسط تا پیشرفته می باشد. فرصت استفاده از این جلسات فقط یک ماه از تاریخ ثبت نام هست.",
       data: "پیشرفته",
     },
   ];
@@ -77,41 +77,86 @@ export default function About() {
       <div className={`w-full ${styles.customBG}`}>
       <div className="join join-vertical m-8 bg-none">
         <div className="collapse collapse-arrow join-item">
-          <input type="radio" name="my-accordion-4" checked={true} />
+          <input type="radio" name="my-accordion-4"/>
           <div className="collapse-title text-xl font-medium">
-            کلاس‌ها به صورت آنلاین برگزار می‌شوند یا حضوری ؟
+          برای شرکت در کلاس های آنلاین چکار کنم ؟
           </div>
           <div className="collapse-content">
-            <p>
-              هر دو صورت برای اطلاع از شرایط کلاس(لینک به کلاس ها) های آنلاین یا
-              کلاس‌های (لینک به رزرو) کلیک کنید
-            </p>
+            <p>بعد از انتخاب دوره ای که می خواهید در آن شرکت کنید، از طریق راه های تماس با ما(لینک صفحه) جهت پرداخت شهریه کلاس اقدام بفرمایید. سپس دسترسی به دوره در پنل کاربریتان باز خواهد شد.</p>
           </div>
         </div>
         <div className="collapse collapse-arrow join-item">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
-            کلاس‌ها به صورت زنده پخش می‌شوند ؟
+          برای شرکت در کلاس های حضوری چکار کنم ؟
           </div>
           <div className="collapse-content">
-            <p>
-              خیر به علت محدودیت های و مشکلات اینترنت برای استریم کلاس‌ها و
-              زندگی پر مشغله کنونی برای شما پرتوجویان فرصتی فراهم شده است تا
-              بتوانید در هر زمان که مایل هستید کلاس‌ها را تماشا کنید. البته
-              ویدیو ها کلاس ها به صورت ماهانه ضبط و بارگذاری می‌شوند و همگی به
-              روز و حاوی آخرین نکات هستند.
-            </p>
+            <p>با پر کردن فرم درخواست ثبت نام کلاس های حضوری(لینک صفحه ی تیکت کلاس حضوری)، مسئول ثبت نام در زمان ثبت نام ترم جدید به شما پیغام داده و راهنماییتان می کنند.</p>
           </div>
         </div>
         <div className="collapse collapse-arrow join-item">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
-            مدت زمان کلاس ها و تعداد جلسات هر دوره چقدر است ؟
+          کلاس های حضوری در کدام محدوده برگزار می شوند ؟
           </div>
           <div className="collapse-content">
-            <p>
-              هر جلسه کلاس ۱ ساعت می‌باشد و هر دوره شامل ۸ جلسه در ماه می‌باشد.
-            </p>
+            <p>تهران، نیاوران.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">کلاس‌ها آنلاین به صورت زنده پخش می‌شوند ؟</div>
+          <div className="collapse-content">
+            <p>خیر، به علت محدودیت های و مشکلات اینترنت برای استریم کلاس‌ها و زندگی پر مشغله کنونی، برای شما پرتوجویان فرصتی فراهم شده است تا بتوانید در هر زمان که مایل هستید کلاس‌ها را تماشا کنید. به همین جهت کل جلسات از همان ابتدا در اختیارتان قرار می گیرد و یک ماه فرصت دارید که از این جلسات بهره ببرید.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">اگر در فرصت یک ماه نتوانم از جلسات استفاده کنم، چی می شود ؟</div>
+          <div className="collapse-content">
+            <p>بعد از پنج هفته، دسترسی شما به ویدیوها قطع شده و امکان عودت وجه یا انتقال جلسات وجود ندارد. باید طوری برنامه ریزی بفرمایید که بتوانید به طور میانگین دو جلسه در هفته تمرین کنید.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">امکان تغییر سطح بعد از ثبت نام و شروع دوره وجود دارد ؟</div>
+          <div className="collapse-content">
+            <p>بله، تا قبل از ۴۸ ساعت اگر احساس کردید کلاس برایتان سخت یا آسان هست، می توانید سطح کلاستان را با هماهنگی با ادمین صفحه تغییر دهید.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">امکان انصراف از دوره وجود دارد ؟</div>
+          <div className="collapse-content">
+            <p>بله، در صورت انصراف تا ۴۸ ساعت، کل مبلغ شهریه به شما عودت داده می شود. بعد از ۴۸ ساعت، امکان انصراف وجود ندارد و مسئولیت استفاده نکردن از جلسات به عهده ی شرکت کننده می باشد.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">مدت زمان کلاس ها و تعداد جلسات هر دوره چقدر است ؟</div>
+          <div className="collapse-content">
+            <p>هر جلسه کلاس یک ساعت و هر دوره شامل هشت جلسه در ماه می‌باشد.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">به چه وسایلی نیاز دارم ؟</div>
+          <div className="collapse-content">
+            <p>یک عدد مت یوگا (زیر انداز) با ضخامت شش میلی متر. یک عدد کمر بند به طول سه متر. دو عدد آجر یوگا. یک عدد پتو کوچک یا حوله.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">در صورت داشتن آسیب فیریکی می توانم در کلاس شرکت کنم ؟</div>
+          <div className="collapse-content">
+            <p>اولویت نظر پزشکتان است. با تأیید پزشک اگر آسیب جدی هست، فقط کلاس حضوری جایز می باشد.</p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow join-item">
+          <input type="radio" name="my-accordion-4" />
+          <div className="collapse-title text-xl font-medium">در هر سطح چه مدت باید بمانیم تا به حرکات مسلط بشیم ؟</div>
+          <div className="collapse-content">
+            <p>با توجه به متفاوت بودن پیشینه ی ورزشی، میزان تمرین، ژنتیک و علاقه ی هر فرد، متغیر هست. معمولا بین چند ماه تا یک سال تمرین مداوم لازم است تا حرکات در بدن شما بنشینند.</p>
           </div>
         </div>
       </div>

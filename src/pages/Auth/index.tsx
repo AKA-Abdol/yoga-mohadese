@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from "react";
 
-import lgAuthImage from "../../assets/images/lg-auth-img.png";
-import smAuthImage from "../../assets/images/sm-auth-img.png";
+import lgAuthImage from "../../assets/images/lg-auth-img.jpg";
+import smAuthImage from "../../assets/images/sm-auth-img.jpg";
 import { LoginForm } from "./components/LoginForm";
 import { SignupForm } from "./components/SignupForm";
 

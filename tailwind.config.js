@@ -15,7 +15,7 @@ module.exports = {
         },
         secondary: "#96C5F7",
         white: "#ecece0",
-        error: "#EF2917",
+        error: "#bc4749",
       },
       padding: {
         sm: "0.5rem",
