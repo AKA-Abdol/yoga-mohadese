@@ -1,5 +1,5 @@
 import { Persian2English } from "../../utils/converts";
-import { isPersianPhoneNumber } from "../../utils/validations";
+import { isPersianPhoneNumber, isPersianWord } from "../../utils/validations";
 import * as Yup from "yup";
 
 export interface AuthFormProps {
@@ -19,12 +19,17 @@ export interface ISignupFormValues extends ILoginFormValues {
   email: string;
 }
 
+const USERNAME_SCHEMA = /^[a-zA-Z0-9._]+$/;
+
 const LoginFormValidationSchema = {
   username: Yup.string()
-    .min(2, "حداقل ۲ کاراکتر")
-    .max(50, "حداکثر ۵۰ کاراکتر")
+    // .min(8, "حداقل ۸ کاراکتر")
+    .max(20, "حداکثر ۲۰ کاراکتر")
+    .matches(USERNAME_SCHEMA, "نام کاربری فقط انگلیسی و نقطه و خط زیر")
     .required("الزامی"),
-  password: Yup.string().required("الزامی"),
+  password: Yup.string()
+    // .min(8, "حداقل ۸ کاراکتر")
+    .required("الزامی"),
 };
 const YupLoginFormValidationSchema = Yup.object().shape(
   LoginFormValidationSchema
@@ -32,15 +37,23 @@ const YupLoginFormValidationSchema = Yup.object().shape(
 
 const SignupFormValidationSchema = {
   ...LoginFormValidationSchema,
-  firstName: Yup.string().required("الزامی"),
-  lastName: Yup.string().required("الزامی"),
+  firstName: Yup.string()
+    .test("isAllPersian", "نام باید فارسی باشد", (val) =>
+      isPersianWord(val ?? "")
+    )
+    .required("الزامی"),
+  lastName: Yup.string()
+    .test("isAllPersian", "نام باید فارسی باشد", (val) =>
+      isPersianWord(val ?? "")
+    )
+    .required("الزامی"),
   phoneNumber: Yup.string().test("phoneCheck", "معتبر نیست", (val) =>
     val === undefined || val === ""
       ? true
       : isPersianPhoneNumber(Persian2English(val))
   ),
   email: Yup.string().email("معتبر نیست"),
-  passwordConfirm: Yup.string().required("الزامی"),
+  passwordConfirm: Yup.string().min(8, "حداقل ۸ کاراکتر").required("الزامی"),
 };
 const YupSignupFormValidationSchema = Yup.object().shape(
   SignupFormValidationSchema

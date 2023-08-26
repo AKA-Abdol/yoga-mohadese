@@ -16,11 +16,12 @@ import { tokenPersistor } from "../../../persistors/auth";
 import api from "../../../services";
 import { LOGIN_URL } from "../api.data";
 import { IApiPostLogin } from "../api.types";
+import { loginFormValues2Api } from "../api.converter";
 
 export const LoginForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
   const mutation = useMutation(
-    api.post<ILoginFormValues, IApiPostLogin>(LOGIN_URL)
+    api.post<ILoginFormValues, IApiPostLogin>(LOGIN_URL, loginFormValues2Api)
   );
   const formik = useFormik({
     initialValues: LoginInitialValues,
@@ -31,13 +32,7 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
 
   if (mutation.isSuccess) {
     tokenPersistor.set(mutation.data.token);
-    switch (mutation.data.is_admin) {
-      case true:
-        navigate("/admin");
-        break;
-      case false:
-        navigate("/user");
-    }
+    mutation.data.is_admin ? navigate("/admin") : navigate("/user");
   }
 
   if (mutation.isError) console.log("Error:", mutation.error);

@@ -1,11 +1,16 @@
-import { ISignupFormValues } from "./types";
+import { Persian2English } from "src/utils/converts";
+import { ILoginFormValues, ISignupFormValues } from "./types";
 
-export const signupFormValues2api = (signupFormValues: ISignupFormValues) => ({
-    firstname: signupFormValues.firstName,
-    lastname: signupFormValues.lastName,
-    username: signupFormValues.username,
-    password: signupFormValues.password,
-    email: signupFormValues.email,
-    phone: signupFormValues.phoneNumber,
-  });
-  
+export const signupFormValues2Api = (signupFormValues: ISignupFormValues) => ({
+  firstname: signupFormValues.firstName,
+  lastname: signupFormValues.lastName,
+  username: signupFormValues.username.toLowerCase(),
+  password: signupFormValues.password,
+  email: signupFormValues.email,
+  phone: Persian2English(signupFormValues.phoneNumber),
+});
+
+export const loginFormValues2Api = (loginFormValues: ILoginFormValues) => ({
+  username: loginFormValues.username.toLowerCase(),
+  password: loginFormValues.password,
+});

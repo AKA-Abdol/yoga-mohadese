@@ -5,22 +5,23 @@ import { FC } from "react";
 import { AuthFormProps, ISignupFormValues } from "../types";
 import { useFormik } from "formik";
 import { SignupInitialValues } from "../data";
-import { signupHandleValidation } from "../utils";
+import { signupHandleValidation } from "../validation";
 import Error from "../../../components/ui/Error";
 import { useMutation } from "@tanstack/react-query";
 import { SIGNUP_URL } from "../api.data";
 import api from "../../../services";
-import { signupFormValues2api } from "../api.converter";
+import { signupFormValues2Api } from "../api.converter";
 import { tokenPersistor } from "../../../persistors/auth";
 import { useNavigate } from "react-router-dom";
 import { IApiPostSignup } from "../api.types";
+import { isPersianWord } from "src/utils/validations";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
   const mutation = useMutation(
     api.post<ISignupFormValues, IApiPostSignup>(
       SIGNUP_URL,
-      signupFormValues2api
+      signupFormValues2Api
     )
   );
   const formik = useFormik({
