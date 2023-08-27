@@ -60,13 +60,13 @@ export default function Header() {
           یوگا با محدثه
         </Link>
         <Link
-          to={"/reserve"}
+          to={"/ticket"}
           className={`${styles["nav-links"]} ${styles.item4} ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
         >
-          رزرو کلاس حضوری
+          ثبت درخواست
         </Link>
         <Link
           to={"/terms"}

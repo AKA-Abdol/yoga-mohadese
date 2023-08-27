@@ -2,7 +2,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Terms from "./pages/Terms";
-import Reserve from "./pages/Reserve";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./pages/Auth";
 import BodyLayout from "./components/layout/BodyLayout";
@@ -14,6 +13,8 @@ import User from "./pages/User";
 import AdminContextProvider from "./pages/Admin/ContextProvider";
 import TermVideos from "./pages/Admin/Terms/[id]/videos";
 import TermEdit from "./pages/Admin/Terms/[id]/edit";
+import Reserve from "./pages/Reserve";
+import TicketForm from "./pages/TicketForm";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +35,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="terms" element={<Terms />} />
-            <Route path="reserve" element={<Reserve />} />
+            <Route path="ticket" element={<TicketForm />} />
 
             <Route path="user" element={<User />} />
 
@@ -52,8 +53,7 @@ function App() {
                 <Route path="add" element={<AddTerm />} />
               </Route>
               <Route path="tickets/">
-                <Route path="" element={<Admin />}/>
-
+                <Route path="" element={<Admin />} />
               </Route>
             </Route>
 

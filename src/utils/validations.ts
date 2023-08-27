@@ -11,3 +11,6 @@ export const isPersianPhoneNumber = (s: string) =>
 
 export const isPersianWord = (s: string) =>
   PERSIAN_ALPHABET_REGEX.test(removeWhitespace(s));
+
+const PHONE_NUMBER_REGEX = /^[0-9+]\d+$/;
+export const isPhoneNumber = (s: string) => PHONE_NUMBER_REGEX.test(s);

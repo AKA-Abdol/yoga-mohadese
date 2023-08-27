@@ -19,11 +19,10 @@ const TicketItem: FC<TicketItemProps> = (props) => {
       <textarea
         className="text-sm bg-inherit h-full overflow-hidden resize-none w-full mr-sm lg:mr-0 outline-0"
         readOnly
-      >
-        {props.description}
-      </textarea>
+        value={props.description}
+      />
       <Badge className="w-36 lg:w-48 badge-lg h-2/3 mr-sm text-center text-sm">
-        {ticketName[props.ticketType]}
+        {ticketName[props.type]}
       </Badge>
     </Card>
   );

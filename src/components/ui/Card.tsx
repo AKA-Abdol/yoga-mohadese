@@ -9,6 +9,7 @@ const Card: FC<CardProps> = (props) => {
         "bg-primary-light text-primary-dark shadow-lg rounded-md",
         `flex flex-${props.flexDirection} justify-${props.justify} items-center`,
         "p-2",
+        props.onClick && "cursor-pointer",
         props.classnames
       )}
       onClick={props.onClick}

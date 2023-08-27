@@ -1,5 +1,9 @@
 import { Persian2English } from "../../utils/converts";
-import { isPersianPhoneNumber, isPersianWord } from "../../utils/validations";
+import {
+  isPersianPhoneNumber,
+  isPersianWord,
+  isPhoneNumber,
+} from "../../utils/validations";
 import * as Yup from "yup";
 
 export interface AuthFormProps {
@@ -47,11 +51,11 @@ const SignupFormValidationSchema = {
       isPersianWord(val ?? "")
     )
     .required("الزامی"),
-  phoneNumber: Yup.string().test("phoneCheck", "معتبر نیست", (val) =>
-    val === undefined || val === ""
-      ? true
-      : isPersianPhoneNumber(Persian2English(val))
-  ),
+  phoneNumber: Yup.string()
+    .test("phoneCheck", "شماره معتبر نیست", (value) =>
+      isPhoneNumber(value ?? "")
+    )
+    .required("الزامی"),
   email: Yup.string().email("معتبر نیست"),
   passwordConfirm: Yup.string().min(8, "حداقل ۸ کاراکتر").required("الزامی"),
 };

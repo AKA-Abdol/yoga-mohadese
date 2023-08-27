@@ -3,18 +3,21 @@ import TicketItem from "./components/TicketItem";
 import AuditModal from "./components/AuditModal";
 import { AuditModalState } from "./types";
 import { Ticket } from "src/types/tickets";
+import Button from "src/components/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 const initialAuditModalState: AuditModalState = {
   data: {
     description: "",
     fullName: "",
     phoneNumber: "",
-    ticketType: "technical-issue",
+    type: "technical-issue",
   },
   show: false,
 };
 
 const Tickets: FC = () => {
+  const navigate = useNavigate();
   const [modalState, setModalState] = useState<AuditModalState>(
     initialAuditModalState
   );
@@ -46,7 +49,7 @@ const Tickets: FC = () => {
           fullName="آرسام بختیاری"
           description="یک سری توضیحات"
           phoneNumber="۰۹۱۹۵۰۰۶۷۸۱"
-          ticketType="forget-password"
+          type="forget-password"
           onClick={() => {
             openModal();
           }}
@@ -55,7 +58,7 @@ const Tickets: FC = () => {
           fullName="آرسام بختیاری"
           description="یک سری توضیحات"
           phoneNumber="۰۹۱۹۵۰۰۶۷۸۱"
-          ticketType="onSite-class"
+          type="onSite-class"
           onClick={() => {
             openModal();
           }}
@@ -64,7 +67,7 @@ const Tickets: FC = () => {
           fullName="آرسام بختیاری"
           description="یک سری توضیحات"
           phoneNumber="۰۹۱۹۵۰۰۶۷۸۱"
-          ticketType="technical-issue"
+          type="technical-issue"
           onClick={() => {
             openModal();
           }}

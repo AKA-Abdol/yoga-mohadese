@@ -2,10 +2,13 @@ import { AttentionSpan } from "../../../components/ui/AttentionSpan";
 import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
 import { FC } from "react";
-import { AuthFormProps, ISignupFormValues } from "../types";
+import {
+  AuthFormProps,
+  ISignupFormValues,
+  SignupFormValidationSchema,
+} from "../types";
 import { useFormik } from "formik";
 import { SignupInitialValues } from "../data";
-import { signupHandleValidation } from "../validation";
 import Error from "../../../components/ui/Error";
 import { useMutation } from "@tanstack/react-query";
 import { SIGNUP_URL } from "../api.data";
@@ -14,7 +17,6 @@ import { signupFormValues2Api } from "../api.converter";
 import { tokenPersistor } from "../../../persistors/auth";
 import { useNavigate } from "react-router-dom";
 import { IApiPostSignup } from "../api.types";
-import { isPersianWord } from "src/utils/validations";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
   const formik = useFormik({
     initialValues: SignupInitialValues,
     onSubmit: (values) => mutation.mutate(values),
-    validate: signupHandleValidation,
+    validationSchema: SignupFormValidationSchema,
     validateOnChange: false,
   });
 
