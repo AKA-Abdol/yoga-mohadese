@@ -1,4 +1,5 @@
 import { removeWhitespace } from ".";
+import { Persian2English } from "./converts";
 
 export const PERSIAN_PHONE_NUMBER_SCHEMA =
   /(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/;
@@ -13,4 +14,5 @@ export const isPersianWord = (s: string) =>
   PERSIAN_ALPHABET_REGEX.test(removeWhitespace(s));
 
 const PHONE_NUMBER_REGEX = /^[0-9+]\d+$/;
-export const isPhoneNumber = (s: string) => PHONE_NUMBER_REGEX.test(s);
+export const isPhoneNumber = (s: string) =>
+  PHONE_NUMBER_REGEX.test(Persian2English(s));

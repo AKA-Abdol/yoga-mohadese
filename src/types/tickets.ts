@@ -22,3 +22,11 @@ export interface Ticket {
   description: string;
   type: TicketType;
 }
+
+export interface ApiTicket {
+  firstname: string;
+  lastname: string;
+  phone: string;
+  description: string;
+  type: TicketType;
+}

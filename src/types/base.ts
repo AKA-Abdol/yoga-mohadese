@@ -15,3 +15,8 @@ export const LEVELS = ["1", "2", "3"] as const;
 export type Level = (typeof LEVELS)[number];
 
 export const LEVEL_TITLES = ["مقدماتی", "متوسط", "پیشرفته"];
+
+export interface IApiList<T> {
+  count: number;
+  values: Array<T>;
+}
