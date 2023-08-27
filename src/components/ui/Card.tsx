@@ -11,6 +11,7 @@ const Card: FC<CardProps> = (props) => {
         "p-2",
         props.classnames
       )}
+      onClick={props.onClick}
     >
       {props.children}
     </div>

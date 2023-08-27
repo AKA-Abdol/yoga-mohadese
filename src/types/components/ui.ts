@@ -39,6 +39,7 @@ export interface CardProps extends WithChildren<Array<ReactNode> | ReactNode> {
   flexDirection: "row" | "col";
   justify?: "center" | "between";
   classnames?: string;
+  onClick?: () => void;
 }
 
 export interface SelectProps {

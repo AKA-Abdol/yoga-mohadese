@@ -51,6 +51,10 @@ function App() {
                 <Route path=":id/edit" element={<TermEdit />} />
                 <Route path="add" element={<AddTerm />} />
               </Route>
+              <Route path="tickets/">
+                <Route path="" element={<Admin />}/>
+
+              </Route>
             </Route>
 
             <Route path="404" element={<PageNotFound />} />
