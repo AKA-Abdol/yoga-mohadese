@@ -30,9 +30,7 @@ const BodyLayout: FC = () => {
   }
 
   if (myData.isSuccess) {
-    if (
-      myData.data.user.is_admin && location.pathname.startsWith("/auth")
-    )
+    if (myData.data.user.is_admin && location.pathname.startsWith("/auth"))
       navigate("/admin");
     if (!myData.data.user.is_admin && location.pathname.startsWith("/auth"))
       navigate("/user");
@@ -49,7 +47,7 @@ const BodyLayout: FC = () => {
     <MyContext.Provider
       value={{ firstname: myData.data?.user.firstname ?? "" }}
     >
-      <div className={"w-full h-screen bg-primary text-black"}>
+      <div className={"w-full h-screen bg-primary dark:bg-primary text-black"}>
         <Outlet />
       </div>
     </MyContext.Provider>
