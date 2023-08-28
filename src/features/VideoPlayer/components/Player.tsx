@@ -17,6 +17,7 @@ import MOCK_VIDEO from "src/assets/videos/mock-video.mp4";
 import classNames from "classnames";
 import Hls, { Level } from "hls.js";
 import { QualityItem } from "./Player.types";
+import qualitySettingIcon from "src/assets/images/setting-icon.png";
 
 const Player: FC = (props) => {
   const [videoState, setVideoState] = useState<"play" | "pause">("pause");
@@ -129,6 +130,10 @@ const Player: FC = (props) => {
   if (term.isLoading || term.isError)
     return <Loading textColor="primary-light" />;
 
+  const selectedSessionVideo = term.data.course.videos.filter(
+    (video) => video.num === videoContext.selected.sessionNum
+  )[0];
+
   return (
     <>
       <video
@@ -136,20 +141,12 @@ const Player: FC = (props) => {
         className={`w-full h-full object-contain peer`}
         controls
         controlsList="nodownload"
+        poster={selectedSessionVideo.thumbnail}
         onPlay={() => setVideoState("play")}
         onPause={() => setVideoState("pause")}
       />
       <VideoController onClick={toggleVideoState} />
-      <div className="absolute top-0 left-10 flex flex-col space-y-1">
-        {qualities.map((quality) => (
-          <button
-            onClick={quality.onClick}
-            className="bg-red-800 w-4 h-4 text-white"
-          >
-            {quality.name}
-          </button>
-        ))}
-      </div>
+      <QualitySetting qualities={qualities} />
     </>
   );
 };
@@ -168,6 +165,48 @@ const VideoController = (props: VideoControllerProps) => {
       )}
       onClick={props.onClick}
     ></div>
+  );
+};
+
+interface QualitySettingProps {
+  qualities: QualityItem[];
+}
+const QualitySetting = (props: QualitySettingProps) => {
+  const [dropdownState, setDropdownState] = useState<"show" | "hidden">(
+    "hidden"
+  );
+  const toggleDropdownState = useCallback(() => {
+    setDropdownState((prevState) => (prevState === "show" ? "hidden" : "show"));
+  }, []);
+  return (
+    <div className={classNames("absolute top-2 left-2 cursor-pointer", "flex")}>
+      <ul
+        tabIndex={0}
+        className={classNames(
+          "z-[1] menu p-2 shadow rounded-box w-20 bg-primary-light",
+          dropdownState === "show" ? "block" : "hidden"
+        )}
+      >
+        {props.qualities.map((quality) => (
+          <li
+            onClick={() => {
+              quality.onClick();
+              toggleDropdownState();
+            }}
+          >
+            <a className="text-primary hover:text-primary-dark hover:bg-opacity-10 hover:bg-black">
+              {quality.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <img
+        src={qualitySettingIcon}
+        alt="Quality"
+        onClick={toggleDropdownState}
+        className="w-14 h-14"
+      />
+    </div>
   );
 };
 
