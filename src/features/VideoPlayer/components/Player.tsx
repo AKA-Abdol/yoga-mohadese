@@ -15,10 +15,12 @@ import { ITermApi } from "../types";
 import Loading from "src/components/ui/Loading";
 import MOCK_VIDEO from "src/assets/videos/mock-video.mp4";
 import classNames from "classnames";
+import Hls from "hls.js";
 
 const Player: FC = (props) => {
   const [videoState, setVideoState] = useState<"play" | "pause">("pause");
   const [seenTime, setSeenTime] = useState(1);
+  const [lastSeen, setLastSeen] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContext = useContext(VideoContext);
   const term = useQuery({
@@ -33,10 +35,14 @@ const Player: FC = (props) => {
   });
 
   const CountUpSeenTime = useCallback(() => {
-    setSeenTime((prevTime) => (prevTime + 1) % 60);
-  }, []);
+    const videoCurrentTime = videoRef.current?.currentTime ?? -2;
+    if (Math.abs(videoCurrentTime - lastSeen) >= 0.1) {
+      setSeenTime((prevTime) => (prevTime + 1) % 60);
+      setLastSeen(videoCurrentTime);
+    }
+  }, [lastSeen]);
 
-  console.log("now: ", videoState);
+  console.log(`now: ${seenTime}-${lastSeen}`);
 
   const toggleVideoState = useCallback(() => {
     if (!videoRef.current) return;
@@ -48,6 +54,26 @@ const Player: FC = (props) => {
       setVideoState("pause");
     }
   }, [videoState]);
+
+  useEffect(() => {
+    if (!term.data || !videoContext.selected.sessionNum || !videoRef.current)
+      return;
+
+    const selectedSessionVideo = term.data.course.videos.filter(
+      (video) => video.num === videoContext.selected.sessionNum
+    )[0];
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(selectedSessionVideo.link);
+      hls.attachMedia(videoRef.current);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        console.log("ready to play!");
+      });
+    } else {
+      alert("Use Modern Browsers!");
+    }
+  }, [term.data, videoContext, videoRef]);
 
   useEffect(() => {
     if (videoState === "pause") return;
@@ -90,10 +116,6 @@ const Player: FC = (props) => {
   if (term.isLoading || term.isError)
     return <Loading textColor="primary-light" />;
 
-  const selectedSessionVideo = term.data.course.videos.filter(
-    (video) => video.num === videoContext.selected.sessionNum
-  );
-
   return (
     <>
       <video
@@ -101,20 +123,9 @@ const Player: FC = (props) => {
         className={`w-full h-full object-contain peer`}
         controls
         controlsList="nodownload"
-        poster={selectedSessionVideo[0].thumbnail}
         onPlay={() => setVideoState("play")}
         onPause={() => setVideoState("pause")}
-      >
-        <source
-          src={
-            selectedSessionVideo.length
-              ? selectedSessionVideo[0].link
-              : undefined
-          }
-          type="video/mp4"
-        />
-        {/* <source src={process.env.REACT_APP_TEST_VIDEO} type="video/mp4" /> */}
-      </video>
+      />
       <VideoController onClick={toggleVideoState} />
     </>
   );
@@ -129,7 +140,8 @@ const VideoController = (props: VideoControllerProps) => {
       className={classNames(
         "absolute bottom-16 left-0 w-full h-full",
         "transition-opacity duration-500 delay-200",
-        "opacity-0 hover:opacity-100"
+        "opacity-0 hover:opacity-100",
+        "lg:hidden"
       )}
       onClick={props.onClick}
     ></div>
