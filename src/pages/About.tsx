@@ -82,7 +82,7 @@ export default function About() {
           برای شرکت در کلاس های آنلاین چکار کنم ؟
           </div>
           <div className="collapse-content">
-            <p>بعد از انتخاب دوره ای که می خواهید در آن شرکت کنید، از طریق راه های تماس با ما(لینک صفحه) جهت پرداخت شهریه کلاس اقدام بفرمایید. سپس دسترسی به دوره در پنل کاربریتان باز خواهد شد.</p>
+            <p>بعد از انتخاب دوره ای که می خواهید در آن شرکت کنید، از طریق راه های <Link style={{textDecoration : "underline"}} to={"/contact"}>تماس با ما</Link>  جهت پرداخت شهریه کلاس اقدام بفرمایید. سپس دسترسی به دوره در پنل کاربریتان باز خواهد شد.</p>
           </div>
         </div>
         <div className="collapse collapse-arrow join-item">
@@ -91,7 +91,7 @@ export default function About() {
           برای شرکت در کلاس های حضوری چکار کنم ؟
           </div>
           <div className="collapse-content">
-            <p>با پر کردن فرم درخواست ثبت نام کلاس های حضوری(لینک صفحه ی تیکت کلاس حضوری)، مسئول ثبت نام در زمان ثبت نام ترم جدید به شما پیغام داده و راهنماییتان می کنند.</p>
+            <p>با پر کردن فرم درخواست  <Link style={{textDecoration : "underline"}} to={"/ticket"}>ثبت نام کلاس های حضوری</Link> ، مسئول ثبت نام در زمان ثبت نام ترم جدید به شما پیغام داده و راهنماییتان می کنند.</p>
           </div>
         </div>
         <div className="collapse collapse-arrow join-item">
