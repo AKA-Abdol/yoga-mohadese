@@ -15,12 +15,14 @@ import { ITermApi } from "../types";
 import Loading from "src/components/ui/Loading";
 import MOCK_VIDEO from "src/assets/videos/mock-video.mp4";
 import classNames from "classnames";
-import Hls from "hls.js";
+import Hls, { Level } from "hls.js";
+import { QualityItem } from "./Player.types";
 
 const Player: FC = (props) => {
   const [videoState, setVideoState] = useState<"play" | "pause">("pause");
   const [seenTime, setSeenTime] = useState(1);
   const [lastSeen, setLastSeen] = useState(0);
+  const [qualities, setQualities] = useState<QualityItem[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContext = useContext(VideoContext);
   const term = useQuery({
@@ -69,6 +71,17 @@ const Player: FC = (props) => {
       hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         console.log("ready to play!");
+        hls.levels.forEach((level) => console.log(level));
+        setQualities([
+          ...hls.levels.map((level, index) => ({
+            name: `${level.height}p`,
+            onClick: () => (hls.currentLevel = index),
+          })),
+          {
+            name: "خودکار",
+            onClick: () => (hls.currentLevel = -1),
+          },
+        ]);
       });
     } else {
       alert("Use Modern Browsers!");
@@ -127,6 +140,16 @@ const Player: FC = (props) => {
         onPause={() => setVideoState("pause")}
       />
       <VideoController onClick={toggleVideoState} />
+      <div className="absolute top-0 left-10 flex flex-col space-y-1">
+        {qualities.map((quality) => (
+          <button
+            onClick={quality.onClick}
+            className="bg-red-800 w-4 h-4 text-white"
+          >
+            {quality.name}
+          </button>
+        ))}
+      </div>
     </>
   );
 };
