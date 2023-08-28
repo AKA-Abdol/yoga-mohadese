@@ -14,10 +14,11 @@ import { WithVideos } from "src/pages/Admin/Terms/[id]/videos/types";
 import { ITermApi } from "../types";
 import Loading from "src/components/ui/Loading";
 import MOCK_VIDEO from "src/assets/videos/mock-video.mp4";
+import classNames from "classnames";
 
 const Player: FC = (props) => {
   const [videoState, setVideoState] = useState<"play" | "pause">("pause");
-  const [seenTime, setSeenTime] = useState(0);
+  const [seenTime, setSeenTime] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContext = useContext(VideoContext);
   const term = useQuery({
@@ -31,36 +32,33 @@ const Player: FC = (props) => {
     ),
   });
 
-  const CountUpSeenTime = () => {
-    setSeenTime((prevTime) => prevTime + 1);
-  };
+  const CountUpSeenTime = useCallback(() => {
+    setSeenTime((prevTime) => (prevTime + 1) % 60);
+  }, []);
 
-  console.log("now: ", seenTime);
+  console.log("now: ", videoState);
+
+  const toggleVideoState = useCallback(() => {
+    if (!videoRef.current) return;
+    if (videoState === "pause") {
+      videoRef.current.play();
+      setVideoState("play");
+    } else {
+      videoRef.current.pause();
+      setVideoState("pause");
+    }
+  }, [videoState]);
 
   useEffect(() => {
     if (videoState === "pause") return;
 
     const interval = setInterval(CountUpSeenTime, 1000);
     return () => clearInterval(interval);
-  }, [videoState]);
+  }, [videoState, CountUpSeenTime]);
 
   useEffect(() => {
     videoRef.current?.pause();
   }, [videoRef]);
-
-  const toggleVideoState = useCallback(() => {
-    if (!videoRef.current) return;
-    if (videoState === "pause") {
-      console.log("playing now: ", videoRef.current);
-      setVideoState("play");
-      videoRef.current?.play();
-    } else {
-      console.log("Pausing now: ", videoRef.current);
-
-      setVideoState("pause");
-      videoRef.current?.pause();
-    }
-  }, [videoState]);
 
   useEffect(() => {
     const handleSpacePress = (e: KeyboardEvent) => {
@@ -70,6 +68,10 @@ const Player: FC = (props) => {
 
     return () => window.removeEventListener("keypress", handleSpacePress);
   }, [toggleVideoState]);
+
+  useEffect(() => {
+    if (seenTime === 0) console.log("request for 1 min watch!");
+  }, [seenTime]);
 
   if (!videoContext.selected.termId)
     return (
@@ -93,26 +95,44 @@ const Player: FC = (props) => {
   );
 
   return (
-    <video
-      ref={videoRef}
-      className={`w-full h-full object-contain`}
-      controls
-      controlsList="nodownload"
-      poster={selectedSessionVideo[0].thumbnail}
-      onClick={(e) => {
-        e.preventDefault();
-        toggleVideoState();
-      }}
-    >
-      <source
-        src={
-          // selectedSessionVideo.length ? selectedSessionVideo[0].link : undefined
-          MOCK_VIDEO
-        }
-        type="video/mp4"
-      />
-      {/* <source src={process.env.REACT_APP_TEST_VIDEO} type="video/mp4" /> */}
-    </video>
+    <>
+      <video
+        ref={videoRef}
+        className={`w-full h-full object-contain peer`}
+        controls
+        controlsList="nodownload"
+        poster={selectedSessionVideo[0].thumbnail}
+        onPlay={() => setVideoState("play")}
+        onPause={() => setVideoState("pause")}
+      >
+        <source
+          src={
+            selectedSessionVideo.length
+              ? selectedSessionVideo[0].link
+              : undefined
+          }
+          type="video/mp4"
+        />
+        {/* <source src={process.env.REACT_APP_TEST_VIDEO} type="video/mp4" /> */}
+      </video>
+      <VideoController onClick={toggleVideoState} />
+    </>
+  );
+};
+
+interface VideoControllerProps {
+  onClick: () => void;
+}
+const VideoController = (props: VideoControllerProps) => {
+  return (
+    <div
+      className={classNames(
+        "absolute bottom-16 left-0 w-full h-full",
+        "transition-opacity duration-500 delay-200",
+        "opacity-0 hover:opacity-100"
+      )}
+      onClick={props.onClick}
+    ></div>
   );
 };
 
