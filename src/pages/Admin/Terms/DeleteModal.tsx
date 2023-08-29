@@ -18,7 +18,7 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
     console.log("error deleting!");
   if (deleteTerm.isSuccess) {
     deleteTerm.reset();
-    queryClient.invalidateQueries({queryKey: ["admin-context"]});
+    queryClient.invalidateQueries({queryKey: ["terms"]});
     props.onClose();
   }
 

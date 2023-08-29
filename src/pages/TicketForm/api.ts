@@ -5,8 +5,7 @@ export const TICKET_URL = "ticket";
 
 export const localTicket2Api = (ticket: Ticket) => ({
   type: ticket.type,
-  firstname: ticket.fullName,
-  lastname: " ",
+  fullname: ticket.fullName,
   description: ticket.description,
   phone: Persian2English(ticket.phoneNumber),
 });

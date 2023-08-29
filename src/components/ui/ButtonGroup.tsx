@@ -21,7 +21,7 @@ const ButtonGroup: FC<ButtonGroupProps> = (props) => {
 
   return (
     <div className={`flex flex-col w-full h-full`}>
-      <div className={`flex w-full justify-center py-sm`}>
+      <div className={`flex w-full justify-center py-sm h-[10%]`}>
         {props.buttonNames.map((buttonName, index) => (
           <Button
             className={`btn-primary-theme w-28 mr-2 ${
@@ -33,7 +33,7 @@ const ButtonGroup: FC<ButtonGroupProps> = (props) => {
           </Button>
         ))}
       </div>
-      <div className={`w-full h-full`}>{props.data[activeButtonIndex]}</div>
+      <div className={`w-full h-[90%]`}>{props.data[activeButtonIndex]}</div>
     </div>
   );
 };
