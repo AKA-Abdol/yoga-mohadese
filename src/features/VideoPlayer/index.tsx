@@ -3,7 +3,6 @@ import Drawer from "./components/Drawer/Drawer";
 import classNames from "classnames";
 import Player from "./components/Player";
 import TermController from "./components/TermController";
-import VideoContextProvider from "./VideoContext";
 import OpenCloseButton from "./components/Drawer/OpenCloseButton";
 import { MyContext } from "src/components/layout/BodyLayout";
 
@@ -28,22 +27,20 @@ const VideoPlayer: FC = () => {
   }, []);
 
   return (
-    <VideoContextProvider>
-      <DrawerContext.Provider value={{ onClose: closeDrawerState }}>
-        <div className={classNames("w-full h-full", "relative", "bg-black")}>
-          <Drawer show={drawerShowState === "show"}>
-            <TermController title={`سلام ${myContext.firstname}`} />
-          </Drawer>
-          <div className="absolute top-0 right-0 p-sm z-10">
-            <OpenCloseButton
-              onToggle={toggleDrawerState}
-              show={drawerShowState === "show"}
-            />
-          </div>
-          <Player />
+    <DrawerContext.Provider value={{ onClose: closeDrawerState }}>
+      <div className={classNames("w-full h-full", "relative", "bg-black")}>
+        <Drawer show={drawerShowState === "show"}>
+          <TermController title={`سلام ${myContext.firstname}`} />
+        </Drawer>
+        <div className="absolute top-0 right-0 p-sm z-10">
+          <OpenCloseButton
+            onToggle={toggleDrawerState}
+            show={drawerShowState === "show"}
+          />
         </div>
-      </DrawerContext.Provider>
-    </VideoContextProvider>
+        <Player />
+      </div>
+    </DrawerContext.Provider>
   );
 };
 

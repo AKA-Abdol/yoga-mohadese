@@ -13,9 +13,8 @@ import { BASE_TERM_URL } from "src/pages/Admin/Terms/api.data";
 import { WithVideos } from "src/pages/Admin/Terms/[id]/videos/types";
 import { ITermApi } from "../types";
 import Loading from "src/components/ui/Loading";
-import MOCK_VIDEO from "src/assets/videos/mock-video.mp4";
 import classNames from "classnames";
-import Hls, { Level } from "hls.js";
+import Hls from "hls.js";
 import { QualityItem } from "./Player.types";
 import qualitySettingIcon from "src/assets/images/setting-icon.png";
 
@@ -45,7 +44,7 @@ const Player: FC = (props) => {
     }
   }, [lastSeen]);
 
-  console.log(`now: ${seenTime}-${lastSeen}`);
+  // console.log(`now: ${seenTime}-${lastSeen}`);
 
   const toggleVideoState = useCallback(() => {
     if (!videoRef.current) return;
@@ -59,6 +58,9 @@ const Player: FC = (props) => {
   }, [videoState]);
 
   useEffect(() => {
+    console.log("hls effect");
+    console.log(term.data, videoContext, videoRef);
+
     if (!term.data || !videoContext.selected.sessionNum || !videoRef.current)
       return;
 
@@ -87,7 +89,7 @@ const Player: FC = (props) => {
     } else {
       alert("Use Modern Browsers!");
     }
-  }, [term.data, videoContext, videoRef]);
+  }, [term.data, videoContext]);
 
   useEffect(() => {
     if (videoState === "pause") return;
