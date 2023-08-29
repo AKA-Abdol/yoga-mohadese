@@ -23,12 +23,14 @@ const Terms: FC = () => {
     initialDeleteModalState
   );
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
 
   const termData = useQuery({
-    queryKey: ["terms", page],
+    queryKey: ["terms", page, search],
     queryFn: api.get<ApiTermSchema>(TERM_URL, (x) => x, {
       num: PER_PAGE,
       page,
+      search,
     }),
   });
 
@@ -46,7 +48,13 @@ const Terms: FC = () => {
   return (
     <div className={`w-full h-full p-sm flex flex-col items-center space-y-sm`}>
       <div className="w-full lg:w-3/5 flex flex-col justify-center items-center space-y-sm">
-        <SearchInput />
+        <SearchInput
+          value={search}
+          setValue={(value: string) => {
+            setPage(1);
+            setSearch(value);
+          }}
+        />
         <Button
           className="btn-primary-theme"
           onClick={() => navigate("/admin/terms/add")}

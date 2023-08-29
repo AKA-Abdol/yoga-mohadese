@@ -12,11 +12,13 @@ const PER_PAGE = 9;
 const Users: FC = () => {
   const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const users = useQuery({
-    queryKey: ["users", "users-list", page],
+    queryKey: ["users", page, search],
     queryFn: api.get<IUsersList>(ALL_USERS_URL, (api) => api, {
       num: PER_PAGE,
       page,
+      search,
     }),
   });
 
@@ -27,7 +29,13 @@ const Users: FC = () => {
   return (
     <div className={`w-full h-full p-sm flex flex-col items-center`}>
       <div className="w-full lg:w-3/5 flex justify-center">
-        <SearchInput />
+        <SearchInput
+          value={search}
+          setValue={(value: string) => {
+            setPage(1);
+            setSearch(value);
+          }}
+        />
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col items-center space-y-sm py-md overflow-auto">
         {users.isLoading || users.isError ? (

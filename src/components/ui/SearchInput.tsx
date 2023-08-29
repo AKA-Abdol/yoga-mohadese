@@ -1,7 +1,12 @@
 import classNames from "classnames";
 import { FC } from "react";
 
-const SearchInput: FC = () => {
+interface SearchInputProps {
+  value: string;
+  setValue: (value: string) => void;
+}
+
+const SearchInput: FC<SearchInputProps> = (props) => {
   return (
     <div className="w-5/6 h-14 flex flex-row justify-center">
       <input
@@ -12,6 +17,8 @@ const SearchInput: FC = () => {
           "border-primary-dark focus:border-primary-light focus:outline-none focus:ring-0",
           "transition-colors duration-500"
         )}
+        value={props.value}
+        onChange={(e) => props.setValue(e.target.value)}
       />
       <button
         className={classNames(
