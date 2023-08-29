@@ -5,6 +5,10 @@ import Button from "src/components/ui/Button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "src/services";
 import { TICKET_URL } from "src/pages/TicketForm/api";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Input from "src/components/ui/Input";
+import { TICKET_PASSWORD_RESOLVE_URL } from "../api";
 
 const AuditModal: FC<AuditModalProps> = (props) => {
   const queryClient = useQueryClient();
@@ -26,11 +30,19 @@ const AuditModal: FC<AuditModalProps> = (props) => {
           <p>{props.data.phoneNumber}</p>
         </div>
         <div className="w-full bg-primary-light text-primary-dark p-sm">
-          <InfoBody
-            description={props.data.description}
-            onClose={props.onClose}
-            onResolve={() => deleteTicket.mutate({})}
-          />
+          {props.data.type === "forget-password" ? (
+            <PasswordResolveBody
+              ticketId={props.data.id}
+              description={props.data.description}
+              onClose={props.onClose}
+            />
+          ) : (
+            <InfoBody
+              description={props.data.description}
+              onClose={props.onClose}
+              onResolve={() => deleteTicket.mutate({})}
+            />
+          )}
         </div>
       </div>
     </Modal>
@@ -59,5 +71,71 @@ const InfoBody: FC<BodyProps> = (props) => (
     </div>
   </div>
 );
+
+interface PasswordResolveBodyProps {
+  description: string;
+  onClose: () => void;
+  ticketId: string;
+}
+
+interface IApiResolveTicket {
+  ticket_id: string;
+  new_password: string;
+}
+interface IResolveForm {
+  password: string;
+}
+
+const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
+  const formik = useFormik({
+    initialValues: { password: "" },
+    onSubmit: (values) => {
+      console.log(values);
+      password.mutate(values);
+    },
+    validationSchema: Yup.object().shape({
+      password: Yup.string().min(8, "حداقل ۸ کاراکتر").required("الزامی"),
+    }),
+    validateOnChange: false,
+  });
+  const password = useMutation(
+    api.post(
+      TICKET_PASSWORD_RESOLVE_URL,
+      (value: IResolveForm): IApiResolveTicket => ({
+        new_password: value.password,
+        ticket_id: props.ticketId,
+      })
+    )
+  );
+
+  if (password.isSuccess) {
+    password.reset();
+    props.onClose();
+  }
+  return (
+    <div className="h-full w-full flex flex-col items-center py-sm">
+      <p className="py-sm">{props.description}</p>
+      <form onSubmit={formik.handleSubmit} className="w-full">
+        <Input
+          name="password"
+          id="password"
+          onChange={formik.handleChange}
+          placeholder="رمز عبور جدید"
+          value={formik.values.password}
+          error={formik.errors.password}
+          className="text-center input-primary-theme"
+        />
+        <div className="flex flex-row w-full justify-around pt-md">
+          <Button type="submit" className="w-36 md:w-64 btn-primary-theme">
+            رسیدگی شد
+          </Button>
+          <Button onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
+            انصراف
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default AuditModal;
