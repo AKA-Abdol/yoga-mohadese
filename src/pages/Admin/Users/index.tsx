@@ -7,7 +7,7 @@ import { ALL_USERS_URL } from "./api.data";
 import { IUsersList } from "./types";
 import Pagination from "src/components/ui/Pagination";
 
-const PER_PAGE = 10;
+const PER_PAGE = 9;
 
 const Users: FC = () => {
   const queryClient = useQueryClient();
@@ -29,7 +29,7 @@ const Users: FC = () => {
       <div className="w-full lg:w-3/5 flex justify-center">
         <SearchInput />
       </div>
-      <div className="w-full lg:w-3/5 h-full flex flex-col items-center space-y-sm py-md">
+      <div className="w-full lg:w-3/5 h-full flex flex-col items-center space-y-sm py-md overflow-auto">
         {users.isLoading || users.isError ? (
           <span className="loading loading-infinity loading-lg text-primary-dark" />
         ) : (

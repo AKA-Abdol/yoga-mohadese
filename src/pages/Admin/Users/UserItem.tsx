@@ -53,11 +53,11 @@ const UserItem: FC<UserItemProps> = (props) => {
 
   console.log("output: ", tempTermState, termState);
   return (
-    <Card flexDirection="row" justify="between" classnames={`h-14 w-full`}>
+    <Card flexDirection="row" justify="between" classnames={`h-16 w-full`}>
       <div className="w-1/6 h-full flex items-center">
         <p className=" text-center text-sm">{props.username}</p>
       </div>
-      <div className="w-2/6 flex items-center justify-center lg:w-1/6">
+      <div className="w-2/6 flex items-center justify-center lg:w-1/6 mr-sm lg:mr-0">
         <Checkbox
           size="sm"
           span={

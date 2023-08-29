@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import Modal from "src/components/ui/Modal";
 import { DeleteModalProps } from "./types";
 import Button from "src/components/ui/Button";
@@ -18,7 +18,7 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
     console.log("error deleting!");
   if (deleteTerm.isSuccess) {
     deleteTerm.reset();
-    queryClient.invalidateQueries({queryKey: ["terms"]});
+    queryClient.invalidateQueries({ queryKey: ["terms"] });
     props.onClose();
   }
 

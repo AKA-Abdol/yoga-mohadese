@@ -1,9 +1,9 @@
 import SearchInput from "../../../components/ui/SearchInput";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import TermItem from "./TermItem";
 import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Loading from "src/components/ui/Loading";
 import DeleteModal from "./DeleteModal";
 import { IDeleteModalState, initialDeleteModalState } from "./types";
@@ -15,7 +15,7 @@ import api from "src/services";
 import { TERM_URL } from "../api.data";
 import { apiTerm2local } from "../api.converter";
 
-const PER_PAGE = 10;
+const PER_PAGE = 9;
 
 const Terms: FC = () => {
   const navigate = useNavigate();
@@ -44,8 +44,8 @@ const Terms: FC = () => {
   }, []);
 
   return (
-    <div className={`w-full h-full p-sm flex flex-col items-center`}>
-      <div className="w-full lg:w-3/5 flex flex-col justify-center items-center space-y-lg">
+    <div className={`w-full h-full p-sm flex flex-col items-center space-y-sm`}>
+      <div className="w-full lg:w-3/5 flex flex-col justify-center items-center space-y-sm">
         <SearchInput />
         <Button
           className="btn-primary-theme"
@@ -54,7 +54,7 @@ const Terms: FC = () => {
           + ایجاد ترم جدید
         </Button>
       </div>
-      <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md items-center">
+      <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md items-center overflow-auto">
         {termData.isLoading || termData.isError ? (
           <Loading />
         ) : termData.data.count === 0 ? (

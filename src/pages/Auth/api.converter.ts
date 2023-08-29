@@ -11,6 +11,6 @@ export const signupFormValues2Api = (signupFormValues: ISignupFormValues) => ({
 });
 
 export const loginFormValues2Api = (loginFormValues: ILoginFormValues) => ({
-  username: loginFormValues.username.toLowerCase(),
+  validator: loginFormValues.username.toLowerCase(),
   password: loginFormValues.password,
 });
