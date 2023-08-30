@@ -9,7 +9,7 @@ const Select: FC<SelectProps> = (props) => {
       value={props.value ? props.value : props.placeholder}
       defaultValue={props.placeholder}
       className={classNames(
-        "select",
+        "select appearance-none",
         "bg-primary-dark text-primary-light disabled:bg-primary-dark disabled:text-primary-light",
         props.classnames,
         props.error && "ring-2 ring-error"
