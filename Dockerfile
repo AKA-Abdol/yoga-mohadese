@@ -1,10 +1,6 @@
-###################
-# BUILD FOR LOCAL DEVELOPMENT
-###################
+FROM node:alpine As build
 
-FROM node:alpine As development
-
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY --chown=node:node package*.json ./
 
@@ -12,10 +8,14 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
+ARG REACT_APP_BASE_URL
+
+ENV REACT_APP_BASE_URL=$REACT_APP_BASE_URL
+
 RUN npm run build
 
-RUN npm cache clean --force
+RUN npm i -g serve
 
-USER node
+EXPOSE 3000
 
-CMD [ "npm", "run", "start" ]
+ENTRYPOINT [ "serve", "-s", "build" ]
