@@ -67,11 +67,12 @@ const TicketForm: FC = () => {
             placeholder={"نوع درخواست را انتخاب کنید"}
             error={formik.errors.type}
             classnames="text-center"
+            optionsClassnames="text-center"
           />
           <TextArea
             onChange={formik.handleChange}
             placeholder="توضیحات"
-            className="text-center w-full input-primary-theme"
+            className="text-center w-full input-primary-theme text-le"
             id="description"
             name="description"
             error={formik.errors.description}
