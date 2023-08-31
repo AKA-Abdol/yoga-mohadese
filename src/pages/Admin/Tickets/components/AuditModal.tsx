@@ -18,7 +18,7 @@ const AuditModal: FC<AuditModalProps> = (props) => {
 
   if (deleteTicket.isSuccess) {
     deleteTicket.reset();
-    queryClient.invalidateQueries(["tickets"]);
+    queryClient.invalidateQueries({ queryKey: ["tickets"] });
     props.onClose();
   }
 
@@ -87,14 +87,16 @@ interface IResolveForm {
 }
 
 const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
+  const queryClient = useQueryClient();
   const formik = useFormik({
     initialValues: { password: "" },
     onSubmit: (values) => {
       console.log(values);
-      password.mutate(values);
+      if (values.password) password.mutate(values);
+      else deleteTicket.mutate({});
     },
     validationSchema: Yup.object().shape({
-      password: Yup.string().min(8, "حداقل ۸ کاراکتر").required("الزامی"),
+      password: Yup.string().min(8, "حداقل ۸ کاراکتر"),
     }),
     validateOnChange: false,
   });
@@ -107,11 +109,22 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
       })
     )
   );
+  const deleteTicket = useMutation(
+    api.delete(`${TICKET_URL}/${props.ticketId}`)
+  );
 
   if (password.isSuccess) {
     password.reset();
+    queryClient.invalidateQueries({ queryKey: ["tickets"] });
     props.onClose();
   }
+
+  if (deleteTicket.isSuccess) {
+    deleteTicket.reset();
+    queryClient.invalidateQueries({ queryKey: ["tickets"] });
+    props.onClose();
+  }  
+
   return (
     <div className="h-full w-full flex flex-col items-center py-sm">
       <p className="py-sm">{props.description}</p>
