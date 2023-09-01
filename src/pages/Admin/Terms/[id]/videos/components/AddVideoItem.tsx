@@ -3,7 +3,8 @@ import Input from "../../../../../../components/ui/Input";
 import SubmitCancelButton from "../../../../../../components/ui/SubmitCancelButton";
 import { useFormik } from "formik";
 import { FC } from "react";
-import { AddVideoItemProps } from "./types";
+import { AddVideoItemProps, AddVideoSchema } from "./types";
+import { Persian2English } from "src/utils/converts";
 
 const AddVideoItem: FC<AddVideoItemProps> = (props) => {
   const formik = useFormik({
@@ -17,10 +18,12 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
       props.onSubmit({
         link: values.link,
         title: values.title,
-        num: +values.num,
+        num: +Persian2English(values.num),
         thumbnail: values.thumbnailLink,
       });
     },
+    validationSchema: AddVideoSchema,
+    validateOnChange: false,
   });
   return (
     <Card flexDirection="row" justify="between" classnames={`h-14 w-full`}>
@@ -38,6 +41,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             value={formik.values.num}
             containerClassName="h-full"
             errorBorderOnly={true}
+            error={formik.errors.num}
           />
         </div>
         <div className="w-1/3 h-full">
@@ -50,6 +54,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             value={formik.values.title}
             containerClassName="h-full"
             errorBorderOnly={true}
+            error={formik.errors.title}
           />
         </div>
         <div className="w-1/3 h-full">
@@ -62,6 +67,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             value={formik.values.link}
             containerClassName="h-full"
             errorBorderOnly={true}
+            error={formik.errors.link}
           />
         </div>
         <div className="w-1/3 h-full">
@@ -74,6 +80,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             value={formik.values.thumbnailLink}
             containerClassName="h-full"
             errorBorderOnly={true}
+            error={formik.errors.thumbnailLink}
           />
         </div>
         <div className={"h-full w-24"}>

@@ -7,7 +7,7 @@ const OpenCloseButton: FC<OpenCloseButtonProps> = (props) => {
     <div onClick={props.onToggle}>
       <svg
         className={classNames(
-          "w-12 fill-primary-light",
+          "w-12 fill-primary",
           props.show && "hidden"
         )}
         xmlns="http://www.w3.org/2000/svg"

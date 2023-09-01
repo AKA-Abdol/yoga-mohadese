@@ -17,6 +17,7 @@ import classNames from "classnames";
 import Hls from "hls.js";
 import { QualityItem } from "./Player.types";
 import qualitySettingIcon from "src/assets/images/setting-icon.png";
+import { TERM_VIDEO_URL } from "src/pages/Admin/Terms/[id]/videos/api.data";
 
 const Player: FC = (props) => {
   const [videoState, setVideoState] = useState<"play" | "pause">("pause");
@@ -58,9 +59,6 @@ const Player: FC = (props) => {
   }, [videoState]);
 
   useEffect(() => {
-    console.log("hls effect");
-    console.log(term.data, videoContext, videoRef);
-
     if (!term.data || !videoContext.selected.sessionNum || !videoRef.current)
       return;
 
@@ -112,7 +110,9 @@ const Player: FC = (props) => {
   }, [toggleVideoState]);
 
   useEffect(() => {
-    if (seenTime === 0) console.log("request for 1 min watch!");
+    if (seenTime === 0) {
+      api.post(`${TERM_VIDEO_URL}/`)
+    }
   }, [seenTime]);
 
   if (!videoContext.selected.termId)
