@@ -58,6 +58,15 @@ const Player: FC = (props) => {
     }
   }, [videoState]);
 
+  const acknowledgeMinuteView = useCallback(() => {
+    if (!term.data || !videoContext.selected.sessionNum) return;
+
+    const selectedSessionVideo = term.data.course.videos.filter(
+      (video) => video.num === videoContext.selected.sessionNum
+    )[0];
+    api.post(`${TERM_VIDEO_URL}/${selectedSessionVideo.id}/view_count`)({});
+  }, [videoContext, term.data]);
+
   useEffect(() => {
     if (!term.data || !videoContext.selected.sessionNum || !videoRef.current)
       return;
@@ -111,9 +120,9 @@ const Player: FC = (props) => {
 
   useEffect(() => {
     if (seenTime === 0) {
-      api.post(`${TERM_VIDEO_URL}/`)
+      acknowledgeMinuteView();
     }
-  }, [seenTime]);
+  }, [seenTime, acknowledgeMinuteView]);
 
   if (!videoContext.selected.termId)
     return (
