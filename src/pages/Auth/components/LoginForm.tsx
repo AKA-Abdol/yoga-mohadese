@@ -35,8 +35,6 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
     mutation.data.is_admin ? navigate("/admin") : navigate("/user");
   }
 
-  if (mutation.isError) console.log("Error:", mutation.error);
-
   return (
     <form className="h-full w-full lg:w-2/3" onSubmit={formik.handleSubmit}>
       <div className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg">

@@ -91,6 +91,7 @@ const Tickets: FC = () => {
                   setModalData(ticket);
                   openModal();
                 }}
+                key={`ticket-${ticket.id}`}
               />
             ))
           )}

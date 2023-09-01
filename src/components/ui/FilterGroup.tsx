@@ -15,6 +15,7 @@ const FilterGroup = <T extends ReactNode>(props: FilterGroupProps<T>) => {
             index && "mr-sm"
           )}
           onClick={() => props.setFilter(props.filterValues[index])}
+          key={`filter-${props.filterValues[index]}`}
         >
           {filter}
         </Button>

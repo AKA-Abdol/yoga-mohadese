@@ -36,7 +36,6 @@ const TermEdit: FC = () => {
 
   useEffect(() => {
     if (term.isSuccess) {
-      console.log(term.data.course);
       formik.setValues({
         ...apiTerm2local(term.data.course),
         level: `${term.data.course.level}`,

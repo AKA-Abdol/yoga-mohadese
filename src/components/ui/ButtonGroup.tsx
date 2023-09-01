@@ -28,6 +28,7 @@ const ButtonGroup: FC<ButtonGroupProps> = (props) => {
               endPath === props.routes[index] && "btn-primary-active"
             }`}
             onClick={handleButtonClick(props.routes[index])}
+            key={`nav-${props.routes[index]}`}
           >
             {buttonName}
           </Button>

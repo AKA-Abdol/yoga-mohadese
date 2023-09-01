@@ -65,7 +65,6 @@ const TermVideos: FC = () => {
             onSubmit={(video: IVideo & WithThumbnail) => {
               addVideo.mutate(video);
               setAddState("readyToAdd");
-              console.log("here");
             }}
           />
         )}

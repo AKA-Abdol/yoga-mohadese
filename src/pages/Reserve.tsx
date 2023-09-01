@@ -39,7 +39,6 @@ export default function Reserve() {
 
       fetch(scriptURL, { method: "POST", body: formData })
         .then((response) => {
-          console.log("annas agha send shod");
 
           setErrMsg("اطلاعات شما ثبت شد. در اولین فرصت به شما پیام میدهیم.");
           setTimeout(function () {

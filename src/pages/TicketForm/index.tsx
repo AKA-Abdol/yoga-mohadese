@@ -71,7 +71,7 @@ const TicketForm: FC = () => {
           />
           <TextArea
             onChange={formik.handleChange}
-            placeholder="توضیحات"
+            placeholder="توضیحات *"
             className="text-center w-full input-primary-theme text-le"
             id="description"
             name="description"

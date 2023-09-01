@@ -45,8 +45,6 @@ const Player: FC = (props) => {
     }
   }, [lastSeen]);
 
-  // console.log(`now: ${seenTime}-${lastSeen}`);
-
   const toggleVideoState = useCallback(() => {
     if (!videoRef.current) return;
     if (videoState === "pause") {
@@ -81,7 +79,6 @@ const Player: FC = (props) => {
       hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         console.log("ready to play!");
-        hls.levels.forEach((level) => console.log(level));
         setQualities([
           ...hls.levels.map((level, index) => ({
             name: `${level.height}p`,
@@ -204,6 +201,7 @@ const QualitySetting = (props: QualitySettingProps) => {
               quality.onClick();
               toggleDropdownState();
             }}
+            key={`quality-${quality.name}`}
           >
             <a className="text-primary hover:text-primary-dark hover:bg-opacity-10 hover:bg-black">
               {quality.name}

@@ -17,7 +17,6 @@ const UserItem: FC<UserItemProps> = (props) => {
   const initialTermState = notBeginnerTerms.length
     ? notBeginnerTerms[0].id
     : "no-term";
-  console.log("term:", initialTermState);
 
   const beginnerTerm = props.terms.filter((term) => term.level == "1");
   const initialBeginnerTermState = beginnerTerm.length ? true : false;
@@ -51,7 +50,6 @@ const UserItem: FC<UserItemProps> = (props) => {
     (term) => term.level != "1"
   );
 
-  console.log("output: ", tempTermState, termState);
   return (
     <Card flexDirection="row" justify="between" classnames={`h-16 w-full`}>
       <div className="w-1/6 h-full flex items-center">
@@ -91,7 +89,6 @@ const UserItem: FC<UserItemProps> = (props) => {
           }
           value={mode === "edit" ? tempTermState : termState}
           onChange={(event) => {
-            console.log(event.target.value);
             setTempTermState(event.target.value);
           }}
           disabled={mode === "show"}

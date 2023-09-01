@@ -78,6 +78,7 @@ const Terms: FC = () => {
                 description={term.description}
                 range={term.range}
                 invokeModal={invokeModalWith}
+                key={`term-${term.id}`}
               />
             ))
         )}

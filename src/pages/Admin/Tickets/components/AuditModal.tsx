@@ -23,7 +23,7 @@ const AuditModal: FC<AuditModalProps> = (props) => {
   }
 
   return (
-    <Modal show={props.show} onClose={() => console.log("closing...")}>
+    <Modal show={props.show} onClose={props.onClose}>
       <div className="w-full flex flex-col">
         <div className="w-full py-md bg-primary text-primary-light flex items-center justify-around rounded-t-lg">
           <p>{props.data.fullName}</p>
@@ -91,7 +91,6 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
   const formik = useFormik({
     initialValues: { password: "" },
     onSubmit: (values) => {
-      console.log(values);
       if (values.password) password.mutate(values);
       else deleteTicket.mutate({});
     },
@@ -123,7 +122,7 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
     deleteTicket.reset();
     queryClient.invalidateQueries({ queryKey: ["tickets"] });
     props.onClose();
-  }  
+  }
 
   return (
     <div className="h-full w-full flex flex-col items-center py-sm">

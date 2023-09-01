@@ -9,7 +9,6 @@ const SessionList: FC<WithTerm> = (props) => {
   const videoContext = useContext(VideoContext);
   const term = props.term;
 
-  console.log(videoContext.selected.termId);
   return (
     <div
       className={classNames(
@@ -28,7 +27,9 @@ const SessionList: FC<WithTerm> = (props) => {
       ) : (
         <>
           {term.data.course.videos.length ? (
-            term.data.course.videos.map((video) => <SessionItem data={video} />)
+            term.data.course.videos.map((video) => (
+              <SessionItem data={video} key={`video-${video.id}`} />
+            ))
           ) : (
             <div className="w-full h-full flex justify-center items-center">
               <p className="text-primary-light">هنوز جلسه ای وجود ندارد!</p>
