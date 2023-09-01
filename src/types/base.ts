@@ -11,10 +11,10 @@ export interface WithId {
 
 export type PersianMonth = (typeof PERSIAN_MONTHS)[number];
 
-export const LEVELS = ["1", "2", "3"] as const;
+export const LEVELS = ["0", "1", "2", "3"] as const;
 export type Level = (typeof LEVELS)[number];
 
-export const LEVEL_TITLES = ["مقدماتی", "متوسط", "پیشرفته"];
+export const LEVEL_TITLES = ["تیزر", "مقدماتی", "متوسط", "پیشرفته"];
 
 export interface IApiList<T> {
   count: number;
