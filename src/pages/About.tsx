@@ -9,7 +9,7 @@ export default function About() {
   const sampleList: MultiBtnContentPair[] = [
     {
       content:
-        "این دوره برای پرتوجویانی که سابقه ی ورزشی یا آشنایی با یوگا ندارند، در هشت جلسه طراحی شده است. از تاریخ ثبت نام سه ماه به ویدیوها دسترسی خواهید داشت.",
+        "این دوره برای پرتوجویانی که سابقه ی ورزشی یا آشنایی با یوگا ندارند، در هشت جلسه طراحی شده است. از تاریخ ثبت نام یک سال به ویدیوها دسترسی خواهید داشت.",
       data: "مبتدی",
     },
     {
@@ -71,7 +71,7 @@ export default function About() {
       <div
         className={`${styles.container3}`}
       >
-        <Link to={"/reserve"} preventScrollReset={false}>رزرو کلاس های حضوری</Link> {/* DOROOD BE SHARAFET ABDOLI */}
+        <Link to={"/ticket"} preventScrollReset={false}>رزرو کلاس های حضوری</Link> {/* DOROOD BE SHARAFET ABDOLI */}
       </div>
       {/* FAQ */}
       <div className={`w-full ${styles.customBG}`}>

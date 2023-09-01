@@ -19,7 +19,7 @@
   background-size: cover;
 
   opacity: 0;
-  animation: fade-in 2s 6s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  animation: fade-in 1s 2s forwards cubic-bezier(0.11, 0, 0.5, 0);
   width: 100vw;
   height: 100vh;
   z-index: 1;
@@ -62,20 +62,20 @@
 }
 
 .three-words1 {
-  animation: fade-out 1s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  animation-delay: 3s;
+  animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  animation-delay: .5s;
 }
 
 .three-words2 {
-  animation: fade-out 1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
   margin-right: 8rem;
-  animation-delay: 4s;
+  animation-delay: 1s;
 }
 
 .three-words3 {
-  animation: fade-out 1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
   margin-right: 8rem;
-  animation-delay: 5s;
+  animation-delay: 1.5s;
 }
 
 @keyframes fade-out {
@@ -99,7 +99,7 @@
   font-family: inherit;
   transition: all 0.8s ease;
 
-  animation: fade-in 1s 6s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  animation: fade-in 1s 2.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
 
   position: fixed;
   top: 28vh;
@@ -114,7 +114,7 @@
 .ywm {
   opacity: 0;
   transform: scale(0.94);
-  animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+  animation: scale 1s forwards cubic-bezier(0.5, 1, 0.89, 1);
 
   text-decoration: none;
   font-family: inherit;
