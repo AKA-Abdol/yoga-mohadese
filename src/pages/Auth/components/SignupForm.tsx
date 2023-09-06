@@ -17,6 +17,7 @@ import { signupFormValues2Api } from "../api.converter";
 import { tokenPersistor } from "../../../persistors/auth";
 import { useNavigate } from "react-router-dom";
 import { IApiPostSignup } from "../api.types";
+import { Link } from "react-router-dom";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
@@ -120,10 +121,19 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
             "ثبت نام"
           )}
         </Button>
-        <p className="text-primary-dark text-xs text-center">
-          قبلا اکانت داشتید؟{" "}
-          <AttentionSpan onClick={props.onToggleAuth}>ورود</AttentionSpan>
-        </p>
+        <div className="flex flex-row justify-around">
+          <p className="text-primary-dark text-xs text-center">
+            قبلا اکانت داشتید؟{" "}
+            <AttentionSpan onClick={props.onToggleAuth}>ورود</AttentionSpan>
+          </p>
+          <Link
+            to={"/ticket"}
+            className="text-primary-dark text-xs text-center"
+          >
+            رمز عبور خود را فراموش کرده‌اید ؟
+            <AttentionSpan>فراموشی رمز عبور</AttentionSpan>
+          </Link>
+        </div>
       </div>
     </form>
   );

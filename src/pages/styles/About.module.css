@@ -203,8 +203,23 @@
 }
 
 .customBG {
-  background-color: #B5DDA4;
+  background-color: #a4d290;
   color: #034732;
+}
+
+.customFlashing{
+  animation: colorToggle 3s ease-in infinite;
+}
+
+@keyframes colorToggle {
+  0%, 100% {
+    background-color: #a4d290;
+    color: #034732;
+  }
+  50% {
+    background-color: #034732;
+    color: #a4d290;
+  }
 }
 
 /*    FOR IPAD */

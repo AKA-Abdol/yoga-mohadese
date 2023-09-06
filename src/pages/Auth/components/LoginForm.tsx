@@ -17,6 +17,7 @@ import api from "../../../services";
 import { LOGIN_URL } from "../api.data";
 import { IApiPostLogin } from "../api.types";
 import { loginFormValues2Api } from "../api.converter";
+import { Link } from "react-router-dom";
 
 export const LoginForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
@@ -65,10 +66,18 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
             "ورود"
           )}
         </Button>
+        <div className="flex flex-row justify-around">
         <p className="text-primary-dark text-xs text-center">
           قبلا ثبت نام نکرده اید؟{" "}
           <AttentionSpan onClick={props.onToggleAuth}>ثبت نام</AttentionSpan>
         </p>
+        <Link to={"/ticket"} className="text-primary-dark text-xs text-center">
+        رمز عبور خود را فراموش کرده‌اید ؟
+          <AttentionSpan>
+            فراموشی رمز عبور 
+          </AttentionSpan>
+        </Link>
+        </div>
       </div>
     </form>
   );

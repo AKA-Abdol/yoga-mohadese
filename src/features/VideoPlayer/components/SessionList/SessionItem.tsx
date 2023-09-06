@@ -25,7 +25,7 @@ const SessionItem: FC<SessionItemProps> = (props) => {
       <p
         className={`text-lg text-primary-light`}
       >{`ویدیو شماره ${props.data.num}`}</p>
-      <div className="h-full mask mask-squircle">
+      <div className="h-full mask mask-squircle max-w-[60%]">
         <img src={props.data.thumbnail} alt="thumbnail" />
       </div>
       <p className="text-xs text-primary-light text-center">

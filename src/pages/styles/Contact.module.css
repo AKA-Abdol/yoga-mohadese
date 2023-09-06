@@ -1,84 +1,114 @@
-.body{
+.body {
   height: 100vh;
   width: 100vw;
 
-  background:  #B5DDA4;
-    
+  background: #B5DDA4;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   direction: rtl;
-  font-family: IRANRounded!important;
+  font-family: IRANRounded !important;
 }
 
-h1, h2, h3, h4, h5, h6,input, textarea, li {
-font-family: IRANRounded !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+li {
+  font-family: IRANRounded !important;
 }
 
-/* CONTENT OF WEB PAGE */ 
-.container{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-display: flex;
-justify-content: space-evenly;
-flex-direction: column;
-padding: 2rem;
+/* CONTENT OF WEB PAGE */
+.pagecontainer{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;  
+}
 
-background:  #B5DDA4;
-  
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 2rem;
+
+  background: #B5DDA4;
+  margin: 0.75rem;
 }
-.contactUL{
-margin-top: 2rem;
-list-style: none;
-display: flex;
-flex-direction: column;
+
+.contactUL {
+  margin-top: 2rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
 }
-.contactUL li{
-display: flex;
-margin: 1rem;
+
+.contactUL li {
+  display: flex;
+  margin-bottom: 1rem;
 }
-.contactUL li a{
-display: flex;
+
+.contactUL li a {
+  display: flex;
 }
-.linkStyling{
-font-size: 24px;
+
+.linkStyling {
+  font-size: 24px;
 }
-.svgStyling{
-margin-left: 1rem;
+
+.svgStyling {
+  margin-left: 1rem;
+  width: 36px;
+  height: 36px;
 }
 
 /* MOVING BORDER */
 :root {
---ANGLE: 0deg;
+  --ANGLE: 0deg;
 }
 
 .movingBorder {
-position: relative;
-padding: 4px;
+  position: relative;
+  padding: 4px;
 }
 
 .movingBorder::before,
 .movingBorder::after {
-content: "";
-position: absolute;
-inset: -0.2rem;
-z-index: -1;
-background: linear-gradient(var(--ANGLE), #032146, #C3F2FF, #b00);
-animation: rotate 10s linear infinite;
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: linear-gradient(var(--ANGLE), #032146, #C3F2FF, #b00);
+  animation: rotate 10s linear infinite;
 }
 
 .movingBorder::after {
-filter: blur(10px);
+  filter: blur(10px);
 }
 
 @keyframes rotate {
-0%   { --ANGLE: 0deg; }
-100% { --ANGLE: 360deg; }
+  0% {
+    --ANGLE: 0deg;
+  }
+
+  100% {
+    --ANGLE: 360deg;
+  }
 }
+
 .bg-gradient-to-l {
   background-image: linear-gradient(to left, var(--tw-gradient-stops));
 }

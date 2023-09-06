@@ -6,23 +6,29 @@ import img1 from "../assets/images/about-img.jpg";
 import { Link } from "react-router-dom";
 
 export default function About() {
+  const [isFirstQOpen,setIsFirstQOpen] = useState(false)
+
   const sampleList: MultiBtnContentPair[] = [
     {
       content:
-        "این دوره برای پرتوجویانی که سابقه ی ورزشی یا آشنایی با یوگا ندارند، در هشت جلسه طراحی شده است. از تاریخ ثبت نام یک سال به ویدیوها دسترسی خواهید داشت.",
+        "این دوره برای پرتوجویانی که سابقه ی ورزشی یا آشنایی با یوگا ندارند، در هشت جلسه طراحی شده است.",
       data: "مبتدی",
     },
     {
       content:
-        "اگر با مبانی یوگا آشنا هستید یا دوره ی مبتدی را گذرانده اید، این دوره برایتان مناسب هست. هر ترم هشت جلسه بوده و هر ماه سیکل جدید ارائه می شود. از تاریخ ثبت نام فقط یک ماه فرصت دارید که از این جلسات استفاده کنید.",
+        "**به زودی** اگر با مبانی یوگا آشنا هستید یا دوره ی مبتدی را گذرانده اید، این دوره برایتان مناسب هست. هر ترم هشت جلسه بوده و هر ماه سیکل جدید ارائه می شود. از تاریخ ثبت نام فقط یک ماه فرصت دارید که از این جلسات استفاده کنید.",
       data: "متوسط",
     },
     {
       content:
-        "این دوره برای پرتوجویانی که حداقل یک سال سابقه ی یوگا دارند مناسب است. هر ترم شامل هشت جلسه با تمرین های متنوع و جدید برای سطح متوسط تا پیشرفته می باشد. فرصت استفاده از این جلسات فقط یک ماه از تاریخ ثبت نام هست.",
+        "**به زودی** این دوره برای پرتوجویانی که حداقل یک سال سابقه ی یوگا دارند مناسب است. هر ترم شامل هشت جلسه با تمرین های متنوع و جدید برای سطح متوسط تا پیشرفته می باشد. فرصت استفاده از این جلسات فقط یک ماه از تاریخ ثبت نام هست.",
       data: "پیشرفته",
     },
   ];
+
+  const handleFaqClick = () => {
+    setIsFirstQOpen(true)
+  }
 
   return (
     <div className={styles.bodyStyle}>
@@ -75,8 +81,8 @@ export default function About() {
       </div>
       {/* FAQ */}
       <div className={`w-full ${styles.customBG}`}>
-      <div className="join join-vertical m-8 bg-none">
-        <div className="collapse collapse-arrow join-item">
+      <div onClick={handleFaqClick} className="join join-vertical m-8 bg-none">
+        <div id="firstQ" className={`collapse collapse-arrow join-item ${isFirstQOpen ? '' : styles.customFlashing }`}>
           <input type="radio" name="my-accordion-4"/>
           <div className="collapse-title text-xl font-medium">
           برای شرکت در کلاس های آنلاین چکار کنم ؟
@@ -85,7 +91,7 @@ export default function About() {
             <p>بعد از انتخاب دوره ای که می خواهید در آن شرکت کنید، از طریق راه های <Link style={{textDecoration : "underline"}} to={"/contact"}>تماس با ما</Link>  جهت پرداخت شهریه کلاس اقدام بفرمایید. سپس دسترسی به دوره در پنل کاربریتان باز خواهد شد.</p>
           </div>
         </div>
-        <div className="collapse collapse-arrow join-item">
+        <div className="collapse collapse-arrow join-item ">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
           برای شرکت در کلاس های حضوری چکار کنم ؟
@@ -107,12 +113,12 @@ export default function About() {
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">کلاس‌ها آنلاین به صورت زنده پخش می‌شوند ؟</div>
           <div className="collapse-content">
-            <p>خیر، به علت محدودیت های و مشکلات اینترنت برای استریم کلاس‌ها و زندگی پر مشغله کنونی، برای شما پرتوجویان فرصتی فراهم شده است تا بتوانید در هر زمان که مایل هستید کلاس‌ها را تماشا کنید. به همین جهت کل جلسات از همان ابتدا در اختیارتان قرار می گیرد و یک ماه فرصت دارید که از این جلسات بهره ببرید.</p>
+            <p>خیر، به علت محدودیت های و مشکلات اینترنت برای استریم کلاس‌ها و زندگی پر مشغله کنونی، برای شما پرتوجویان فرصتی فراهم شده است تا بتوانید در هر زمان که مایل هستید کلاس‌ها را تماشا کنید. به همین جهت کل جلسات از همان ابتدا در اختیارتان قرار می گیرد و تا پایان ترم فرصت دارید که از این جلسات بهره ببرید.</p>
           </div>
         </div>
         <div className="collapse collapse-arrow join-item">
           <input type="radio" name="my-accordion-4" />
-          <div className="collapse-title text-xl font-medium">اگر در فرصت یک ماه نتوانم از جلسات استفاده کنم، چی می شود ؟</div>
+          <div className="collapse-title text-xl font-medium">اگر در فرصت یک ترم نتوانم از جلسات استفاده کنم، چی می شود ؟</div>
           <div className="collapse-content">
             <p>بعد از پنج هفته، دسترسی شما به ویدیوها قطع شده و امکان عودت وجه یا انتقال جلسات وجود ندارد. باید طوری برنامه ریزی بفرمایید که بتوانید به طور میانگین دو جلسه در هفته تمرین کنید.</p>
           </div>

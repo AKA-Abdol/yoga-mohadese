@@ -5,22 +5,29 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   const [menuState, setMenuState] = useState(false);
+  const [showVorood, setShowVorood] = useState(true);
   function handleMenu() {
     setMenuState(!menuState);
+    setShowVorood(!showVorood)
   }
-  
+
   return (
     <div className={styles.header}>
-      <div className={styles.box} onClick={handleMenu}>
-        <div
-          className={`${styles.navBtn} ${
-            menuState ? styles.active : styles["not-active"]
-          }`}
-        >
-          <span className={styles["menu-burguer"]}></span>
-          <span className={styles["menu-burguer"]}></span>
-          <span className={styles["menu-burguer"]}></span>
+      <div className={styles.voroodBurgerContainer}>
+        <div className={styles.box} onClick={handleMenu}>
+          <div
+            className={`${styles.navBtn} ${
+              menuState ? styles.active : styles["not-active"]
+            }`}
+          >
+            <span className={styles["menu-burguer"]}></span>
+            <span className={styles["menu-burguer"]}></span>
+            <span className={styles["menu-burguer"]}></span>
+          </div>
         </div>
+        <Link to={"/auth"} className={`${styles.vorood} ${showVorood ? '' : styles.disNon}`}>
+          ورود
+        </Link>
       </div>
       <div className={styles["home-link"]}>
         <Link to={"/home"} onClick={handleMenu}>

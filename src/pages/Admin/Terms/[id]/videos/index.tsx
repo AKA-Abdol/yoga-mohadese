@@ -13,6 +13,7 @@ import { TERM_URL } from "src/pages/Admin/api.data";
 import Loading from "src/components/ui/Loading";
 import { BASE_TERM_URL } from "../../api.data";
 import { TERM_VIDEO_URL } from "./api.data";
+import { makeTextShort } from "src/utils/textManuplator";
 
 const TermVideos: FC = () => {
   const { id } = useParams();
@@ -44,7 +45,7 @@ const TermVideos: FC = () => {
         <TermInfo
           id={id ?? term.data.course.id}
           title={term.data.course.title}
-          description={term.data.course.description}
+          description={makeTextShort(term.data.course.description, 40)}
           level={term.data.course.level}
         />
       </div>
