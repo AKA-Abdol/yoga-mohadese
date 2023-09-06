@@ -141,7 +141,7 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
           <Button type="submit" className="w-36 md:w-64 btn-primary-theme">
             رسیدگی شد
           </Button>
-          <Button onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
+          <Button type="button" onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
             انصراف
           </Button>
         </div>

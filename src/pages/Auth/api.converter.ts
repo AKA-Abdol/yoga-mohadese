@@ -6,7 +6,7 @@ export const signupFormValues2Api = (signupFormValues: ISignupFormValues) => ({
   lastname: signupFormValues.lastName,
   username: signupFormValues.username.toLowerCase(),
   password: signupFormValues.password,
-  email: signupFormValues.email,
+  email: signupFormValues.email === "" ? undefined : signupFormValues.email,
   phone: Persian2English(signupFormValues.phoneNumber),
 });
 

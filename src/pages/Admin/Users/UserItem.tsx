@@ -47,7 +47,7 @@ const UserItem: FC<UserItemProps> = (props) => {
   )[0];
 
   const notBeginnerLevelTerms = adminContext.terms?.filter(
-    (term) => term.level != "1"
+    (term) => term.level != "1" && term.level != "0"
   );
 
   return (
