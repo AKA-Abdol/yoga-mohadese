@@ -11,8 +11,10 @@ export const VideoContext = createContext<IVideoContext>({
   selected: {
     termId: undefined,
     sessionNum: undefined,
+    termDescription: undefined,
     setTermId: () => {},
     setSessionNum: () => {},
+    setTermDescription: () => {},
   },
 });
 
@@ -20,9 +22,11 @@ const VideoContextProvider: FC<WithChildren<ReactNode>> = (props) => {
   const [controllerState, setControllerState] = useState<{
     termId: string | undefined;
     sessionNum: number | undefined;
+    termDescription: string | undefined;
   }>({
     termId: undefined,
     sessionNum: undefined,
+    termDescription: undefined,
   });
   const termData = useQuery({
     queryKey: ["video-terms", "term", "term-list"],
@@ -54,6 +58,12 @@ const VideoContextProvider: FC<WithChildren<ReactNode>> = (props) => {
     []
   );
 
+  const setTermDescription = useCallback(
+    (termDescription: string | undefined) => 
+    setControllerState((prevState) => ({...prevState, termDescription})),
+    []
+  );
+
   return (
     <VideoContext.Provider
       value={{
@@ -61,8 +71,10 @@ const VideoContextProvider: FC<WithChildren<ReactNode>> = (props) => {
         selected: {
           termId: controllerState.termId,
           sessionNum: controllerState.sessionNum,
+          termDescription: controllerState.termDescription,
           setTermId,
           setSessionNum,
+          setTermDescription,
         },
       }}
     >

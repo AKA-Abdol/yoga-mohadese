@@ -20,7 +20,9 @@ export interface IVideoContext {
   selected: {
     termId: string | undefined;
     sessionNum: number | undefined;
+    termDescription: string | undefined;
     setTermId: (termId: string | undefined) => void;
     setSessionNum: (sessionNum: number | undefined) => void;
+    setTermDescription: (termDescription: string | undefined) => void;
   };
 }

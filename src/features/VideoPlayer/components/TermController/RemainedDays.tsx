@@ -10,9 +10,9 @@ const RemainedDays: FC<WithTerm> = (props) => {
   const term = props.term;
   return (
     <div className={classNames("w-full flex justify-center")}>
-      <p className="text-2xl bg-primary-dark text-primary-light p-md rounded-md">
+      <p className="text-sm bg-primary-dark text-primary-light p-md rounded-md">
         {!videoContext.selected.termId
-          ? "ترمی برای شما وجود ندارد"
+          ? "تعداد روز ترم مشخص نیست"
           : term.isError
           ? "خطایی رخ داده است"
           : term.isLoading

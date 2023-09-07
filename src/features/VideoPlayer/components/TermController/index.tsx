@@ -4,7 +4,6 @@ import HomeButton from "src/components/ui/HomeButton";
 import { TermControllerProps } from "./types";
 import TermSelect from "./TermSelect";
 import TermData from "./TermData";
-
 const TermController: FC<TermControllerProps> = (props) => {
   return (
     <div
@@ -12,7 +11,8 @@ const TermController: FC<TermControllerProps> = (props) => {
         "w-full h-full",
         "flex flex-col items-center space-y-sm",
         "text-primary-dark",
-        "py-sm"
+        "py-sm",
+        "bg-[url('src/assets/images/white-diamond-dark.png')]",
       )}
     >
       <div className="flex flex-row justify-end w-full px-sm">
