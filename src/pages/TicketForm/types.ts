@@ -8,7 +8,7 @@ export const ticketInitialValues = {
 };
 
 export const ticketFormValidationSchema = Yup.object().shape({
-  description: Yup.string().max(200, "حداکثر ۲۰۰ کاراکتر").required("الزامی"),
+  description: Yup.string().max(200, "حداکثر ۲۰۰ کاراکتر"),
   fullName: Yup.string()
     .min(3, "حداقل ۳ کلمه")
     .test("isAllPersian", "نام باید فارسی باشد", (val) =>
