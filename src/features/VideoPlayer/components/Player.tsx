@@ -20,7 +20,7 @@ import qualitySettingIcon from "src/assets/images/setting-icon.png";
 import { TERM_VIDEO_URL } from "src/pages/Admin/Terms/[id]/videos/api.data";
 
 const Player: FC = (props) => {
-  const [videoState, setVideoState] = useState<"play" | "pause">("pause");
+  const [videoState, setVideoState] = useState<"play" | "pause">("play");
   const [seenTime, setSeenTime] = useState(1);
   const [lastSeen, setLastSeen] = useState(0);
   const [qualities, setQualities] = useState<QualityItem[]>([]);
@@ -152,6 +152,7 @@ const Player: FC = (props) => {
         poster={selectedSessionVideo.thumbnail}
         onPlay={() => setVideoState("play")}
         onPause={() => setVideoState("pause")}
+        autoPlay
       />
       <VideoController onClick={toggleVideoState} />
       <QualitySetting qualities={qualities} />
