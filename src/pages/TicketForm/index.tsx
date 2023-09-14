@@ -64,7 +64,7 @@ const TicketForm: FC = () => {
             value={formik.values.type}
             id="type"
             name="type"
-            placeholder={"نوع درخواست را انتخاب کنید"}
+            placeholder={"نوع درخواست را انتخاب کنید *"}
             error={formik.errors.type}
             classnames="text-center"
             optionsClassnames="text-center"
