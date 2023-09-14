@@ -5,6 +5,7 @@ export interface UserItemProps {
   username: string;
   terms: Array<ITerm & WithId>;
   id: string;
+  invokeModal: (userInfo: IUserInfo) => void;
 }
 
 export interface EditButtonProps {
@@ -26,5 +27,15 @@ export interface IUsersList {
   count: number;
   values: IUser[];
 }
+
+export interface IUserInfo {
+  id: string;
+  fullName: string;
+}
+
+export const initialUserInfo: IUserInfo = {
+  id: "",
+  fullName: "",
+};
 
 export const SELECT_PLACEHOLDER = "انتخاب ترم";

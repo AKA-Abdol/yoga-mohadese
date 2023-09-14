@@ -11,11 +11,10 @@ import { getLevelTitle } from "../Terms/utils";
 import { useMutation } from "@tanstack/react-query";
 import api from "src/services";
 import { BASE_USER_URL } from "./api.data";
+import INFO_ICON from "src/assets/images/info-icon.png";
 
 const UserItem: FC<UserItemProps> = (props) => {
-  const notTeaserTerms = props.terms.filter(
-    (term) => term.level != "0"
-  );
+  const notTeaserTerms = props.terms.filter((term) => term.level != "0");
   const initialTermState = notTeaserTerms.length
     ? notTeaserTerms[0].id
     : "no-term";
@@ -56,7 +55,17 @@ const UserItem: FC<UserItemProps> = (props) => {
   return (
     <Card flexDirection="row" justify="between" classnames={`h-16 w-full`}>
       <div className="w-2/6 h-full flex items-center justify-center">
-        <p className=" text-center text-sm">{props.username}</p>
+        <button
+          onClick={() =>
+            props.invokeModal({ fullName: props.username, id: props.id })
+          }
+          className="h-full flex items-center justify-center"
+        >
+          <p className=" text-center text-xs md:text-sm text-primary-dark">
+            {props.username}
+          </p>
+          <img alt="info" src={INFO_ICON} className="object-contain h-1/2" />
+        </button>
       </div>
       {/* <div className="w-2/6 flex items-center justify-center lg:w-1/6 mr-sm lg:mr-0">
         <Checkbox

@@ -4,8 +4,10 @@ import UserItem from "./UserItem";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "../../../services";
 import { ALL_USERS_URL } from "./api.data";
-import { IUsersList } from "./types";
+import { IUserInfo, IUsersList, initialUserInfo } from "./types";
 import Pagination from "src/components/ui/Pagination";
+import useModal from "src/hooks/useModal";
+import UserInfoModal from "./components/UserInfoModal";
 
 const PER_PAGE = 9;
 
@@ -13,6 +15,10 @@ const Users: FC = () => {
   const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [selectedUserInfo, setSelectedUserInfo] =
+    useState<IUserInfo>(initialUserInfo);
+  const { viewState: modalState, handleClose, handleOpen } = useModal();
+
   const users = useQuery({
     queryKey: ["users", page, search],
     queryFn: api.get<IUsersList>(ALL_USERS_URL, (api) => api, {
@@ -47,6 +53,10 @@ const Users: FC = () => {
               key={user.id}
               username={`${user.firstname} ${user.lastname}`}
               terms={user.courses}
+              invokeModal={(userInfo: IUserInfo) => {
+                setSelectedUserInfo(userInfo);
+                handleOpen();
+              }}
             />
           ))
         )}
@@ -59,6 +69,12 @@ const Users: FC = () => {
           totalCount={users.data.count}
         />
       )}
+      <UserInfoModal
+        show={modalState === "show"}
+        onClose={handleClose}
+        fullName={selectedUserInfo.fullName}
+        userId={selectedUserInfo.id}
+      />
     </div>
   );
 };
