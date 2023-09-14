@@ -13,13 +13,15 @@ import api from "src/services";
 import { BASE_USER_URL } from "./api.data";
 
 const UserItem: FC<UserItemProps> = (props) => {
-  const notBeginnerTerms = props.terms.filter((term) => term.level != "1");
-  const initialTermState = notBeginnerTerms.length
-    ? notBeginnerTerms[0].id
+  const notTeaserTerms = props.terms.filter(
+    (term) => term.level != "0"
+  );
+  const initialTermState = notTeaserTerms.length
+    ? notTeaserTerms[0].id
     : "no-term";
 
-  const beginnerTerm = props.terms.filter((term) => term.level == "1");
-  const initialBeginnerTermState = beginnerTerm.length ? true : false;
+  // const beginnerTerm = props.terms.filter((term) => term.level == "1");
+  // const initialBeginnerTermState = beginnerTerm.length ? true : false;
 
   const unGrantTerm = useMutation(
     api.delete<{ course_id: string }>(`${BASE_USER_URL}/${props.id}/access`)
@@ -34,28 +36,29 @@ const UserItem: FC<UserItemProps> = (props) => {
   const [mode, setMode] = useState<ItemMode>("show");
   const [termState, setTermState] = useState(initialTermState);
   const [tempTermState, setTempTermState] = useState(initialTermState);
-  const [beginnerTermState, setBeginnerTermState] = useState(
-    initialBeginnerTermState
-  );
-  const [tempBeginnerTermState, setTempBeginnerTermState] = useState(
-    initialBeginnerTermState
-  );
+  // const [beginnerTermState, setBeginnerTermState] = useState(
+  //   initialBeginnerTermState
+  // );
+  // const [tempBeginnerTermState, setTempBeginnerTermState] = useState(
+  //   initialBeginnerTermState
+  // );
   const adminContext = useContext(AdminContext);
 
-  const beginnerLevelTerm = adminContext.terms?.filter(
-    (term) => term.level == "1"
-  )[0];
+  // const beginnerLevelTerm = adminContext.terms?.filter(
+  //   (term) => term.level == "1"
+  // )[0];
 
-  const notBeginnerLevelTerms = adminContext.terms?.filter(
-    (term) => term.level != "1" && term.level != "0"
+  // changed to notTeaser from notBeginner
+  const notTeaserLevelTerms = adminContext.terms?.filter(
+    (term) => term.level != "0"
   );
 
   return (
     <Card flexDirection="row" justify="between" classnames={`h-16 w-full`}>
-      <div className="w-1/6 h-full flex items-center">
+      <div className="w-2/6 h-full flex items-center justify-center">
         <p className=" text-center text-sm">{props.username}</p>
       </div>
-      <div className="w-2/6 flex items-center justify-center lg:w-1/6 mr-sm lg:mr-0">
+      {/* <div className="w-2/6 flex items-center justify-center lg:w-1/6 mr-sm lg:mr-0">
         <Checkbox
           size="sm"
           span={
@@ -69,19 +72,19 @@ const UserItem: FC<UserItemProps> = (props) => {
           checked={mode === "edit" ? tempBeginnerTermState : beginnerTermState}
           onToggle={() => setTempBeginnerTermState((prevState) => !prevState)}
         />
-      </div>
-      <div className="w-3/6 flex justify-center items-center lg:w-4/6">
+      </div> */}
+      <div className="w-4/6 flex justify-center items-center lg:w-4/6">
         <Select
           options={
-            notBeginnerLevelTerms
-              ? ["no-term", ...notBeginnerLevelTerms.map((term) => term.id)]
+            notTeaserLevelTerms
+              ? ["no-term", ...notTeaserLevelTerms.map((term) => term.id)]
               : ["no-term"]
           }
           optionTexts={
-            notBeginnerLevelTerms
+            notTeaserLevelTerms
               ? [
                   "بدون ترم",
-                  ...notBeginnerLevelTerms.map(
+                  ...notTeaserLevelTerms.map(
                     (term) => `${term.title} (${getLevelTitle(term.level)})`
                   ),
                 ]
@@ -107,15 +110,15 @@ const UserItem: FC<UserItemProps> = (props) => {
               if (tempTermState !== "no-term")
                 grantTerm.mutate({ course_id: tempTermState });
 
-              if (tempBeginnerTermState)
-                grantTerm.mutate({
-                  course_id: beginnerLevelTerm?.id ?? "",
-                });
-              else
-                unGrantTerm.mutate({ course_id: beginnerLevelTerm?.id ?? "" });
+              // if (tempBeginnerTermState)
+              //   grantTerm.mutate({
+              //     course_id: beginnerLevelTerm?.id ?? "",
+              //   });
+              // else
+              //   unGrantTerm.mutate({ course_id: beginnerLevelTerm?.id ?? "" });
 
               setTermState(tempTermState);
-              setBeginnerTermState(tempBeginnerTermState);
+              // setBeginnerTermState(tempBeginnerTermState);
               setMode("show");
             }}
           />
