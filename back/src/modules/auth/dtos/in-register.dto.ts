@@ -12,7 +12,7 @@ import {
 export class InRegisterDto {
   @ApiProperty({ required: true, default: 'username' })
   @IsString()
-  @MinLength(8, { message: 'نام کاربری باید حداقل ۸ کاراکتر داشته باشد' })
+  @MinLength(3, { message: 'نام کاربری باید حداقل ۳ کاراکتر داشته باشد' })
   @Transform((param) => param.value.toLowerCase())
   username: string;
 
