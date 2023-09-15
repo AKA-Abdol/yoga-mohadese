@@ -90,6 +90,21 @@ export class VideoService {
     return { status: true };
   }
 
+  async deleteCounter(
+    userId: string,
+    videoId: string,
+  ): Promise<OutStatusDto | BadRequestError> {
+    const isIdValid =
+      mongoose.Types.ObjectId.isValid(userId) &&
+      mongoose.Types.ObjectId.isValid(videoId);
+    if (!isIdValid) return new BadRequestError('InvalidInputId');
+    const counterModel = await this.counterRepo.remove(
+      new mongoose.Types.ObjectId(userId),
+      new mongoose.Types.ObjectId(videoId),
+    );
+    return { status: true };
+  }
+
   async getVideosViewCount(
     userId: string,
     videoId: string,

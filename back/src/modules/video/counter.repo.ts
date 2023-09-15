@@ -33,4 +33,17 @@ export class CounterRepo {
   ): Promise<MongoDoc<Counter> | null> {
     return await this.model.findOne({ user_id, video_id });
   }
+
+  async deleteById(
+    counter_id: mongoose.Types.ObjectId,
+  ): Promise<MongoDoc<Counter> | null> {
+    return await this.model.findOneAndDelete({ _id: counter_id });
+  }
+
+  async remove(
+    user_id: mongoose.Types.ObjectId,
+    video_id: mongoose.Types.ObjectId,
+  ): Promise<boolean> {
+    return (await this.model.deleteMany({ user_id, video_id })).acknowledged;
+  }
 }

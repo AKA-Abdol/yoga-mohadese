@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import mongoose from 'mongoose';
 import { CourseRepo } from './course.repo';
 import { NotFoundError } from '../../errors/not-found-error';
@@ -15,10 +15,15 @@ import { OutGetCoursesDto } from './dtos/out-get-course.dto';
 import { AccessDao } from './daos/access.dao';
 import { TypeAccessDto } from './dtos/type-access.dto';
 import { OutStatusDto } from '../../dtos/out-status.dto';
+import { VideoService } from '../video/video.service';
 
 @Injectable()
 export class AccessService {
-  constructor(private readonly accessRepo: AccessRepo) {}
+  constructor(
+    private readonly accessRepo: AccessRepo,
+    @Inject(forwardRef(() => VideoService))
+    private readonly videoService: VideoService,
+  ) {}
 
   async createAccess(
     accessInfo: InAccessCourse,
@@ -41,6 +46,23 @@ export class AccessService {
       new mongoose.Types.ObjectId(user_id),
       new mongoose.Types.ObjectId(course_id),
     );
+
+    const courseVideos = await this.videoService.getVideosByCourseId(course_id);
+    if (
+      courseVideos instanceof NotFoundError ||
+      courseVideos instanceof BadRequestError
+    )
+      return { status: false };
+
+    courseVideos.forEach(async (video) => {
+      await this.videoService.deleteCounter(user_id, video.id);
+    });
+    // const counterStatus = await this.videoService.deleteCounter(
+    //   user_id,
+    //   course_id,
+    // );
+
+    // console.log(`Counter Delete: ${counterStatus}`);
 
     return { status };
   }

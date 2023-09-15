@@ -44,6 +44,8 @@ export class CourseController {
     @Req() { userId }: { userId: string },
     @Query() input: InGetPaginatedCourses,
   ): Promise<OutGetPaginatedCoursesDto> {
+    console.log('in courses get!');
+
     const courses = await this.courseService.getPaginatedCourses(userId, input);
     if (courses instanceof BadRequestError) return courses.throw();
     return courses;

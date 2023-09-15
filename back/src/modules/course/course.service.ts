@@ -31,8 +31,8 @@ export class CourseService {
   ): Promise<TypeCourseDto | DuplicateError> {
     const courseModel = await this.courseRepo.create({
       ...courseInfo,
-      end_date:
-        courseInfo.level === 1 ? new Date(2100, 1) : courseInfo.end_date,
+      end_date: courseInfo.end_date,
+      // courseInfo.level === 1 ? new Date(2100, 1) : courseInfo.end_date,
     });
     const courseFull = CourseDao.convertOne(courseModel);
     const access = await (
@@ -152,6 +152,9 @@ export class CourseService {
     const courses = await this.getAllCourses(userId);
 
     if (courses instanceof BadRequestError) return courses.throw();
+
+    console.log(`Courses: ${courses}`);
+
     const res: OutGetPaginatedCoursesDto = {
       count: courses.length,
       values: courses
