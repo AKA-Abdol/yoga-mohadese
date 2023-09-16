@@ -50,6 +50,16 @@ div {
   @apply text-error border-normal border-error hover:bg-error hover:text-primary-dark;
 }
 
-.checkbox-primary-theme {
-    
+/* dropdown multi select styles */
+.rmsc {
+  --rmsc-main: #008148 !important;
+  --rmsc-bg: #034732 !important;
+  --rmsc-hover: #008148 !important;
+  --rmsc-selected: #008148 !important;
+  --rmsc-gray: #b5dda4 !important;
+  --rmsc-radius: 8px !important;
+}
+
+.dropdown-content div * {
+  margin-right: 3px;
 }

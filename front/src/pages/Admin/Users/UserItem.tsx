@@ -5,13 +5,15 @@ import { ItemMode } from "../types";
 import EditButton from "./EditButton";
 import Select from "../../../components/ui/Select";
 import SubmitCancelButton from "../../../components/ui/SubmitCancelButton";
-import Checkbox from "src/components/ui/Checkbox";
+// import Checkbox from "src/components/ui/Checkbox";
 import { AdminContext } from "../ContextProvider";
 import { getLevelTitle } from "../Terms/utils";
 import { useMutation } from "@tanstack/react-query";
 import api from "src/services";
 import { BASE_USER_URL } from "./api.data";
 import INFO_ICON from "src/assets/images/info-icon.png";
+import { MultiSelect, Option } from "react-multi-select-component";
+import Badge from "src/components/ui/Badge";
 
 const UserItem: FC<UserItemProps> = (props) => {
   const notTeaserTerms = props.terms.filter((term) => term.level != "0");
@@ -33,8 +35,8 @@ const UserItem: FC<UserItemProps> = (props) => {
   );
 
   const [mode, setMode] = useState<ItemMode>("show");
-  const [termState, setTermState] = useState(initialTermState);
-  const [tempTermState, setTempTermState] = useState(initialTermState);
+  const [termState, setTermState] = useState<Option[]>([]); //initialTermState
+  const [tempTermState, setTempTermState] = useState([]);
   // const [beginnerTermState, setBeginnerTermState] = useState(
   //   initialBeginnerTermState
   // );
@@ -51,6 +53,12 @@ const UserItem: FC<UserItemProps> = (props) => {
   const notTeaserLevelTerms = adminContext.terms?.filter(
     (term) => term.level != "0"
   );
+
+  const customValueRenderer = (selected: Option[]) => {
+    return selected.length
+      ? selected.map(({ label }) => <Badge className="mr-sm">{label}</Badge>)
+      : "بدون ترم";
+  };
 
   return (
     <Card flexDirection="row" justify="between" classnames={`h-16 w-full`}>
@@ -83,7 +91,7 @@ const UserItem: FC<UserItemProps> = (props) => {
         />
       </div> */}
       <div className="w-4/6 flex justify-center items-center lg:w-4/6">
-        <Select
+        {/* <Select
           options={
             notTeaserLevelTerms
               ? ["no-term", ...notTeaserLevelTerms.map((term) => term.id)]
@@ -105,6 +113,23 @@ const UserItem: FC<UserItemProps> = (props) => {
           }}
           disabled={mode === "show"}
           classnames="w-full text-center mr-2 h-full"
+        /> */}
+
+        <MultiSelect
+          options={[
+            { label: "ترم مقدماتی", value: 1 },
+            { label: "ترم متوسط", value: 2 },
+          ]}
+          labelledBy="Select"
+          value={termState}
+          disabled={mode === "show"}
+          disableSearch={true}
+          onChange={setTermState}
+          className="w-5/6 text-primary-light text-center"
+          overrideStrings={{
+            selectAll: "انتخاب همه"
+          }}
+          valueRenderer={customValueRenderer}
         />
       </div>
       <div className={"h-full w-20"}>
@@ -114,10 +139,13 @@ const UserItem: FC<UserItemProps> = (props) => {
             classnames="justify-between pr-2"
             onCancel={() => setMode("show")}
             onSubmit={() => {
-              if (termState !== "no-term")
-                unGrantTerm.mutate({ course_id: termState });
-              if (tempTermState !== "no-term")
-                grantTerm.mutate({ course_id: tempTermState });
+              console.log(termState);
+
+              // new commented
+              // if (termState !== "no-term")
+              //   unGrantTerm.mutate({ course_id: termState });
+              // if (tempTermState !== "no-term")
+              //   grantTerm.mutate({ course_id: tempTermState });
 
               // if (tempBeginnerTermState)
               //   grantTerm.mutate({
