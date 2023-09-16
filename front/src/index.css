@@ -58,6 +58,7 @@ div {
   --rmsc-selected: #008148 !important;
   --rmsc-gray: #b5dda4 !important;
   --rmsc-radius: 8px !important;
+  --rmsc-h: 3rem !important;
 }
 
 .dropdown-content div * {
