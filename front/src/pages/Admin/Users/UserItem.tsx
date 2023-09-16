@@ -69,7 +69,7 @@ const UserItem: FC<UserItemProps> = (props) => {
               : []
           }
           labelledBy="Select"
-          value={tempTermState}
+          value={mode === "show" ? termState : tempTermState}
           disabled={mode === "show"}
           disableSearch={true}
           onChange={setTempTermState}
