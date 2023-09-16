@@ -22,7 +22,7 @@ const USERNAME_SCHEMA = /^[a-zA-Z0-9._]+$/;
 
 const LoginFormValidationSchema = {
   username: Yup.string()
-    .min(3, "حداقل ۸ کاراکتر")
+    .min(3, "حداقل ۳ کاراکتر")
     .max(40, "حداکثر ۲۰ کاراکتر")
     .matches(USERNAME_SCHEMA, "نام کاربری فقط انگلیسی و نقطه و خط زیر")
     .required("الزامی"),
