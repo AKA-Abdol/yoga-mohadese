@@ -14,6 +14,7 @@ import { MultiSelect, Option } from "react-multi-select-component";
 import Badge from "src/components/ui/Badge";
 import { ITerm } from "../Terms/add/types";
 import { WithId } from "src/types/base";
+import { divideHistoryFuture } from "src/utils/arrays";
 
 const UserItem: FC<UserItemProps> = (props) => {
   const notTeaserTerms = props.terms.filter((term) => term.level != "0");
@@ -86,14 +87,23 @@ const UserItem: FC<UserItemProps> = (props) => {
             classnames="justify-between pr-2"
             onCancel={() => setMode("show")}
             onSubmit={() => {
-              if (termState.length !== 0)
-                termState.forEach(async (term) => {
-                  unGrantTerm.mutate({ course_id: term.value });
+              const oldTerms = termState.map((term) => term.value as string);
+              const newTerms = tempTermState.map(
+                (term) => term.value as string
+              );
+              const { history, future } = divideHistoryFuture(
+                oldTerms,
+                newTerms
+              );
+
+              if (history.length !== 0)
+                history.forEach(async (termId) => {
+                  unGrantTerm.mutate({ course_id: termId });
                 });
 
-              if (tempTermState.length !== 0)
-                tempTermState.forEach((term) => {
-                  grantTerm.mutate({ course_id: term.value });
+              if (future.length !== 0)
+                future.forEach((termId) => {
+                  grantTerm.mutate({ course_id: termId });
                 });
 
               setTermState(tempTermState);

@@ -7,7 +7,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "src/services";
 import { BASE_USER_URL } from "../api.data";
 import Loading from "src/components/ui/Loading";
-import { config } from "process";
 
 const UserInfoModal: FC<UserInfoModalProps> = (props) => {
   const [note, setNote] = useState("");
