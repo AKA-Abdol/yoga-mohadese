@@ -49,7 +49,7 @@ const UserItem: FC<UserItemProps> = (props) => {
           onClick={() =>
             props.invokeModal({ fullName: props.username, id: props.id })
           }
-          className="h-full flex items-center justify-center"
+          className="h-full w-full flex items-center justify-center"
         >
           <p className=" text-center text-xs md:text-sm text-primary-dark">
             {props.username}
