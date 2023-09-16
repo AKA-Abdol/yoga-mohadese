@@ -57,7 +57,7 @@ export class UserService {
   async createUser(
     userInfo: InRegisterDto,
   ): Promise<TypeUserDto | BadRequestError | DuplicateError> {
-    let isInputValid = await this.verifyRegisterInput(userInfo);
+    const isInputValid = await this.verifyRegisterInput(userInfo);
     if (isInputValid !== true) return isInputValid;
     const userModel = await this.userRepo.create({
       is_admin:
@@ -108,6 +108,20 @@ export class UserService {
     return user;
   }
 
+  async getUserNoteById(
+    userId: string,
+  ): Promise<string | NotFoundError | BadRequestError> {
+    const isIdValid = mongoose.Types.ObjectId.isValid(userId);
+
+    if (!isIdValid) return new BadRequestError('InvalidInputId');
+    const userModel = await this.userRepo.getById(
+      new mongoose.Types.ObjectId(userId),
+    );
+
+    if (!userModel) return new NotFoundError('User');
+    return userModel.note ?? '';
+  }
+
   async getPaginatedUsers(
     userId: string,
     { page, num, search }: InGetPaginatedUsers,
@@ -142,6 +156,15 @@ export class UserService {
     phone: string,
   ): Promise<TypeUserDto | NotFoundError> {
     const user = await this.userRepo.updatePasswordWithPhone(password, phone);
+    if (!user) return new NotFoundError('User');
+    return UserDao.convertOne([])(user);
+  }
+
+  async updateNote(userId: string, note: string) {
+    const user = await this.userRepo.updateNoteById(
+      new mongoose.Types.ObjectId(userId),
+      note,
+    );
     if (!user) return new NotFoundError('User');
     return UserDao.convertOne([])(user);
   }

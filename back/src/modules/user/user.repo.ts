@@ -55,6 +55,13 @@ export class UserRepo {
     );
   }
 
+  async updateNoteById(
+    userId: mongoose.Types.ObjectId,
+    note: string,
+  ): Promise<MongoDoc<User> | null> {
+    return await this.model.findOneAndUpdate(userId, { $set: { note } });
+  }
+
   async getPaginatedUsers(
     limit: number,
     skip: number,

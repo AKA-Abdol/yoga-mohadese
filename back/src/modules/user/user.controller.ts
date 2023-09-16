@@ -3,8 +3,11 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Post,
+  Put,
   Query,
   Req,
   UseGuards,
@@ -27,6 +30,8 @@ import { AccessService } from '../course/access.service';
 import { OutStatusDto } from '../../dtos/out-status.dto';
 import { BaseError } from '../../errors/base-error';
 import { InGrantAccessDto } from './dtos/in-grant-access.dto';
+import { InNoteSetDto } from './dtos/in-note-set.dto';
+import { OutNoteDto } from './dtos/out-note.dto';
 
 @UseGuards(RolesGuard)
 @Controller('user')
@@ -107,5 +112,43 @@ export class UserController {
   ): Promise<OutStatusDto> {
     const status = await this.accessService.remove_access(user_id, course_id);
     return status;
+  }
+
+  @Put(':user_id/note')
+  @Role('ADMIN')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'set note for a user' })
+  @ApiNotFoundResponse({ type: NotFoundError })
+  @ApiBadRequestResponse({ type: BadRequestError })
+  async setNote(
+    @Req() { userId: adminId }: { userId: string },
+    @Param('user_id') user_id: string,
+    @Body() { note }: InNoteSetDto,
+  ): Promise<OutStatusDto> {
+    const user = await this.userService.updateNote(user_id, note);
+    if (user instanceof BaseError) return user.throw();
+    return { status: true };
+  }
+
+  @Get(':user_id/note')
+  @Role('ADMIN')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'get note of a user' })
+  @ApiNotFoundResponse({ type: NotFoundError })
+  @ApiBadRequestResponse({ type: BadRequestError })
+  async getNote(
+    @Req() { userId: adminId }: { userId: string },
+    @Param('user_id') user_id: string,
+  ): Promise<OutNoteDto> {
+    const note = await this.userService.getUserNoteById(user_id);
+    if (note instanceof NotFoundError || note instanceof BadRequestError)
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          message: 'Bad Request',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    return { note };
   }
 }

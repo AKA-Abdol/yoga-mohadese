@@ -17,6 +17,7 @@ export abstract class UserDao {
       is_admin: model.is_admin,
       courses,
     });
+
   static convertOneToAuthInfo = (model: MongoDoc<User>): TypeAuthInfoDto => ({
     id: model._id.toString(),
     username: model.username,
