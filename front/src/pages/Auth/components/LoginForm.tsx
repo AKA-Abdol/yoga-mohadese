@@ -17,10 +17,12 @@ import api from "../../../services";
 import { LOGIN_URL } from "../api.data";
 import { IApiPostLogin } from "../api.types";
 import { loginFormValues2Api } from "../api.converter";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const LoginForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
+  let location = useLocation();
+
   const mutation = useMutation(
     api.post<ILoginFormValues, IApiPostLogin>(LOGIN_URL, loginFormValues2Api)
   );
@@ -66,17 +68,19 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
             "ورود"
           )}
         </Button>
-        <div className="flex flex-row justify-around">
-        <p className="text-primary-dark text-xs text-center">
-          قبلا ثبت نام نکرده اید؟{" "}
-          <AttentionSpan onClick={props.onToggleAuth}>ثبت نام</AttentionSpan>
-        </p>
-        <Link to={"/ticket"} className="text-primary-dark text-xs text-center">
-        رمز عبور خود را فراموش کرده‌اید ؟
-          <AttentionSpan>
-            فراموشی رمز عبور 
-          </AttentionSpan>
-        </Link>
+        <div className="flex flex-col justify-around gap-3">
+          <p className="text-primary-dark text-xs text-center">
+            قبلا ثبت نام نکرده اید؟{" "}
+            <AttentionSpan onClick={props.onToggleAuth}>ثبت نام</AttentionSpan>
+          </p>
+          <Link
+            state={{ data: location.pathname }}
+            to={"/ticket"}
+            className="text-primary-dark text-xs text-center"
+          >
+            رمز عبور خود را فراموش کرده‌اید ؟
+            <AttentionSpan>فراموشی رمز عبور</AttentionSpan>
+          </Link>
         </div>
       </div>
     </form>

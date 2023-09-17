@@ -13,7 +13,6 @@ import User from "./pages/User";
 import AdminContextProvider from "./pages/Admin/ContextProvider";
 import TermVideos from "./pages/Admin/Terms/[id]/videos";
 import TermEdit from "./pages/Admin/Terms/[id]/edit";
-import Reserve from "./pages/Reserve";
 import TicketForm from "./pages/TicketForm";
 
 const queryClient = new QueryClient({
@@ -24,7 +23,8 @@ const queryClient = new QueryClient({
   },
 });
 
-function App() {
+function App() { 
+  
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>

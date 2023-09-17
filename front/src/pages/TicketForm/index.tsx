@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Button from "src/components/ui/Button";
 import Input from "src/components/ui/Input";
 import TextArea from "src/components/ui/TextArea";
@@ -14,21 +14,32 @@ import { useMutation } from "@tanstack/react-query";
 import api from "src/services";
 import { TICKET_URL, localTicket2Api } from "./api";
 import Header from "src/components/Header";
+import { useLocation } from "react-router-dom";
 
 const TicketForm: FC = () => {
+  const location = useLocation();
+  const [prevRoute, setPrevRoute] = useState("abbass");
+  useEffect(() => {
+    const previouseRoute = location.state?.data.substr(1);
+    setPrevRoute(previouseRoute);
+  }, []);
+  
+
   const formik = useFormik({
     initialValues: ticketInitialValues,
+
     onSubmit: (values) => {
       mutation.mutate(values as Ticket);
     },
     validationSchema: ticketFormValidationSchema,
-    validateOnChange: false
+    validateOnChange: false,
   });
   const mutation = useMutation(api.post(TICKET_URL, localTicket2Api));
 
   if (mutation.isSuccess) {
     mutation.reset();
     formik.setValues(ticketInitialValues);
+    /* here sends the response */
   }
 
   return (
@@ -64,7 +75,7 @@ const TicketForm: FC = () => {
             value={formik.values.type}
             id="type"
             name="type"
-            placeholder={"نوع درخواست را انتخاب کنید *"}
+            placeholder={`نوع درخواست خود را انتخاب کنید`}
             error={formik.errors.type}
             classnames="text-center"
             optionsClassnames="text-center"

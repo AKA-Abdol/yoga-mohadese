@@ -15,12 +15,15 @@ import { SIGNUP_URL } from "../api.data";
 import api from "../../../services";
 import { signupFormValues2Api } from "../api.converter";
 import { tokenPersistor } from "../../../persistors/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { IApiPostSignup } from "../api.types";
 import { Link } from "react-router-dom";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
+   
+  let location = useLocation();
+  
   const mutation = useMutation(
     api.post<ISignupFormValues, IApiPostSignup>(
       SIGNUP_URL,
@@ -121,7 +124,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
             "ثبت نام"
           )}
         </Button>
-        <div className="flex flex-row justify-around">
+        <div className="flex flex-col justify-around gap-3">
           <p className="text-primary-dark text-xs text-center">
             قبلا اکانت داشتید؟{" "}
             <AttentionSpan onClick={props.onToggleAuth}>ورود</AttentionSpan>
@@ -129,6 +132,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
           <Link
             to={"/ticket"}
             className="text-primary-dark text-xs text-center"
+            state={{ data: location.pathname }}
           >
             رمز عبور خود را فراموش کرده‌اید ؟
             <AttentionSpan>فراموشی رمز عبور</AttentionSpan>
