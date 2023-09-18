@@ -15,19 +15,33 @@ import api from "src/services";
 import { TICKET_URL, localTicket2Api } from "./api";
 import Header from "src/components/Header";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TicketForm: FC = () => {
   const location = useLocation();
-  const [prevRoute, setPrevRoute] = useState("abbass");
   useEffect(() => {
-    const previouseRoute = location.state?.data.substr(1);
-    setPrevRoute(previouseRoute);
-  }, []);
-  
+    const historyPath = location.state?.data;
+    if (historyPath && historyPath === "/auth") {
+      formik.setValues((prevState) => ({
+        ...prevState,
+        type: "forget-password",
+      }));
+    } else if (historyPath && historyPath === "/about") {
+      formik.setValues((prevState) => ({
+        ...prevState,
+        type: "onSite-class",
+      }));
+    } else {
+      formik.setValues((prevState) => ({
+        ...prevState,
+        type: "technical-issue",
+      }));
+    }
+  }, [location.state]);
 
   const formik = useFormik({
     initialValues: ticketInitialValues,
-
     onSubmit: (values) => {
       mutation.mutate(values as Ticket);
     },
@@ -39,12 +53,17 @@ const TicketForm: FC = () => {
   if (mutation.isSuccess) {
     mutation.reset();
     formik.setValues(ticketInitialValues);
-    /* here sends the response */
+    toast.success("درخواست شما ارسال شد. با شما در ارتباط خواهیم بود.");
   }
 
   return (
     <div className={`w-full h-full px-lg py-sm flex justify-center`}>
       <Header />
+      <ToastContainer
+        position="top-center"
+        rtl={true}
+        theme="colored"
+      />
       <form className="h-full w-full lg:w-1/2" onSubmit={formik.handleSubmit}>
         <div
           className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg"

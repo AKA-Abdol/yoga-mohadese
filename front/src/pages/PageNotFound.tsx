@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const PageNotFound: FC = () => {
   const navigate = useNavigate();
-  const returnToLastRoute = () => navigate(-3);
+  const returnToLastRoute = () => navigate(-1);
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="w-1/2 lg:w-2/5 h-1/2 flex flex-col justify-center">

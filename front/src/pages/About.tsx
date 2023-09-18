@@ -121,7 +121,7 @@ export default function About() {
                   state={{ data: location.pathname }}
                   to={"/ticket"}
                 >
-                  ثبت نام کلاس های حضوری
+                  رزرو کلاس های حضوری
                 </Link>{" "}
                 ، مسئول ثبت نام در زمان ثبت نام ترم جدید به شما پیغام داده و
                 راهنماییتان می کنند.

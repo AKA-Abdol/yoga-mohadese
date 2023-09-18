@@ -23,8 +23,7 @@ const queryClient = new QueryClient({
   },
 });
 
-function App() { 
-  
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -57,10 +56,8 @@ function App() {
               </Route>
             </Route>
 
-            <Route path="404" element={<PageNotFound />} />
-
             <Route path="" element={<Navigate to={"/home"} />} />
-            <Route path="*" element={<Navigate to={"/404"} />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
