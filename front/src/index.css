@@ -35,7 +35,7 @@ div {
 }
 
 .input-primary-theme {
-  @apply text-primary-dark placeholder-primary-dark focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
+  @apply text-primary-dark placeholder-primary-light focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
 }
 
 .btn-primary-theme {
@@ -64,3 +64,4 @@ div {
 .dropdown-content div * {
   margin-right: 3px;
 }
+

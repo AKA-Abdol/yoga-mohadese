@@ -64,7 +64,7 @@ const TicketForm: FC = () => {
         rtl={true}
         theme="colored"
       />
-      <form className="h-full w-full lg:w-1/2" onSubmit={formik.handleSubmit}>
+      <form className="w-full h-fit mt-24 lg:w-1/2" onSubmit={formik.handleSubmit}>
         <div
           className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg"
           style={{ direction: "ltr" }}
