@@ -14,8 +14,8 @@ import { BaseError } from 'src/errors/base-error';
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  private generateJwt(user: TypeJwtPayload, timeLimit: number | string): string {
-    return sign(user, 'secret', { expiresIn: timeLimit });
+  private generateJwt(user: TypeJwtPayload, timeLimit: string): string {
+    return sign(user, 'secret', { expiresIn: `${timeLimit}` });
   }
 
   async register(
