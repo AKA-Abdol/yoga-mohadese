@@ -18,7 +18,7 @@ const SessionItem: FC<SessionItemProps> = (props) => {
           : "border-normal border-primary-light"
       )}
       onClick={() => {
-        videoContext.selected.setSessionNum(props.data.num);
+        videoContext.selected.sessionNum !== props.data.num && videoContext.selected.setSessionNum(props.data.num) ;
         drawerContext.onClose();
       }}
     >
