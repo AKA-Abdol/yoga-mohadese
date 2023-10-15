@@ -14,8 +14,8 @@ import { BaseError } from 'src/errors/base-error';
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  private generateJwt(user: TypeJwtPayload, timeLimit: string): string {
-    return sign(user, 'secret', { expiresIn: `${timeLimit}` });
+  private generateJwt(user: TypeJwtPayload, timeLimit: number | string): string {
+    return sign(user, 'secret', { expiresIn: timeLimit });
   }
 
   async register(
@@ -31,7 +31,7 @@ export class AuthService {
         userId: user.id,
         username: user.username,
       },
-      user.is_admin ? '120s' : '60s',
+      user.is_admin ? '7d' : '24h',
     );
 
     return { token, is_admin: user.is_admin };
@@ -54,7 +54,7 @@ export class AuthService {
         userId: authInfo.id,
         username: authInfo.username,
       },
-      authInfo.is_admin ? '120s' : '60s',
+      authInfo.is_admin ? '7d' : '24h',
     );
 
     return { token, is_admin: authInfo.is_admin };
