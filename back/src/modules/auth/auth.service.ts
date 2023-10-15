@@ -14,8 +14,8 @@ import { BaseError } from 'src/errors/base-error';
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  private generateJwt(user: TypeJwtPayload): string {
-    return sign(user, 'secret');
+  private generateJwt(user: TypeJwtPayload, timeLimit: string): string {
+    return sign(user, 'secret', { expiresIn: `${timeLimit}` });
   }
 
   async register(
@@ -25,11 +25,14 @@ export class AuthService {
     if (isInputValid !== true) return isInputValid;
     const user = await this.userService.createUser(userInfo);
     if (user instanceof BaseError) return user;
-    const token = this.generateJwt({
-      role: user.is_admin ? 'ADMIN' : 'USER',
-      userId: user.id,
-      username: user.username,
-    });
+    const token = this.generateJwt(
+      {
+        role: user.is_admin ? 'ADMIN' : 'USER',
+        userId: user.id,
+        username: user.username,
+      },
+      user.is_admin ? '120s' : '60s',
+    );
 
     return { token, is_admin: user.is_admin };
   }
@@ -45,11 +48,14 @@ export class AuthService {
     if (!authInfo) return new NotFoundError('User');
     if (authInfo.password !== password)
       return new BadRequestError('InvalidPassword');
-    const token = this.generateJwt({
-      role: authInfo.is_admin ? 'ADMIN' : 'USER',
-      userId: authInfo.id,
-      username: authInfo.username,
-    });
+    const token = this.generateJwt(
+      {
+        role: authInfo.is_admin ? 'ADMIN' : 'USER',
+        userId: authInfo.id,
+        username: authInfo.username,
+      },
+      authInfo.is_admin ? '120s' : '60s',
+    );
 
     return { token, is_admin: authInfo.is_admin };
   }
