@@ -1,0 +1,171 @@
+{
+    "components-ui-paginiation-index": [
+        "بعدی",
+        "صفحه",
+        "قبلی"
+    ],
+    "components-ui-RangePicker": [
+        "  تا  ",
+        "بازه زمانی"
+    ],
+    "components-ui-SearchInput": [
+        "جستوجو"
+    ],
+    "components-Header": [
+        "خانه",
+        "ثبت نام / ورود",
+        "یوگا با محدثه",
+        "ثبت درخواست",
+        "قوانین",
+        "ارتباط با ما"
+    ],
+    "feature-VideoPlayer-components-SessionList-index": [
+        "ترمی برای شما وجود ندارد!",
+        "مشکلی رخ داده است.",
+        "هنوز جلسه ای وجود ندارد!"
+    ],
+    "feature-VideoPlayer-components-SessionList-SeassionItem": [
+        "ویدیو شماره"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-RemainDays": [
+        "تعداد روز ترم مشخص نیست",
+        "خطایی رخ داده است",
+        "روز مانده"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-TermData": [
+        "خروج"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-TermDescription": [
+        "محتوای مربوط به ترم در دسترس نیست",
+        "خطایی رخ داده است"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-TermSelect": [
+        "ترمی به شما اختصاص داده نشده است!"
+    ],
+    "feature-VideoPlayer-components-player": [
+        "ترمی برای شما وجود ندارد",
+        "یک جلسه انتخاب کنید!"
+    ],
+    "feature-VideoPlayer-components-SideControl": [
+        "پنهان",
+        "اطلاعات",
+        "جلسات",
+        "مشاهده"
+    ],
+    "pages-Admin-Terms-[id]-edit-index": [
+        "عنوان",
+        "انتخاب سطح",
+        "توضیحات",
+        "تایید",
+        "لغو"
+    ],
+    "pages-Admin-Terms-[id]-videos-component-AddVideoItem": [
+        "شماره",
+        "عنوان",
+        "لینک",
+        "لینک نمایه"
+    ],
+    "pages-Admin-Terms-[id]-videos-index": [
+        "+ ایجاد ویدیو جدید"
+    ],
+    "pages-Admin-Terms-add-": [
+        "عنوان",
+        "انتخاب سطح",
+        "توضیحات",
+        "تایید",
+        "لغو"
+    ],
+    "pages-Admin-Terms-DeleteModal": [
+        "آیا از حذف",
+        "اطمینان دارید؟",
+        "تایید",
+        "انصراف"
+    ],
+    "pages-Admin-Terms-index": [
+        "+ ایجاد ترم جدید",
+        "ترمی یافت نشد"
+    ],
+    "pages-Admin-Ticket-components-AuditModal": [
+        "رسیدگی شد",
+        "انصراف",
+        "حداقل ۸ کاراکتر",
+        "رمز عبور جدید",
+        "رسیدگی شد",
+        "انصراف"
+    ],
+    "pages-Admin-Users-components-UserInfoModal": [
+        "یادداشت"
+    ],
+    "pages-Admin-Users-UserItem": [
+        "انتخاب همه",
+        "بدون ترم"
+    ],
+    "pages-Admin-index": [
+        "کاربران",
+        "ترم ها",
+        "تیکت ها"
+    ],
+    "pages-Auth-components-LoginForm": [
+        "نام کاربری",
+        "رمز عبور",
+        "ورود",
+        "قبلا ثبت نام نکرده اید؟",
+        "رمز عبور خود را فراموش کرده‌اید ؟",
+        "فراموشی رمز عبور"
+    ],
+    "pages-Auth-components-SignupForm": [
+        "نام کاربری",
+        "نام",
+        "نام خانوادگی",
+        "شماره",
+        "ایمیل",
+        "رمز عبور",
+        "تایید رمز عبور",
+        "ثبت نام",
+        "قبلا اکانت داشتید؟",
+        "رمز عبور خود را فراموش کرده‌اید ؟",
+        "فراموشی رمز عبور"
+    ],
+    "pages-Auth-types": [
+        "حداقل ۳ کاراکتر",
+        "حداکثر ۲۰ کاراکتر",
+        "نام کاربری فقط انگلیسی و نقطه و خط زیر",
+        "الزامی",
+        "حداقل ۸ کاراکتر",
+        "الزامی",
+        "نام باید فارسی باشد",
+        "الزامی",
+        "نام باید فارسی باشد",
+        "الزامی",
+        "شماره معتبر نیست",
+        "الزامی",
+        "معتبر نیست",
+        "حداقل ۸ کاراکتر",
+        "الزامی"
+    ],
+    "pages-Auth-validation": [
+        "یا ایمیل یا شماره الزامی است",
+        "یا شماره یا ایمیل اجباری است"
+    ],
+    "pages-TicketForm-api": [
+        "بدون توضیحات"
+    ],
+    "pages-TicketForm-index": [
+        "درخواست شما ارسال شد. با شما در ارتباط خواهیم بود.",
+        "نام و نام خانوادگی *",
+        "شماره تلفن *",
+        "نوع درخواست خود را انتخاب کنید",
+        "توضیحات",
+        "تایید"
+    ],
+    "pages-TicketForm-types": [
+        "حداکثر ۲۰۰ کاراکتر",
+        "حداقل ۳ کلمه",
+        "نام باید فارسی باشد",
+        "الزامی",
+        "شماره معتبر نیست",
+        "الزامی",
+        "الزامی"
+    ],
+    "pages-About": []
+}
