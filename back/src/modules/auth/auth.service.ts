@@ -14,7 +14,10 @@ import { BaseError } from 'src/errors/base-error';
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  private generateJwt(user: TypeJwtPayload, timeLimit: number | string): string {
+  private generateJwt(
+    user: TypeJwtPayload,
+    timeLimit: number | string,
+  ): string {
     return sign(user, 'secret', { expiresIn: timeLimit });
   }
 
