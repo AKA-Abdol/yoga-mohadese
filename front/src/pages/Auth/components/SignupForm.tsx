@@ -18,12 +18,14 @@ import { tokenPersistor } from "../../../persistors/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { IApiPostSignup } from "../api.types";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-   
+
   let location = useLocation();
-  
+
   const mutation = useMutation(
     api.post<ISignupFormValues, IApiPostSignup>(
       SIGNUP_URL,
@@ -54,7 +56,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         <Error>{mutation.isError && (mutation.error as any).message}</Error>
         <Input
           onChange={formik.handleChange}
-          placeholder="نام کاربری"
+          placeholder={t("pagesAuthSignUp-Username")}
           className="text-center w-full input-primary-theme"
           id="username"
           name="username"
@@ -63,7 +65,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder="نام"
+          placeholder={t("pagesAuthSignUp-FirstName")}
           className="text-center w-full input-primary-theme"
           id="firstName"
           name="firstName"
@@ -72,7 +74,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder="نام خانوادگی"
+          placeholder={t("pagesAuthSignUp-LastName")}
           className="text-center w-full input-primary-theme"
           id="lastName"
           name="lastName"
@@ -81,7 +83,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder="شماره"
+          placeholder={t("pagesAuthSignUp-PhoneNumber")}
           className="text-center w-full input-primary-theme"
           id="phoneNumber"
           name="phoneNumber"
@@ -90,7 +92,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder="ایمیل"
+          placeholder={t("pagesAuthSignUp-Email")}
           className="text-center w-full input-primary-theme"
           id="email"
           name="email"
@@ -99,7 +101,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder="رمز عبور"
+          placeholder={t("pagesAuthSignUp-Password")}
           className="text-center w-full input-primary-theme"
           type="password"
           id="password"
@@ -109,7 +111,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder="تایید رمز عبور"
+          placeholder={t("pagesAuthSignUp-ConfirmPassword")}
           className="text-center w-full input-primary-theme"
           type="password"
           id="passwordConfirm"
@@ -121,12 +123,12 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
           {mutation.isLoading ? (
             <span className="loading loading-infinity loading-lg" />
           ) : (
-            "ثبت نام"
+            `${t("pagesAuthSignUp-SignUp")}`
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
           <p className="text-primary-dark text-xs text-center">
-            قبلا اکانت داشتید؟{" "}
+          {t("pagesAuthSignUp-AlreadyHaveAnAccount")}{" "}
             <AttentionSpan onClick={props.onToggleAuth}>ورود</AttentionSpan>
           </p>
           <Link
@@ -134,8 +136,8 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
             className="text-primary-dark text-xs text-center"
             state={{ data: location.pathname }}
           >
-            رمز عبور خود را فراموش کرده‌اید ؟
-            <AttentionSpan>فراموشی رمز عبور</AttentionSpan>
+            {t("pagesAuthSignUp-ForgotYourPassword")}
+            <AttentionSpan>{t("pagesAuthSignUp-ForgotPassword")}</AttentionSpan>
           </Link>
         </div>
       </div>

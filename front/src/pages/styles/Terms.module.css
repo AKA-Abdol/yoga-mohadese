@@ -4,11 +4,6 @@
     overflow-x: hidden;
     background: #B5DDA4;
     color: black;
-    direction: rtl;
-    font-family: IRANRounded!important;
-}
-h1, h2, h3, h4, h5, h6,input, textarea, a, button {
-    font-family: IRANRounded !important;
 }
 .terms{
     padding: 2rem;

@@ -5,8 +5,10 @@ import { useFormik } from "formik";
 import { FC } from "react";
 import { AddVideoItemProps, AddVideoSchema } from "./types";
 import { Persian2English } from "src/utils/converts";
+import { useTranslation } from "react-i18next";
 
 const AddVideoItem: FC<AddVideoItemProps> = (props) => {
+  const {t} = useTranslation()
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -35,7 +37,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="num"
             id="num"
-            placeholder="شماره"
+            placeholder={t("adminAddVideoItem-number")}
             className="w-full h-full input-primary-theme text-center text-xs"
             onChange={formik.handleChange}
             value={formik.values.num}
@@ -48,7 +50,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="title"
             id="title"
-            placeholder="عنوان"
+            placeholder={t("adminAddVideoItem-title")}
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.title}
@@ -61,7 +63,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="link"
             id="link"
-            placeholder="لینک"
+            placeholder={t("adminAddVideoItem-link")}
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.link}
@@ -74,7 +76,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="thumbnailLink"
             id="thumbnailLink"
-            placeholder="لینک نمایه"
+            placeholder={t("adminAddVideoItem-thumbnail")}
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.thumbnailLink}

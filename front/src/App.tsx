@@ -14,6 +14,7 @@ import AdminContextProvider from "./pages/Admin/ContextProvider";
 import TermVideos from "./pages/Admin/Terms/[id]/videos";
 import TermEdit from "./pages/Admin/Terms/[id]/edit";
 import TicketForm from "./pages/TicketForm";
+import { useTranslation } from "react-i18next";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,6 +25,9 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const { i18n } = useTranslation();
+  document.body.dir = i18n.dir();
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>

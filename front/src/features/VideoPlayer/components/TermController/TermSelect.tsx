@@ -2,13 +2,15 @@ import { FC, useContext } from "react";
 import { VideoContext } from "../../VideoContext";
 import { getLevelTitle } from "src/pages/Admin/Terms/utils";
 import Select from "src/components/ui/Select";
+import { useTranslation } from "react-i18next";
 
 const TermSelect: FC = () => {
+  const { t } = useTranslation();
   const videoContext = useContext(VideoContext);
   if (videoContext.terms.length === 0)
     return (
       <p className="text-primary-dark text-lg">
-        ترمی به شما اختصاص داده نشده است!
+        {t("termSelect-noTermAssignedToYou")}
       </p>
     );
   return (

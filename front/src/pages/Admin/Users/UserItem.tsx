@@ -15,8 +15,10 @@ import Badge from "src/components/ui/Badge";
 import { ITerm } from "../Terms/add/types";
 import { WithId } from "src/types/base";
 import { divideHistoryFuture } from "src/utils/arrays";
+import { useTranslation } from "react-i18next";
 
 const UserItem: FC<UserItemProps> = (props) => {
+  const { t } = useTranslation();
   const notTeaserTerms = props.terms.filter((term) => term.level != "0");
   const initialTermState: Option[] = notTeaserTerms.map((term) => ({
     label: getTermLabel(term),
@@ -75,7 +77,7 @@ const UserItem: FC<UserItemProps> = (props) => {
           onChange={setTempTermState}
           className="w-5/6 text-primary-light text-center"
           overrideStrings={{
-            selectAll: "انتخاب همه",
+            selectAll: `{${t("adminUsersItem-all")}}`,
           }}
           valueRenderer={customValueRenderer}
         />
@@ -120,9 +122,10 @@ const getTermLabel = (term: ITerm & WithId) =>
   `${term.title} (${getLevelTitle(term.level)})`;
 
 const customValueRenderer = (selected: Option[]) => {
+  const {t} = useTranslation()
   return selected.length
     ? selected.map(({ label }) => <Badge className="mr-sm py-3">{label}</Badge>)
-    : "بدون ترم";
+    : `{${t("adminUsersItem-no")}}`;
 };
 
 export default UserItem;

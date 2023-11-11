@@ -1,20 +1,32 @@
 import { useState } from "react";
 import homeIcon from "../assets/images/icon.png";
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import iranFlag from "../assets/svgs/iranFlag.svg";
+import ukFlag from "../assets/svgs/ukFlag.svg";
 export default function Header() {
   const [menuState, setMenuState] = useState(false);
   const [showVorood, setShowVorood] = useState(true);
+  const { t } = useTranslation();
+  const location = useLocation();
+
   function handleMenu() {
     setMenuState(!menuState);
-    setShowVorood(!showVorood)
+    setShowVorood(!showVorood);
+  }
+
+  const { i18n } = useTranslation();
+
+  function changeLanguage(e: any) {
+    i18n.changeLanguage(e.target.id);
+    console.log(e.target.id);
   }
 
   return (
     <div className={styles.header}>
-      <div className={styles.voroodBurgerContainer}>
-        <div className={styles.box} onClick={handleMenu}>
+      <div className="z-[500] flex relative gap-6">
+        <div className="bg-transparent z-[500]" onClick={handleMenu}>
           <div
             className={`${styles.navBtn} ${
               menuState ? styles.active : styles["not-active"]
@@ -25,15 +37,32 @@ export default function Header() {
             <span className={styles["menu-burguer"]}></span>
           </div>
         </div>
-        <Link to={"/auth"} className={`${styles.vorood} ${showVorood ? '' : styles.disNon}`}>
-          ورود
+        <Link
+          to={"/auth"}
+          className={`${styles.vorood}  ${showVorood ? "" : styles.disNon}`}
+        >
+          {t("header-signIn")}
         </Link>
+        <div
+          className={`${location.pathname === "/home" ? "" : "hidden"} ${
+            showVorood ? "" : "hidden"
+          }  flex justify-center items-center`}
+        >
+          <button onClick={(e) => changeLanguage(e)} id="en" value="en">
+            <img src={ukFlag} id="en" className="w-8 h-4" />
+          </button>
+          <button onClick={(e) => changeLanguage(e)} id="fa" value="fa">
+            <img src={iranFlag} id="fa" className="w-8 h-4" />
+          </button>
+        </div>
       </div>
+
       <div className={styles["home-link"]}>
         <Link to={"/home"} onClick={handleMenu}>
           <img src={homeIcon} alt="home" className={styles["img-link"]} />
         </Link>
       </div>
+
       <div
         className={`${styles.sidenav} ${styles["grid-container"]} ${
           menuState ? styles.activeNav : styles["not-activeNav"]
@@ -46,7 +75,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          خانه
+          {t("header-home")}
         </Link>
         <Link
           to={"/auth"}
@@ -55,7 +84,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          ثبت نام / ورود
+          {t("header-signUpOrLogIn")}
         </Link>
         <Link
           to={"/about"}
@@ -64,7 +93,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          یوگا با محدثه
+          {t("header-yogaWithMohadese")}
         </Link>
         <Link
           to={"/ticket"}
@@ -73,7 +102,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          ثبت درخواست
+          {t("header-submitRequest")}
         </Link>
         <Link
           to={"/terms"}
@@ -82,7 +111,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          قوانین
+          {t("header-terms")}
         </Link>
         <Link
           to={"/contact"}
@@ -91,7 +120,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          ارتباط با ما
+          {t("header-contactUs")}
         </Link>
       </div>
     </div>

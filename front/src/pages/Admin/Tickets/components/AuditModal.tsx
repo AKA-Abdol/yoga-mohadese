@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "src/components/ui/Input";
 import { TICKET_PASSWORD_RESOLVE_URL } from "../api";
+import { useTranslation } from "react-i18next";
 
 const AuditModal: FC<AuditModalProps> = (props) => {
   const queryClient = useQueryClient();
@@ -55,7 +56,9 @@ interface BodyProps {
   onResolve: () => void;
 }
 
-const InfoBody: FC<BodyProps> = (props) => (
+const InfoBody: FC<BodyProps> = (props) => {
+  const {t} = useTranslation();
+  return (
   <div className="h-full w-full flex flex-col items-center py-sm">
     <p className="py-sm">{props.description}</p>
     <div className="flex flex-row w-full justify-around pt-md">
@@ -63,15 +66,15 @@ const InfoBody: FC<BodyProps> = (props) => (
         onClick={props.onResolve}
         className="w-36 md:w-64 btn-primary-theme"
       >
-        رسیدگی شد
+        {t("adminTickerAudit-handled")}
       </Button>
       <Button onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
-        انصراف
+      {t("adminTickerAudit-canceled")}
       </Button>
     </div>
   </div>
 );
-
+  }
 interface PasswordResolveBodyProps {
   description: string;
   onClose: () => void;
@@ -87,6 +90,7 @@ interface IResolveForm {
 }
 
 const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
+  const {t} = useTranslation();
   const queryClient = useQueryClient();
   const formik = useFormik({
     initialValues: { password: "" },
@@ -95,7 +99,7 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
       else deleteTicket.mutate({});
     },
     validationSchema: Yup.object().shape({
-      password: Yup.string().min(8, "حداقل ۸ کاراکتر"),
+      password: Yup.string().min(8, `${t("adminTickerAudit-min8char")}`),
     }),
     validateOnChange: false,
   });
@@ -132,17 +136,21 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
           name="password"
           id="password"
           onChange={formik.handleChange}
-          placeholder="رمز عبور جدید"
+          placeholder={t("adminTickerAudit-newPass")}
           value={formik.values.password}
           error={formik.errors.password}
           className="text-center input-primary-theme"
         />
         <div className="flex flex-row w-full justify-around pt-md">
           <Button type="submit" className="w-36 md:w-64 btn-primary-theme">
-            رسیدگی شد
+          {t("adminTickerAudit-handled")}
           </Button>
-          <Button type="button" onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
-            انصراف
+          <Button
+            type="button"
+            onClick={props.onClose}
+            className="w-36 md:w-64 btn-cancel"
+          >
+            {t("adminTickerAudit-canceled")}
           </Button>
         </div>
       </form>

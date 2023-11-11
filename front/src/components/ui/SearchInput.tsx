@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 interface SearchInputProps {
   value: string;
@@ -7,6 +8,7 @@ interface SearchInputProps {
 }
 
 const SearchInput: FC<SearchInputProps> = (props) => {
+  const { t } = useTranslation();
   return (
     <div className="w-5/6 h-14 flex flex-row justify-center">
       <input
@@ -26,7 +28,7 @@ const SearchInput: FC<SearchInputProps> = (props) => {
           "text-primary-light text-normal"
         )}
       >
-        جستوجو
+        {t("searchInput-saerch")}
       </button>
     </div>
   );

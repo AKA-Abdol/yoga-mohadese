@@ -7,21 +7,9 @@
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  direction: rtl;
-  font-family: IRANRounded !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-input,
-textarea,
-li {
-  font-family: IRANRounded !important;
-}
+
 
 /* CONTENT OF WEB PAGE */
 .pagecontainer{
@@ -61,10 +49,12 @@ li {
 
 .contactUL li a {
   display: flex;
+  gap: 1rem;
 }
 
 .linkStyling {
   font-size: 24px;
+  gap: 1rem;
 }
 
 .svgStyling {

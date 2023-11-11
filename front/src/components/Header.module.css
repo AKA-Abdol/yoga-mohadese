@@ -2,8 +2,9 @@
     position: absolute;
     background-color: transparent;
     top: 0;
+    margin: 0 auto;
     width: 98vw;
-    padding: 0.75rem;
+    padding: 1rem 2rem 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,25 +14,13 @@
 }
 
 /* HAMBURGER MENU */
-.voroodBurgerContainer{
-    z-index: 1000;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    gap: 100px;
-}
-
-.box {
-    background: transparent;
-    z-index: 1000;
-}
 
 .navBtn {
     position: absolute;
     transform: translate(-50%, -50%);
     width: 50px;
     cursor: pointer;
-    top: 2rem;
+    top: 1.5rem;
 }
 
 .menu-burguer {
@@ -86,16 +75,16 @@
     color: #034732;
     font-size: 20px;
     z-index: 1;
-    
+    margin: 0 4rem;
     padding: 0.8rem 1rem 0.5rem 1rem;
     border-radius: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.5s ease;   
+    transition: all 0.5s ease;
 }
 
-.disNon{
+.disNon {
     color: #000;
 }
 
