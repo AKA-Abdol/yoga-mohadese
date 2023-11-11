@@ -79,7 +79,7 @@ const UserItem: FC<UserItemProps> = (props) => {
           overrideStrings={{
             selectAll: `{${t("adminUsersItem-all")}}`,
           }}
-          valueRenderer={customValueRenderer}
+          valueRenderer={CustomValueRenderer}
         />
       </div>
       <div className={"h-full w-20"}>
@@ -121,7 +121,7 @@ const UserItem: FC<UserItemProps> = (props) => {
 const getTermLabel = (term: ITerm & WithId) =>
   `${term.title} (${getLevelTitle(term.level)})`;
 
-const customValueRenderer = (selected: Option[]) => {
+const CustomValueRenderer = (selected: Option[]) => {
   const {t} = useTranslation()
   return selected.length
     ? selected.map(({ label }) => <Badge className="mr-sm py-3">{label}</Badge>)
