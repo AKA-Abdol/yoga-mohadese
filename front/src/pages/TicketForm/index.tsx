@@ -55,7 +55,7 @@ const TicketForm: FC = () => {
   if (mutation.isSuccess) {
     mutation.reset();
     formik.setValues(ticketInitialValues);
-    toast.success(`${t("pagesTickerIndex-yourReq")}`);
+    toast.success(`${t(["pagesTickerIndex-yourReq"])}`);
   }
 
   return (
@@ -72,7 +72,7 @@ const TicketForm: FC = () => {
         >
           <Input
             onChange={formik.handleChange}
-            placeholder={t("pagesTickerIndex-fullName")}
+            placeholder={t(["pagesTickerIndex-fullName"])}
             className="text-center w-full input-primary-theme"
             id="fullName"
             name="fullName"
@@ -81,7 +81,7 @@ const TicketForm: FC = () => {
           />
           <Input
             onChange={formik.handleChange}
-            placeholder={t("pagesTickerIndex-phoneNumber")}
+            placeholder={t(["pagesTickerIndex-phoneNumber"])}
             className="text-center w-full input-primary-theme"
             id="phoneNumber"
             name="phoneNumber"
@@ -95,14 +95,14 @@ const TicketForm: FC = () => {
             value={formik.values.type}
             id="type"
             name="type"
-            placeholder={t("pagesTickerIndex-select")}
+            placeholder={t(["pagesTickerIndex-select"])}
             error={formik.errors.type}
             classnames="text-center"
             optionsClassnames="text-center"
           />
           <TextArea
             onChange={formik.handleChange}
-            placeholder={t("pagesTickerIndex-description")}
+            placeholder={t(["pagesTickerIndex-description"])}
             className="text-center w-full input-primary-theme text-le"
             id="description"
             name="description"
@@ -114,7 +114,7 @@ const TicketForm: FC = () => {
               {mutation.isLoading ? (
                 <span className="loading loading-infinity loading-lg" />
               ) : (
-                `${t("pagesTickerIndex-confirm")}`
+                `${t(["pagesTickerIndex-confirm"])}`
               )}
             </Button>
           </div>

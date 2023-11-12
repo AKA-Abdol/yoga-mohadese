@@ -28,19 +28,19 @@ const Pagination: FC<PaginationProps> = (props) => {
           className="btn-primary-theme rounded-l-none text-normal"
           onClick={goNextPage}
         >
-          {t("pagination-next")}
+          {t(["pagination-next"])}
         </Button>
         <Button
           className={classNames(
             "btn-primary-theme rounded-none text-xl",
             props.page === lastPage && "btn-primary-active"
           )}
-        >{`${t("pagination-page")} ${English2Persian(`${props.page}`)}`}</Button>
+        >{`${t(["pagination-page"])} ${English2Persian(`${props.page}`)}`}</Button>
         <Button
           className="btn-primary-theme rounded-r-none text-normal mr-[1px]"
           onClick={goPreviousPage}
         >
-          {t("pagination-previous")}
+          {t(["pagination-previous"])}
         </Button>
       </div>
     </div>

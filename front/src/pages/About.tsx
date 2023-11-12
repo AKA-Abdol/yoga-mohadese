@@ -12,16 +12,16 @@ export default function About() {
   let location = useLocation();
   const sampleList: MultiBtnContentPair[] = [
     {
-      content: `${t("pagesAbout1")}`,
-      data: `${t("pagesAbout2")}`,
+      content: `${t(["pagesAbout1"])}`,
+      data: `${t(["pagesAbout2"])}`,
     },
     {
-      content: `${t("pagesAbout3")}`,
-      data: `${t("pagesAbout4")}`,
+      content: `${t(["pagesAbout3"])}`,
+      data: `${t(["pagesAbout4"])}`,
     },
     {
-      content: `${t("pagesAbout5")}`,
-      data: `${t("pagesAbout6")}`,
+      content: `${t(["pagesAbout5"])}`,
+      data: `${t(["pagesAbout6"])}`,
     },
   ];
 
@@ -33,12 +33,12 @@ export default function About() {
     <div className={styles.bodyStyle}>
       <Header />
       <div className={styles.content}>
-        <h1 className={styles.h1styles}>{t("pagesAbout0")}</h1>
+        <h1 className={styles.h1styles}>{t(["pagesAbout0"])}</h1>
         <div className={styles["img1-container"]}>
           <img src={img1} alt="" className={styles.img1} />
         </div>
         <div className={styles["text-container"]}>
-          <p className={styles.justifier}>{t("pagesAbout7")}</p>
+          <p className={styles.justifier}>{t(["pagesAbout7"])}</p>
         </div>
         <div className={styles["line-container"]}>
           <div className={styles["vertical-line"]}></div>
@@ -46,7 +46,7 @@ export default function About() {
       </div>
       <div className={styles.titleText}>
         <div className={styles.parallax}>
-          <h2 className={styles.h2Styles}>{t("pagesAbout8")}</h2>
+          <h2 className={styles.h2Styles}>{t(["pagesAbout8"])}</h2>
         </div>
       </div>
 
@@ -68,7 +68,7 @@ export default function About() {
           to={"/ticket"}
           preventScrollReset={false}
         >
-          {t("pagesAbout01")}
+          {t(["pagesAbout01"])}
         </Link>{" "}
       </div>
       {/* FAQ */}
@@ -85,116 +85,116 @@ export default function About() {
           >
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout91")}
+              {t(["pagesAbout91"])}
             </div>
             <div className="collapse-content">
               <p>
-                {t("pagesAbout92")}{" "}
+                {t(["pagesAbout92"])}{" "}
                 <Link style={{ textDecoration: "underline" }} to={"/contact"}>
-                  {t("pagesAbout93")}
+                  {t(["pagesAbout93"])}
                 </Link>{" "}
-                {t("pagesAbout94")}
+                {t(["pagesAbout94"])}
               </p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item ">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout10")}
+              {t(["pagesAbout10"])}
             </div>
             <div className="collapse-content">
               <p>
-                {t("pagesAbout11")}{" "}
+                {t(["pagesAbout11"])}{" "}
                 <Link
                   style={{ textDecoration: "underline" }}
                   state={{ data: location.pathname }}
                   to={"/ticket"}
                 >
-                  {t("pagesAbout12")}
+                  {t(["pagesAbout12"])}
                 </Link>{" "}
-                {t("pagesAbout13")}
+                {t(["pagesAbout13"])}
               </p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout14")}
+              {t(["pagesAbout14"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout15")}</p>
+              <p>{t(["pagesAbout15"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout16")}
+              {t(["pagesAbout16"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout17")}</p>
+              <p>{t(["pagesAbout17"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout18")}
+              {t(["pagesAbout18"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout19")}</p>
+              <p>{t(["pagesAbout19"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout20")}
+              {t(["pagesAbout20"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout21")}</p>
+              <p>{t(["pagesAbout21"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout22")}
+              {t(["pagesAbout22"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout23")}</p>
+              <p>{t(["pagesAbout23"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout24")}
+              {t(["pagesAbout24"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout25")}</p>
+              <p>{t(["pagesAbout25"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout260")}
+              {t(["pagesAbout260"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout26")}</p>
+              <p>{t(["pagesAbout26"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout27")}
+              {t(["pagesAbout27"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout28")}</p>
+              <p>{t(["pagesAbout28"])}</p>
             </div>
           </div>
           <div className="collapse collapse-arrow join-item">
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title text-xl font-medium">
-              {t("pagesAbout29")}
+              {t(["pagesAbout29"])}
             </div>
             <div className="collapse-content">
-              <p>{t("pagesAbout30")}</p>
+              <p>{t(["pagesAbout30"])}</p>
             </div>
           </div>
         </div>

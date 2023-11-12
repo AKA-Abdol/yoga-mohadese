@@ -1,13 +1,12 @@
 import { useState } from "react";
 import homeIcon from "../assets/images/icon.png";
 import styles from "./Header.module.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 export default function Header() {
   const [menuState, setMenuState] = useState(false);
   const [showVorood, setShowVorood] = useState(true);
   const { t } = useTranslation();
-  const location = useLocation();
 
   function handleMenu() {
     setMenuState(!menuState);
@@ -32,7 +31,7 @@ export default function Header() {
           to={"/auth"}
           className={`${styles.vorood}  ${showVorood ? "" : styles.disNon}`}
         >
-          {t("header-signIn")}
+          {t(["header-signIn"])}
         </Link>
       </div>
 
@@ -54,7 +53,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          {t("header-home")}
+          {t(["header-home"])}
         </Link>
         <Link
           to={"/auth"}
@@ -63,7 +62,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          {t("header-signUpOrLogIn")}
+          {t(["header-signUpOrLogIn"])}
         </Link>
         <Link
           to={"/about"}
@@ -72,7 +71,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          {t("header-yogaWithMohadese")}
+          {t(["header-yogaWithMohadese"])}
         </Link>
         <Link
           to={"/ticket"}
@@ -81,7 +80,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          {t("header-submitRequest")}
+          {t(["header-submitRequest"])}
         </Link>
         <Link
           to={"/terms"}
@@ -90,7 +89,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          {t("header-terms")}
+          {t(["header-terms"])}
         </Link>
         <Link
           to={"/contact"}
@@ -99,7 +98,7 @@ export default function Header() {
           }`}
           onClick={handleMenu}
         >
-          {t("header-contactUs")}
+          {t(["header-contactUs"])}
         </Link>
       </div>
     </div>

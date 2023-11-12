@@ -37,7 +37,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="num"
             id="num"
-            placeholder={t("adminAddVideoItem-number")}
+            placeholder={t(["adminAddVideoItem-number"])}
             className="w-full h-full input-primary-theme text-center text-xs"
             onChange={formik.handleChange}
             value={formik.values.num}
@@ -50,7 +50,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="title"
             id="title"
-            placeholder={t("adminAddVideoItem-title")}
+            placeholder={t(["adminAddVideoItem-title"])}
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.title}
@@ -63,7 +63,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="link"
             id="link"
-            placeholder={t("adminAddVideoItem-link")}
+            placeholder={t(["adminAddVideoItem-link"])}
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.link}
@@ -76,7 +76,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="thumbnailLink"
             id="thumbnailLink"
-            placeholder={t("adminAddVideoItem-thumbnail")}
+            placeholder={t(["adminAddVideoItem-thumbnail"])}
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.thumbnailLink}

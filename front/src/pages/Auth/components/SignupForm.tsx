@@ -56,7 +56,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         <Error>{mutation.isError && (mutation.error as any).message}</Error>
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthSignUp-Username")}
+          placeholder={t(["pagesAuthSignUp-Username"])}
           className="text-center w-full input-primary-theme"
           id="username"
           name="username"
@@ -65,7 +65,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthSignUp-FirstName")}
+          placeholder={t(["pagesAuthSignUp-FirstName"])}
           className="text-center w-full input-primary-theme"
           id="firstName"
           name="firstName"
@@ -74,7 +74,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthSignUp-LastName")}
+          placeholder={t(["pagesAuthSignUp-LastName"])}
           className="text-center w-full input-primary-theme"
           id="lastName"
           name="lastName"
@@ -83,7 +83,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthSignUp-PhoneNumber")}
+          placeholder={t(["pagesAuthSignUp-PhoneNumber"])}
           className="text-center w-full input-primary-theme"
           id="phoneNumber"
           name="phoneNumber"
@@ -92,7 +92,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthSignUp-Email")}
+          placeholder={t(["pagesAuthSignUp-Email"])}
           className="text-center w-full input-primary-theme"
           id="email"
           name="email"
@@ -101,7 +101,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthSignUp-Password")}
+          placeholder={t(["pagesAuthSignUp-Password"])}
           className="text-center w-full input-primary-theme"
           type="password"
           id="password"
@@ -111,7 +111,7 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthSignUp-ConfirmPassword")}
+          placeholder={t(["pagesAuthSignUp-ConfirmPassword"])}
           className="text-center w-full input-primary-theme"
           type="password"
           id="passwordConfirm"
@@ -123,12 +123,12 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
           {mutation.isLoading ? (
             <span className="loading loading-infinity loading-lg" />
           ) : (
-            `${t("pagesAuthSignUp-SignUp")}`
+            `${t(["pagesAuthSignUp-SignUp"])}`
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
           <p className="text-primary-dark text-xs text-center">
-          {t("pagesAuthSignUp-AlreadyHaveAnAccount")}{" "}
+          {t(["pagesAuthSignUp-AlreadyHaveAnAccount"])}{" "}
             <AttentionSpan onClick={props.onToggleAuth}>ورود</AttentionSpan>
           </p>
           <Link
@@ -136,8 +136,8 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
             className="text-primary-dark text-xs text-center"
             state={{ data: location.pathname }}
           >
-            {t("pagesAuthSignUp-ForgotYourPassword")}
-            <AttentionSpan>{t("pagesAuthSignUp-ForgotPassword")}</AttentionSpan>
+            {t(["pagesAuthSignUp-ForgotYourPassword"])}
+            <AttentionSpan>{t(["pagesAuthSignUp-ForgotPassword"])}</AttentionSpan>
           </Link>
         </div>
       </div>

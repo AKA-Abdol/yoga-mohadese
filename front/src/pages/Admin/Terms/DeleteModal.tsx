@@ -33,9 +33,9 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
           "rounded-md"
         )}
       >
-        <p>{t("adminTermDelete-youSure")}</p>
+        <p>{t(["adminTermDelete-youSure"])}</p>
         <p className="text-xl">{`${title} (${getLevelTitle(level)})`}</p>
-        <p>{t("adminTermDelete-thisTerm")}</p>
+        <p>{t(["adminTermDelete-thisTerm"])}</p>
         <div className="flex flex-row w-full justify-around pt-md">
           <Button
             onClick={async () => {
@@ -43,10 +43,10 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
             }}
             className="w-36 md:w-64 btn-primary-theme"
           >
-            {t("adminTermDelete-confirm")}
+            {t(["adminTermDelete-confirm"])}
           </Button>
           <Button onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
-          {t("adminTermDelete-cancel")}
+          {t(["adminTermDelete-cancel"])}
           </Button>
         </div>
       </div>

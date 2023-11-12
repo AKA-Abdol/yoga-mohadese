@@ -61,14 +61,14 @@ const Terms: FC = () => {
           className="btn-primary-theme"
           onClick={() => navigate("/admin/terms/add")}
         >
-          {t("adminTermIndex-addTerm")}
+          {t(["adminTermIndex-addTerm"])}
         </Button>
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md items-center overflow-auto">
         {termData.isLoading || termData.isError ? (
           <Loading />
         ) : termData.data.count === 0 ? (
-          <p>{t("adminTermIndex-noTerm")}</p>
+          <p>{t(["adminTermIndex-noTerm"])}</p>
         ) : (
           termData.data.values
             .map(apiTerm2local)

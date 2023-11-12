@@ -66,10 +66,10 @@ const InfoBody: FC<BodyProps> = (props) => {
         onClick={props.onResolve}
         className="w-36 md:w-64 btn-primary-theme"
       >
-        {t("adminTickerAudit-handled")}
+        {t(["adminTickerAudit-handled"])}
       </Button>
       <Button onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
-      {t("adminTickerAudit-canceled")}
+      {t(["adminTickerAudit-canceled"])}
       </Button>
     </div>
   </div>
@@ -99,7 +99,7 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
       else deleteTicket.mutate({});
     },
     validationSchema: Yup.object().shape({
-      password: Yup.string().min(8, `${t("adminTickerAudit-min8char")}`),
+      password: Yup.string().min(8, `${t(["adminTickerAudit-min8char"])}`),
     }),
     validateOnChange: false,
   });
@@ -136,21 +136,21 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
           name="password"
           id="password"
           onChange={formik.handleChange}
-          placeholder={t("adminTickerAudit-newPass")}
+          placeholder={t(["adminTickerAudit-newPass"])}
           value={formik.values.password}
           error={formik.errors.password}
           className="text-center input-primary-theme"
         />
         <div className="flex flex-row w-full justify-around pt-md">
           <Button type="submit" className="w-36 md:w-64 btn-primary-theme">
-          {t("adminTickerAudit-handled")}
+          {t(["adminTickerAudit-handled"])}
           </Button>
           <Button
             type="button"
             onClick={props.onClose}
             className="w-36 md:w-64 btn-cancel"
           >
-            {t("adminTickerAudit-canceled")}
+            {t(["adminTickerAudit-canceled"])}
           </Button>
         </div>
       </form>

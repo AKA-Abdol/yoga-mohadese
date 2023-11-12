@@ -10,7 +10,7 @@ const TermSelect: FC = () => {
   if (videoContext.terms.length === 0)
     return (
       <p className="text-primary-dark text-lg">
-        {t("termSelect-noTermAssignedToYou")}
+        {t(["termSelect-noTermAssignedToYou"])}
       </p>
     );
   return (

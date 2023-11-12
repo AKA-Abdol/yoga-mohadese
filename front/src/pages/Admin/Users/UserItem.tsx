@@ -77,7 +77,7 @@ const UserItem: FC<UserItemProps> = (props) => {
           onChange={setTempTermState}
           className="w-5/6 text-primary-light text-center"
           overrideStrings={{
-            selectAll: `{${t("adminUsersItem-all")}}`,
+            selectAll: `{${t(["adminUsersItem-all"])}}`,
           }}
           valueRenderer={CustomValueRenderer}
         />
@@ -125,7 +125,7 @@ const CustomValueRenderer = (selected: Option[]) => {
   const { t } = useTranslation();
   return selected.length
     ? selected.map(({ label }) => <Badge className="mr-sm py-3">{label}</Badge>)
-    : `{${t("adminUsersItem-no")}}`;
+    : `{${t(["adminUsersItem-no"])}}`;
 };
 
 export default UserItem;

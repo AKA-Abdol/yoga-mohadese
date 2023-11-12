@@ -15,14 +15,14 @@ const RemainedDays: FC<WithTerm> = (props) => {
     <div className={classNames("w-full flex justify-center")}>
       <p className="text-sm bg-primary-dark text-primary-light p-md rounded-md">
         {!videoContext.selected.termId
-          ? `${t("remainedDays-numberOfTermDaysIsNotSpecified")}`
+          ? `${t(["remainedDays-numberOfTermDaysIsNotSpecified"])}`
           : term.isError
-          ? `${t("remainedDays-anErrorOccurred")}`
+          ? `${t(["remainedDays-anErrorOccurred"])}`
           : term.isLoading
           ? "..."
           : `${English2Persian(
               `${isoStringDateDiffFromNow(term.data.course.end_date)}`
-            )} ${t("remainedDays-daysLeft")}`}
+            )} ${t(["remainedDays-daysLeft"])}`}
       </p>
     </div>
   );
