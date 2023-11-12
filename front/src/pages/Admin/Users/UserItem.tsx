@@ -122,7 +122,7 @@ const getTermLabel = (term: ITerm & WithId) =>
   `${term.title} (${getLevelTitle(term.level)})`;
 
 const CustomValueRenderer = (selected: Option[]) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   return selected.length
     ? selected.map(({ label }) => <Badge className="mr-sm py-3">{label}</Badge>)
     : `{${t("adminUsersItem-no")}}`;
