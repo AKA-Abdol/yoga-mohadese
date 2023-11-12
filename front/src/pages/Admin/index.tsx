@@ -10,9 +10,9 @@ const Admin: FC = () => {
   return (
     <ButtonGroup
       buttonNames={[
-        `${t("pagesAdminIndex-users")}`,
-        `${t("pagesAdminIndex-terms")}`,
-        `${t("pagesAdminIndex-tickets")}`,
+        `${t(["pagesAdminIndex-users"])}`,
+        `${t(["pagesAdminIndex-terms"])}`,
+        `${t(["pagesAdminIndex-tickets"])}`,
       ]}
       routes={["users", "terms", "tickets"]}
       data={[<Users />, <Terms />, <Tickets />]}

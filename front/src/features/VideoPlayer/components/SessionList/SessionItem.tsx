@@ -27,7 +27,7 @@ const SessionItem: FC<SessionItemProps> = (props) => {
     >
       <p
         className={`text-lg text-primary-light`}
-      >{`${t("sessionItem-videoNumber")} ${props.data.num}`}</p>
+      >{`${t(["sessionItem-videoNumber"])} ${props.data.num}`}</p>
       <div className="h-full mask mask-squircle max-w-[60%]">
         <img src={props.data.thumbnail} alt="thumbnail" />
       </div>

@@ -75,7 +75,7 @@ const TermVideos: FC = () => {
           className="btn-primary-theme w-full"
           onClick={() => setAddState("adding")}
         >
-          {t("adminTermIndex-addNewVideo")}
+          {t(["adminTermIndex-addNewVideo"])}
         </Button>
       </div>
     </div>

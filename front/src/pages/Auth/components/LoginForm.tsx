@@ -46,7 +46,7 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
         <Error>{mutation.isError && (mutation.error as any).message}</Error>
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthLoginForm-username")}
+          placeholder={t(["pagesAuthLoginForm-username"])}
           className="text-center w-full input-primary-theme"
           id="username"
           name="username"
@@ -55,7 +55,7 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t("pagesAuthLoginForm-password")}
+          placeholder={t(["pagesAuthLoginForm-password"])}
           className="text-center w-full input-primary-theme"
           type="password"
           id="password"
@@ -67,21 +67,21 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
           {mutation.isLoading ? (
             <span className="loading loading-infinity loading-lg" />
           ) : (
-            `${t("pagesAuthLoginForm-login")}`
+            `${t(["pagesAuthLoginForm-login"])}`
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
           <p className="text-primary-dark text-xs text-center">
-            {t("pagesAuthLoginForm-username")}{" "}
-            <AttentionSpan onClick={props.onToggleAuth}>{t("pagesAuthLoginForm-signup")}</AttentionSpan>
+            {t(["pagesAuthLoginForm-username"])}{" "}
+            <AttentionSpan onClick={props.onToggleAuth}>{t(["pagesAuthLoginForm-signup"])}</AttentionSpan>
           </p>
           <Link
             state={{ data: location.pathname }}
             to={"/ticket"}
             className="text-primary-dark text-xs text-center"
           >
-            {t("pagesAuthLoginForm-forgotYourPassword")}
-            <AttentionSpan>{t("pagesAuthLoginForm-forgotPassword")}</AttentionSpan>
+            {t(["pagesAuthLoginForm-forgotYourPassword"])}
+            <AttentionSpan>{t(["pagesAuthLoginForm-forgotPassword"])}</AttentionSpan>
           </Link>
         </div>
       </div>

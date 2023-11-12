@@ -12,13 +12,13 @@ export default function Home() {
       <h2
         className={`my-auto z-10 flex justify-center items-center flex-col text-[#034732] ${styles.openingAnimation}`}
       >
-        <span className={styles["three-words1"]}>{t("pagesHome1")}</span>
-        <span className={styles["three-words2"]}>{t("pagesHome2")}</span>
-        <span className={styles["three-words3"]}>{t("pagesHome3")}</span>
+        <span className={styles["three-words1"]}>{t(["pagesHome1"])}</span>
+        <span className={styles["three-words2"]}>{t(["pagesHome2"])}</span>
+        <span className={styles["three-words3"]}>{t(["pagesHome3"])}</span>
       </h2>
       <div className={styles.centerBtn}>
         <Link to={"/about"} className={styles.ywm}>
-          {t("pagesHome4")}
+          {t(["pagesHome4"])}
         </Link>
       </div>
     </div>

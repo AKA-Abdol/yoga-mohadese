@@ -40,7 +40,7 @@ const TermData: FC = () => {
               navigate("/");
             }}
           >
-            {t("termData-exit")}
+            {t(["termData-exit"])}
           </Button>
         </div>
       </div>

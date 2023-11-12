@@ -45,7 +45,7 @@ const UserInfoModal: FC<UserInfoModalProps> = (props) => {
             <TextArea
               onChange={(e) => setNote(e.target.value)}
               name="note"
-              placeholder={t("adminUsersInfoModal-note")}
+              placeholder={t(["adminUsersInfoModal-note"])}
               value={note}
               className="w-full text-center"
             />

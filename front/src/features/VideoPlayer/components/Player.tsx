@@ -126,14 +126,14 @@ const Player: FC = (props) => {
   if (!videoContext.selected.termId)
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <p className="text-primary-light">{t("player-noTermAvailableForYou")}</p>
+        <p className="text-primary-light">{t(["player-noTermAvailableForYou"])}</p>
       </div>
     );
 
   if (!videoContext.selected.sessionNum)
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <p className="text-primary-light">{t("player-selectASession")}</p>
+        <p className="text-primary-light">{t(["player-selectASession"])}</p>
       </div>
     );
 

@@ -28,7 +28,7 @@ const SearchInput: FC<SearchInputProps> = (props) => {
           "text-primary-light text-normal"
         )}
       >
-        {t("searchInput-saerch")}
+        {t(["searchInput-saerch"])}
       </button>
     </div>
   );

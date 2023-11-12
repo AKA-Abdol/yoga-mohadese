@@ -59,7 +59,7 @@ const TermEdit: FC = () => {
         >
           <Input
             onChange={formik.handleChange}
-            placeholder={t("adminIdEditAdd-title")}
+            placeholder={t(["adminIdEditAdd-title"])}
             className="text-center w-full input-primary-theme"
             id="title"
             name="title"
@@ -72,7 +72,7 @@ const TermEdit: FC = () => {
             id="level"
             name="level"
             classnames="text-center bg-inherit"
-            placeholder={t("adminIdEditAdd-selectLevel")}
+            placeholder={t(["adminIdEditAdd-selectLevel"])}
           />
           <RangePicker
             value={formik.values.range}
@@ -82,7 +82,7 @@ const TermEdit: FC = () => {
           />
           <TextArea
             onChange={formik.handleChange}
-            placeholder={t("adminIdEditAdd-description")}
+            placeholder={t(["adminIdEditAdd-description"])}
             className="text-center w-full input-primary-theme"
             id="description"
             name="description"
@@ -94,14 +94,14 @@ const TermEdit: FC = () => {
               {mutation.isLoading ? (
                 <span className="loading loading-infinity loading-lg" />
               ) : (
-                `${t("adminIdEditAdd-confirm")}`
+                `${t(["adminIdEditAdd-confirm"])}`
               )}
             </Button>
             <Button
               className={"w-36 md:w-64 btn-cancel"}
               onClick={() => navigate("/admin/terms")}
             >
-              {t("adminIdEditAdd-cancel")}
+              {t(["adminIdEditAdd-cancel"])}
             </Button>
           </div>
         </div>

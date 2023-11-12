@@ -13,12 +13,12 @@ const RangePicker: FC<RangePickerProps> = (props) => {
     <DatePicker
       range
       rangeHover
-      dateSeparator={t("rangePicker-To")}
+      dateSeparator={t(["rangePicker-To"])}
       calendar={persian}
       locale={persian_fa}
       calendarPosition="bottom-center"
       inputClass="input input-primary-theme w-full text-center bg-inherit text-sm"
-      placeholder={t("rangePicker-TimeRange")}
+      placeholder={t(["rangePicker-TimeRange"])}
       //   weekDays={PERSIAN_WEEKDAYS} it can be customized
       className="green text-xs"
       containerClassName="w-full"

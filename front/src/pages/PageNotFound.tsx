@@ -13,13 +13,13 @@ const PageNotFound: FC = () => {
       <div className="w-1/2 lg:w-2/5 h-1/2 flex flex-col justify-center">
         <img src={NotFoundImage} alt="404" className="w-full object-contain" />
         <p className="text-center text-normal md:text-lg text-primary-light">
-          {t("pagesPageNotFound1")}
+          {t(["pagesPageNotFound1"])}
         </p>
         <Button
           onClick={returnToLastRoute}
           className="text-lg btn-primary-theme mt-sm"
         >
-          {t("pagesPageNotFound2")}
+          {t(["pagesPageNotFound2"])}
         </Button>
       </div>
     </div>
