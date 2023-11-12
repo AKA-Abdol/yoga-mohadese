@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Player from "./components/Player";
 import TermController from "./components/TermController";
 import OpenCloseButton from "./components/Drawer/OpenCloseButton";
-import { MyContext } from "src/components/layout/BodyLayout";
+import { MyContext } from "src/components/layout/BodyLayoutFa";
 
 export const DrawerContext = createContext<{ onClose: () => void }>({
   onClose: () => {},

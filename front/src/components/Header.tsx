@@ -3,8 +3,6 @@ import homeIcon from "../assets/images/icon.png";
 import styles from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import iranFlag from "../assets/svgs/iranFlag.svg";
-import ukFlag from "../assets/svgs/ukFlag.svg";
 export default function Header() {
   const [menuState, setMenuState] = useState(false);
   const [showVorood, setShowVorood] = useState(true);
@@ -14,13 +12,6 @@ export default function Header() {
   function handleMenu() {
     setMenuState(!menuState);
     setShowVorood(!showVorood);
-  }
-
-  const { i18n } = useTranslation();
-
-  function changeLanguage(e: any) {
-    i18n.changeLanguage(e.target.id);
-    console.log(e.target.id);
   }
 
   return (
@@ -43,18 +34,6 @@ export default function Header() {
         >
           {t("header-signIn")}
         </Link>
-        <div
-          className={`${location.pathname === "/home" ? "" : "hidden"} ${
-            showVorood ? "" : "hidden"
-          }  flex justify-center items-center`}
-        >
-          <button onClick={(e) => changeLanguage(e)} id="en" value="en">
-            <img src={ukFlag} id="en" className="w-8 h-4" />
-          </button>
-          <button onClick={(e) => changeLanguage(e)} id="fa" value="fa">
-            <img src={iranFlag} id="fa" className="w-8 h-4" />
-          </button>
-        </div>
       </div>
 
       <div className={styles["home-link"]}>
