@@ -1,13 +1,15 @@
-import "i18next";
+import fa from "../i18n/locales/fa.translation.json"
+import { resources, defaultNS } from './i18n';
 
-import fa from "../i18n/locales/fa.translation.json";
-import en from "../i18n/locales/en.translation.json";
-
-declare module "i18next" {
+declare module 'react-i18next' {
   interface CustomTypeOptions {
-    defaultNS: "fa";
-    resources: {
-      fa: typeof fa;
-    };
+    defaultNS: typeof defaultNS;
+    resources: typeof resources['fa'];
+  }
+}
+
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    returnNull: false;
   }
 }
