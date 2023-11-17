@@ -42,13 +42,12 @@ export default function Header() {
       </div>
 
       <div
-        className={`${styles.sidenav} ${styles["grid-container"]} ${
-          menuState ? styles.activeNav : styles["not-activeNav"]
-        }`}
+        className={`${styles.sidenav} 
+        ${menuState ? styles.activeNav : styles["not-activeNav"]}`}
       >
         <Link
           to={"/home"}
-          className={`${styles["nav-links"]} ${styles.item1} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
@@ -57,7 +56,7 @@ export default function Header() {
         </Link>
         <Link
           to={"/auth"}
-          className={`${styles["nav-links"]} ${styles.item2} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
@@ -66,7 +65,7 @@ export default function Header() {
         </Link>
         <Link
           to={"/about"}
-          className={`${styles["nav-links"]} ${styles.item3} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
@@ -75,7 +74,7 @@ export default function Header() {
         </Link>
         <Link
           to={"/ticket"}
-          className={`${styles["nav-links"]} ${styles.item4} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
@@ -84,7 +83,7 @@ export default function Header() {
         </Link>
         <Link
           to={"/terms"}
-          className={`${styles["nav-links"]} ${styles.item5} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
@@ -93,7 +92,7 @@ export default function Header() {
         </Link>
         <Link
           to={"/contact"}
-          className={`${styles["nav-links"]} ${styles.item6} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}

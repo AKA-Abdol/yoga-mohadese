@@ -26,7 +26,7 @@ const AuditModal: FC<AuditModalProps> = (props) => {
   return (
     <Modal show={props.show} onClose={props.onClose}>
       <div className="w-full flex flex-col">
-        <div className="w-full py-md bg-primary text-primary-light flex items-center justify-around rounded-t-lg">
+        <div className="w-full py-md bg-primary text-primary-dark flex items-center justify-around rounded-t-lg">
           <p>{props.data.fullName}</p>
           <p>{props.data.phoneNumber}</p>
         </div>
@@ -130,7 +130,7 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
 
   return (
     <div className="h-full w-full flex flex-col items-center py-sm">
-      <p className="py-sm">{props.description}</p>
+      <p className="py-sm ">{props.description}</p>
       <form onSubmit={formik.handleSubmit} className="w-full">
         <Input
           name="password"
@@ -139,7 +139,7 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
           placeholder={t(["adminTickerAudit-newPass"])}
           value={formik.values.password}
           error={formik.errors.password}
-          className="text-center input-primary-theme"
+          className="text-center border border-emerald-950"
         />
         <div className="flex flex-row w-full justify-around pt-md">
           <Button type="submit" className="w-36 md:w-64 btn-primary-theme">

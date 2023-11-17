@@ -6,11 +6,11 @@ import { useTranslation } from "react-i18next";
 export default function Home() {
   const { t } = useTranslation();
   return (
-    <div className=" bg-[#b5dda4] w-full h-full overflow-hidden flex jus items-center flex-col">
+    <div className=" bg-[#EDEEE8] w-full h-full overflow-hidden flex jus items-center flex-col">
       <div className={styles.bg}></div>
       <Header />
       <h2
-        className={`my-auto z-10 flex justify-center items-center flex-col text-[#034732] ${styles.openingAnimation}`}
+        className={`my-auto z-10 flex justify-center items-center flex-col text-[#ABA39B] ${styles.openingAnimation}`}
       >
         <span className={styles["three-words1"]}>{t(["pagesHome1"])}</span>
         <span className={styles["three-words2"]}>{t(["pagesHome2"])}</span>

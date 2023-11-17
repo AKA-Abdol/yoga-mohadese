@@ -12,9 +12,7 @@
     overflow-y: hidden;
     overflow-x: hidden;
 }
-
 /* HAMBURGER MENU */
-
 .navBtn {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -22,57 +20,48 @@
     cursor: pointer;
     top: 1.5rem;
 }
-
 .menu-burguer {
     display: block;
     width: 100%;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 10px 0 #31393C;
     border-radius: 3px;
     height: 1px;
-    background: #000;
+    background: #31393C;
     transition: all .3s;
     position: relative;
 }
-
 .menu-burguer+.menu-burguer {
     margin-top: 14px;
 }
-
 .active .menu-burguer:nth-child(1) {
-    background-color: #B5DDA4;
-    box-shadow: 0 1px 5px 1px #00814870;
+    background-color: #D6CCC2;
+    box-shadow: 0 1px 5px 1px #F5EBE170;
     transition: color 0.7s ease;
     animation: ease .7s top forwards;
 }
-
 .not-active .menu-burguer:nth-child(1) {
     animation: ease .7s top-2 forwards;
 }
-
 .active .menu-burguer:nth-child(2) {
-    background-color: #B5DDA4;
-    box-shadow: 0 1px 5px 1px #00814870;
+    background-color: #D6CCC2;
+    box-shadow: 0 1px 5px 1px #F5EBE170;
     transition: color 0.7s ease;
     animation: ease .7s scaled forwards;
 }
-
 .not-active .menu-burguer:nth-child(2) {
     animation: ease .7s scaled-2 forwards;
 }
-
 .active .menu-burguer:nth-child(3) {
-    background-color: #B5DDA4;
-    box-shadow: 0 1px 5px 1px #00814870;
+    background-color: #D6CCC2;
+    box-shadow: 0 1px 5px 1px #F5EBE170;
     transition: color 0.7s ease;
     animation: ease .7s bottom forwards;
 }
-
 .not-active .menu-burguer:nth-child(3) {
     animation: ease .7s bottom-2 forwards;
 }
-
 .vorood {
-    color: #034732;
+    color: #31393C;
     font-size: 20px;
     z-index: 1;
     margin: 0 4rem;
@@ -83,14 +72,12 @@
     align-items: center;
     transition: all 0.5s ease;
 }
-
 .disNon {
-    color: #000;
+    color: #31393C;
 }
-
 .vorood:hover {
-    color: #B5DDA4;
-    background-color: #034732;
+    color: #D6CCC2;
+    background-color: #31393C;
 }
 
 @keyframes top {
@@ -109,7 +96,6 @@
         transform: rotate(45deg);
     }
 }
-
 @keyframes top-2 {
     0% {
         top: 15px;
@@ -126,7 +112,6 @@
         transform: rotate(0deg);
     }
 }
-
 @keyframes bottom {
     0% {
         bottom: 0;
@@ -143,7 +128,6 @@
         transform: rotate(135deg);
     }
 }
-
 @keyframes bottom-2 {
     0% {
         bottom: 16px;
@@ -160,7 +144,6 @@
         transform: rotate(0);
     }
 }
-
 @keyframes scaled {
     50% {
         transform: scale(0);
@@ -170,7 +153,6 @@
         transform: scale(0);
     }
 }
-
 @keyframes scaled-2 {
     0% {
         transform: scale(0);
@@ -195,37 +177,36 @@
     right: 0;
     overflow-y: hidden;
     overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 100px;
+    padding-top: 60px;
     text-align: center;
-    border: 1px solid #B5DDA4;
+    border: 1px solid #EDEEE8;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     transition: all 1s ease-in-out;
-    background-color: #000;
+    background-color: #31393C;
 }
 
 .nav-links {
     padding: .8rem;
     text-decoration: none;
-    font-size: 42px;
+    font-size: 28px;
     display: block;
     z-index: 1000;
     transition: all .15s ease;
 }
 
 .activeNavLinks {
-    color: #B5DDA4;
+    color: #EDEEE8;
     transition: all 1.5s ease;
 }
 
 .nav-links:hover {
-    color: #034732;
+    color: #D6CCC2;
 }
 
 .activeNav {
-    width: 100vw;
+    width: 300px;
     transition: 1s ease;
 }
 
@@ -246,10 +227,10 @@
 .img-link {
     width: 75px;
     height: 75px;
-    border: 2px solid #B5DDA4;
+    border: 2px solid #EDEEE8;
     border-radius: 50%;
     padding: 4px;
-    background-color: #B5DDA4;
+    background-color: #EDEEE8;
     transition: all 0.7s;
 }
 
@@ -257,56 +238,3 @@
     transform: rotate(15deg);
 }
 
-/* NAV MENU IN BIGGER SCREENS  */
-@media only screen and (min-width: 1020px) {
-    .item1 {
-        grid-area: home;
-    }
-
-    .item2 {
-        grid-area: login;
-    }
-
-    .item3 {
-        grid-area: yoga;
-    }
-
-    .item4 {
-        grid-area: reserve;
-    }
-
-    .item5 {
-        grid-area: terms;
-    }
-
-    .item6 {
-        grid-area: contact;
-    }
-
-    .item1,
-    .item2,
-    .item3 {
-        font-size: 62px;
-        display: grid;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .item4,
-    .item5,
-    .item6 {
-        font-size: 28px;
-        display: grid;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .grid-container {
-        display: grid;
-        overflow: hidden;
-        text-align: center;
-        grid-template-areas: 'home home reserve'
-            'login login terms'
-            'yoga yoga contact';
-    }
-}

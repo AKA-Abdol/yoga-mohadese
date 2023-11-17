@@ -2,13 +2,13 @@
     width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
-    background: #B5DDA4;
-    color: black;
+    background: #D6CCC2;
+    color: #31393C;
 }
 .terms{
     padding: 2rem;
     margin: 5rem 2rem 2rem 2rem;
-    background: linear-gradient(0deg, #B5DDA4 0%, #008148 100%);
+    background: linear-gradient(0deg, #D6CCC2 0%, #EDEEE8 100%);
 }
 .terms ul {
     list-style: none;

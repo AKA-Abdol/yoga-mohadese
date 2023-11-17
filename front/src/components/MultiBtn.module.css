@@ -14,18 +14,18 @@
 }
 
 .classBtns{
-    border: 1px solid #034732;
+    border: 1px solid #31393C;
     padding: 0.75rem 1.25rem;
     border-radius: 10px;
     font-size: 18px;
-    color: #034732;
+    color: #31393C;
     transition: all 0.5s ease;
 }
 
 .classBtns:hover{
-    border: 1px solid #B5DDA4;
-    color: #B5DDA4;
-    background-color: #034732;
+    border: 1px solid #D6CCC2;
+    color: #D6CCC2;
+    background-color: #31393C;
 }
 
 .faqContent{

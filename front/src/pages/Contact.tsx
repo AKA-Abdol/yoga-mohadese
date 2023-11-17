@@ -15,7 +15,7 @@ export default function Contact() {
       <Header />
       <div className={`${styles.pagecontainer}`}>
         <div
-          className={`rounded-md from-[#034732] via-[#008148] to-[#B5DDA4]  transition duration-1`}
+          className={`rounded-md from-[#F5EBE1] via-[#D6CCC2] to-[#EDEEE8]  transition duration-1`}
           style={{
             backgroundImage: `linear-gradient(${deg}deg, var(--tw-gradient-stops))`,
           }}

@@ -18,15 +18,15 @@ const SessionList: FC<WithTerm> = (props) => {
     <div
       className={classNames(
         "h-60 w-full flex flex-row py-sm overflow-x-auto md:h-80",
-        "bg-primary-dark",
+        "bg-primary-light",
         "pr-sm",
         !videoContext.selected.termId && "justify-center items-center"
       )}
     >
       {!videoContext.selected.termId ? (
-        <p className="text-primary-light">{t(["sessionList-noTermAvailableForYou"])}</p>
+        <p className="text-primary-dark">{t(["sessionList-noTermAvailableForYou"])}</p>
       ) : term.isError ? (
-        <p className="text-primary-light">{t(["sessionList-anIssueOccurred"])}</p>
+        <p className="text-primary-dark">{t(["sessionList-anIssueOccurred"])}</p>
       ) : term.isLoading ? (
         <Loading textColor="light" />
       ) : (

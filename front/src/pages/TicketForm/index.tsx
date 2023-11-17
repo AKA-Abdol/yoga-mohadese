@@ -61,7 +61,7 @@ const TicketForm: FC = () => {
   return (
     <div className={`w-full h-full px-lg py-sm flex justify-center`}>
       <Header />
-      <ToastContainer position="top-center" rtl={true} theme="colored" />
+      <ToastContainer position="top-center" rtl={true} theme="light" />
       <form
         className="w-full h-fit mt-24 lg:w-1/2"
         onSubmit={formik.handleSubmit}
