@@ -39,12 +39,13 @@
   justify-content: center;
   align-items: start;
   flex-direction: column;
-  color: #034732;
+  color: #31393C;
 }
 
 .homeh2 {
   transform: scale(0.94);
   animation: scale 1s forwards cubic-bezier(0.5, 1, 0.89, 1);
+  background-color: none;
 }
 
 @keyframes scale {

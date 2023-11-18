@@ -19,15 +19,9 @@ const SessionList: FC<WithTerm> = (props) => {
       )}
     >
       {!videoContext.selected.termId ? (
-<<<<<<< Updated upstream
         <p className="text-primary-light">ترمی برای شما وجود ندارد!</p>
       ) : term.isError ? (
         <p className="text-primary-light">مشکلی رخ داده است.</p>
-=======
-        <p className="text-primary-dark">{t(["sessionList-noTermAvailableForYou"])}</p>
-      ) : term.isError ? (
-        <p className="text-primary-dark">{t(["sessionList-anIssueOccurred"])}</p>
->>>>>>> Stashed changes
       ) : term.isLoading ? (
         <Loading textColor="light" />
       ) : (

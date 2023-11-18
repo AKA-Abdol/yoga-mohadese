@@ -3,11 +3,7 @@ import { SessionItemProps } from "./types";
 import { VideoContext } from "../../VideoContext";
 import { DrawerContext } from "../..";
 import classNames from "classnames";
-<<<<<<< Updated upstream
-=======
-import { useTranslation } from "react-i18next";
 import { English2Persian } from "src/utils/converts";
->>>>>>> Stashed changes
 
 const SessionItem: FC<SessionItemProps> = (props) => {
   const videoContext = useContext(VideoContext);
@@ -28,13 +24,8 @@ const SessionItem: FC<SessionItemProps> = (props) => {
       }}
     >
       <p
-<<<<<<< Updated upstream
         className={`text-lg text-primary-light`}
-      >{`ویدیو شماره ${props.data.num}`}</p>
-=======
-        className={`text-lg text-primary-dark`}
-      >{`${t(["sessionItem-videoNumber"])} ${English2Persian(props.data.num)}`}</p>
->>>>>>> Stashed changes
+      >{`ویدیو شماره ${English2Persian(props.data.num)}`}</p>
       <div className="h-full mask mask-squircle max-w-[60%]">
         <img src={props.data.thumbnail} alt="thumbnail" />
       </div>

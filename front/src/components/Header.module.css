@@ -12,7 +12,6 @@
     overflow-x: hidden;
 }
 /* HAMBURGER MENU */
-<<<<<<< Updated upstream
 .voroodBurgerContainer{
     z-index: 1000;
     display: flex;
@@ -25,9 +24,6 @@
     background: transparent;
     z-index: 1000;
 }
-
-=======
->>>>>>> Stashed changes
 .navBtn {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -79,7 +75,6 @@
     color: #31393C;
     font-size: 20px;
     z-index: 1;
-    
     padding: 0.8rem 1rem 0.5rem 1rem;
     border-radius: 5%;
     display: flex;
@@ -87,14 +82,8 @@
     align-items: center;
     transition: all 0.5s ease;   
 }
-<<<<<<< Updated upstream
-
-.disNon{
-    color: #000;
-=======
 .disNon {
     color: #31393C;
->>>>>>> Stashed changes
 }
 .vorood:hover {
     color: #D6CCC2;

@@ -7,13 +7,8 @@ const TermSelect: FC = () => {
   const videoContext = useContext(VideoContext);
   if (videoContext.terms.length === 0)
     return (
-<<<<<<< Updated upstream
       <p className="text-primary-dark text-lg">
         ترمی به شما اختصاص داده نشده است!
-=======
-      <p className="text-primary-dark text-lg ">
-        {t(["termSelect-noTermAssignedToYou"])}
->>>>>>> Stashed changes
       </p>
     );
   return (

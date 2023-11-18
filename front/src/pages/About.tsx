@@ -75,7 +75,7 @@ export default function About() {
         <MultiBtn contents={sampleList} />
       </div>
       <div className={`${styles.container3}`}>
-        <Link state={{ data: location.pathname }} to={"/ticket"} preventScrollReset={false}>
+        <Link className=" text-primary-light" state={{ data: location.pathname }} to={"/ticket"} preventScrollReset={false}>
           رزرو کلاس های حضوری
         </Link>{" "}
         {/* DOROOD BE SHARAFET ABDOLI */}
