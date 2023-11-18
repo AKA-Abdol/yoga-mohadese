@@ -9,13 +9,13 @@ module.exports = {
       colors: {
         /*  PUT YOUR VARIABLES HERE  */
         primary: {
-          light: "#EDEEE8",
-          DEFAULT: "#D6CCC2",
-          dark: "#31393C",
+          light: "#B5DDA4",
+          DEFAULT: "#008148",
+          dark: "#034732",
         },
-        secondary: "#F5EBE1",
+        secondary: "#96C5F7",
         white: "#ecece0",
-        error: "#472836",
+        error: "#bc4749",
       },
       padding: {
         sm: "0.5rem",

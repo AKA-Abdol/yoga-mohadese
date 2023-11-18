@@ -4,25 +4,22 @@ import { English2Persian } from "src/utils/converts";
 import { VideoContext } from "../../VideoContext";
 import { isoStringDateDiffFromNow } from "src/utils/dates";
 import { WithTerm } from "./types";
-import { useTranslation } from "react-i18next";
 
 const RemainedDays: FC<WithTerm> = (props) => {
-  const {t} = useTranslation()
-
   const videoContext = useContext(VideoContext);
   const term = props.term;
   return (
     <div className={classNames("w-full flex justify-center")}>
       <p className="text-sm bg-primary-dark text-primary-light p-md rounded-md">
         {!videoContext.selected.termId
-          ? `${t(["remainedDays-numberOfTermDaysIsNotSpecified"])}`
+          ? "تعداد روز ترم مشخص نیست"
           : term.isError
-          ? `${t(["remainedDays-anErrorOccurred"])}`
+          ? "خطایی رخ داده است"
           : term.isLoading
           ? "..."
           : `${English2Persian(
               `${isoStringDateDiffFromNow(term.data.course.end_date)}`
-            )} ${t(["remainedDays-daysLeft"])}`}
+            )} روز مانده`}
       </p>
     </div>
   );

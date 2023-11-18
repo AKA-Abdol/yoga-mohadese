@@ -3,20 +3,24 @@
 /* Firefox */
 * {
   scrollbar-width: auto;
-  scrollbar-color: #D6CCC2 #31393C;
+  scrollbar-color: #008148 #ffffff00;
 }
+
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;
 }
+
 *::-webkit-scrollbar-track {
-  background: #31393C;
+  background: #ffffff00;
 }
+
 *::-webkit-scrollbar-thumb {
-  background-color: #D6CCC2;
+  background-color: #008148;
   border-radius: 10px;
-  border: 0px solid #31393C;
+  border: 0px solid #ffffff00;
 }
+
 /* THIS IS A VERY HANDY CLASS */
 .justifier {
   text-align: justify;
@@ -31,8 +35,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: radial-gradient(farthest-corner at 40px 40px, #D6CCC2 0%, #F5EBE1 100%);
-  color: #31393C;
+
+  background: radial-gradient(farthest-corner at 40px 40px, #034732 0%, #008148 100%);
+  color: #B5DDA4;
+
+  direction: rtl;
+
+  font-family: IRANRounded !important;
 }
 
 /* ABOUT CONTENT */
@@ -67,8 +76,8 @@
 .vertical-line {
   width: 2px;
   height: 20vh;
-  box-shadow: 0 0 10px 5px #31393C70;
-  background-color: #31393C70;
+  box-shadow: 0 0 10px 5px #B5DDA4;
+  background-color: #B5DDA4;
   display: inline-block;
 }
 
@@ -76,7 +85,7 @@
 .h2Styles {
   margin-bottom: 1rem;
   font-size: 36px;
-  color: #31393C;
+  color: #034732;
 }
 
 /* LIGT SIDE */
@@ -86,7 +95,7 @@
   align-items: center;
   flex-direction: column;
 
-  background: radial-gradient(farthest-corner at 0px 0px, #F5EBE1 0%, #EDEEE8 100%);
+  background: radial-gradient(farthest-corner at 0px 0px, #008148 0%, #B5DDA4 100%);
 }
 
 .container1 {
@@ -106,9 +115,9 @@
 }
 
 .divider {
-  border: 1px solid #31393C;
-  box-shadow: 0 0 5px #31393C80;
-  background-color: #31393C;
+  border: 1px solid #034732;
+  box-shadow: 0 0 3px #008148;
+  background-color: #034732;
   width: 90%;
   height: 2px;
   margin-bottom: 1rem;
@@ -136,7 +145,7 @@
 
 .arrow:before,
 .arrow:after {
-  background: #31393C;
+  background: #034732;
   content: '';
   display: block;
   height: 3px;
@@ -179,8 +188,8 @@
   width: 100vw;
   height: 5vh;
   background-image: url("https://www.transparenttextures.com/patterns/swirl.png");
-  background-color: #31393C;
-  color: #EDEEE8;
+  background-color: #034732;
+  color: #B5DDA4;
   padding: 2rem;
 }
 
@@ -194,8 +203,8 @@
 }
 
 .customBG {
-  background-color: #D6CCC2;
-  color: #31393C;
+  background-color: #a4d290;
+  color: #034732;
 }
 
 .customFlashing{
@@ -204,12 +213,12 @@
 
 @keyframes colorToggle {
   0%, 100% {
-    background-color: #D6CCC2;
-    color: #31393C;
+    background-color: #a4d290;
+    color: #034732;
   }
   50% {
-    background-color: #31393C;
-    color: #D6CCC2;
+    background-color: #034732;
+    color: #a4d290;
   }
 }
 

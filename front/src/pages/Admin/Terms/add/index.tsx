@@ -12,10 +12,8 @@ import { TermInitialValues } from "./types";
 import { ADD_TERM_URL } from "./api.data";
 import { localTerm2api } from "./api.converter";
 import RangePicker from "src/components/ui/RangePicker";
-import { useTranslation } from "react-i18next";
 
 const AddTerm: FC = () => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const mutation = useMutation(api.post(ADD_TERM_URL, localTerm2api));
   const formik = useFormik({
@@ -39,7 +37,7 @@ const AddTerm: FC = () => {
         >
           <Input
             onChange={formik.handleChange}
-            placeholder={t(["adminIdEditAdd-title"])}
+            placeholder="عنوان"
             className="text-center w-full input-primary-theme"
             id="title"
             name="title"
@@ -52,7 +50,7 @@ const AddTerm: FC = () => {
             id="level"
             name="level"
             classnames="text-center bg-inherit"
-            placeholder={t(["adminIdEditAdd-selectLevel"])}
+            placeholder="انتخاب سطح"
             error={formik.errors.level}
           />
           <RangePicker
@@ -63,7 +61,7 @@ const AddTerm: FC = () => {
           />
           <TextArea
             onChange={formik.handleChange}
-            placeholder={t(["adminIdEditAdd-description"])}
+            placeholder="توضیحات"
             className="text-center w-full input-primary-theme"
             id="description"
             name="description"
@@ -75,14 +73,14 @@ const AddTerm: FC = () => {
               {mutation.isLoading ? (
                 <span className="loading loading-infinity loading-lg" />
               ) : (
-                `${t(["adminIdEditAdd-confirm"])}`
+                "تایید"
               )}
             </Button>
             <Button
               className={"w-36 md:w-64 btn-cancel"}
               onClick={() => navigate("/admin/terms")}
             >
-              {t(["adminIdEditAdd-cancel"])}
+              لغو
             </Button>
           </div>
         </div>

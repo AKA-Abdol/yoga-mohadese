@@ -18,10 +18,8 @@ import { LOGIN_URL } from "../api.data";
 import { IApiPostLogin } from "../api.types";
 import { loginFormValues2Api } from "../api.converter";
 import { Link, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 export const LoginForm: FC<AuthFormProps> = (props) => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   let location = useLocation();
 
@@ -46,7 +44,7 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
         <Error>{mutation.isError && (mutation.error as any).message}</Error>
         <Input
           onChange={formik.handleChange}
-          placeholder={t(["pagesAuthLoginForm-username"])}
+          placeholder="نام کاربری"
           className="text-center w-full input-primary-theme"
           id="username"
           name="username"
@@ -55,7 +53,7 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
         />
         <Input
           onChange={formik.handleChange}
-          placeholder={t(["pagesAuthLoginForm-password"])}
+          placeholder="رمز عبور"
           className="text-center w-full input-primary-theme"
           type="password"
           id="password"
@@ -67,21 +65,21 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
           {mutation.isLoading ? (
             <span className="loading loading-infinity loading-lg" />
           ) : (
-            `${t(["pagesAuthLoginForm-login"])}`
+            "ورود"
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
           <p className="text-primary-dark text-xs text-center">
-            {t(["pagesAuthLoginForm-username"])}{" "}
-            <AttentionSpan onClick={props.onToggleAuth}>{t(["pagesAuthLoginForm-signup"])}</AttentionSpan>
+            قبلا ثبت نام نکرده اید؟{" "}
+            <AttentionSpan onClick={props.onToggleAuth}>ثبت نام</AttentionSpan>
           </p>
           <Link
             state={{ data: location.pathname }}
             to={"/ticket"}
             className="text-primary-dark text-xs text-center"
           >
-            {t(["pagesAuthLoginForm-forgotYourPassword"])}
-            <AttentionSpan>{t(["pagesAuthLoginForm-forgotPassword"])}</AttentionSpan>
+            رمز عبور خود را فراموش کرده‌اید ؟
+            <AttentionSpan>فراموشی رمز عبور</AttentionSpan>
           </Link>
         </div>
       </div>

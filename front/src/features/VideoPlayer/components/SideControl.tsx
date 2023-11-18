@@ -7,10 +7,8 @@ import hideIcon from "src/assets/images/hide-icon.png";
 import showIcon from "src/assets/images/show-icon.png";
 import ModalImageButton from "./ModalImageButton";
 import { SideControlProps } from "./types";
-import { useTranslation } from "react-i18next";
 
 const SideControl: FC<SideControlProps> = (props) => {
-  const {t} = useTranslation()
   const [visiblity, setVisibility] = useState<boolean>(true);
   return (
     <div
@@ -25,21 +23,21 @@ const SideControl: FC<SideControlProps> = (props) => {
         <ImageButton
           onClick={() => setVisibility(false)}
           src={hideIcon}
-          alt={t(["sideControl-hide"])}
-          subtitle={t(["sideControl-hide"])}
+          alt="پنهان"
+          subtitle="پنهان"
           className="-space-y-1"
         />
         <ModalImageButton
           src={infoIcon}
-          alt={t(["sideControl-info"])}
-          subtitle={t(["sideControl-info"])}
+          alt="اطلاعات"
+          subtitle="اطلاعات"
           className="space-y-1"
           id={props.infoModalId}
         />
         <ModalImageButton
           src={playlistIcon}
-          alt={t(["sideControl-sessions"])}
-          subtitle={t(["sideControl-sessions"])}
+          alt="جلسات"
+          subtitle="جلسات"
           id={props.sessionListModalId}
         />
       </div>
@@ -47,8 +45,8 @@ const SideControl: FC<SideControlProps> = (props) => {
         <ImageButton
           onClick={() => setVisibility(true)}
           src={showIcon}
-          alt={t(["sideControl-watch"])}
-          subtitle={t(["sideControl-watch"])}
+          alt="مشاهده"
+          subtitle="مشاهده"
           className="-space-y-1"
         />
       </div>

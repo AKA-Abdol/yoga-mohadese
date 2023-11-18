@@ -14,12 +14,10 @@ import { ApiTermSchema } from "../types";
 import api from "src/services";
 import { TERM_URL } from "../api.data";
 import { apiTerm2local } from "../api.converter";
-import { useTranslation } from "react-i18next";
 
 const PER_PAGE = 9;
 
 const Terms: FC = () => {
-  const {t} = useTranslation()
   const navigate = useNavigate();
   const [modalState, setModalState] = useState<IDeleteModalState>(
     initialDeleteModalState
@@ -61,14 +59,14 @@ const Terms: FC = () => {
           className="btn-primary-theme"
           onClick={() => navigate("/admin/terms/add")}
         >
-          {t(["adminTermIndex-addTerm"])}
+          + ایجاد ترم جدید
         </Button>
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col space-y-sm py-md items-center overflow-auto">
         {termData.isLoading || termData.isError ? (
           <Loading />
         ) : termData.data.count === 0 ? (
-          <p>{t(["adminTermIndex-noTerm"])}</p>
+          <p>ترمی یافت نشد</p>
         ) : (
           termData.data.values
             .map(apiTerm2local)

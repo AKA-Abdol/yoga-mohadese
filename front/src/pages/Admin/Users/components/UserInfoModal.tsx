@@ -7,10 +7,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "src/services";
 import { BASE_USER_URL } from "../api.data";
 import Loading from "src/components/ui/Loading";
-import { useTranslation } from "react-i18next";
 
 const UserInfoModal: FC<UserInfoModalProps> = (props) => {
-  const { t } = useTranslation();
   const [note, setNote] = useState("");
   const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ["note", props.userId],
@@ -35,7 +33,7 @@ const UserInfoModal: FC<UserInfoModalProps> = (props) => {
   return (
     <Modal show={props.show} onClose={props.onClose}>
       <div className="w-full flex flex-col">
-        <div className="w-full py-md bg-primary text-primary-dark flex items-center justify-around rounded-t-lg">
+        <div className="w-full py-md bg-primary text-primary-light flex items-center justify-around rounded-t-lg">
           <p>{props.fullName}</p>
         </div>
         <div className="w-full bg-primary-light text-primary-dark p-sm">
@@ -45,7 +43,7 @@ const UserInfoModal: FC<UserInfoModalProps> = (props) => {
             <TextArea
               onChange={(e) => setNote(e.target.value)}
               name="note"
-              placeholder={t(["adminUsersInfoModal-note"])}
+              placeholder="یادداشت"
               value={note}
               className="w-full text-center"
             />

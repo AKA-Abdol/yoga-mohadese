@@ -5,10 +5,8 @@ import { useFormik } from "formik";
 import { FC } from "react";
 import { AddVideoItemProps, AddVideoSchema } from "./types";
 import { Persian2English } from "src/utils/converts";
-import { useTranslation } from "react-i18next";
 
 const AddVideoItem: FC<AddVideoItemProps> = (props) => {
-  const {t} = useTranslation()
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -30,14 +28,14 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
   return (
     <Card flexDirection="row" justify="between" classnames={`h-14 w-full`}>
       <form
-        className="w-full h-full flex flex-row items-center gap-2"
+        className="w-full h-full flex flex-row items-center"
         onSubmit={formik.handleSubmit}
       >
         <div className="w-24 h-full">
           <Input
             name="num"
             id="num"
-            placeholder={t(["adminAddVideoItem-number"])}
+            placeholder="شماره"
             className="w-full h-full input-primary-theme text-center text-xs"
             onChange={formik.handleChange}
             value={formik.values.num}
@@ -50,7 +48,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="title"
             id="title"
-            placeholder={t(["adminAddVideoItem-title"])}
+            placeholder="عنوان"
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.title}
@@ -63,7 +61,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="link"
             id="link"
-            placeholder={t(["adminAddVideoItem-link"])}
+            placeholder="لینک"
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.link}
@@ -76,7 +74,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
           <Input
             name="thumbnailLink"
             id="thumbnailLink"
-            placeholder={t(["adminAddVideoItem-thumbnail"])}
+            placeholder="لینک نمایه"
             className="w-full h-full input-primary-theme text-center"
             onChange={formik.handleChange}
             value={formik.values.thumbnailLink}

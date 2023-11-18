@@ -17,10 +17,8 @@ import Header from "src/components/Header";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useTranslation } from "react-i18next";
 
 const TicketForm: FC = () => {
-  const { t } = useTranslation();
   const location = useLocation();
   useEffect(() => {
     const historyPath = location.state?.data;
@@ -55,24 +53,25 @@ const TicketForm: FC = () => {
   if (mutation.isSuccess) {
     mutation.reset();
     formik.setValues(ticketInitialValues);
-    toast.success(`${t(["pagesTickerIndex-yourReq"])}`);
+    toast.success("درخواست شما ارسال شد. با شما در ارتباط خواهیم بود.");
   }
 
   return (
     <div className={`w-full h-full px-lg py-sm flex justify-center`}>
       <Header />
-      <ToastContainer position="top-center" rtl={true} theme="light" />
-      <form
-        className="w-full h-fit mt-24 lg:w-1/2"
-        onSubmit={formik.handleSubmit}
-      >
+      <ToastContainer
+        position="top-center"
+        rtl={true}
+        theme="colored"
+      />
+      <form className="w-full h-fit mt-24 lg:w-1/2" onSubmit={formik.handleSubmit}>
         <div
           className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg"
           style={{ direction: "ltr" }}
         >
           <Input
             onChange={formik.handleChange}
-            placeholder={t(["pagesTickerIndex-fullName"])}
+            placeholder="نام و نام خانوادگی *"
             className="text-center w-full input-primary-theme"
             id="fullName"
             name="fullName"
@@ -81,7 +80,7 @@ const TicketForm: FC = () => {
           />
           <Input
             onChange={formik.handleChange}
-            placeholder={t(["pagesTickerIndex-phoneNumber"])}
+            placeholder="شماره تلفن *"
             className="text-center w-full input-primary-theme"
             id="phoneNumber"
             name="phoneNumber"
@@ -95,14 +94,14 @@ const TicketForm: FC = () => {
             value={formik.values.type}
             id="type"
             name="type"
-            placeholder={t(["pagesTickerIndex-select"])}
+            placeholder={`نوع درخواست خود را انتخاب کنید`}
             error={formik.errors.type}
             classnames="text-center"
             optionsClassnames="text-center"
           />
           <TextArea
             onChange={formik.handleChange}
-            placeholder={t(["pagesTickerIndex-description"])}
+            placeholder="توضیحات"
             className="text-center w-full input-primary-theme text-le"
             id="description"
             name="description"
@@ -114,7 +113,7 @@ const TicketForm: FC = () => {
               {mutation.isLoading ? (
                 <span className="loading loading-infinity loading-lg" />
               ) : (
-                `${t(["pagesTickerIndex-confirm"])}`
+                "تایید"
               )}
             </Button>
           </div>

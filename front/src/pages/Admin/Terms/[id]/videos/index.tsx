@@ -14,10 +14,8 @@ import Loading from "src/components/ui/Loading";
 import { BASE_TERM_URL } from "../../api.data";
 import { TERM_VIDEO_URL } from "./api.data";
 import { makeTextShort } from "src/utils/textManuplator";
-import { useTranslation } from "react-i18next";
 
 const TermVideos: FC = () => {
-  const {t} = useTranslation()
   const { id } = useParams();
   const queryClient = useQueryClient();
   const term = useQuery({
@@ -75,7 +73,7 @@ const TermVideos: FC = () => {
           className="btn-primary-theme w-full"
           onClick={() => setAddState("adding")}
         >
-          {t(["adminTermIndex-addNewVideo"])}
+          + ایجاد ویدیو جدید
         </Button>
       </div>
     </div>

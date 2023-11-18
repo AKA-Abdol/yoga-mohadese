@@ -2,41 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  input,
-  textarea,
-  select,
-  a,
-  p,
-  li,
-  div,
-  html {
-    font-family: "Montserrat", IRANRounded;
-  }
-}
-
 /* FONT */
 @font-face {
   font-family: IRANRounded;
   font-style: normal;
   font-weight: 900;
   src: url("./assets/font/fonts/eot/IRAN-Rounded.eot");
-  src: url("./assets/font/fonts/eot/IRAN-Rounded.eot?#iefix") format("embedded-opentype"),
-    /* IE6-8 */
-    url("./assets/font/fonts/woff/IRAN-Rounded.woff") format("woff"),
+  src: url("./assets/font/fonts/eot/IRAN-Rounded.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-8 */ url("./assets/font/fonts/woff/IRAN-Rounded.woff") format("woff"),
     /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-    url("./assets/font/fonts/ttf/IRAN Rounded.ttf") format("truetype");
+      url("./assets/font/fonts/ttf/IRAN Rounded.ttf") format("truetype");
+}
+/*    FOR PERSIAN FONTS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select,
+a,
+p,
+div {
+  font-family: IRANRounded !important;
+}
+
+* {
+  direction: rtl;
 }
 
 .input-primary-theme {
-  @apply text-primary-dark border border-primary-dark placeholder-primary-dark focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
+  @apply text-primary-dark placeholder-primary-light focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
 }
 
 .btn-primary-theme {
@@ -53,11 +52,11 @@
 
 /* dropdown multi select styles */
 .rmsc {
-  --rmsc-main: #D6CCC2 !important;
-  --rmsc-bg: #31393C !important;
-  --rmsc-hover: #D6CCC2 !important;
-  --rmsc-selected: #D6CCC2 !important;
-  --rmsc-gray: #EDEEE8 !important;
+  --rmsc-main: #008148 !important;
+  --rmsc-bg: #034732 !important;
+  --rmsc-hover: #008148 !important;
+  --rmsc-selected: #008148 !important;
+  --rmsc-gray: #b5dda4 !important;
   --rmsc-radius: 8px !important;
   --rmsc-h: 3rem !important;
 }
@@ -65,3 +64,4 @@
 .dropdown-content div * {
   margin-right: 3px;
 }
+

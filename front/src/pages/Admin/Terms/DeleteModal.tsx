@@ -7,10 +7,8 @@ import { getLevelTitle } from "./utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "src/services";
 import { BASE_TERM_URL } from "./api.data";
-import { useTranslation } from "react-i18next";
 
 const DeleteModal: FC<DeleteModalProps> = (props) => {
-  const { t } = useTranslation();
   const { id, level, title } = props.term;
 
   const queryClient = useQueryClient();
@@ -33,9 +31,9 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
           "rounded-md"
         )}
       >
-        <p>{t(["adminTermDelete-youSure"])}</p>
+        <p>آیا از حذف</p>
         <p className="text-xl">{`${title} (${getLevelTitle(level)})`}</p>
-        <p>{t(["adminTermDelete-thisTerm"])}</p>
+        <p>اطمینان دارید؟</p>
         <div className="flex flex-row w-full justify-around pt-md">
           <Button
             onClick={async () => {
@@ -43,10 +41,10 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
             }}
             className="w-36 md:w-64 btn-primary-theme"
           >
-            {t(["adminTermDelete-confirm"])}
+            تایید
           </Button>
           <Button onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
-          {t(["adminTermDelete-cancel"])}
+            انصراف
           </Button>
         </div>
       </div>

@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { FC, createContext, useEffect } from "react";
+import { FC, createContext } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { tokenPersistor } from "src/persistors/auth";
 import api from "src/services";
 import { WithId } from "src/types/base";
-import { useTranslation } from "react-i18next";
 
 export const MyContext = createContext<{ firstname: string }>({
   firstname: "",
@@ -20,12 +19,6 @@ const BodyLayout: FC = () => {
     }>(`user/my`),
     retry: 1,
   });
-
-  const { i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage("en");
-    console.log("switched to english");
-  }, []);
 
   if (
     myData.isError &&

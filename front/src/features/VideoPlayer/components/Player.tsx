@@ -18,10 +18,8 @@ import Hls from "hls.js";
 import { QualityItem } from "./Player.types";
 import qualitySettingIcon from "src/assets/images/setting-icon.png";
 import { TERM_VIDEO_URL } from "src/pages/Admin/Terms/[id]/videos/api.data";
-import { useTranslation } from "react-i18next";
 
 const Player: FC = (props) => {
-  const {t} = useTranslation()
   const [videoState, setVideoState] = useState<"play" | "pause">("play");
   const [seenTime, setSeenTime] = useState(1);
   const [lastSeen, setLastSeen] = useState(0);
@@ -126,14 +124,14 @@ const Player: FC = (props) => {
   if (!videoContext.selected.termId)
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <p className="text-primary-light">{t(["player-noTermAvailableForYou"])}</p>
+        <p className="text-primary-light">ترمی برای شما وجود ندارد</p>
       </div>
     );
 
   if (!videoContext.selected.sessionNum)
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <p className="text-primary-light">{t(["player-selectASession"])}</p>
+        <p className="text-primary-light">یک جلسه انتخاب کنید!</p>
       </div>
     );
 
