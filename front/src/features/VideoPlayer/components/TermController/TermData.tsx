@@ -11,8 +11,11 @@ import TermDescription from "./TermDescription";
 import Button from "src/components/ui/Button";
 import { tokenPersistor } from "src/persistors/auth";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const TermData: FC = () => {
+  const {t} = useTranslation()
+;  
   const navigate = useNavigate();
   const videoContext = useContext(VideoContext);
   const term = useQuery({
@@ -37,7 +40,7 @@ const TermData: FC = () => {
               navigate("/");
             }}
           >
-            خروج
+            {t(["termData-exit"])}
           </Button>
         </div>
       </div>

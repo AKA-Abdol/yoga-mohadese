@@ -2,6 +2,7 @@ import { FC } from "react";
 import Button from "../Button";
 import { English2Persian } from "src/utils/converts";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 
 interface PaginationProps {
   page: number;
@@ -11,6 +12,8 @@ interface PaginationProps {
 }
 
 const Pagination: FC<PaginationProps> = (props) => {
+  const {t} = useTranslation();
+  
   const lastPage = Math.ceil(props.totalCount / props.perPage);
   const goNextPage = () => {
     if (props.page !== lastPage) props.setPage(props.page + 1);
@@ -25,19 +28,19 @@ const Pagination: FC<PaginationProps> = (props) => {
           className="btn-primary-theme rounded-l-none text-normal"
           onClick={goNextPage}
         >
-          بعدی
+          {t(["pagination-next"])}
         </Button>
         <Button
           className={classNames(
             "btn-primary-theme rounded-none text-xl",
             props.page === lastPage && "btn-primary-active"
           )}
-        >{`صفحه ${English2Persian(`${props.page}`)}`}</Button>
+        >{`${t(["pagination-page"])} ${English2Persian(`${props.page}`)}`}</Button>
         <Button
           className="btn-primary-theme rounded-r-none text-normal mr-[1px]"
           onClick={goPreviousPage}
         >
-          قبلی
+          {t(["pagination-previous"])}
         </Button>
       </div>
     </div>

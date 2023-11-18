@@ -1,0 +1,283 @@
+{
+    "components-ui-pagination-index": [
+        "Next",
+        "Page",
+        "Previous"
+    ],
+    "components-ui-RangePicker": [
+        "  To  ",
+        "Time Range"
+    ],
+    "components-ui-SearchInput": [
+        "Search"
+    ],
+    "components-Header": [
+        "Home",
+        "Sign Up / Log In",
+        "Yoga with Mehdi",
+        "Submit Request",
+        "Terms",
+        "Contact Us"
+    ],
+    "feature-VideoPlayer-components-SessionList-index": [
+        "No term available for you!",
+        "An issue occurred.",
+        "No sessions available yet!"
+    ],
+    "feature-VideoPlayer-components-SessionList-SeassionItem": [
+        "Video Number"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-RemainDays": [
+        "Number of term days is not specified",
+        "An error occurred",
+        "Days Left"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-TermData": [
+        "Exit"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-TermDescription": [
+        "Term content is not available",
+        "An error occurred"
+    ],
+    "feature-VideoPlayer-components-SessionList-TermController-TermSelect": [
+        "No term assigned to you!"
+    ],
+    "feature-VideoPlayer-components-player": [
+        "No term available for you",
+        "Select a session!"
+    ],
+    "feature-VideoPlayer-components-SideControl": [
+        "Hide",
+        "Info",
+        "Sessions",
+        "Watch"
+    ],
+    "pages-Admin-Terms-[id]-edit-index": [
+        "Title",
+        "Select Level",
+        "Description",
+        "Confirm",
+        "Cancel"
+    ],
+    "pages-Admin-Terms-[id]-videos-component-AddVideoItem": [
+        "Number",
+        "Title",
+        "Link",
+        "Thumbnail Link"
+    ],
+    "pages-Admin-Terms-[id]-videos-index": [
+        "+ Add New Video"
+    ],
+    "pages-Admin-Terms-add-": [
+        "Title",
+        "Select Level",
+        "Description",
+        "Confirm",
+        "Cancel"
+    ],
+    "pages-Admin-Terms-DeleteModal": [
+        "Are you sure you want to delete",
+        "this term?",
+        "Confirm",
+        "Cancel"
+    ],
+    "pages-Admin-Terms-index": [
+        "+ Add New Term",
+        "No term found"
+    ],
+    "pages-Admin-Ticket-components-AuditModal": [
+        "Handled",
+        "Cancel",
+        "Minimum 8 characters",
+        "New Password",
+        "Handled",
+        "Cancel"
+    ],
+    "pages-Admin-Users-components-UserInfoModal": [
+        "Note"
+    ],
+    "pages-Admin-Users-UserItem": [
+        "Select All",
+        "No Term"
+    ],
+    "pages-Admin-index": [
+        "Users",
+        "Terms",
+        "Tickets"
+    ],
+    "pages-Auth-components-LoginForm": [
+        "Username",
+        "Password",
+        "Login",
+        "Don't have an account yet?",
+        "Forgot your password?",
+        "Forgot Password"
+    ],
+    "pages-Auth-components-SignupForm": [
+        "Username",
+        "First Name",
+        "Last Name",
+        "Phone Number",
+        "Email",
+        "Password",
+        "Confirm Password",
+        "Sign Up",
+        "Already have an account?",
+        "Forgot your password?",
+        "Forgot Password"
+    ],
+    "pages-Auth-types": [
+        "Minimum 3 characters",
+        "Maximum 20 characters",
+        "Username can only contain English letters, dots, and underscores",
+        "Required",
+        "Minimum 8 characters",
+        "Required",
+        "Name must be in Persian",
+        "Required",
+        "Name must be in Persian",
+        "Required",
+        "Invalid phone number",
+        "Required",
+        "Not valid",
+        "Minimum 8 characters",
+        "Required"
+    ],
+    "pages-Auth-validation": [
+        "Either email or phone number is required",
+        "Either phone number or email is mandatory"
+    ],
+    "pages-TicketForm-api": [
+        "No description provided"
+    ],
+    "pages-TicketForm-index": [
+        "Your request has been sent. We will get in touch with you soon.",
+        "Full Name *",
+        "Phone Number *",
+        "Select your request type",
+        "Description",
+        "Confirm"
+    ],
+    "pages-TicketForm-types": [
+        "Maximum 200 characters",
+        "Minimum 3 words",
+        "Name must be in Persian",
+        "Required",
+        "Invalid phone number",
+        "Required",
+        "Required"
+    ],
+    "pages-About": [
+        "This course is designed for enthusiasts with no sports or yoga background in eight sessions.",
+        "Beginner",
+        "**Coming Soon** If you are familiar with the basics of yoga or have completed the beginner course, this course is suitable for you. Each term consists of eight sessions, and a new cycle is presented every month. You have only one month from the registration date to attend these sessions.",
+        "Intermediate",
+        "**Coming Soon** This course is suitable for enthusiasts with at least one year of yoga experience. Each term includes eight sessions with diverse and new exercises for intermediate to advanced levels. You have one month from the registration date to attend these sessions.",
+        "Advanced",
+        "Mohadeseh strives to provide yoga teachings for anyone seeking a complete solution for their mind and body. A response she received after a serious accident. She was a former competitive swimmer until her life took a different turn due to an accident. After this accident, she had to rest completely for up to 8 months. During this time, she almost completely lost her physical abilities, and miraculously, she remained unharmed after a spinal cord injury. After this incident, she became familiar with yoga, a discipline she considered the most comprehensive answer to her physical and mental needs. After receiving this ray of light and energy, she decided to share it with others who are thirsty for this light.",
+        "Start Yoga with Mohadeseh",
+        "After choosing the course you want to participate in, proceed to pay the class fee via the link provided in your user panel. Then access to the course will be available in your user panel.",
+        "What should I do to attend in-person classes?",
+        "By filling out the",
+        "In-person Class Reservation Form",
+        ", the registration officer will contact you and guide you during the registration for the new term.",
+        "Where are the in-person classes held?",
+        "Tehran, Niavaran",
+        "Are the classes broadcast live online?",
+        "No, due to internet limitations and the busy current lifestyles, an opportunity has been provided for you as enthusiasts to watch the classes anytime you want. Therefore, all sessions are available to you right from the beginning and you can benefit from these sessions until the end of the term.",
+        "What if I can't attend the sessions in one term?",
+        "After five weeks, your access to the videos will be cut off, and there is no possibility of refund or transfer of sessions. You must plan to be able to practice an average of two sessions per week.",
+        "Is it possible to change the level after registration and the start of the course?",
+        "Yes, if you feel the class is too hard or easy for you within 48 hours, you can change your class level by coordinating with the admin.",
+        "Is it possible to withdraw from the course?",
+        "Yes, in case of withdrawal within 48 hours, the entire course fee will be refunded to you. After 48 hours, withdrawal is not possible, and the responsibility for not attending the sessions lies with the participant.",
+        "How long are the classes and how many sessions are in each course?",
+        "Each class is one hour, and each course includes eight sessions per month.",
+        "One yoga mat (thickness: 6mm). One belt (length: 3 meters). Two yoga bricks. One small blanket or towel.",
+        "Can I participate in the class if I have a physical injury?",
+        "Your doctor's opinion takes precedence. With the doctor's approval, if there is a serious injury, only in-person classes are allowed.",
+        "How long do I have to stay at each level to master the movements?",
+        "Due to differences in sports background, exercise duration, genetics, and individual interest, it varies. Usually, it takes between several months to a year of continuous practice for the movements to settle in your body."
+    ],
+    "pages-Contact": [
+        "Get in touch with us",
+        "Mohadeseh's Instagram page: yoga.mohadese",
+        "Admin's Instagram page: mohadese.admin",
+        "Telegram channel: yogamohadeseh",
+        "WhatsApp number: +989206490549",
+        "WhatsApp number: +989019080654"
+    ],
+    "pages-Home": [
+        "Rise",
+        "and",
+        "Shine",
+        "Get Started"
+    ],
+    "pages-PageNotFound": [
+        "404 | Page Not Found",
+        "Back"
+    ],
+    "pages-Reserve": [
+        "Please enter your full name",
+        "Please enter your mobile number using English numerals",
+        "Please wait a moment.",
+        "Your information has been recorded. We will contact you at the earliest opportunity.",
+        "Contact Form",
+        "To reserve for in-person classes and get more information, you can submit the form below, and we will message you on WhatsApp.",
+        "Name",
+        "Phone Number",
+        "Email",
+        "Send"
+    ],
+    "pages-Terms": [
+        "Terms and Conditions",
+        "Participants using online class services (link to classes page) are not allowed to record, download, or share classes and disclose their usernames and passwords to others, ethically and culturally.",
+        "Pupils can watch each class session up to 4 times in each monthly course. This limitation is imposed to prevent possible misuse.",
+        "Participants can hand over their username to the admin after registration to regain access to their desired class. Please note that each course registration includes one month of access to the classes, and access to the classes will be automatically cut off after the month ends.",
+        "Site Font License: IranGard",
+        "Site Design License: R.",
+        "The site and all of its content are subject to copyright law, and any use of its content without the author's permission will not be allowed."
+    ],
+    "services-errors": [
+        "An error occurred."
+    ],
+    "types-base": [
+        "Teaser",
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+    ],
+    "types-ticker": [
+        "Password Reset",
+        "In-Person Class",
+        "Technical Issue",
+        "Password Reset",
+        "In-Person Class",
+        "Technical Issue"
+    ],
+    "utils-dates": [
+        [
+            "Farvardin",
+            "Ordibehesht",
+            "Khordad",
+            "Tir",
+            "Mordad",
+            "Shahrivar",
+            "Mehr",
+            "Aban",
+            "Azar",
+            "Dey",
+            "Bahman",
+            "Esfand"
+        ],
+        [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ]
+    ]
+}

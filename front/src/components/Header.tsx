@@ -2,19 +2,21 @@ import { useState } from "react";
 import homeIcon from "../assets/images/icon.png";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 export default function Header() {
   const [menuState, setMenuState] = useState(false);
   const [showVorood, setShowVorood] = useState(true);
+  const { t } = useTranslation();
+
   function handleMenu() {
     setMenuState(!menuState);
-    setShowVorood(!showVorood)
+    setShowVorood(!showVorood);
   }
 
   return (
     <div className={styles.header}>
-      <div className={styles.voroodBurgerContainer}>
-        <div className={styles.box} onClick={handleMenu}>
+      <div className="z-[500] flex relative gap-6">
+        <div className="bg-transparent z-[500]" onClick={handleMenu}>
           <div
             className={`${styles.navBtn} ${
               menuState ? styles.active : styles["not-active"]
@@ -25,73 +27,77 @@ export default function Header() {
             <span className={styles["menu-burguer"]}></span>
           </div>
         </div>
-        <Link to={"/auth"} className={`${styles.vorood} ${showVorood ? '' : styles.disNon}`}>
-          ورود
+        <Link
+          to={"/auth"}
+          className={`${styles.vorood}  ${showVorood ? "" : styles.disNon}`}
+        >
+          {t(["header-signIn"])}
         </Link>
       </div>
+
       <div className={styles["home-link"]}>
         <Link to={"/home"} onClick={handleMenu}>
           <img src={homeIcon} alt="home" className={styles["img-link"]} />
         </Link>
       </div>
+
       <div
-        className={`${styles.sidenav} ${styles["grid-container"]} ${
-          menuState ? styles.activeNav : styles["not-activeNav"]
-        }`}
+        className={`${styles.sidenav} 
+        ${menuState ? styles.activeNav : styles["not-activeNav"]}`}
       >
         <Link
           to={"/home"}
-          className={`${styles["nav-links"]} ${styles.item1} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
         >
-          خانه
+          {t(["header-home"])}
         </Link>
         <Link
           to={"/auth"}
-          className={`${styles["nav-links"]} ${styles.item2} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
         >
-          ثبت نام / ورود
+          {t(["header-signUpOrLogIn"])}
         </Link>
         <Link
           to={"/about"}
-          className={`${styles["nav-links"]} ${styles.item3} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
         >
-          یوگا با محدثه
+          {t(["header-yogaWithMohadese"])}
         </Link>
         <Link
           to={"/ticket"}
-          className={`${styles["nav-links"]} ${styles.item4} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
         >
-          ثبت درخواست
+          {t(["header-submitRequest"])}
         </Link>
         <Link
           to={"/terms"}
-          className={`${styles["nav-links"]} ${styles.item5} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
         >
-          قوانین
+          {t(["header-terms"])}
         </Link>
         <Link
           to={"/contact"}
-          className={`${styles["nav-links"]} ${styles.item6} ${
+          className={`${styles["nav-links"]}  ${
             menuState ? styles.activeNavLinks : ``
           }`}
           onClick={handleMenu}
         >
-          ارتباط با ما
+          {t(["header-contactUs"])}
         </Link>
       </div>
     </div>

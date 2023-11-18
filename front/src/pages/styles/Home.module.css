@@ -1,23 +1,8 @@
-/* HOME BODY */
-.homeBody {
-  display: block;
-  background-color: #B5DDA4;
-  font-family: IRANRounded !important;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .bg {
   background-image: url(../../assets/images/home.jpg);
   background-repeat: no-repeat;
   background-position: left;
   background-size: cover;
-
   opacity: 0;
   animation: fade-in 1s 2s forwards cubic-bezier(0.11, 0, 0.5, 0);
   width: 100vw;
@@ -27,32 +12,15 @@
   top: 0;
   left: 0;
 }
-
-.disable {
-  display: none;
-}
-
-/* THREE CENTER WORDS */
-.centerWords {
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-direction: column;
-  color: #034732;
-}
-
-.homeh2 {
+.openingAnimation {
   transform: scale(0.94);
   animation: scale 1s forwards cubic-bezier(0.5, 1, 0.89, 1);
 }
-
 @keyframes scale {
   100% {
     transform: scale(1);
   }
 }
-
 .three-words1,
 .three-words2,
 .three-words3 {
@@ -60,21 +28,18 @@
   filter: blur(1);
   font-size: 75px;
 }
-
 .three-words1 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
   animation-delay: .5s;
 }
-
 .three-words2 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  margin-right: 8rem;
+  margin-right: 6rem;
   animation-delay: 1s;
 }
-
 .three-words3 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  margin-right: 8rem;
+  margin-right: 12rem;
   animation-delay: 1.5s;
 }
 
@@ -88,17 +53,19 @@
 /* CENTER BUTTON */
 .centerBtn {
   opacity: 0;
-  width: 200px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 10;
   background-color: transparent;
-  padding: 0.75rem 1.75rem;
+  padding: 1rem 2rem ;
+
   margin-top: 4rem;
   border-radius: 50px;
-  border: 1px solid #034732;
+  border: 1px solid #31393C;
   font-family: inherit;
   transition: all 0.8s ease;
-
+  text-wrap: nowrap;
   animation: fade-in 1s 2.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
 
   position: fixed;
@@ -107,8 +74,8 @@
 }
 
 .centerBtn:hover {
-  background-color: #96C5F7;
-  border: 1px solid #96C5F7;
+  background-color: #EDEEE8;
+  border: 1px solid #EDEEE8;
 }
 
 .ywm {
@@ -119,7 +86,7 @@
   text-decoration: none;
   font-family: inherit;
   font-size: 28px;
-  color: #034732;
+  color: #31393C;
 
   animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
