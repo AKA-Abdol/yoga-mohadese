@@ -35,7 +35,7 @@ div {
 }
 
 .input-primary-theme {
-  @apply text-primary-dark placeholder-primary-light focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
+  @apply text-primary-dark border border-primary-dark placeholder-primary-dark focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
 }
 
 .btn-primary-theme {
@@ -52,11 +52,11 @@ div {
 
 /* dropdown multi select styles */
 .rmsc {
-  --rmsc-main: #008148 !important;
-  --rmsc-bg: #034732 !important;
-  --rmsc-hover: #008148 !important;
-  --rmsc-selected: #008148 !important;
-  --rmsc-gray: #b5dda4 !important;
+  --rmsc-main: #D6CCC2 !important;
+  --rmsc-bg: #31393C !important;
+  --rmsc-hover: #D6CCC2 !important;
+  --rmsc-selected: #D6CCC2 !important;
+  --rmsc-gray: #EDEEE8 !important;
   --rmsc-radius: 8px !important;
   --rmsc-h: 3rem !important;
 }

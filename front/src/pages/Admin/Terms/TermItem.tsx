@@ -17,7 +17,7 @@ const TermItem: FC<ITerm & WithId & ModalInvoker<ITerm & WithId>> = (props) => {
     <Card flexDirection="row" justify="between" classnames={`h-14 w-full`}>
       <div className="w-full flex items-center justify-start">
         <p className="text-normal">{props.title}</p>
-        <Badge className="text-xs mx-sm text-primary">
+        <Badge className="text-xs mx-sm text-error">
           {getLevelTitle(props.level)}
         </Badge>
       </div>

@@ -21,7 +21,7 @@ const TermSelect: FC = () => {
         videoContext.selected.setTermId(event.target.value);
         videoContext.selected.setSessionNum(undefined);
       }}
-      classnames="w-4/5 text-center"
+      classnames="w-4/5 text-center md:w-2/5"
       optionsClassnames="text-center"
     />
   );

@@ -28,7 +28,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
   return (
     <Card flexDirection="row" justify="between" classnames={`h-14 w-full`}>
       <form
-        className="w-full h-full flex flex-row items-center"
+        className="w-full h-full flex flex-row items-center gap-2"
         onSubmit={formik.handleSubmit}
       >
         <div className="w-24 h-full">

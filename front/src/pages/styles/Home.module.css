@@ -39,12 +39,13 @@
   justify-content: center;
   align-items: start;
   flex-direction: column;
-  color: #034732;
+  color: #31393C;
 }
 
 .homeh2 {
   transform: scale(0.94);
   animation: scale 1s forwards cubic-bezier(0.5, 1, 0.89, 1);
+  background-color: none;
 }
 
 @keyframes scale {
@@ -95,7 +96,7 @@
   padding: 0.75rem 1.75rem;
   margin-top: 4rem;
   border-radius: 50px;
-  border: 1px solid #034732;
+  border: 1px solid #31393C;
   font-family: inherit;
   transition: all 0.8s ease;
 
@@ -107,8 +108,8 @@
 }
 
 .centerBtn:hover {
-  background-color: #96C5F7;
-  border: 1px solid #96C5F7;
+  background-color: #EDEEE8;
+  border: 1px solid #EDEEE8;
 }
 
 .ywm {
@@ -119,7 +120,7 @@
   text-decoration: none;
   font-family: inherit;
   font-size: 28px;
-  color: #034732;
+  color: #31393C;
 
   animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
