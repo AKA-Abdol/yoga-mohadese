@@ -8,7 +8,7 @@ const TermDescription: FC<WithTerm> = (props) => {
   const term = props.term;
   return (
     <div className={classNames("w-full flex justify-center")}>
-      <p className="text-sm bg-primary-dark text-primary-light p-md rounded-md mb-4">
+      <p className="text-sm bg-primary-light text-primary-dark p-md rounded-md mb-4">
         {!videoContext.selected.termDescription
           ? "محتوای مربوط به ترم در دسترس نیست"
           : term.isError
