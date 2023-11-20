@@ -11,7 +11,7 @@ const SessionItem: FC<SessionItemProps> = (props) => {
   return (
     <div
       className={classNames(
-        "avatar ml-md flex flex-col items-center space-y-sm cursor-pointer",
+        "avatar ml-md flex flex-col items-center space-y-sm cursor-pointer w-60 min-w-60 max-w-60 h-52 min-h-52 max-h-52 md:w-80 md:min-w-80 md:max-w-80 md:h-72 md:min-h-72 md:max-h-72",
         "py-sm px-sm rounded-lg",
 
         videoContext.selected.sessionNum === props.data.num

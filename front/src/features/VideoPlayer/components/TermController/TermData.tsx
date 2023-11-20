@@ -27,11 +27,11 @@ const TermData: FC = () => {
       <TermDescription term={term} />
       <SessionList term={term} />
 
-      <div className="flex flex-row">
+      <div className="flex flex-row justify-evenly items-center ">
         <RemainedDays term={term} />
         <div className="w-full flex justify-center">
           <Button
-            className="w-1/2 btn-cancel"
+            className="w-fit btn-cancel px-10"
             onClick={() => {
               tokenPersistor.delete();
               navigate("/");

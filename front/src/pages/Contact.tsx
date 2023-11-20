@@ -21,7 +21,7 @@ export default function Contact() {
           <div
             className={`${styles.container} rounded-md relative  after:-inset-1 before:-inset-1 z-1 m-1 to`}
           >
-            <h1 className="text-4xl">با ما در ارتباط باشید</h1>
+            <h1 className="text-2xl">با ما در ارتباط باشید</h1>
             <ul className={styles.contactUL}>
               <li className={styles["linkStyling"]}>
                 <a href="https://www.instagram.com/yoga.mohadese">

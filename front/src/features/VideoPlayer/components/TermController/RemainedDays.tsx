@@ -9,7 +9,7 @@ const RemainedDays: FC<WithTerm> = (props) => {
   const videoContext = useContext(VideoContext);
   const term = props.term;
   return (
-    <div className={classNames("w-full flex justify-center")}>
+    <div className={classNames("w-full flex justify-center ")}>
       <p className="text-sm bg-primary-dark text-primary-light p-md rounded-md">
         {!videoContext.selected.termId
           ? "تعداد روز ترم مشخص نیست"

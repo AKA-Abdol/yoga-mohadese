@@ -23,7 +23,7 @@ const SessionList: FC<WithTerm> = (props) => {
       ) : term.isError ? (
         <p className="text-primary-light">مشکلی رخ داده است.</p>
       ) : term.isLoading ? (
-        <Loading textColor="light" />
+        <Loading textColor="light"/>
       ) : (
         <>
           {term.data.course.videos.length ? (

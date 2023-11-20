@@ -39,7 +39,7 @@
   justify-content: center;
   align-items: start;
   flex-direction: column;
-  color: #31393C;
+  color: #31393cca;
 }
 
 .homeh2 {
@@ -59,7 +59,7 @@
 .three-words3 {
   opacity: 1;
   filter: blur(1);
-  font-size: 75px;
+  font-size: 36px;
 }
 
 .three-words1 {
@@ -69,13 +69,13 @@
 
 .three-words2 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  margin-right: 8rem;
+  margin-right: 4rem;
   animation-delay: 1s;
 }
 
 .three-words3 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  margin-right: 8rem;
+  margin-right: 4rem;
   animation-delay: 1.5s;
 }
 
@@ -89,7 +89,7 @@
 /* CENTER BUTTON */
 .centerBtn {
   opacity: 0;
-  width: 200px;
+  width: 160px;
   text-align: center;
   z-index: 10;
   background-color: transparent;
@@ -99,12 +99,10 @@
   border: 1px solid #31393C;
   font-family: inherit;
   transition: all 0.8s ease;
-
   animation: fade-in 1s 2.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
-
   position: fixed;
-  top: 28vh;
-  left: calc(50vw - 100px);
+  top: 38vh;
+  left: calc(50vw - 80px);
 }
 
 .centerBtn:hover {
@@ -116,12 +114,10 @@
   opacity: 0;
   transform: scale(0.94);
   animation: scale 1s forwards cubic-bezier(0.5, 1, 0.89, 1);
-
   text-decoration: none;
   font-family: inherit;
-  font-size: 28px;
+  font-size: 22px;
   color: #31393C;
-
   animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
 

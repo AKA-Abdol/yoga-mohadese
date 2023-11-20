@@ -14,22 +14,15 @@
 /* HAMBURGER MENU */
 .voroodBurgerContainer{
     z-index: 1000;
-    display: flex;
-    flex-direction: row;
     position: relative;
-    gap: 100px;
 }
 
-.box {
-    background: transparent;
-    z-index: 1000;
-}
 .navBtn {
     position: absolute;
     transform: translate(-50%, -50%);
     width: 50px;
     cursor: pointer;
-    top: 2rem;
+    top: 1rem;
 }
 .menu-burguer {
     display: block;
@@ -75,19 +68,22 @@
     color: #31393C;
     font-size: 20px;
     z-index: 1;
-    padding: 0.8rem 1rem 0.5rem 1rem;
+    padding: 0.6rem 1rem 0.6rem 1rem;
     border-radius: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.5s ease;   
+    transition: all 0.5s ease; 
+    position: absolute;
+    right: 100px;  
+    top: -10px;
 }
 .disNon {
-    color: #31393C;
+    display: none;
 }
 .vorood:hover {
     color: #D6CCC2;
-    background-color: #31393C;
+    background-color: #31393C75;
 }
 
 @keyframes top {
@@ -187,28 +183,30 @@
     right: 0;
     overflow-y: hidden;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-top: 100px;
+    padding-bottom: 150px;
+    padding-right: 0;
     text-align: center;
-    border: 1px solid #EDEEE8;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     transition: all 1s ease-in-out;
-    background-color: #31393C;
+    background-color: #31393cb8;
+    align-items: start;
 }
 
 .nav-links {
-    padding: .8rem;
     text-decoration: none;
-    font-size: 28px;
+    opacity: 0;
+    font-size: 22px;
     display: block;
     z-index: 1000;
-    transition: all .15s ease;
+    transition: all 1s ease;
 }
 
 .activeNavLinks {
+    opacity: 1;
     color: #EDEEE8;
-    transition: all 1.5s ease;
 }
 
 .nav-links:hover {
@@ -216,13 +214,16 @@
 }
 
 .activeNav {
-    width: 300px;
-    transition: 1s ease;
+    width: 225px;
+    transition: 0.5s ease;
+    padding-right: 36px;
+    border: 1px solid #EDEEE8;
+    backdrop-filter: blur(10px);
 }
 
 .not-activeNav {
     width: 0;
-    transition: 1s ease;
+    transition: 0.5s ease;
 }
 
 /* HOME LINK WITH LOGO */
