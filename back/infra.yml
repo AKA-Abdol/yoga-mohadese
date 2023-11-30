@@ -1,0 +1,14 @@
+# docker-compose.yml
+
+version: '3.9'
+services:
+  mongodb:
+    image: mongo
+    restart: on-failure
+    ports:
+      - '27017:27017'
+    volumes:
+      - yoga_mongo_data:/data/db
+
+volumes:
+  yoga_mongo_data:
