@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import styles from "../pages/styles/Home.module.css";
-import homeIcon from "../assets/images/icon.png";
 import { Link } from "react-router-dom";
 
 export default function Home() {

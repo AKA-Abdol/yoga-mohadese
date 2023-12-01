@@ -1,8 +1,8 @@
 .body {
   width: 100vw;
   height: 100vh;
-  background: #D6CCC2;
-  color: #31393C;
+  background: #FEFAF7;
+  color: #58423A;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,29 +21,16 @@ textarea,
 li {
   font-family: IRANRounded !important;
 }
-
 /* CONTENT OF WEB PAGE */
 .pagecontainer{
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 1rem;  
-  margin-top: 7.5rem;
+  padding: 1rem 3rem 0 0;  
+  margin-top: 5rem;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  padding: 2rem;
 
-  background: #D6CCC2;
-  margin: 0.75rem;
-}
 .contactUL {
   margin-top: 2rem;
   list-style: none;
@@ -57,6 +44,8 @@ li {
 }
 .contactUL li a {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .linkStyling {
   font-size: 16px;
@@ -65,7 +54,7 @@ li {
   align-items: center;
 }
 .svgStyling {
-  margin-left: 1rem;
-  width: 36px;
-  height: 36px;
+  margin-left: 0.5rem;
+  width: 16px;
+  height: 16px;
 }
