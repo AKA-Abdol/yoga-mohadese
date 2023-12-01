@@ -9,16 +9,16 @@ export class InGetPaginatedCourses implements InPaginatedDto {
   @Type(() => Number)
   @IsNumber()
   @IsOptional()
-  page: number = 1;
+  page = 1;
 
   @ApiProperty({ required: false, default: 20 })
   @Type(() => Number)
   @IsNumber()
   @IsOptional()
-  num: number = 20;
+  num = 20;
 
   @ApiProperty({ required: false, default: '' })
   @IsString()
   @IsOptional()
-  search: string = '';
+  search = '';
 }

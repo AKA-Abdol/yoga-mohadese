@@ -9,5 +9,6 @@ export abstract class CourseDao {
     description: model.description,
     start_date: model.start_date,
     end_date: model.end_date,
+    price: model.price,
   });
 }

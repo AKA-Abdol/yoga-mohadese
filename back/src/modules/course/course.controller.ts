@@ -30,6 +30,8 @@ import { InCreateCourse } from './dtos/in-create-course.dto';
 import { DuplicateError } from '../../errors/duplicate-error';
 import { VideoService } from '../video/video.service';
 import { BaseError } from '../../errors/base-error';
+import { OutGetShopDto } from './dtos/out-get-shop.dto';
+import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
 
 @UseGuards(RolesGuard)
 @Controller('courses')
@@ -64,6 +66,15 @@ export class CourseController {
     return { course: { ...course, videos: [] } };
   }
 
+  @Get('/shop')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'get all courses to purchase' })
+  async getCourseShop(
+    @Query() input: InGetShopQueryDto,
+  ): Promise<OutGetShopDto> {
+    return this.courseService.getShopCourses(input);
+  }
+
   @Get(':course_id')
   @Role('USER')
   @ApiBearerAuth()
@@ -74,7 +85,7 @@ export class CourseController {
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
   ): Promise<OutGetCoursesDto> {
-    const course = await this.courseService.getCoursesWithVidoes(
+    const course = await this.courseService.getCoursesWithVideos(
       userId,
       courseId,
     );

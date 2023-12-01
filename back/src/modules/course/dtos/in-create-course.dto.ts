@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class InCreateCourse {
   @ApiProperty({ required: true, default: 1, type: 'number' })
@@ -21,4 +21,8 @@ export class InCreateCourse {
   @ApiProperty({ required: true, default: new Date(), type: 'date' })
   @IsString()
   end_date: Date;
+
+  @ApiProperty({ default: 0, type: 'number' })
+  @IsNumber()
+  price: number;
 }

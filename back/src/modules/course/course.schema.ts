@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
 
 @Schema()
 export class Course {
@@ -20,6 +19,9 @@ export class Course {
 
   @Prop()
   deletedAt?: Date;
+
+  @Prop({ default: 0 })
+  price: number;
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);

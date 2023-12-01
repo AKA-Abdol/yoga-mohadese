@@ -21,4 +21,7 @@ export class TypeCourseDto {
 
   @ApiProperty({ required: true, default: new Date() })
   end_date: Date;
+
+  @ApiProperty({ required: true, default: 95000 })
+  price: number;
 }

@@ -14,6 +14,8 @@ import { BaseError } from '../../errors/base-error';
 import { UserService } from '../user/user.service';
 import { VideoService } from '../video/video.service';
 import { OutGetCoursesDto } from './dtos/out-get-course.dto';
+import { OutGetShopDto } from './dtos/out-get-shop.dto';
+import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
 
 @Injectable()
 export class CourseService {
@@ -29,15 +31,10 @@ export class CourseService {
   async createCourse(
     courseInfo: InCreateCourse,
   ): Promise<TypeCourseDto | DuplicateError> {
-    const courseModel = await this.courseRepo.create({
-      ...courseInfo,
-      end_date: courseInfo.end_date,
-      // courseInfo.level === 1 ? new Date(2100, 1) : courseInfo.end_date,
-    });
+    const courseModel = await this.courseRepo.create(courseInfo);
     const courseFull = CourseDao.convertOne(courseModel);
-    const access = await (
-      await this.userService.getAdminUsers()
-    ).map((user) =>
+    const adminUsers = await this.userService.getAdminUsers();
+    adminUsers.forEach((user) =>
       this.accessService.createAccess({
         course_id: courseFull.id,
         user_id: user.id,
@@ -83,7 +80,7 @@ export class CourseService {
     return course;
   }
 
-  async getCoursesWithVidoes(
+  async getCoursesWithVideos(
     userId: string,
     courseId: string,
   ): Promise<OutGetCoursesDto | NotFoundError | BadRequestError> {
@@ -153,8 +150,6 @@ export class CourseService {
 
     if (courses instanceof BadRequestError) return courses.throw();
 
-    console.log(`Courses: ${courses}`);
-
     const res: OutGetPaginatedCoursesDto = {
       count: courses.length,
       values: courses
@@ -163,5 +158,19 @@ export class CourseService {
     };
 
     return res;
+  }
+
+  async getShopCourses({
+    page,
+    num,
+  }: InGetShopQueryDto): Promise<OutGetShopDto> {
+    const shopCourses = await this.courseRepo.getPaginatedCourses(
+      num,
+      (page - 1) * num,
+    );
+    return {
+      count: shopCourses.count || 0,
+      values: shopCourses.values.map(CourseDao.convertOne),
+    };
   }
 }
