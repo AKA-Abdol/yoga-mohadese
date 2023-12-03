@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div className="w-full h-full overflow-hidden flex justify-center items-center flex-col">
-      <div className={styles.bg}></div>
+      {/* <div className={styles.bg}></div> */}
       <Header />
       <h2 className={`${styles.centerWords} ${styles.homeh2}`}>
         <span className={styles["three-words1"]}>برخیز</span>

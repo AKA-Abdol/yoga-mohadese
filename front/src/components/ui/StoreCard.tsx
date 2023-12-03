@@ -1,5 +1,9 @@
-import React, { ReactElement } from "react";
-import { addToman, addCommaEach3Digits, English2Persian } from "../../utils/converts";
+import React, { ReactElement, SetStateAction } from "react";
+import {
+  addToman,
+  addCommaEach3Digits,
+  English2Persian,
+} from "../../utils/converts";
 import { url } from "inspector";
 
 interface IStoreCard {
@@ -7,18 +11,17 @@ interface IStoreCard {
   price: number;
   month: string;
   BGthumbURL: string;
+  setIsCardActive: any;
 }
-const addToBasket = () => {
-  console.log("THIS ITEM ADDED TO BASKET");
-};
+const addToBasket = () => {};
 
 const StoreCard: React.FC<IStoreCard> = ({
   title,
   price,
   month,
   BGthumbURL,
+  setIsCardActive,
 }) => {
-
   return (
     <div
       className=" w-[100vw] rounded-[10px]  text-[#FEF3E9] flex flex-col items-start p-4 gap-4 z-10"
@@ -26,20 +29,20 @@ const StoreCard: React.FC<IStoreCard> = ({
         backgroundImage: `url(${BGthumbURL})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
     >
       <div className="flex justify-between items-center w-full">
         <h3 className=" text-center text-base font-normal text-[#FEF3E9]">
           {title}
         </h3>
-        <h4 className="text-center text-[rgba(254, 243, 233, 0.70)] text-xs font-normal">
+        <h4 className="text-center text-[#FEF3E9] text-xs font-normal">
           {addToman(English2Persian(addCommaEach3Digits(price)))}
         </h4>
       </div>
       <h4 className=" text-sm text-[#FEF3E9] ">{month}</h4>
       <button
-        onClick={addToBasket}
+        onClick={() => setIsCardActive(true)}
         className=" rounded-[4px] text-[#58423a] text-[10px] flex items-center gap-2 bg-none justify-center w-full py-1 bg-[#fef3e9d0]"
       >
         افزودن به سبد خرید

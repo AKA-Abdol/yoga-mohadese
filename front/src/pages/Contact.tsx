@@ -14,7 +14,7 @@ export default function Contact() {
       <Header />
       <div className={`${styles.pagecontainer}`}>
         <h1 className="text-2xl">با ما در ارتباط باشید</h1>
-        <ul className={styles.contactUL}>
+        {/* <ul className={styles.contactUL}>
           <li className={styles["linkStyling"]}>
             <a href="https://www.instagram.com/yoga.mohadese">
               <svg
@@ -83,10 +83,14 @@ export default function Contact() {
             </svg>
             شماره واتس‌اپ : ۰۹۰۱۹۰۸۰۶۵۴
           </li>
-        </ul>
+        </ul> */}
+        <li className={styles["linkStyling"]}>
+            
+            شماره : ۰۹۰۱۹۰۸۰۶۵۴
+          </li>
       </div>
       <div className="w-full h-[45vh] bottom-0 fixed">
-        <img src={pageImg} className="w-full h-[45vh] object-cover" />
+        {/* <img src={pageImg} className="w-full h-[45vh] object-cover" /> */}
       </div>
     </div>
   );

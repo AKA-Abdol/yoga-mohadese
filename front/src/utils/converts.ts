@@ -15,9 +15,15 @@ const addCommaEach3Digits = (s: string | number): string => {
   if (typeof s === "number") {
     s = s.toString();
   }
-  const regex = /\w{1,3}/g;
-  const chunks = s.match(regex) || [];
-  return chunks.join(",");
+  const reversedString = s.split('').reverse().join('');
+
+  // Add commas in groups of three digits
+  const regex = /\d{1,3}/g;
+  const chunks = reversedString.match(regex) || [];
+  const result = chunks.join(",");
+
+  // Reverse the result back
+  return result.split('').reverse().join('');
 };
 
 const addToman = (s: string | number) => {  

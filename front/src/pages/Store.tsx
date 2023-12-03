@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Header from "../components/Header";
 import StoreCard from "src/components/ui/StoreCard";
 import styles from "./styles/Store.module.css";
 import storeItemBg from "../assets/images/storeItemBg.png";
-
+import { MyContext } from "src/components/layout/BodyLayout";
+import { Link, useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import api from "src/services";
+import { WithId } from "src/types/base";
+import { DateObject } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import hijabStore from "../assets/images/hijab-stor.png"
 const yogaPosSvg = [
   `<svg
       xmlns="http://www.w3.org/2000/svg"
@@ -76,152 +84,75 @@ const yogaPosSvg = [
 ];
 
 const Store = () => {
+  const [isCardActive, setIsCardActive] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const myContext = useContext(MyContext);
+  const location = useLocation();
+  const myData = useQuery({
+    queryKey: ["my-data", location],
+    queryFn: api.get<{
+      user: { firstname: string; is_admin: boolean } & WithId;
+    }>(`user/my`),
+    retry: 1,
+  });
+  useEffect(() => {
+    if (myData.data?.user) {
+      setIsLoggedIn(true);
+    }
+  }, [myData.data]);
+
+  const tarikh = new DateObject({ calendar: persian, locale: persian_fa });
+
   return (
     <main className="bg-[#FEFAF7] w-full min-w-full max-w-full h-full min-h-full max-h-full">
-      <div className={styles.fadeDivOne}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="295"
-          height="409"
-          viewBox="0 0 295 409"
-          fill="none"
-        >
-          <g filter="url(#filter0_f_60_3483)">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M246.284 255.728C238.52 263.281 226.71 263.534 215.971 265.264C204.434 267.123 192.853 269.932 181.719 266.129C168.903 261.752 156.642 254.277 149.669 242.621C142.237 230.198 136.94 214.061 142.746 200.981C148.447 188.138 167.681 189.273 177.701 179.47C188.497 168.908 188.272 148.347 202.311 142.709C216.748 136.911 234.761 142.019 247.333 151.506C259.385 160.6 264.816 176.308 266.617 191.233C268.109 203.607 260.046 214.192 256.321 226.009C253.098 236.234 253.94 248.279 246.284 255.728Z"
-              fill="#9AE6E6"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_60_3483"
-              x="0.276367"
-              y="0.257446"
-              width="406.522"
-              height="407.761"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="70"
-                result="effect1_foregroundBlur_60_3483"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-      <div className={styles.fadeDivTwo}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="336"
-          height="396"
-          viewBox="0 0 336 396"
-          fill="none"
-        >
-          <g filter="url(#filter0_f_60_3482)">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M241.567 155.789C252.91 168.835 252.38 187.896 248.468 205.208C244.773 221.558 235.81 236.335 221.357 245.231C206.194 254.563 187.761 258.751 171.682 252.467C155.585 246.175 144.932 230.979 141.471 214.008C138.269 198.305 145.183 182.801 154.739 169.371C164.36 155.848 176.838 144.03 193.067 141.492C210.889 138.704 230.056 142.55 241.567 155.789Z"
-              fill="#DC744E"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_60_3482"
-              x="0.678467"
-              y="0.637085"
-              width="390.32"
-              height="394.821"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="70"
-                result="effect1_foregroundBlur_60_3482"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-      <div className={styles.fadeDivThree}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="318"
-          height="347"
-          viewBox="0 0 318 347"
-          fill="none"
-        >
-          <g filter="url(#filter0_f_60_3484)">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M157.055 255.728C149.291 263.281 137.481 263.534 126.742 265.264C115.205 267.123 103.624 269.932 92.4903 266.129C79.6747 261.752 67.4134 254.277 60.4406 242.621C53.0087 230.198 47.7115 214.061 53.5174 200.981C59.2183 188.138 78.452 189.273 88.4727 179.47C99.2686 168.908 99.0436 148.347 113.082 142.709C127.519 136.911 145.533 142.019 158.105 151.506C170.157 160.6 175.587 176.308 177.388 191.233C178.881 203.607 170.818 214.192 167.092 226.009C163.869 236.234 164.712 248.279 157.055 255.728Z"
-              fill="#9AE6E6"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_60_3484"
-              x="-88.9524"
-              y="0.257446"
-              width="406.522"
-              height="407.761"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="70"
-                result="effect1_foregroundBlur_60_3484"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </div>
       <Header />
-      <div className="flex flex-wrap pt-32 px-8 justify-between gap-y-8">
-        <StoreCard
-          title="کلاس پیشرفته"
-          month="آذر"
-          price={89374265}
-          BGthumbURL={storeItemBg}
-        />
-        <StoreCard
-          title="کلاس پیشرفته"
-          month="آذر"
-          price={89374265}
-          BGthumbURL={storeItemBg}
-        />
-        <StoreCard
-          title="کلاس پیشرفته"
-          month="آذر"
-          price={89374265}
-          BGthumbURL={storeItemBg}
-        />
-      </div>
+      {isCardActive ? (
+        isLoggedIn ? (
+          <div className="flex flex-col flex-wrap pt-32 px-16 justify-between gap-y-8">
+            <h3 className=" self-center">فاکتور شما</h3>
+            <div className="flex justify-between">
+              <p>به نام</p>
+              <p>{myData.data?.user.firstname}</p>
+            </div>
+            <div className="flex justify-between">
+              <p>دوره خریداری شده:</p>
+              <p>دوره مقدماتی آذر</p>
+            </div>
+            <div className="flex justify-between">
+              <p>مبلغ</p>
+              <p>10000000 میلیون ریال</p>
+            </div>
+            <div className="flex justify-between">
+              <p>تاریخ</p>
+              <p>{tarikh.format()}</p>
+            </div>
+            <button className="border-4 border-orange-400 rounded-md py-2 px-8 w-fit self-center">
+              پرداخت از درگاه بانکی
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col flex-wrap pt-32 px-8 gap-y-8">
+            <div className="flex gap-1 flex-wrap justify-center">
+              <p> برای خرید دوره ابتدا</p>
+              <Link to="/auth" className=" text-orange-400">
+                وارد
+              </Link>
+              <p>حساب کاربری خود شوید.</p>
+            </div>
+          </div>
+        )
+      ) : (
+        <div className="flex flex-wrap pt-32 px-8 justify-between gap-y-8">
+          <StoreCard
+            title="کلاس مقدماتی یوگا"
+            month="آذر"
+            price={1000000}
+            BGthumbURL={hijabStore}
+            setIsCardActive={setIsCardActive}
+          />
+        </div>
+      )}
     </main>
   );
 };

@@ -54,7 +54,7 @@ export default function About() {
     // <div className={styles.bodyStyle}>
     <div className=" overflow-x-hidden h-[250vh] bg-[#fefaf7] ">
       <Header />
-      <img
+      {/* <img
         src={img1}
         style={{
           width: `${imgSize}vw`,
@@ -63,7 +63,7 @@ export default function About() {
           top: `${scrollPercent < 0.3333 ? 100 - scrollPercent * 300 : 0}px`,
         }}
         className={`fixed overflow-hidden transition-all duration-500`}
-      />
+      /> */}
       <div className=" relative">
         <h1 className=" absolute top-20 right-12 text-4xl z-10 w-24 leading-[48px]">
           درباره محدثه
