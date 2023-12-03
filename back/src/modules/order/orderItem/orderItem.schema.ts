@@ -1,17 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
-import { OrderItemType } from './orderItem.types';
+import { ProductType } from './dtos/product';
 
-@Schema()
+@Schema({ collection: 'orderItems' })
 export class OrderItem {
   @Prop({ required: true })
   userId: mongoose.Types.ObjectId;
 
   @Prop({ required: true })
-  type: OrderItemType;
+  productId: mongoose.Types.ObjectId;
 
   @Prop({ required: true })
-  productId: mongoose.Types.ObjectId;
+  productType: ProductType;
 
   @Prop({ default: 1 })
   count?: number;

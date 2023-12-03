@@ -3,14 +3,12 @@ import {
   Controller,
   Delete,
   Get,
-  Inject,
   Param,
   Post,
   Put,
   Query,
   Req,
   UseGuards,
-  forwardRef,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { RolesGuard } from '../../guards/roles.guard';
@@ -28,10 +26,11 @@ import { OutGetPaginatedCoursesDto } from './dtos/out-get-paginated-courses.dto'
 import { OutGetCoursesDto } from './dtos/out-get-course.dto';
 import { InCreateCourse } from './dtos/in-create-course.dto';
 import { DuplicateError } from '../../errors/duplicate-error';
-import { VideoService } from '../video/video.service';
 import { BaseError } from '../../errors/base-error';
 import { OutGetShopDto } from './dtos/out-get-shop.dto';
 import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
+import { InAddCourseOrderBody } from './dtos/in-add-course-order.dto';
+import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
 
 @UseGuards(RolesGuard)
 @Controller('courses')
@@ -67,7 +66,6 @@ export class CourseController {
   }
 
   @Get('/shop')
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'get all courses to purchase' })
   async getCourseShop(
     @Query() input: InGetShopQueryDto,
@@ -124,5 +122,16 @@ export class CourseController {
     const new_course = await this.courseService.editCourse(courseId, input);
     if (new_course instanceof BaseError) return new_course.throw();
     return new_course;
+  }
+
+  @Post('/shop/add-order')
+  @Role('USER')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'add course order to your cart' })
+  async addCourseOrderItem(
+    @Req() { userId }: { userId: string },
+    @Body() input: InAddCourseOrderBody,
+  ): Promise<OutAddCourseOrder> {
+    return this.courseService.addCourseOrder(userId, input.courseId);
   }
 }

@@ -1,4 +1,10 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  NotFoundException,
+  forwardRef,
+} from '@nestjs/common';
 import mongoose from 'mongoose';
 import { CourseRepo } from './course.repo';
 import { NotFoundError } from '../../errors/not-found-error';
@@ -16,6 +22,10 @@ import { VideoService } from '../video/video.service';
 import { OutGetCoursesDto } from './dtos/out-get-course.dto';
 import { OutGetShopDto } from './dtos/out-get-shop.dto';
 import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
+import { Course } from './course.schema';
+import { OrderItemService } from '../order/orderItem/orderItem.service';
+import { ProductType } from '../order/orderItem/dtos/product';
+import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
 
 @Injectable()
 export class CourseService {
@@ -26,6 +36,7 @@ export class CourseService {
     private readonly userService: UserService,
     @Inject(forwardRef(() => VideoService))
     private readonly videoService: VideoService,
+    private readonly orderItemService: OrderItemService,
   ) {}
 
   async createCourse(
@@ -172,5 +183,25 @@ export class CourseService {
       count: shopCourses.count || 0,
       values: shopCourses.values.map(CourseDao.convertOne),
     };
+  }
+
+  async addCourseOrder(
+    userId: string,
+    courseId: string,
+  ): Promise<OutAddCourseOrder> {
+    const course = await this.courseRepo.getById(
+      new mongoose.Types.ObjectId(courseId),
+    );
+    if (course === null) throw new NotFoundException('ترم مورد نظر یافت نشد');
+
+    if (await this.orderItemService.hasOrderItem(userId, courseId))
+      throw new ConflictException('این کورس قبلا در سبد خرید شما بوده است');
+
+    const orderItem = await this.orderItemService.addOrderItem(userId, {
+      id: courseId,
+      type: ProductType.COURSE,
+    });
+
+    return { orderItem: orderItem._id.toString() };
   }
 }
