@@ -14,7 +14,7 @@ export class OrderItem {
   productType: ProductType;
 
   @Prop({ default: 1 })
-  count?: number;
+  count: number;
 }
 
 export const OrderItemSchema = SchemaFactory.createForClass(OrderItem);

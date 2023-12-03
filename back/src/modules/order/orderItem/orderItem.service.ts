@@ -3,6 +3,8 @@ import { OrderItemRepo } from './orderItem.repo';
 import { Product } from './dtos/product';
 import mongoose from 'mongoose';
 import { OrderItem } from './orderItem.schema';
+import { TypeOrderItemDto } from './dtos/type-orderItem.dto';
+import { OrderItemDao } from './daos/orderItem.dao';
 
 @Injectable()
 export class OrderItemService {
@@ -15,7 +17,7 @@ export class OrderItemService {
     );
   }
 
-  async addOrderItem(
+  async add(
     userId: string,
     product: Product,
     count = 1,
@@ -26,5 +28,12 @@ export class OrderItemService {
       userId: new mongoose.Types.ObjectId(userId),
       count,
     });
+  }
+
+  async getByUserId(userId: string): Promise<TypeOrderItemDto[]> {
+    const orderItems = await this.orderItemRepo.getByUserId(
+      new mongoose.Types.ObjectId(userId),
+    );
+    return orderItems.map(OrderItemDao.convertOne);
   }
 }

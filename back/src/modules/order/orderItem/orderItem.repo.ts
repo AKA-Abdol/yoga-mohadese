@@ -34,4 +34,10 @@ export class OrderItemRepo {
   ) {
     this.model.updateOne({ userId, productId }, { $inc: { count } });
   }
+
+  async getByUserId(
+    userId: mongoose.Types.ObjectId,
+  ): Promise<MongoDoc<OrderItem>[]> {
+    return this.model.find({ userId }).exec();
+  }
 }

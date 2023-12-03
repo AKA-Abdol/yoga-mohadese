@@ -17,7 +17,7 @@ import { OrderModule } from '../order/order.module';
     MongooseModule.forFeature([{ name: Access.name, schema: AccessSchema }]),
     forwardRef(() => VideoModule),
     forwardRef(() => UserModule),
-    OrderModule,
+    forwardRef(() => OrderModule),
   ],
   controllers: [CourseController],
   providers: [CourseService, CourseRepo, AccessRepo, AccessService],

@@ -26,6 +26,7 @@ import { Course } from './course.schema';
 import { OrderItemService } from '../order/orderItem/orderItem.service';
 import { ProductType } from '../order/orderItem/dtos/product';
 import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
+import { CourseProduct } from './dtos/course-product.dto';
 
 @Injectable()
 export class CourseService {
@@ -36,6 +37,7 @@ export class CourseService {
     private readonly userService: UserService,
     @Inject(forwardRef(() => VideoService))
     private readonly videoService: VideoService,
+    @Inject(forwardRef(() => OrderItemService))
     private readonly orderItemService: OrderItemService,
   ) {}
 
@@ -197,11 +199,28 @@ export class CourseService {
     if (await this.orderItemService.hasOrderItem(userId, courseId))
       throw new ConflictException('این کورس قبلا در سبد خرید شما بوده است');
 
-    const orderItem = await this.orderItemService.addOrderItem(userId, {
+    const orderItem = await this.orderItemService.add(userId, {
       id: courseId,
       type: ProductType.COURSE,
     });
 
     return { orderItem: orderItem._id.toString() };
+  }
+
+  private async getCourseVideos(courseId: string) {
+    return this.videoService.getVideosByCourseId(courseId);
+  }
+
+  async getCourseProduct(
+    courseId: mongoose.Types.ObjectId,
+  ): Promise<CourseProduct> {
+    const course = await this.courseRepo.getById(courseId);
+    if (course === null) throw new NotFoundException('کورس یافت نشد');
+    const videos = await this.getCourseVideos(courseId.toString());
+    if (videos instanceof BaseError) return videos.throw();
+    return new CourseProduct(
+      CourseDao.convertOne(course),
+      videos.map((video) => video.thumbnail),
+    );
   }
 }
