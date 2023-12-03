@@ -146,7 +146,7 @@ const Player: FC = (props) => {
     <>
       <video
         ref={videoRef}
-        className={`w-full h-full object-contain peer`}
+        className={`max-w-[100vw] max-h-[100vh]  min-w-[100vw] min-h-[100vh] w-[100vw] h-[100vh] object-contain peer`}
         controls
         controlsList="nodownload"
         poster={selectedSessionVideo.thumbnail}

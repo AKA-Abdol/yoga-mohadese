@@ -57,7 +57,7 @@ const TicketForm: FC = () => {
   }
 
   return (
-    <div className={`w-full h-full px-lg py-sm flex justify-center`}>
+    <main className={`w-full h-full px-lg py-sm flex justify-center`}>
       <Header />
       <ToastContainer position="top-center" rtl={true} theme="light" />
       <form
@@ -118,7 +118,7 @@ const TicketForm: FC = () => {
           </div>
         </div>
       </form>
-    </div>
+    </main>
   );
 };
 

@@ -1,0 +1,60 @@
+@keyframes circularAnimation100 {
+    0% {
+        transform: rotate(0deg) translateY(100px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateY(100px) rotate(-360deg);
+    }
+}
+
+@keyframes circularAnimation200 {
+    0% {
+        transform: rotate(0deg) translateY(-200px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateY(-200px) rotate(-360deg);
+    }
+}
+
+@keyframes circularAnimation300 {
+    0% {
+        transform: rotate(0deg) translateY(0px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateY(300px) rotate(-360deg);
+    }
+}
+
+
+.fadeDivOne {
+    position: fixed;
+    overflow: hidden;
+    top: 20vh;
+    right: 10vw;
+    z-index: 0;
+
+    animation: circularAnimation100 10s infinite linear;
+}
+
+.fadeDivTwo {
+    position: fixed;
+    overflow: hidden;
+    top: 50vh;
+    right: 40vw;
+    z-index: 0;
+
+    animation: circularAnimation200 12s infinite linear;
+}
+
+.fadeDivThree {
+    position: fixed;
+    overflow: hidden;
+    top: 80vh;
+    right: 70vw;
+    z-index: 0;
+
+    animation: circularAnimation300 15s infinite linear;
+}

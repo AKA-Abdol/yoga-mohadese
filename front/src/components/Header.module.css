@@ -2,8 +2,8 @@
     position: absolute;
     background-color: transparent;
     top: 0;
-    width: 98vw;
-    padding: 0.75rem;
+    width: 100vw;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,39 +14,32 @@
 /* HAMBURGER MENU */
 .voroodBurgerContainer{
     z-index: 1000;
-    display: flex;
-    flex-direction: row;
     position: relative;
-    gap: 100px;
-}
-
-.box {
-    background: transparent;
-    z-index: 1000;
 }
 .navBtn {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 50px;
+    width: 40px;
     cursor: pointer;
-    top: 2rem;
+    top: 0;
 }
 .menu-burguer {
     display: block;
     width: 100%;
-    box-shadow: 0 2px 10px 0 #31393C;
+    box-shadow: 0 2px 10px 0 #58423A;
     border-radius: 3px;
     height: 1px;
-    background: #31393C;
+    background: #58423A;
     transition: all .3s;
     position: relative;
 }
 .menu-burguer+.menu-burguer {
-    margin-top: 14px;
+    /* margin-top: 14px; */
+    margin-top: 10px;
 }
 .active .menu-burguer:nth-child(1) {
-    background-color: #D6CCC2;
-    box-shadow: 0 1px 5px 1px #F5EBE170;
+    
+    box-shadow: 0 1px 5px 1px #58423a9d;
     transition: color 0.7s ease;
     animation: ease .7s top forwards;
 }
@@ -54,8 +47,8 @@
     animation: ease .7s top-2 forwards;
 }
 .active .menu-burguer:nth-child(2) {
-    background-color: #D6CCC2;
-    box-shadow: 0 1px 5px 1px #F5EBE170;
+    
+    box-shadow: 0 1px 5px 1px #58423a9d;
     transition: color 0.7s ease;
     animation: ease .7s scaled forwards;
 }
@@ -63,8 +56,8 @@
     animation: ease .7s scaled-2 forwards;
 }
 .active .menu-burguer:nth-child(3) {
-    background-color: #D6CCC2;
-    box-shadow: 0 1px 5px 1px #F5EBE170;
+    
+    box-shadow: 0 1px 5px 1px #58423a9d;
     transition: color 0.7s ease;
     animation: ease .7s bottom forwards;
 }
@@ -72,24 +65,16 @@
     animation: ease .7s bottom-2 forwards;
 }
 .vorood {
-    color: #31393C;
+    color: #58423A;
     font-size: 20px;
     z-index: 1;
-    padding: 0.8rem 1rem 0.5rem 1rem;
-    border-radius: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease;   
+    position: absolute;
+    right: 110px;  
+    top: -20px;
 }
 .disNon {
-    color: #31393C;
+    display: none;
 }
-.vorood:hover {
-    color: #D6CCC2;
-    background-color: #31393C;
-}
-
 @keyframes top {
     0% {
         top: 0;
@@ -97,23 +82,23 @@
     }
 
     50% {
-        top: 15px;
+        top: 8px;
         transform: rotate(0);
     }
 
     100% {
-        top: 15px;
+        top: 8px;
         transform: rotate(45deg);
     }
 }
 @keyframes top-2 {
     0% {
-        top: 15px;
+        top: 8px;
         transform: rotate(45deg);
     }
 
     50% {
-        top: 15px;
+        top: 8px;
         transform: rotate(0deg);
     }
 
@@ -187,28 +172,29 @@
     right: 0;
     overflow-y: hidden;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-top: 80px;
+    padding-bottom: 200px;
+    padding-right: 0;
     text-align: center;
-    border: 1px solid #EDEEE8;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     transition: all 1s ease-in-out;
-    background-color: #31393C;
+    background-color: rgba(254, 250, 247, 0.5);
 }
 
 .nav-links {
-    padding: .8rem;
     text-decoration: none;
+    opacity: 0;
     font-size: 28px;
     display: block;
     z-index: 1000;
-    transition: all .15s ease;
+    transition: all 1s ease;
 }
 
 .activeNavLinks {
-    color: #EDEEE8;
-    transition: all 1.5s ease;
+    opacity: 1;
+    color: #58423A;
 }
 
 .nav-links:hover {
@@ -216,13 +202,16 @@
 }
 
 .activeNav {
-    width: 300px;
-    transition: 1s ease;
+    width: 275px;
+    transition: 0.5s ease;
+    padding-right: 20px;
+    border: 1px solid #EDEEE8;
+    backdrop-filter: blur(10px);
 }
 
 .not-activeNav {
     width: 0;
-    transition: 1s ease;
+    transition: 0.5s ease;
 }
 
 /* HOME LINK WITH LOGO */
@@ -235,12 +224,11 @@
 }
 
 .img-link {
-    width: 75px;
-    height: 75px;
-    border: 2px solid #EDEEE8;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     padding: 4px;
-    background-color: #EDEEE8;
+    background-color: none;
     transition: all 0.7s;
 }
 

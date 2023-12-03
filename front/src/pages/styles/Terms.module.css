@@ -1,8 +1,8 @@
 .body {
     width: 100vw;
-    min-height: 100vh;
     overflow-x: hidden;
-    color: black;
+    background-color: #D6CCC2;
+    color:#31393C;
     direction: rtl;
     font-family: IRANRounded !important;
 }
@@ -23,7 +23,7 @@ button {
 
 .terms {
     padding: 2rem;
-    margin: 5rem 2rem 2rem 2rem;
+    margin: 7rem 2rem 2rem 2rem;
     background: linear-gradient(0deg, #D6CCC2 0%, #EDEEE8 100%);
 }
 
@@ -34,5 +34,4 @@ button {
 .terms ul li {
     text-align: justify;
     text-justify: inter-word;
-    line-height: 2rem;
 }

@@ -2,6 +2,7 @@ import { FC, useCallback, useState } from "react";
 
 import lgAuthImage from "../../assets/images/lg-auth-img.jpg";
 import smAuthImage from "../../assets/images/sm-auth-img.jpg";
+import hijab from "../../assets/images/hijab.jpg"
 import { LoginForm } from "./components/LoginForm";
 import { SignupForm } from "./components/SignupForm";
 
@@ -26,12 +27,12 @@ const Auth: FC = () => {
       </div>
       <div className="_image_ w-full lg:w-2/3 flex flex-row-reverse">
         <img
-          src={smAuthImage}
+          src={hijab}
           alt={"BottomImage"}
           className={"w-full h-auto object-cover lg:hidden"}
         />
         <img
-          src={lgAuthImage}
+          src={hijab}
           alt="SideImage"
           className={"h-full w-full object-cover hidden lg:block"}
         />

@@ -18,14 +18,8 @@
   border: 0px solid #31393C;
 }
 /* THIS IS A VERY HANDY CLASS */
-.justifier {
-  text-align: justify;
-  text-justify: inter-word;
-  line-height: 2rem;
-}
-
 .bodyStyle {
-  max-width: 100vw;
+  /* max-width: 100vw; */
   overflow-x: hidden;
   display: flex;
   justify-content: center;
@@ -41,19 +35,14 @@
 .content {
   width: 100vw;
   height: auto;
-  padding: 1rem 2.5rem;
   margin-top: 5rem;
 }
 
-.h1styles {
-  font-size: 48px;
-}
 
 .img1-container {
   margin: 1rem 0;
 }
 
-.img1,
 .img2 {
   width: 100%;
 }
@@ -67,10 +56,10 @@
 }
 
 .vertical-line {
-  width: 2px;
-  height: 20vh;
-  box-shadow: 0 0 10px 5px #31393C70;
-  background-color: #31393C70;
+  width: 3px;
+  height: 60px;
+  /* box-shadow: 0 0 10px 5px #31393C70; */
+  background-color: #31393c9e;
   display: inline-block;
 }
 
@@ -217,14 +206,7 @@
 
 /*    FOR IPAD */
 @media only screen and (min-width: 767px) {
-  .img1 {
-    width: 70%;
-    height: auto;
-  }
-
-  .text-container {
-    margin-right: 30vw;
-  }
+ 
 
   .text-container p {
     font-size: 22px;
@@ -282,16 +264,12 @@
     margin-top: 100px;
   }
 
-  .h1styles {
-    font-size: 48px;
-  }
+ 
 
   .img1-container {
     display: flex;
     justify-content: flex-start;
   }
-
-  .img1,
   .img2 {
     width: 50%;
   }

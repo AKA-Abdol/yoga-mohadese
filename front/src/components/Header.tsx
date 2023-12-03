@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   const [menuState, setMenuState] = useState(false);
   const [showVorood, setShowVorood] = useState(true);
+  
   function handleMenu() {
     setMenuState(!menuState);
     setShowVorood(!showVorood)
@@ -64,6 +65,15 @@ export default function Header() {
           onClick={handleMenu}
         >
           یوگا با محدثه
+        </Link>
+        <Link
+          to={"/store"}
+          className={`${styles["nav-links"]}  ${
+            menuState ? styles.activeNavLinks : ``
+          }`}
+          onClick={handleMenu}
+        >
+          فروشگاه
         </Link>
         <Link
           to={"/ticket"}

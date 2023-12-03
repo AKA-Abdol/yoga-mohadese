@@ -10,4 +10,27 @@ const p2e = (s: string | number) => {
   }
   return s.replace(/[۰-۹]/g, (d) => `${"۰۱۲۳۴۵۶۷۸۹".indexOf(d)}`);
 };
-export { e2p as English2Persian, p2e as Persian2English };
+
+const addCommaEach3Digits = (s: string | number): string => {
+  if (typeof s === "number") {
+    s = s.toString();
+  }
+  const reversedString = s.split('').reverse().join('');
+
+  // Add commas in groups of three digits
+  const regex = /\d{1,3}/g;
+  const chunks = reversedString.match(regex) || [];
+  const result = chunks.join(",");
+
+  // Reverse the result back
+  return result.split('').reverse().join('');
+};
+
+const addToman = (s: string | number) => {  
+  if (typeof s === "number") {
+    s = s.toString();
+  }
+  return `${s} تومان`;
+};
+
+export { e2p as English2Persian, p2e as Persian2English, addToman, addCommaEach3Digits };

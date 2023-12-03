@@ -65,3 +65,7 @@ div {
   margin-right: 3px;
 }
 
+img,
+video {
+  max-width: none;
+}
