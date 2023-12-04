@@ -35,9 +35,16 @@ export class OrderItemRepo {
     this.model.updateOne({ userId, productId }, { $inc: { count } });
   }
 
+  async softDelete(id: mongoose.Types.ObjectId) {
+    const orderItem = await this.model.findOne({ _id: id }).exec();
+    if (orderItem === null) return;
+    orderItem.isDeleted = true;
+    orderItem.save();
+  }
+
   async getByUserId(
     userId: mongoose.Types.ObjectId,
   ): Promise<MongoDoc<OrderItem>[]> {
-    return this.model.find({ userId }).exec();
+    return this.model.find({ userId, isDeleted: false }).exec();
   }
 }

@@ -1,6 +1,6 @@
 import { InProduct } from 'src/shared/in-product.dto';
 import { TypeCourseDto } from './type-course.dto';
-import { ProductType } from 'src/modules/order/orderItem/dtos/product';
+import { ProductType } from 'src/modules/orderItem/dtos/product';
 
 export class CourseProduct implements InProduct {
   constructor(

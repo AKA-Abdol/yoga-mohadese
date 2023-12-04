@@ -15,6 +15,9 @@ export class OrderItem {
 
   @Prop({ default: 1 })
   count: number;
+
+  @Prop({ default: false })
+  isDeleted?: boolean;
 }
 
 export const OrderItemSchema = SchemaFactory.createForClass(OrderItem);

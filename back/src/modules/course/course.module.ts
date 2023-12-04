@@ -9,7 +9,7 @@ import { AccessService } from './access.service';
 import { Access, AccessSchema } from './access.schema';
 import { VideoModule } from '../video/video.module';
 import { UserModule } from '../user/user.module';
-import { OrderModule } from '../order/order.module';
+import { OrderItemModule } from '../orderItem/orderItem.module';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { OrderModule } from '../order/order.module';
     MongooseModule.forFeature([{ name: Access.name, schema: AccessSchema }]),
     forwardRef(() => VideoModule),
     forwardRef(() => UserModule),
-    forwardRef(() => OrderModule),
+    OrderItemModule,
   ],
   controllers: [CourseController],
   providers: [CourseService, CourseRepo, AccessRepo, AccessService],

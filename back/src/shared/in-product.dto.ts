@@ -1,4 +1,4 @@
-import { ProductType } from 'src/modules/order/orderItem/dtos/product';
+import { ProductType } from 'src/modules/orderItem/dtos/product';
 
 export interface InProduct<T = any> {
   getPrice(): number;

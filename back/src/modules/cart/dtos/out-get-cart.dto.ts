@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ProductType } from '../orderItem/dtos/product';
+import { ProductType } from '../../orderItem/dtos/product';
 
 class OutGetCartItemProduct {
   @ApiProperty({ required: true, default: 'Course' })

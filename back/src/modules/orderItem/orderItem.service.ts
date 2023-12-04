@@ -36,4 +36,8 @@ export class OrderItemService {
     );
     return orderItems.map(OrderItemDao.convertOne);
   }
+
+  async softDeleteMany(ids: mongoose.Types.ObjectId[]) {
+    await Promise.all(ids.map((id) => this.orderItemRepo.softDelete(id)));
+  }
 }

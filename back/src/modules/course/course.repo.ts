@@ -27,7 +27,7 @@ export class CourseRepo {
   ): Promise<MongoDoc<Course> | null> {
     return await this.model.findOne({
       _id: course_id,
-      end_date: { $gt: new Date().toISOString() },
+      end_date: { $gt: new Date() },
     });
   }
 

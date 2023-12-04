@@ -22,9 +22,8 @@ import { VideoService } from '../video/video.service';
 import { OutGetCoursesDto } from './dtos/out-get-course.dto';
 import { OutGetShopDto } from './dtos/out-get-shop.dto';
 import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
-import { Course } from './course.schema';
-import { OrderItemService } from '../order/orderItem/orderItem.service';
-import { ProductType } from '../order/orderItem/dtos/product';
+import { OrderItemService } from '../orderItem/orderItem.service';
+import { ProductType } from '../orderItem/dtos/product';
 import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
 import { CourseProduct } from './dtos/course-product.dto';
 
@@ -37,7 +36,6 @@ export class CourseService {
     private readonly userService: UserService,
     @Inject(forwardRef(() => VideoService))
     private readonly videoService: VideoService,
-    @Inject(forwardRef(() => OrderItemService))
     private readonly orderItemService: OrderItemService,
   ) {}
 
@@ -222,5 +220,10 @@ export class CourseService {
       CourseDao.convertOne(course),
       videos.map((video) => video.thumbnail),
     );
+  }
+
+  async isAvailable(courseId: mongoose.Types.ObjectId): Promise<boolean> {
+    const course = await this.courseRepo.getById(courseId);
+    return course !== null;
   }
 }
