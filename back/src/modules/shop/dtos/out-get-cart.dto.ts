@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ProductType } from '../../orderItem/dtos/product';
+import { ProductType } from '../shop.entity';
 
 class OutGetCartItemProduct {
   @ApiProperty({ required: true, default: 'Course' })
@@ -32,6 +32,4 @@ export class OutGetCartItem {
   product: OutGetCartItemProduct;
 }
 
-export class OutGetCartDto {
-  cart: OutGetCartItem[];
-}
+export type OutGetCartDto = OutGetCartItem[];

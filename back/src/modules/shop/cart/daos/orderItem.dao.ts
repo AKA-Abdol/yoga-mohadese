@@ -1,8 +1,8 @@
-import { TypeOrderItemDto } from '../dtos/type-orderItem.dto';
-import { OrderItem } from '../cart.schema';
+import { Cart } from '../cart.schema';
+import { TypeCart } from '../dtos/type-cart.dto';
 
-export abstract class OrderItemDao {
-  static convertOne = (model: MongoDoc<OrderItem>): TypeOrderItemDto => ({
+export abstract class CartDao {
+  static convertOne = (model: MongoDoc<Cart>): TypeCart => ({
     id: model._id,
     userId: model.userId,
     product: {

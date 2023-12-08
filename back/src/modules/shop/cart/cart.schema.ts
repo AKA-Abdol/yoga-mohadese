@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
-import { ProductType } from './dtos/product';
+import { ProductType } from '../shop.entity';
 
-@Schema({ collection: 'orderItems' })
-export class OrderItem {
+@Schema()
+export class Cart {
   @Prop({ required: true })
   userId: mongoose.Types.ObjectId;
 
@@ -20,4 +20,4 @@ export class OrderItem {
   isDeleted?: boolean;
 }
 
-export const OrderItemSchema = SchemaFactory.createForClass(OrderItem);
+export const CartSchema = SchemaFactory.createForClass(Cart);

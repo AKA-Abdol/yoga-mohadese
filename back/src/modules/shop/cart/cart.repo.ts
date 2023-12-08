@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { OrderItem } from './cart.schema';
+import { Cart } from './cart.schema';
 import mongoose, { Model } from 'mongoose';
 
 @Injectable()
-export class OrderItemRepo {
-  constructor(@InjectModel(OrderItem.name) private model: Model<OrderItem>) {}
+export class CartRepo {
+  constructor(@InjectModel(Cart.name) private model: Model<Cart>) {}
 
   async hasOrderItem(
     userId: mongoose.Types.ObjectId,
@@ -23,7 +23,7 @@ export class OrderItemRepo {
     return orderItem !== null;
   }
 
-  async create(orderItem: OrderItem): Promise<MongoDoc<OrderItem>> {
+  async create(orderItem: Cart): Promise<MongoDoc<Cart>> {
     return await this.model.create(orderItem);
   }
 
@@ -44,7 +44,7 @@ export class OrderItemRepo {
 
   async getByUserId(
     userId: mongoose.Types.ObjectId,
-  ): Promise<MongoDoc<OrderItem>[]> {
+  ): Promise<MongoDoc<Cart>[]> {
     return this.model.find({ userId, isDeleted: false }).exec();
   }
 }

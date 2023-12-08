@@ -1,5 +1,4 @@
 import {
-  ConflictException,
   Inject,
   Injectable,
   NotFoundException,
@@ -21,11 +20,9 @@ import { UserService } from '../user/user.service';
 import { VideoService } from '../video/video.service';
 import { OutGetCourseDto } from './dtos/out-get-course.dto';
 import { OutGetCoursesDto } from './dtos/out-get-shop.dto';
-import { OrderItemService } from '../orderItem/orderItem.service';
-import { ProductType } from '../orderItem/dtos/product';
-import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
-import { CourseProduct } from './dtos/course-product.dto';
 import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
+import { InProduct } from '../shop/shop.entity';
+import { CourseProductDao } from './daos/course-product.dao';
 
 @Injectable()
 export class CourseService {
@@ -36,7 +33,6 @@ export class CourseService {
     private readonly userService: UserService,
     @Inject(forwardRef(() => VideoService))
     private readonly videoService: VideoService,
-    private readonly orderItemService: OrderItemService,
   ) {}
 
   async createCourse(
@@ -109,7 +105,7 @@ export class CourseService {
     const course = await this.courseRepo.getById(
       new mongoose.Types.ObjectId(course_id),
     );
-    return course ? true : false;
+    return course !== null;
   }
 
   async deleteCourseById(
@@ -182,39 +178,19 @@ export class CourseService {
     };
   }
 
-  async addCourseOrder(
-    userId: string,
-    courseId: string,
-  ): Promise<OutAddCourseOrder> {
-    const course = await this.courseRepo.getById(
-      new mongoose.Types.ObjectId(courseId),
-    );
-    if (course === null) throw new NotFoundException('ترم مورد نظر یافت نشد');
-
-    if (await this.orderItemService.hasOrderItem(userId, courseId))
-      throw new ConflictException('این کورس قبلا در سبد خرید شما بوده است');
-
-    const orderItem = await this.orderItemService.add(userId, {
-      id: courseId,
-      type: ProductType.COURSE,
-    });
-
-    return { orderItem: orderItem._id.toString() };
-  }
-
   private async getCourseVideos(courseId: string) {
     return this.videoService.getVideosByCourseId(courseId);
   }
 
   async getCourseProduct(
     courseId: mongoose.Types.ObjectId,
-  ): Promise<CourseProduct> {
+  ): Promise<InProduct> {
     const course = await this.courseRepo.getById(courseId);
     if (course === null) throw new NotFoundException('کورس یافت نشد');
     const videos = await this.getCourseVideos(courseId.toString());
     if (videos instanceof BaseError) return videos.throw();
-    return new CourseProduct(
-      CourseDao.convertOne(course),
+    return CourseProductDao.convertOne(
+      course,
       videos.map((video) => video.thumbnail),
     );
   }

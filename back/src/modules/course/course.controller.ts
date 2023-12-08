@@ -23,13 +23,10 @@ import { NotFoundError } from '../../errors/not-found-error';
 import { BadRequestError } from '../../errors/bad-request-error';
 import { InGetPaginatedCourses } from './dtos/in-get-paginated-courses.dto';
 import { OutGetPaginatedCoursesDto } from './dtos/out-get-paginated-courses.dto';
-import { OutGetCoursesDto } from './dtos/out-get-course.dto';
+import { OutGetCourseDto } from './dtos/out-get-course.dto';
 import { InCreateCourse } from './dtos/in-create-course.dto';
 import { DuplicateError } from '../../errors/duplicate-error';
 import { BaseError } from '../../errors/base-error';
-import { InAddCourseOrderBody } from './dtos/in-add-course-order.dto';
-import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
-
 @UseGuards(RolesGuard)
 @Controller('courses')
 export class CourseController {
@@ -57,7 +54,7 @@ export class CourseController {
   async createCourse(
     @Req() { userId }: { userId: string },
     @Body() input: InCreateCourse,
-  ): Promise<OutGetCoursesDto> {
+  ): Promise<OutGetCourseDto> {
     const course = await this.courseService.createCourse(input);
     if (course instanceof DuplicateError) return course.throw();
     return { course: { ...course, videos: [] } };
@@ -72,7 +69,7 @@ export class CourseController {
   async getCourse(
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
-  ): Promise<OutGetCoursesDto> {
+  ): Promise<OutGetCourseDto> {
     const course = await this.courseService.getCoursesWithVideos(
       userId,
       courseId,
@@ -91,7 +88,7 @@ export class CourseController {
   async deleteCourse(
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
-  ): Promise<OutGetCoursesDto> {
+  ): Promise<OutGetCourseDto> {
     const course = await this.courseService.deleteCourseById(courseId);
     if (course instanceof NotFoundError) return course.throw();
     if (course instanceof BadRequestError) return course.throw();
@@ -108,20 +105,9 @@ export class CourseController {
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
     @Body() input: InCreateCourse,
-  ): Promise<OutGetCoursesDto> {
+  ): Promise<OutGetCourseDto> {
     const new_course = await this.courseService.editCourse(courseId, input);
     if (new_course instanceof BaseError) return new_course.throw();
     return new_course;
-  }
-
-  @Post('/shop/add-order')
-  @Role('USER')
-  @ApiBearerAuth()
-  @ApiOperation({ summary: 'add course order to your cart' })
-  async addCourseOrderItem(
-    @Req() { userId }: { userId: string },
-    @Body() input: InAddCourseOrderBody,
-  ): Promise<OutAddCourseOrder> {
-    return this.courseService.addCourseOrder(userId, input.courseId);
   }
 }

@@ -1,17 +1,10 @@
 import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import mongoose from 'mongoose';
-import { CourseRepo } from './course.repo';
 import { NotFoundError } from '../../errors/not-found-error';
 import { BadRequestError } from '../../errors/bad-request-error';
 import { DuplicateError } from '../../errors/duplicate-error';
-import { InGetPaginatedCourses } from './dtos/in-get-paginated-courses.dto';
-import { OutGetPaginatedCoursesDto } from './dtos/out-get-paginated-courses.dto';
-import { TypeCourseDto } from './dtos/type-course.dto';
-import { InCreateCourse } from './dtos/in-create-course.dto';
-import { CourseDao } from './daos/course.dao';
 import { AccessRepo } from './access.repo';
 import { InAccessCourse } from './dtos/in-create-access.dto';
-import { OutGetCoursesDto } from './dtos/out-get-course.dto';
 import { AccessDao } from './daos/access.dao';
 import { TypeAccessDto } from './dtos/type-access.dto';
 import { OutStatusDto } from '../../dtos/out-status.dto';
@@ -89,7 +82,7 @@ export class AccessService {
       mongoose.Types.ObjectId.isValid(courseId) &&
       mongoose.Types.ObjectId.isValid(courseId);
     if (!isIdValid) return new BadRequestError('InvalidInputId');
-    let access = await this.accessRepo.getByUserAndCourseId(
+    const access = await this.accessRepo.getByUserAndCourseId(
       new mongoose.Types.ObjectId(userId),
       new mongoose.Types.ObjectId(courseId),
     );

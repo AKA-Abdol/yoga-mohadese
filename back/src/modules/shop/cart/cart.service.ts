@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { OrderItemRepo } from './cart.repo';
-import { Product } from './dtos/product';
+import { CartRepo } from './cart.repo';
 import mongoose from 'mongoose';
-import { OrderItem } from './cart.schema';
-import { TypeOrderItemDto } from './dtos/type-orderItem.dto';
-import { OrderItemDao } from './daos/orderItem.dao';
+import { Cart } from './cart.schema';
+import { CartDao } from './daos/orderItem.dao';
+import { TypeCart } from './dtos/type-cart.dto';
+import { InProduct, ProductIdentifier } from '../shop.entity';
 
 @Injectable()
-export class OrderItemService {
-  constructor(private readonly orderItemRepo: OrderItemRepo) {}
+export class CartService {
+  constructor(private readonly cartRepo: CartRepo) {}
 
   async hasOrderItem(userId: string, productId: string): Promise<boolean> {
-    return this.orderItemRepo.hasOrderItem(
+    return this.cartRepo.hasOrderItem(
       new mongoose.Types.ObjectId(userId),
       new mongoose.Types.ObjectId(productId),
     );
@@ -19,10 +19,10 @@ export class OrderItemService {
 
   async add(
     userId: string,
-    product: Product,
+    product: ProductIdentifier,
     count = 1,
-  ): Promise<MongoDoc<OrderItem>> {
-    return await this.orderItemRepo.create({
+  ): Promise<MongoDoc<Cart>> {
+    return await this.cartRepo.create({
       productId: new mongoose.Types.ObjectId(product.id),
       productType: product.type,
       userId: new mongoose.Types.ObjectId(userId),
@@ -30,14 +30,14 @@ export class OrderItemService {
     });
   }
 
-  async getByUserId(userId: string): Promise<TypeOrderItemDto[]> {
-    const orderItems = await this.orderItemRepo.getByUserId(
+  async getByUserId(userId: string): Promise<TypeCart[]> {
+    const cartItems = await this.cartRepo.getByUserId(
       new mongoose.Types.ObjectId(userId),
     );
-    return orderItems.map(OrderItemDao.convertOne);
+    return cartItems.map(CartDao.convertOne);
   }
 
   async softDeleteMany(ids: mongoose.Types.ObjectId[]) {
-    await Promise.all(ids.map((id) => this.orderItemRepo.softDelete(id)));
+    await Promise.all(ids.map((id) => this.cartRepo.softDelete(id)));
   }
 }

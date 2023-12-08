@@ -1,16 +1,14 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { OrderItem, OrderItemSchema } from './cart.schema';
-import { OrderItemRepo } from './cart.repo';
-import { OrderItemService } from './cart.service';
+import { CartRepo } from './cart.repo';
+import { Cart, CartSchema } from './cart.schema';
+import { CartService } from './cart.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: OrderItem.name, schema: OrderItemSchema },
-    ]),
+    MongooseModule.forFeature([{ name: Cart.name, schema: CartSchema }]),
   ],
-  providers: [OrderItemRepo, OrderItemService],
-  exports: [OrderItemService],
+  providers: [CartRepo, CartService],
+  exports: [CartService],
 })
-export class OrderItemModule {}
+export class CartModule {}
