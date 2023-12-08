@@ -19,13 +19,13 @@ import { AccessService } from './access.service';
 import { BaseError } from '../../errors/base-error';
 import { UserService } from '../user/user.service';
 import { VideoService } from '../video/video.service';
-import { OutGetCoursesDto } from './dtos/out-get-course.dto';
-import { OutGetShopDto } from './dtos/out-get-shop.dto';
-import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
+import { OutGetCourseDto } from './dtos/out-get-course.dto';
+import { OutGetCoursesDto } from './dtos/out-get-shop.dto';
 import { OrderItemService } from '../orderItem/orderItem.service';
 import { ProductType } from '../orderItem/dtos/product';
 import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
 import { CourseProduct } from './dtos/course-product.dto';
+import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
 
 @Injectable()
 export class CourseService {
@@ -57,7 +57,7 @@ export class CourseService {
   async editCourse(
     course_id: string,
     courseInfo: InCreateCourse,
-  ): Promise<OutGetCoursesDto | BadRequestError | NotFoundError> {
+  ): Promise<OutGetCourseDto | BadRequestError | NotFoundError> {
     const isIdValid = mongoose.Types.ObjectId.isValid(course_id);
     if (!isIdValid) return new BadRequestError('InvalidInputId');
     await this.courseRepo.editById(
@@ -94,7 +94,7 @@ export class CourseService {
   async getCoursesWithVideos(
     userId: string,
     courseId: string,
-  ): Promise<OutGetCoursesDto | NotFoundError | BadRequestError> {
+  ): Promise<OutGetCourseDto | NotFoundError | BadRequestError> {
     const course = await this.getCourseById(userId, courseId);
     if (course instanceof BaseError) return course;
     const videos = await this.videoService.getVideosByUserIdAndCourseId(
@@ -114,7 +114,7 @@ export class CourseService {
 
   async deleteCourseById(
     courseId: string,
-  ): Promise<OutGetCoursesDto | NotFoundError | BadRequestError> {
+  ): Promise<OutGetCourseDto | NotFoundError | BadRequestError> {
     const isIdValid = mongoose.Types.ObjectId.isValid(courseId);
     if (!isIdValid) return new BadRequestError('InvalidInputId');
     const courseModel = await this.courseRepo.deleteById(
@@ -171,17 +171,14 @@ export class CourseService {
     return res;
   }
 
-  async getShopCourses({
-    page,
-    num,
-  }: InGetShopQueryDto): Promise<OutGetShopDto> {
+  async getCourses({ page, num }: InPaginatedDto): Promise<OutGetCoursesDto> {
     const shopCourses = await this.courseRepo.getPaginatedCourses(
       num,
       (page - 1) * num,
     );
     return {
       count: shopCourses.count || 0,
-      values: shopCourses.values.map(CourseDao.convertOne),
+      courses: shopCourses.values.map(CourseDao.convertOne),
     };
   }
 

@@ -1,10 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Course } from '../course.schema';
+import { TypeCourseDto } from './type-course.dto';
 
-type IGetShopItem = Omit<Course, 'deletedAt'>;
-export class OutGetShopDto {
+export class OutGetCoursesDto {
   @ApiProperty({ required: true, default: [] })
-  values: IGetShopItem[];
+  courses: TypeCourseDto[];
   @ApiProperty({ required: true, default: 0 })
   count: number;
 }

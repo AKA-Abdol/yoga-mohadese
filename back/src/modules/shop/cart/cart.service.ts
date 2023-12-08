@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { OrderItemRepo } from './orderItem.repo';
+import { OrderItemRepo } from './cart.repo';
 import { Product } from './dtos/product';
 import mongoose from 'mongoose';
-import { OrderItem } from './orderItem.schema';
+import { OrderItem } from './cart.schema';
 import { TypeOrderItemDto } from './dtos/type-orderItem.dto';
 import { OrderItemDao } from './daos/orderItem.dao';
 

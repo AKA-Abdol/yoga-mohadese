@@ -1,5 +1,5 @@
 import { TypeOrderItemDto } from '../dtos/type-orderItem.dto';
-import { OrderItem } from '../orderItem.schema';
+import { OrderItem } from '../cart.schema';
 
 export abstract class OrderItemDao {
   static convertOne = (model: MongoDoc<OrderItem>): TypeOrderItemDto => ({

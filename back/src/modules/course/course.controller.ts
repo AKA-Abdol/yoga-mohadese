@@ -27,8 +27,6 @@ import { OutGetCoursesDto } from './dtos/out-get-course.dto';
 import { InCreateCourse } from './dtos/in-create-course.dto';
 import { DuplicateError } from '../../errors/duplicate-error';
 import { BaseError } from '../../errors/base-error';
-import { OutGetShopDto } from './dtos/out-get-shop.dto';
-import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
 import { InAddCourseOrderBody } from './dtos/in-add-course-order.dto';
 import { OutAddCourseOrder } from './dtos/out-add-course-order.dto';
 
@@ -63,14 +61,6 @@ export class CourseController {
     const course = await this.courseService.createCourse(input);
     if (course instanceof DuplicateError) return course.throw();
     return { course: { ...course, videos: [] } };
-  }
-
-  @Get('/shop')
-  @ApiOperation({ summary: 'get all courses to purchase' })
-  async getCourseShop(
-    @Query() input: InGetShopQueryDto,
-  ): Promise<OutGetShopDto> {
-    return this.courseService.getShopCourses(input);
   }
 
   @Get(':course_id')

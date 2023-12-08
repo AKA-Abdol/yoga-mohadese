@@ -4,6 +4,9 @@ import { ProductType } from '../orderItem/dtos/product';
 import { CourseService } from '../course/course.service';
 import { OutGetCartDto } from './dtos/out-get-cart.dto';
 import { InProduct } from 'src/shared/in-product.dto';
+import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
+import { OutGetShopCoursesDto } from './dtos/out-get-shop-courses.dto';
+import { ShopCourseDao } from './daos/shop-course.dao';
 
 @Injectable()
 export class CartService {
@@ -11,6 +14,16 @@ export class CartService {
     private readonly orderItemService: OrderItemService,
     private readonly courseService: CourseService,
   ) {}
+
+  async getShopCourses(
+    pagination: InPaginatedDto,
+  ): Promise<OutGetShopCoursesDto> {
+    const paginatedCourses = await this.courseService.getCourses(pagination);
+    return {
+      count: paginatedCourses.count,
+      courses: paginatedCourses.courses.map(ShopCourseDao.convertOne),
+    };
+  }
 
   async getCart(userId: string): Promise<OutGetCartDto> {
     await this.pruneInvalidCartItems(userId);

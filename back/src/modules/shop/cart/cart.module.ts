@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { OrderItem, OrderItemSchema } from '../orderItem/orderItem.schema';
-import { OrderItemRepo } from '../orderItem/orderItem.repo';
-import { OrderItemService } from '../orderItem/orderItem.service';
+import { OrderItem, OrderItemSchema } from './cart.schema';
+import { OrderItemRepo } from './cart.repo';
+import { OrderItemService } from './cart.service';
 
 @Module({
   imports: [

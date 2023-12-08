@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { OrderItem } from './orderItem.schema';
+import { OrderItem } from './cart.schema';
 import mongoose, { Model } from 'mongoose';
 
 @Injectable()
