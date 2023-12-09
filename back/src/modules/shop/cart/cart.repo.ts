@@ -7,24 +7,22 @@ import mongoose, { Model } from 'mongoose';
 export class CartRepo {
   constructor(@InjectModel(Cart.name) private model: Model<Cart>) {}
 
-  async hasOrderItem(
+  async hasCartItem(
     userId: mongoose.Types.ObjectId,
     productId: mongoose.Types.ObjectId,
   ) {
-    const orderItem = await this.model
+    const cartItem = await this.model
       .findOne({
         userId,
         productId,
       })
       .exec();
 
-    console.log(orderItem);
-
-    return orderItem !== null;
+    return cartItem !== null;
   }
 
-  async create(orderItem: Cart): Promise<MongoDoc<Cart>> {
-    return await this.model.create(orderItem);
+  async create(cartItem: Cart): Promise<MongoDoc<Cart>> {
+    return await this.model.create(cartItem);
   }
 
   async incrementCount(
@@ -36,10 +34,10 @@ export class CartRepo {
   }
 
   async softDelete(id: mongoose.Types.ObjectId) {
-    const orderItem = await this.model.findOne({ _id: id }).exec();
-    if (orderItem === null) return;
-    orderItem.isDeleted = true;
-    orderItem.save();
+    const cartItem = await this.model.findOne({ _id: id }).exec();
+    if (cartItem === null) return;
+    cartItem.isDeleted = true;
+    cartItem.save();
   }
 
   async getByUserId(

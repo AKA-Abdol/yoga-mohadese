@@ -25,7 +25,9 @@ export class ShopService {
   async getShopCourses(
     pagination: InPaginatedDto,
   ): Promise<OutGetShopCoursesDto> {
-    const paginatedCourses = await this.courseService.getCourses(pagination);
+    const paginatedCourses = await this.courseService.getCoursesWithVideos(
+      pagination,
+    );
     return {
       count: paginatedCourses.count,
       courses: paginatedCourses.courses.map(ShopCourseDao.convertOne),
@@ -100,7 +102,7 @@ export class ShopService {
     userId: string,
     courseId: mongoose.Types.ObjectId,
   ): Promise<OutAddItemDto> {
-    if (await this.cartService.hasOrderItem(userId, courseId.toString()))
+    if (await this.cartService.hasCartItem(userId, courseId.toString()))
       throw new ConflictException('این کورس قبلا در سبد خرید شما بوده است');
 
     await this.courseService.getCourseProduct(courseId); // if course exists

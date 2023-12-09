@@ -5,13 +5,24 @@ export enum ProductType {
   SHOP_ITEM = 'Item',
 }
 
-export interface ProductIdentifier<T = ProductType> {
-  id: mongoose.Types.ObjectId;
-  type: T;
+export interface ProductIdentifier<
+  K = ProductType,
+  T = mongoose.Types.ObjectId,
+> {
+  id: T;
+  type: K;
 }
 
 export interface InProduct<T = any> extends ProductIdentifier {
   price: number;
   images: string[];
   detail: T;
+}
+
+export interface OutProduct<T = any>
+  extends ProductIdentifier<ProductType, string> {
+  price: number;
+  images: string[];
+  detail: T;
+  maxQuantity: number;
 }

@@ -40,8 +40,6 @@ export class CourseController {
     @Req() { userId }: { userId: string },
     @Query() input: InGetPaginatedCourses,
   ): Promise<OutGetPaginatedCoursesDto> {
-    console.log('in courses get!');
-
     const courses = await this.courseService.getPaginatedCourses(userId, input);
     if (courses instanceof BadRequestError) return courses.throw();
     return courses;
@@ -70,7 +68,7 @@ export class CourseController {
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
   ): Promise<OutGetCourseDto> {
-    const course = await this.courseService.getCoursesWithVideos(
+    const course = await this.courseService.getAccessedCoursesWithVideos(
       userId,
       courseId,
     );

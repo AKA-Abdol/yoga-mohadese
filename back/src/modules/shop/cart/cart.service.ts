@@ -2,16 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { CartRepo } from './cart.repo';
 import mongoose from 'mongoose';
 import { Cart } from './cart.schema';
-import { CartDao } from './daos/orderItem.dao';
+import { CartDao } from './daos/cart.dao';
 import { TypeCart } from './dtos/type-cart.dto';
-import { InProduct, ProductIdentifier } from '../shop.entity';
+import { ProductIdentifier } from '../shop.entity';
 
 @Injectable()
 export class CartService {
   constructor(private readonly cartRepo: CartRepo) {}
 
-  async hasOrderItem(userId: string, productId: string): Promise<boolean> {
-    return this.cartRepo.hasOrderItem(
+  async hasCartItem(userId: string, productId: string): Promise<boolean> {
+    return this.cartRepo.hasCartItem(
       new mongoose.Types.ObjectId(userId),
       new mongoose.Types.ObjectId(productId),
     );

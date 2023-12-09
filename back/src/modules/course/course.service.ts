@@ -1,6 +1,7 @@
 import {
   Inject,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
   forwardRef,
 } from '@nestjs/common';
@@ -23,6 +24,7 @@ import { OutGetCoursesDto } from './dtos/out-get-shop.dto';
 import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
 import { InProduct } from '../shop/shop.entity';
 import { CourseProductDao } from './daos/course-product.dao';
+import { TypeVideoDto } from '../video/dtos/type-video.dto';
 
 @Injectable()
 export class CourseService {
@@ -87,12 +89,12 @@ export class CourseService {
     return course;
   }
 
-  async getCoursesWithVideos(
+  async getAccessedCoursesWithVideos(
     userId: string,
     courseId: string,
   ): Promise<OutGetCourseDto | NotFoundError | BadRequestError> {
     const course = await this.getCourseById(userId, courseId);
-    if (course instanceof BaseError) return course;
+    if (course instanceof BaseError) return course.throw();
     const videos = await this.videoService.getVideosByUserIdAndCourseId(
       userId,
       course.id,
@@ -167,19 +169,34 @@ export class CourseService {
     return res;
   }
 
-  async getCourses({ page, num }: InPaginatedDto): Promise<OutGetCoursesDto> {
-    const shopCourses = await this.courseRepo.getPaginatedCourses(
+  async getCoursesWithVideos({
+    page,
+    num,
+  }: InPaginatedDto): Promise<OutGetCoursesDto> {
+    const courses = await this.courseRepo.getPaginatedCourses(
       num,
       (page - 1) * num,
     );
-    return {
-      count: shopCourses.count || 0,
-      courses: shopCourses.values.map(CourseDao.convertOne),
-    };
-  }
 
-  private async getCourseVideos(courseId: string) {
-    return this.videoService.getVideosByCourseId(courseId);
+    const courseVideos = (await Promise.all(
+      courses.values.map((course) =>
+        this.videoService.getVideosByCourseId(course._id.toString()),
+      ),
+    )) as TypeVideoDto[][];
+
+    if (
+      courseVideos.filter((videos) => videos instanceof BaseError).length !== 0
+    )
+      throw new InternalServerErrorException('خطای سرور رخ داده است');
+
+    courseVideos;
+    return {
+      count: courses.count || 0,
+      courses: courses.values.map((course, index) => ({
+        ...CourseDao.convertOne(course),
+        videos: courseVideos[index],
+      })),
+    };
   }
 
   async getCourseProduct(
@@ -187,7 +204,9 @@ export class CourseService {
   ): Promise<InProduct> {
     const course = await this.courseRepo.getById(courseId);
     if (course === null) throw new NotFoundException('کورس یافت نشد');
-    const videos = await this.getCourseVideos(courseId.toString());
+    const videos = await this.videoService.getVideosByCourseId(
+      courseId.toString(),
+    );
     if (videos instanceof BaseError) return videos.throw();
     return CourseProductDao.convertOne(
       course,
