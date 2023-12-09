@@ -1,4 +1,4 @@
-FROM node:alpine As build
+FROM node:alpine As builder
 
 WORKDIR /app
 
@@ -14,8 +14,10 @@ ENV REACT_APP_BASE_URL=$REACT_APP_BASE_URL
 
 RUN npm run build
 
-RUN npm i -g serve
+FROM nginx:alpine
 
-EXPOSE 3000
+COPY --from=builder /app/build /usr/share/nginx/html
 
-ENTRYPOINT [ "serve", "-s", "build" ]
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
