@@ -3,7 +3,7 @@ import { tokenPersistor } from "../persistors/auth";
 import { UNKNOWN_ERROR } from "./errors";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL ?? '/api',
   timeout: 2000,
 });
 
