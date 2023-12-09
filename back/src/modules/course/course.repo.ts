@@ -27,7 +27,7 @@ export class CourseRepo {
   ): Promise<MongoDoc<Course> | null> {
     return await this.model.findOne({
       _id: course_id,
-      end_date: { $gt: new Date().toISOString() },
+      end_date: { $gt: new Date() },
     });
   }
 
@@ -47,18 +47,18 @@ export class CourseRepo {
     limit: number,
     skip: number,
   ): Promise<PaginatedType<MongoDoc<Course>>> {
-    return (
-      await this.model.aggregate([
-        { $match: { end_date: { $gt: new Date().toISOString() } } },
-        {
-          $facet: {
-            values: [{ $skip: skip }, { $limit: limit }],
-            count: [{ $count: 'count' }],
-          },
+    const aggregate = await this.model.aggregate([
+      { $match: { end_date: { $gt: new Date() } } },
+      {
+        $facet: {
+          values: [{ $skip: skip }, { $limit: limit }],
+          count: [{ $count: 'count' }],
         },
-        { $set: { count: '$count.count' } },
-        { $unwind: { path: '$count', preserveNullAndEmptyArrays: true } },
-      ])
-    )[0];
+      },
+    ]);
+    return {
+      count: aggregate[0].count[0].count,
+      values: aggregate[0].values,
+    };
   }
 }

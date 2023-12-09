@@ -1,4 +1,10 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+  forwardRef,
+} from '@nestjs/common';
 import mongoose from 'mongoose';
 import { CourseRepo } from './course.repo';
 import { NotFoundError } from '../../errors/not-found-error';
@@ -13,7 +19,12 @@ import { AccessService } from './access.service';
 import { BaseError } from '../../errors/base-error';
 import { UserService } from '../user/user.service';
 import { VideoService } from '../video/video.service';
-import { OutGetCoursesDto } from './dtos/out-get-course.dto';
+import { OutGetCourseDto } from './dtos/out-get-course.dto';
+import { OutGetCoursesDto } from './dtos/out-get-shop.dto';
+import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
+import { InProduct } from '../shop/shop.entity';
+import { CourseProductDao } from './daos/course-product.dao';
+import { TypeVideoDto } from '../video/dtos/type-video.dto';
 
 @Injectable()
 export class CourseService {
@@ -29,15 +40,10 @@ export class CourseService {
   async createCourse(
     courseInfo: InCreateCourse,
   ): Promise<TypeCourseDto | DuplicateError> {
-    const courseModel = await this.courseRepo.create({
-      ...courseInfo,
-      end_date: courseInfo.end_date,
-      // courseInfo.level === 1 ? new Date(2100, 1) : courseInfo.end_date,
-    });
+    const courseModel = await this.courseRepo.create(courseInfo);
     const courseFull = CourseDao.convertOne(courseModel);
-    const access = await (
-      await this.userService.getAdminUsers()
-    ).map((user) =>
+    const adminUsers = await this.userService.getAdminUsers();
+    adminUsers.forEach((user) =>
       this.accessService.createAccess({
         course_id: courseFull.id,
         user_id: user.id,
@@ -49,7 +55,7 @@ export class CourseService {
   async editCourse(
     course_id: string,
     courseInfo: InCreateCourse,
-  ): Promise<OutGetCoursesDto | BadRequestError | NotFoundError> {
+  ): Promise<OutGetCourseDto | BadRequestError | NotFoundError> {
     const isIdValid = mongoose.Types.ObjectId.isValid(course_id);
     if (!isIdValid) return new BadRequestError('InvalidInputId');
     await this.courseRepo.editById(
@@ -83,12 +89,12 @@ export class CourseService {
     return course;
   }
 
-  async getCoursesWithVidoes(
+  async getAccessedCoursesWithVideos(
     userId: string,
     courseId: string,
-  ): Promise<OutGetCoursesDto | NotFoundError | BadRequestError> {
+  ): Promise<OutGetCourseDto | NotFoundError | BadRequestError> {
     const course = await this.getCourseById(userId, courseId);
-    if (course instanceof BaseError) return course;
+    if (course instanceof BaseError) return course.throw();
     const videos = await this.videoService.getVideosByUserIdAndCourseId(
       userId,
       course.id,
@@ -101,12 +107,12 @@ export class CourseService {
     const course = await this.courseRepo.getById(
       new mongoose.Types.ObjectId(course_id),
     );
-    return course ? true : false;
+    return course !== null;
   }
 
   async deleteCourseById(
     courseId: string,
-  ): Promise<OutGetCoursesDto | NotFoundError | BadRequestError> {
+  ): Promise<OutGetCourseDto | NotFoundError | BadRequestError> {
     const isIdValid = mongoose.Types.ObjectId.isValid(courseId);
     if (!isIdValid) return new BadRequestError('InvalidInputId');
     const courseModel = await this.courseRepo.deleteById(
@@ -153,8 +159,6 @@ export class CourseService {
 
     if (courses instanceof BadRequestError) return courses.throw();
 
-    console.log(`Courses: ${courses}`);
-
     const res: OutGetPaginatedCoursesDto = {
       count: courses.length,
       values: courses
@@ -163,5 +167,55 @@ export class CourseService {
     };
 
     return res;
+  }
+
+  async getCoursesWithVideos({
+    page,
+    num,
+  }: InPaginatedDto): Promise<OutGetCoursesDto> {
+    const courses = await this.courseRepo.getPaginatedCourses(
+      num,
+      (page - 1) * num,
+    );
+
+    const courseVideos = (await Promise.all(
+      courses.values.map((course) =>
+        this.videoService.getVideosByCourseId(course._id.toString()),
+      ),
+    )) as TypeVideoDto[][];
+
+    if (
+      courseVideos.filter((videos) => videos instanceof BaseError).length !== 0
+    )
+      throw new InternalServerErrorException('خطای سرور رخ داده است');
+
+    courseVideos;
+    return {
+      count: courses.count || 0,
+      courses: courses.values.map((course, index) => ({
+        ...CourseDao.convertOne(course),
+        videos: courseVideos[index],
+      })),
+    };
+  }
+
+  async getCourseProduct(
+    courseId: mongoose.Types.ObjectId,
+  ): Promise<InProduct> {
+    const course = await this.courseRepo.getById(courseId);
+    if (course === null) throw new NotFoundException('کورس یافت نشد');
+    const videos = await this.videoService.getVideosByCourseId(
+      courseId.toString(),
+    );
+    if (videos instanceof BaseError) return videos.throw();
+    return CourseProductDao.convertOne(
+      course,
+      videos.map((video) => video.thumbnail),
+    );
+  }
+
+  async isAvailable(courseId: mongoose.Types.ObjectId): Promise<boolean> {
+    const course = await this.courseRepo.getById(courseId);
+    return course !== null;
   }
 }

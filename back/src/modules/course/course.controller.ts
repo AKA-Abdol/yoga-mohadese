@@ -3,14 +3,12 @@ import {
   Controller,
   Delete,
   Get,
-  Inject,
   Param,
   Post,
   Put,
   Query,
   Req,
   UseGuards,
-  forwardRef,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { RolesGuard } from '../../guards/roles.guard';
@@ -25,12 +23,10 @@ import { NotFoundError } from '../../errors/not-found-error';
 import { BadRequestError } from '../../errors/bad-request-error';
 import { InGetPaginatedCourses } from './dtos/in-get-paginated-courses.dto';
 import { OutGetPaginatedCoursesDto } from './dtos/out-get-paginated-courses.dto';
-import { OutGetCoursesDto } from './dtos/out-get-course.dto';
+import { OutGetCourseDto } from './dtos/out-get-course.dto';
 import { InCreateCourse } from './dtos/in-create-course.dto';
 import { DuplicateError } from '../../errors/duplicate-error';
-import { VideoService } from '../video/video.service';
 import { BaseError } from '../../errors/base-error';
-
 @UseGuards(RolesGuard)
 @Controller('courses')
 export class CourseController {
@@ -44,8 +40,6 @@ export class CourseController {
     @Req() { userId }: { userId: string },
     @Query() input: InGetPaginatedCourses,
   ): Promise<OutGetPaginatedCoursesDto> {
-    console.log('in courses get!');
-
     const courses = await this.courseService.getPaginatedCourses(userId, input);
     if (courses instanceof BadRequestError) return courses.throw();
     return courses;
@@ -58,7 +52,7 @@ export class CourseController {
   async createCourse(
     @Req() { userId }: { userId: string },
     @Body() input: InCreateCourse,
-  ): Promise<OutGetCoursesDto> {
+  ): Promise<OutGetCourseDto> {
     const course = await this.courseService.createCourse(input);
     if (course instanceof DuplicateError) return course.throw();
     return { course: { ...course, videos: [] } };
@@ -73,8 +67,8 @@ export class CourseController {
   async getCourse(
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
-  ): Promise<OutGetCoursesDto> {
-    const course = await this.courseService.getCoursesWithVidoes(
+  ): Promise<OutGetCourseDto> {
+    const course = await this.courseService.getAccessedCoursesWithVideos(
       userId,
       courseId,
     );
@@ -92,7 +86,7 @@ export class CourseController {
   async deleteCourse(
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
-  ): Promise<OutGetCoursesDto> {
+  ): Promise<OutGetCourseDto> {
     const course = await this.courseService.deleteCourseById(courseId);
     if (course instanceof NotFoundError) return course.throw();
     if (course instanceof BadRequestError) return course.throw();
@@ -109,7 +103,7 @@ export class CourseController {
     @Req() { userId }: { userId: string },
     @Param('course_id') courseId: string,
     @Body() input: InCreateCourse,
-  ): Promise<OutGetCoursesDto> {
+  ): Promise<OutGetCourseDto> {
     const new_course = await this.courseService.editCourse(courseId, input);
     if (new_course instanceof BaseError) return new_course.throw();
     return new_course;
