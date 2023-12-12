@@ -14,12 +14,17 @@ import { InAddItemBodyDto } from './dtos/in-add-item.dto';
 import { ID_JOIN_STR } from 'src/confings/statics';
 import mongoose from 'mongoose';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
+import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
+import { OrderService } from './order/order.service';
+import { InjectConnection } from '@nestjs/mongoose';
 
 @Injectable()
 export class ShopService {
   constructor(
     private readonly cartService: CartService,
     private readonly courseService: CourseService,
+    private readonly orderService: OrderService,
+    @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
   async getShopCourses(
@@ -111,7 +116,40 @@ export class ShopService {
       id: courseId,
       type: ProductType.COURSE,
     });
-
     return { itemId: courseId.toString(), quantity: 1 };
+  }
+
+  async submitOrder(userId: string) {
+    const cart = await this.cartService.getByUserId(userId);
+    if (cart.length === 0)
+      throw new BadRequestException('سبد خرید شما خالی است');
+    // needs to put data in redis for submitting and creating redirect to payment and redirect back
+  }
+
+  async createOrder(input: InCompleteOrderQueryDto) {
+    const cart = (await this.cartService.getByUserId(input.userId)).filter(
+      (cartItem) => cartItem.product.type === ProductType.COURSE,
+    );
+    const products = await Promise.all(
+      cart.map((courseItem) =>
+        this.courseService.getCourseProduct(courseItem.product.id),
+      ),
+    );
+    const transactionSession = await this.connection.startSession();
+    transactionSession.startTransaction();
+    try {
+      const order = await this.orderService.createOrder(
+        input.userId,
+        cart,
+        products,
+      );
+      await this.cartService.emptyCart(input.userId);
+      return order;
+    } catch (error) {
+      transactionSession.abortTransaction();
+      throw error;
+    } finally {
+      transactionSession.endSession();
+    }
   }
 }

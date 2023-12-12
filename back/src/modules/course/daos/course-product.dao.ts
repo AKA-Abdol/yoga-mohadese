@@ -5,11 +5,12 @@ export abstract class CourseProductDao {
   static convertOne = (
     course: MongoDoc<Course>,
     thumbnails: string[],
-  ): InProduct<MongoDoc<Course>> => ({
+  ): InProduct => ({
     id: course._id,
     type: ProductType.COURSE,
     price: course.price,
     images: thumbnails,
+    title: course.title,
     detail: course,
   });
 }

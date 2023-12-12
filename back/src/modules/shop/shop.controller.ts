@@ -5,6 +5,7 @@ import {
   Post,
   Query,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import { RolesGuard } from 'src/guards/roles.guard';
@@ -15,6 +16,9 @@ import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
 import { ShopService } from './shop.service';
 import { InAddItemBodyDto } from './dtos/in-add-item.dto';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
+import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
+import { Response } from 'express';
+import { TypeOrderDto } from './order/dtos/type-order.dto';
 
 @ApiTags('Shop')
 @UseGuards(RolesGuard)
@@ -46,5 +50,26 @@ export class ShopController {
   @ApiOperation({ summary: 'get cart' })
   async getCart(@Req() { userId }: { userId: string }): Promise<OutGetCartDto> {
     return this.shopService.getCart(userId);
+  }
+
+  @Post('/cart/submit-order')
+  @Role('USER')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'order all items in cart' })
+  async createOrder(@Req() { userId }: { userId: string }) {
+    this.shopService.submitOrder(userId);
+    return {
+      paymentLink: `http://localhost:5000/api/shop/cart/order?userId=${userId}&secret=secret`,
+    };
+    // save files and order in the redis and waiting for payment
+  }
+
+  @Get('/cart/order')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'redirect for paying cart items and submit Orders' })
+  async completeOrder(
+    @Query() input: InCompleteOrderQueryDto,
+  ): Promise<TypeOrderDto> {
+    return this.shopService.createOrder(input);
   }
 }

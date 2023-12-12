@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CartRepo } from './cart.repo';
 import mongoose from 'mongoose';
 import { Cart } from './cart.schema';
@@ -39,5 +39,12 @@ export class CartService {
 
   async softDeleteMany(ids: mongoose.Types.ObjectId[]) {
     await Promise.all(ids.map((id) => this.cartRepo.softDelete(id)));
+  }
+
+  async emptyCart(userId: string) {
+    const { deletedCount } = await this.cartRepo.deleteById(
+      new mongoose.Types.ObjectId(userId),
+    );
+    if (deletedCount === 0) throw new BadRequestException('سبد خرید خالی است');
   }
 }

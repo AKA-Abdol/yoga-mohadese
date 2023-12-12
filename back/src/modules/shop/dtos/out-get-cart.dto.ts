@@ -18,7 +18,7 @@ class OutGetCartItemProduct {
     required: true,
     default: { start_date: new Date(), end_date: new Date() },
   })
-  detail: Record<string, number>;
+  detail: any;
 }
 
 export class OutGetCartItem {

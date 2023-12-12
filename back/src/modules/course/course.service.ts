@@ -25,6 +25,7 @@ import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
 import { InProduct } from '../shop/shop.entity';
 import { CourseProductDao } from './daos/course-product.dao';
 import { TypeVideoDto } from '../video/dtos/type-video.dto';
+import { Course } from './course.schema';
 
 @Injectable()
 export class CourseService {

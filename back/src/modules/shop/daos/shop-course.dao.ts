@@ -13,6 +13,7 @@ export abstract class ShopCourseDao {
       type: ProductType.COURSE,
       images: videos.map((video) => video.thumbnail),
       price: course.price,
+      title: course.title,
       detail: course,
       maxQuantity: MAX_COURSE_QUANTITY_TO_BUY,
     };

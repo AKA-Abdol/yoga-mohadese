@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Course } from '../course/course.schema';
 
 export enum ProductType {
   COURSE = 'Course',
@@ -13,16 +14,20 @@ export interface ProductIdentifier<
   type: K;
 }
 
-export interface InProduct<T = any> extends ProductIdentifier {
+interface Product<T extends ProductType, K = any> extends ProductIdentifier<T> {
   price: number;
   images: string[];
-  detail: T;
+  detail: K;
+  title: string;
 }
+
+export type InProduct = Product<ProductType.COURSE, MongoDoc<Course>>;
 
 export interface OutProduct<T = any>
   extends ProductIdentifier<ProductType, string> {
   price: number;
   images: string[];
+  title: string;
   detail: T;
   maxQuantity: number;
 }

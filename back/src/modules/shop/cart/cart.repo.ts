@@ -45,4 +45,8 @@ export class CartRepo {
   ): Promise<MongoDoc<Cart>[]> {
     return this.model.find({ userId, isDeleted: false }).exec();
   }
+
+  async deleteById(userId: mongoose.Types.ObjectId) {
+    return await this.model.deleteMany({ userId });
+  }
 }
