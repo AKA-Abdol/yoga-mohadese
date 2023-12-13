@@ -64,14 +64,6 @@
 .not-active .menu-burguer:nth-child(3) {
     animation: ease .7s bottom-2 forwards;
 }
-.vorood {
-    color: #58423A;
-    font-size: 20px;
-    z-index: 1;
-    position: absolute;
-    right: 110px;  
-    top: -20px;
-}
 .disNon {
     display: none;
 }

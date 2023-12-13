@@ -3,30 +3,26 @@ import {
   addToman,
   addCommaEach3Digits,
   English2Persian,
-} from "../../../utils/converts";
-import { url } from "inspector";
+} from "src/utils/converts";
+import { level2farsi } from "src/utils/shopTranslator";
+import { IShopCourseCard } from "../types";
 
-interface IShopCourseCard {
-  title: string;
-  price: number;
-  month: string;
-  BGthumbURL: string;
-  setIsCardActive: any;
-}
-const addToBasket = () => {};
 
 const ShopCourseCard: React.FC<IShopCourseCard> = ({
   title,
   price,
-  month,
   BGthumbURL,
-  setIsCardActive,
+  id,
+  month,
+  level,
+  addToBasket,
 }) => {
+  
   return (
     <div
-      className=" w-[100vw] rounded-[10px]  text-[#FEF3E9] flex flex-col items-start p-4 gap-4 z-10"
+      className="rounded-[10px] flex flex-col items-start p-4 gap-2"
       style={{
-        backgroundImage: `url(${BGthumbURL})`,
+        backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${BGthumbURL})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -34,15 +30,17 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
     >
       <div className="flex justify-between items-center w-full">
         <h3 className=" text-center text-base font-normal text-[#FEF3E9]">
-          {title}
+          {title + " " + level2farsi(level)}
         </h3>
-        <h4 className="text-center text-[#FEF3E9] text-xs font-normal">
+        <h4 className="text-center text-[#fef3e9] opacity-70 text-sm font-normal">
           {addToman(English2Persian(addCommaEach3Digits(price)))}
         </h4>
       </div>
-      <h4 className=" text-sm text-[#FEF3E9] ">{month}</h4>
+      <div>
+        <h4 className=" text-[#fef3e9] text-sm">{month}</h4>
+      </div>
       <button
-        onClick={() => setIsCardActive(true)}
+        onClick={() => addToBasket(id)}
         className=" rounded-[4px] text-[#58423a] text-[10px] flex items-center gap-2 bg-none justify-center w-full py-1 bg-[#fef3e9d0]"
       >
         افزودن به سبد خرید
