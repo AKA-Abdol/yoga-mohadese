@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CourseWithVideos } from './with-videos.dto';
+import { InCourseProduct } from 'src/modules/shop/shop.entity';
 
 export class OutGetCoursesDto {
   @ApiProperty({ required: true, default: [] })
-  courses: Array<CourseWithVideos>;
+  courses: InCourseProduct[];
   @ApiProperty({ required: true, default: 0 })
   count: number;
 }

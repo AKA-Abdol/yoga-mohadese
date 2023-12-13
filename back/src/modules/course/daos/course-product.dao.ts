@@ -1,5 +1,6 @@
 import { InProduct, ProductType } from 'src/modules/shop/shop.entity';
 import { Course } from '../course.schema';
+import { CourseDao } from './course.dao';
 
 export abstract class CourseProductDao {
   static convertOne = (
@@ -11,6 +12,6 @@ export abstract class CourseProductDao {
     price: course.price,
     images: thumbnails,
     title: course.title,
-    detail: course,
+    detail: CourseDao.convertOne(course),
   });
 }

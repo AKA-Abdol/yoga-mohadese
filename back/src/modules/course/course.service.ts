@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Inject,
   Injectable,
@@ -23,7 +24,7 @@ import { VideoService } from '../video/video.service';
 import { OutGetCourseDto } from './dtos/out-get-course.dto';
 import { OutGetCoursesDto } from './dtos/out-get-shop.dto';
 import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
-import { InProduct } from '../shop/shop.entity';
+import { InCourseProduct, InProduct } from '../shop/shop.entity';
 import { CourseProductDao } from './daos/course-product.dao';
 import { TypeVideoDto } from '../video/dtos/type-video.dto';
 import { Course } from './course.schema';
@@ -195,16 +196,18 @@ export class CourseService {
     courseVideos;
     return {
       count: courses.count || 0,
-      courses: courses.values.map((course, index) => ({
-        ...CourseDao.convertOne(course),
-        videos: courseVideos[index],
-      })),
+      courses: courses.values.map((course, index) =>
+        CourseProductDao.convertOne(
+          course,
+          courseVideos[index].map((video) => video.thumbnail),
+        ),
+      ),
     };
   }
 
   async getCourseProduct(
     courseId: mongoose.Types.ObjectId,
-  ): Promise<InProduct> {
+  ): Promise<InCourseProduct> {
     const course = await this.courseRepo.getById(courseId);
     if (course === null) throw new NotFoundException('کورس یافت نشد');
     const videos = await this.videoService.getVideosByCourseId(
@@ -237,5 +240,15 @@ export class CourseService {
       throw new ConflictException('قبلا به یکی از ترم ها دسترسی داشته اید');
 
     return accesses;
+  }
+
+  async hasUserAccess(userId: string, courseId: string): Promise<boolean> {
+    const accessInfo = await this.accessService.checkUserAccessToCourse(
+      userId,
+      courseId,
+    );
+    if (accessInfo instanceof BadRequestError)
+      throw new BadRequestException(accessInfo.message);
+    return accessInfo;
   }
 }

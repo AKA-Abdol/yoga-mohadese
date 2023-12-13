@@ -34,7 +34,7 @@ export class OrderService {
           orderId: order._id,
           productId: cartItem.product.id,
           productType: cartItem.product.type,
-          count: cartItem.count,
+          quantity: cartItem.quantity,
           images: product.images,
           price: product.price,
           title: product.title,

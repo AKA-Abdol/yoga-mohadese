@@ -2,21 +2,28 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import { CourseService } from '../course/course.service';
 import { OutGetCartDto } from './dtos/out-get-cart.dto';
 import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
 import { OutGetShopCoursesDto } from './dtos/out-get-shop-courses.dto';
-import { ShopCourseDao } from './daos/shop-course.dao';
 import { CartService } from './cart/cart.service';
-import { ProductIdentifier, ProductType } from './shop.entity';
+import {
+  OutCourseProduct,
+  OutProduct,
+  ProductIdentifier,
+  ProductType,
+} from './shop.entity';
 import { InAddItemBodyDto } from './dtos/in-add-item.dto';
-import { ID_JOIN_STR } from 'src/confings/statics';
+import { ID_JOIN_STR, MAX_COURSE_QUANTITY_TO_BUY } from 'src/configs/statics';
 import mongoose from 'mongoose';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
 import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
 import { OrderService } from './order/order.service';
 import { InjectConnection } from '@nestjs/mongoose';
+import { InDeleteItemBodyDto } from './dtos/in-delete-item.dto';
+import { ShopProductDao } from './daos/shop-product.dao';
 
 @Injectable()
 export class ShopService {
@@ -35,7 +42,7 @@ export class ShopService {
     );
     return {
       count: paginatedCourses.count,
-      courses: paginatedCourses.courses.map(ShopCourseDao.convertOne),
+      courses: paginatedCourses.courses.map(ShopProductDao.convertOne),
     };
   }
 
@@ -51,14 +58,9 @@ export class ShopService {
     );
 
     return courseProducts.map((product, index) => ({
-      count: cart[index].count,
-      product: {
-        images: product.images,
-        type: product.type,
-        price: product.price,
-        detail: product.detail,
-      },
-      overallPrice: cart[index].count * product.price,
+      quantity: cart[index].quantity,
+      product: ShopProductDao.convertOne(product),
+      overallPrice: cart[index].quantity * product.price,
     }));
   }
 
@@ -103,6 +105,14 @@ export class ShopService {
     };
   }
 
+  async deleteItem(userId: string, input: InDeleteItemBodyDto) {
+    console.log(input);
+    const { id, type } = this.identifyProduct(input.itemId);
+    if (type !== ProductType.COURSE)
+      throw new BadRequestException('محصول مورد نظر وجود ندارد');
+    this.cartService.decreaseCartItemQuantity(userId, id.toString());
+  }
+
   private async addCourseOrder(
     userId: string,
     courseId: mongoose.Types.ObjectId,
@@ -111,6 +121,9 @@ export class ShopService {
       throw new ConflictException('این کورس قبلا در سبد خرید شما بوده است');
 
     await this.courseService.getCourseProduct(courseId); // if course exists
+
+    if (await this.courseService.hasUserAccess(userId, courseId.toString()))
+      throw new ConflictException('به این کورس از قبل دسترسی دارید');
 
     await this.cartService.add(userId, {
       id: courseId,
@@ -155,5 +168,19 @@ export class ShopService {
     } finally {
       transactionSession.endSession();
     }
+  }
+
+  async getProduct(productId: string): Promise<OutProduct> {
+    const { id, type } = this.identifyProduct(productId);
+    if (type !== ProductType.COURSE)
+      throw new NotFoundException('محصول مورد نظر یافت نشد');
+    return this.getCourseProduct(id);
+  }
+
+  private async getCourseProduct(
+    courseId: mongoose.Types.ObjectId,
+  ): Promise<OutCourseProduct> {
+    const courseProduct = await this.courseService.getCourseProduct(courseId);
+    return ShopProductDao.convertOne(courseProduct);
   }
 }

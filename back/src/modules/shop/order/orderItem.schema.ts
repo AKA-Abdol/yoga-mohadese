@@ -18,7 +18,7 @@ export class OrderItem {
   productType: ProductType;
 
   @Prop({ required: true })
-  count: number;
+  quantity: number;
 
   @Prop({ required: true })
   price: number;

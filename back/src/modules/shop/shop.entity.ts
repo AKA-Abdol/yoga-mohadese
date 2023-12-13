@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Course } from '../course/course.schema';
+import { TypeCourseDto } from '../course/dtos/type-course.dto';
 
 export enum ProductType {
   COURSE = 'Course',
@@ -21,9 +21,10 @@ interface Product<T extends ProductType, K = any> extends ProductIdentifier<T> {
   title: string;
 }
 
-export type InProduct = Product<ProductType.COURSE, MongoDoc<Course>>;
+export type InCourseProduct = Product<ProductType.COURSE, TypeCourseDto>;
+export type InProduct = InCourseProduct;
 
-export interface OutProduct<T = any>
+export interface IOutProduct<T = any>
   extends ProductIdentifier<ProductType, string> {
   price: number;
   images: string[];
@@ -31,3 +32,6 @@ export interface OutProduct<T = any>
   detail: T;
   maxQuantity: number;
 }
+
+export type OutCourseProduct = IOutProduct<TypeCourseDto>;
+export type OutProduct = OutCourseProduct;

@@ -1,11 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
   Post,
   Query,
   Req,
-  Res,
   UseGuards,
 } from '@nestjs/common';
 import { RolesGuard } from 'src/guards/roles.guard';
@@ -17,8 +18,9 @@ import { ShopService } from './shop.service';
 import { InAddItemBodyDto } from './dtos/in-add-item.dto';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
 import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
-import { Response } from 'express';
 import { TypeOrderDto } from './order/dtos/type-order.dto';
+import { OutProduct } from './shop.entity';
+import { InDeleteItemBodyDto } from './dtos/in-delete-item.dto';
 
 @ApiTags('Shop')
 @UseGuards(RolesGuard)
@@ -27,13 +29,18 @@ export class ShopController {
   constructor(private readonly shopService: ShopService) {}
 
   @Get('/courses')
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'get course shop items' })
   async get(@Query() queryInput: InGetShopQueryDto) {
     return this.shopService.getShopCourses(queryInput);
   }
 
-  @Post('/cart/add-item')
+  @Get('/courses/:id')
+  @ApiOperation({ summary: 'get course shop item details' })
+  async getOne(@Param('id') id: string): Promise<OutProduct> {
+    return this.shopService.getProduct(id);
+  }
+
+  @Post('/cart/item')
   @Role('USER')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'add shop item to cart' })
@@ -42,6 +49,17 @@ export class ShopController {
     @Body() input: InAddItemBodyDto,
   ): Promise<OutAddItemDto> {
     return this.shopService.addItem(userId, input);
+  }
+
+  @Delete('/cart/item')
+  @Role('USER')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'delete shop item from cart' })
+  async deleteItem(
+    @Req() { userId }: { userId: string },
+    @Body() input: InDeleteItemBodyDto,
+  ) {
+    return this.shopService.deleteItem(userId, input);
   }
 
   @Get('/cart')

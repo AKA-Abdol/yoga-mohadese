@@ -14,7 +14,7 @@ export class Cart {
   productType: ProductType;
 
   @Prop({ default: 1 })
-  count: number;
+  quantity: number;
 
   @Prop({ default: false })
   isDeleted?: boolean;
