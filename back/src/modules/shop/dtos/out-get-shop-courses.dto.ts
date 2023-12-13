@@ -1,6 +1,6 @@
 import { OutProduct } from '../shop.entity';
 
 export class OutGetShopCoursesDto {
-  courses: OutProduct[];
+  courses: Array<OutProduct & { hasAccess: boolean }>;
   count: number;
 }

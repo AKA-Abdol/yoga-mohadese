@@ -16,7 +16,7 @@ import {
   ProductType,
 } from './shop.entity';
 import { InAddItemBodyDto } from './dtos/in-add-item.dto';
-import { ID_JOIN_STR, MAX_COURSE_QUANTITY_TO_BUY } from 'src/configs/statics';
+import { ID_JOIN_STR } from 'src/configs/statics';
 import mongoose from 'mongoose';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
 import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
@@ -24,6 +24,7 @@ import { OrderService } from './order/order.service';
 import { InjectConnection } from '@nestjs/mongoose';
 import { InDeleteItemBodyDto } from './dtos/in-delete-item.dto';
 import { ShopProductDao } from './daos/shop-product.dao';
+import { OutGetProduct } from './dtos/out-get-product.dto';
 
 @Injectable()
 export class ShopService {
@@ -36,13 +37,19 @@ export class ShopService {
 
   async getShopCourses(
     pagination: InPaginatedDto,
+    userId: string,
   ): Promise<OutGetShopCoursesDto> {
     const paginatedCourses = await this.courseService.getCoursesWithVideos(
       pagination,
     );
+    const accessedCourses =
+      await this.courseService.getAccessedCourseIdsByUserId(userId);
     return {
       count: paginatedCourses.count,
-      courses: paginatedCourses.courses.map(ShopProductDao.convertOne),
+      courses: paginatedCourses.courses.map((course) => ({
+        ...ShopProductDao.convertOne(course),
+        hasAccess: accessedCourses.includes(course.id.toString()),
+      })),
     };
   }
 
@@ -170,11 +177,19 @@ export class ShopService {
     }
   }
 
-  async getProduct(productId: string): Promise<OutProduct> {
+  async getProduct(productId: string, userId: string): Promise<OutGetProduct> {
     const { id, type } = this.identifyProduct(productId);
     if (type !== ProductType.COURSE)
       throw new NotFoundException('محصول مورد نظر یافت نشد');
-    return this.getCourseProduct(id);
+
+    const accessedCourses =
+      await this.courseService.getAccessedCourseIdsByUserId(userId);
+
+    const product = await this.getCourseProduct(id);
+    return {
+      ...product,
+      hasAccess: accessedCourses.includes(id.toString()),
+    };
   }
 
   private async getCourseProduct(

@@ -29,15 +29,23 @@ export class ShopController {
   constructor(private readonly shopService: ShopService) {}
 
   @Get('/courses')
-  @ApiOperation({ summary: 'get course shop items' })
-  async get(@Query() queryInput: InGetShopQueryDto) {
-    return this.shopService.getShopCourses(queryInput);
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'get course shop items with hasAccess field' })
+  async getWithAccessed(
+    @Req() { userId }: { userId: string },
+    @Query() queryInput: InGetShopQueryDto,
+  ) {
+    return this.shopService.getShopCourses(queryInput, userId);
   }
 
   @Get('/courses/:id')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'get course shop item details' })
-  async getOne(@Param('id') id: string): Promise<OutProduct> {
-    return this.shopService.getProduct(id);
+  async getOne(
+    @Req() { userId }: { userId: string },
+    @Param('id') id: string,
+  ): Promise<OutProduct> {
+    return this.shopService.getProduct(id, userId);
   }
 
   @Post('/cart/item')

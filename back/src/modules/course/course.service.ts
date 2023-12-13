@@ -29,6 +29,7 @@ import { CourseProductDao } from './daos/course-product.dao';
 import { TypeVideoDto } from '../video/dtos/type-video.dto';
 import { Course } from './course.schema';
 import { access } from 'fs';
+import { TypeAccessDto } from './dtos/type-access.dto';
 
 @Injectable()
 export class CourseService {
@@ -250,5 +251,11 @@ export class CourseService {
     if (accessInfo instanceof BadRequestError)
       throw new BadRequestException(accessInfo.message);
     return accessInfo;
+  }
+
+  async getAccessedCourseIdsByUserId(userId: string): Promise<string[]> {
+    const accesses = await this.accessService.getAccessesByUserId(userId);
+    if (accesses instanceof BaseError) return [];
+    return accesses.map((access) => access.course_id.toString());
   }
 }
