@@ -1,4 +1,5 @@
 import {
+  ConflictException,
   Inject,
   Injectable,
   InternalServerErrorException,
@@ -26,6 +27,7 @@ import { InProduct } from '../shop/shop.entity';
 import { CourseProductDao } from './daos/course-product.dao';
 import { TypeVideoDto } from '../video/dtos/type-video.dto';
 import { Course } from './course.schema';
+import { access } from 'fs';
 
 @Injectable()
 export class CourseService {
@@ -218,5 +220,22 @@ export class CourseService {
   async isAvailable(courseId: mongoose.Types.ObjectId): Promise<boolean> {
     const course = await this.courseRepo.getById(courseId);
     return course !== null;
+  }
+
+  async createAccessForUser(userId: string, courseIds: string[]) {
+    const accesses = await Promise.all(
+      courseIds.map((courseId) =>
+        this.accessService.createAccess({
+          user_id: userId,
+          course_id: courseId,
+        }),
+      ),
+    );
+    if (
+      accesses.filter((access) => access instanceof DuplicateError).length > 0
+    )
+      throw new ConflictException('قبلا به یکی از ترم ها دسترسی داشته اید');
+
+    return accesses;
   }
 }

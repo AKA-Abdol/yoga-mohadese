@@ -144,6 +144,10 @@ export class ShopService {
         products,
       );
       await this.cartService.emptyCart(input.userId);
+      await this.courseService.createAccessForUser(
+        input.userId,
+        products.map((product) => product.id.toString()),
+      );
       return order;
     } catch (error) {
       transactionSession.abortTransaction();

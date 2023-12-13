@@ -59,7 +59,7 @@ export class ShopController {
   async createOrder(@Req() { userId }: { userId: string }) {
     this.shopService.submitOrder(userId);
     return {
-      paymentLink: `http://localhost:5000/api/shop/cart/order?userId=${userId}&secret=secret`,
+      paymentLink: `api/shop/cart/order?userId=${userId}&secret=secret`,
     };
     // save files and order in the redis and waiting for payment
   }
