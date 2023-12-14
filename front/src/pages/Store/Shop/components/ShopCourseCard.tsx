@@ -14,8 +14,8 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
   BGthumbURL,
   id,
   level,
-  addToBasket,
-  deleteFromBasket,
+  // addToBasket,
+  // deleteFromBasket,
 }) => {
   
   return (
@@ -46,7 +46,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
           the data in cart matches with data from shop then she has it   
       */}
       <button
-        onClick={() => addToBasket(id)}
+        // onClick={() => addToBasket(id)}
         className=" rounded-[4px] text-[#58423a] text-[10px] flex items-center gap-2 bg-none justify-center w-full py-1 bg-[#fef3e9d0]"
       >
         افزودن به سبد خرید

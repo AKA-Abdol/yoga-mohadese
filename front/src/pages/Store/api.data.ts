@@ -1,4 +1,7 @@
-export const BASE_CART_URL = `/shop/cart`
+const BASE_CART_URL = `shop/cart`
+
+export const CART_URL = `${BASE_CART_URL}`
+
 
 const BASE_SHOP_URL = "shop";
 

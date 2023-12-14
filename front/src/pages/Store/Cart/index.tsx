@@ -10,46 +10,53 @@ import {
   addCommaEach3Digits,
   addToman,
 } from "src/utils/converts";
+// import { useStore } from "../StoreContext";
 
-interface ICart {
-  cartData: ICartItem[];
-}
 
-const Cart: FC<ICart> = ({ cartData }) => {
+const Cart: FC = ({}) => {
+  // const { cartData, isCartLoading, isCartError } = useStore();
+
+  // console.log(cartData);
+  
+  
   const totalOverallPrice = (cartItems: ICartItem[]): number => {
     return cartItems.reduce((total, item) => total + item.overallPrice, 0);
   };
 
   return (
     <main>
-      <Header />
+      
+    </main>
+  );
+};
+
+export default Cart;
+
+/* 
+<Header />
       <div className="pt-32 px-12 flex flex-col gap-6">
         <h4 className="text-[#58423a] text-xl ">فاکتور</h4>
         <div className="border rounded-[8px] border-[#58423A] p-2">
-          {cartData?.map((item) => (
-            <FactorItem
-              level={item.product.level}
-              month={item.product.start_date}
-              price={item.overallPrice}
-              title={item.product.title}
-            />
+          {cartData?.courses.map((item) => (
+            <p>s</p>
+            // <FactorItem
+            //   level={item.product.level}
+            //   month={item.product.start_date}
+            //   price={item.overallPrice}
+            //   title={item.product.title}
+            // />
           ))}
           <div className="flex justify-between pt-1">
             <h5 className="text-[#58423A] text-base">مجموع</h5>
             <h5 className="text-[#58423A] text-base ">
               {cartData &&
                 addToman(
-                  English2Persian(addCommaEach3Digits(totalOverallPrice(cartData)))
-                )}
+                  English2Persian(addCommaEach3Digits(totalOverallPrice(cartData.)))
+                )} 
             </h5>
           </div>
         </div>
         <button className="bg-[#D48B71] rounded-[32px] w-full py-4 text-[#fff] text-2xl  ">
           پرداخت
         </button>
-      </div>
-    </main>
-  );
-};
-
-export default Cart;
+      </div> */

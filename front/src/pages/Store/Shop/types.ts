@@ -5,6 +5,6 @@ export interface IShopCourseCard {
   price: number;
   month?: string;
   BGthumbURL: string;
-  addToBasket(itemId: string): void;
-  deleteFromBasket: (itemId: string) => void;
+  // addToBasket(itemId: string): void;
+  // deleteFromBasket: (itemId: string) => void;
 }

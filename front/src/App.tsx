@@ -38,11 +38,12 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="terms" element={<Terms />} />
             <Route path="ticket" element={<TicketForm />} />
-            {/* <Route path="store/">
+
+            <Route path="Store/" element={<Store />}>
               <Route path="shop" element={<Shop />} />
               <Route path="cart" element={<Cart />} />
-            </Route> */}
-            <Route path="Store" element={<Store />} />
+            </Route>
+
             <Route path="user" element={<User />} />
 
             <Route path="admin/" element={<AdminContextProvider />}>
