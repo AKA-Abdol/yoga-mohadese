@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { OrderItem } from './orderItem.schema';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 @Injectable()
 export class OrderItemRepo {
@@ -9,5 +9,11 @@ export class OrderItemRepo {
 
   async create(orderItem: OrderItem): Promise<MongoDoc<OrderItem>> {
     return this.model.create(orderItem);
+  }
+
+  async getByOrderId(
+    orderId: mongoose.Types.ObjectId,
+  ): Promise<MongoDoc<OrderItem>[]> {
+    return this.model.find({ orderId });
   }
 }
