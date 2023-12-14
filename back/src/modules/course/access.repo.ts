@@ -35,4 +35,13 @@ export class AccessRepo {
   ): Promise<MongoDoc<Access> | null> {
     return await this.model.findOne({ user_id, course_id });
   }
+
+  async createManyForUser(
+    userId: mongoose.Types.ObjectId,
+    courseIds: mongoose.Types.ObjectId[],
+  ) {
+    return this.model.insertMany(
+      courseIds.map((courseId) => ({ course_id: courseId, user_id: userId })),
+    );
+  }
 }

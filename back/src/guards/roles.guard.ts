@@ -11,11 +11,16 @@ export class RolesGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     try {
       const role = this.reflector.get<RoleType>('roles', context.getHandler());
-      if (!role) return true;
       const request: Request = context.switchToHttp().getRequest();
       const jwt = (request.headers.authorization ?? '').split(' ')[1] ?? '';
-      const payload = verify(jwt, 'secret') as TypeJwtPayload;
-      if (payload.role === 'ADMIN') {
+      let payload: TypeJwtPayload = { role: 'USER', userId: '', username: '' };
+      try {
+        payload = verify(jwt, 'secret') as TypeJwtPayload;
+      } catch (error) {
+        if (!role) return true;
+        else throw error;
+      }
+      if (payload.role === 'ADMIN' || !role) {
         context.switchToHttp().getRequest().userId = payload.userId;
         return true;
       }

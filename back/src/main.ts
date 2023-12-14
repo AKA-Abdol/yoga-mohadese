@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { configSwagger } from './confings/swagger-config';
+import { configSwagger } from './configs/swagger-config';
 import { UserSchema } from './modules/user/user.schema';
 import { ValidationPipe } from '@nestjs/common';
 

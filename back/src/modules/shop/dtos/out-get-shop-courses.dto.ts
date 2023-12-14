@@ -1,6 +1,6 @@
-import { TypeShopCourseDto } from './shop-course.dto';
+import { OutProduct } from '../shop.entity';
 
 export class OutGetShopCoursesDto {
-  courses: TypeShopCourseDto[];
+  courses: Array<OutProduct & { hasAccess: boolean }>;
   count: number;
 }
