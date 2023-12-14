@@ -13,9 +13,9 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
   price,
   BGthumbURL,
   id,
-  month,
   level,
   addToBasket,
+  deleteFromBasket,
 }) => {
   
   return (
@@ -37,8 +37,14 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
         </h4>
       </div>
       <div>
-        <h4 className=" text-[#fef3e9] text-sm">{month}</h4>
+        {/* <h4 className=" text-[#fef3e9] text-sm">{month}</h4> */}
       </div>
+      {/* HERE WE CAN MAKE A CONDITIONAL RENDERING FOR DELETE OR ADD TO BASKET
+          IN ORDER TO ACHIEVE THIS WE NEED A PROPERTY TO TELL US THAT USER HAS 
+          THIS ITEM OR NOT LETS MAKE IT
+          i guess in order to achieve this we can take the cart data of user and if
+          the data in cart matches with data from shop then she has it   
+      */}
       <button
         onClick={() => addToBasket(id)}
         className=" rounded-[4px] text-[#58423a] text-[10px] flex items-center gap-2 bg-none justify-center w-full py-1 bg-[#fef3e9d0]"

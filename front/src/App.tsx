@@ -14,8 +14,9 @@ import AdminContextProvider from "./pages/Admin/ContextProvider";
 import TermVideos from "./pages/Admin/Terms/[id]/videos";
 import TermEdit from "./pages/Admin/Terms/[id]/edit";
 import TicketForm from "./pages/TicketForm";
-import Shop from "./pages/Shop";
-import Cart from "./pages/Cart";
+import Shop from "./pages/Store/Shop";
+import Cart from "./pages/Store/Cart";
+import Store from "./pages/Store";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,9 +38,11 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="terms" element={<Terms />} />
             <Route path="ticket" element={<TicketForm />} />
-            <Route path="shop" element={<Shop />} />
-            <Route path="cart" element={<Cart />} />
-
+            {/* <Route path="store/">
+              <Route path="shop" element={<Shop />} />
+              <Route path="cart" element={<Cart />} />
+            </Route> */}
+            <Route path="Store" element={<Store />} />
             <Route path="user" element={<User />} />
 
             <Route path="admin/" element={<AdminContextProvider />}>
