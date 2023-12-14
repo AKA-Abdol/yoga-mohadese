@@ -25,6 +25,7 @@ import { InjectConnection } from '@nestjs/mongoose';
 import { InDeleteItemBodyDto } from './dtos/in-delete-item.dto';
 import { ShopProductDao } from './daos/shop-product.dao';
 import { OutGetProduct } from './dtos/out-get-product.dto';
+import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
 
 @Injectable()
 export class ShopService {
@@ -197,5 +198,13 @@ export class ShopService {
   ): Promise<OutCourseProduct> {
     const courseProduct = await this.courseService.getCourseProduct(courseId);
     return ShopProductDao.convertOne(courseProduct);
+  }
+
+  async getOrders(userId: string, input: InGetOrdersQueryDto) {
+    return this.orderService.getOrders(userId, input);
+  }
+
+  async getOrder(orderId: string, userId: string) {
+    return this.orderService.getOrder(orderId, userId);
   }
 }

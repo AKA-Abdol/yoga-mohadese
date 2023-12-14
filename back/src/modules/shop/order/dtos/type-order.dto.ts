@@ -1,5 +1,11 @@
+import { PaymentType } from '../order.schema';
+import { TypeOrderItemAbstractDto } from './type-order-item-abstract.dto';
+
 export class TypeOrderDto {
   id: string;
+  createdAt: Date;
+  paymentType: PaymentType;
   userId: string;
-  createdAt?: Date;
+  paymentAmount: number;
+  items: TypeOrderItemAbstractDto[];
 }

@@ -21,6 +21,9 @@ import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
 import { TypeOrderDto } from './order/dtos/type-order.dto';
 import { OutProduct } from './shop.entity';
 import { InDeleteItemBodyDto } from './dtos/in-delete-item.dto';
+import { OutGetOrderDto } from './order/dtos/out-get-order.dto';
+import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
+import { OutGetOrdersDto } from './order/dtos/out-get-orders.dto';
 
 @ApiTags('Shop')
 @UseGuards(RolesGuard)
@@ -97,5 +100,27 @@ export class ShopController {
     @Query() input: InCompleteOrderQueryDto,
   ): Promise<TypeOrderDto> {
     return this.shopService.createOrder(input);
+  }
+
+  @Get('/orders')
+  @Role('USER')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'get order list' })
+  async getOrders(
+    @Req() { userId }: { userId: string },
+    @Query() input: InGetOrdersQueryDto,
+  ): Promise<OutGetOrdersDto> {
+    return this.shopService.getOrders(userId, input);
+  }
+
+  @Get('/orders/:id')
+  @Role('USER')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'get order details' })
+  async getOrder(
+    @Req() { userId }: { userId: string },
+    @Param('id') id: string,
+  ): Promise<OutGetOrderDto> {
+    return this.shopService.getOrder(id, userId);
   }
 }

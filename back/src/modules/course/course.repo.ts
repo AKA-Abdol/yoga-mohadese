@@ -43,22 +43,22 @@ export class CourseRepo {
     return await this.model.findOneAndDelete({ _id: course_id });
   }
 
-  async getPaginatedCourses(
-    limit: number,
-    skip: number,
-  ): Promise<PaginatedType<MongoDoc<Course>>> {
-    const aggregate = await this.model.aggregate([
-      { $match: { end_date: { $gt: new Date() } } },
-      {
-        $facet: {
-          values: [{ $skip: skip }, { $limit: limit }],
-          count: [{ $count: 'count' }],
+    async getPaginatedCourses(
+      limit: number,
+      skip: number,
+    ): Promise<PaginatedType<MongoDoc<Course>>> {
+      const aggregate = await this.model.aggregate([
+        { $match: { end_date: { $gt: new Date() } } },
+        {
+          $facet: {
+            values: [{ $skip: skip }, { $limit: limit }],
+            count: [{ $count: 'count' }],
+          },
         },
-      },
-    ]);
-    return {
-      count: aggregate[0].count[0].count,
-      values: aggregate[0].values,
-    };
-  }
+      ]);
+      return {
+        count: aggregate[0].count[0].count,
+        values: aggregate[0].values,
+      };
+    }
 }

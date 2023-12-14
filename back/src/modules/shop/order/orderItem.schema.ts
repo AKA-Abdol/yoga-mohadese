@@ -3,6 +3,13 @@ import mongoose from 'mongoose';
 import { ProductType } from '../shop.entity';
 import { Course } from 'src/modules/course/course.schema';
 
+export type CourseItemDetail = Pick<
+  Course,
+  'start_date' | 'end_date' | 'level'
+>;
+
+export type OrderItemDetailType = CourseItemDetail;
+
 @Schema({ collection: 'orderItems' })
 export class OrderItem {
   @Prop({ required: true })
@@ -27,7 +34,7 @@ export class OrderItem {
   images: string[];
 
   @Prop({ required: true, type: mongoose.Schema.Types.Mixed })
-  detail: Pick<Course, 'start_date' | 'end_date' | 'level'>;
+  detail: OrderItemDetailType;
 }
 
 export const OrderItemSchema = SchemaFactory.createForClass(OrderItem);
