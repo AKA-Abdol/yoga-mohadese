@@ -90,11 +90,8 @@ export class ShopService {
     );
   }
 
-  async addItem(
-    userId: string,
-    input: InAddItemBodyDto,
-  ): Promise<OutAddItemDto> {
-    const { id, type } = this.identifyProduct(input.itemId);
+  async addItem(userId: string, productId: string): Promise<OutAddItemDto> {
+    const { id, type } = this.identifyProduct(productId);
     switch (type) {
       case ProductType.COURSE:
         return this.addCourseOrder(userId, id);
@@ -113,12 +110,11 @@ export class ShopService {
     };
   }
 
-  async deleteItem(userId: string, input: InDeleteItemBodyDto) {
-    console.log(input);
-    const { id, type } = this.identifyProduct(input.itemId);
+  async deleteItem(userId: string, productId: string) {
+    const { id, type } = this.identifyProduct(productId);
     if (type !== ProductType.COURSE)
       throw new BadRequestException('محصول مورد نظر وجود ندارد');
-    this.cartService.decreaseCartItemQuantity(userId, id.toString());
+    return this.cartService.decreaseCartItemQuantity(userId, id.toString());
   }
 
   private async addCourseOrder(
