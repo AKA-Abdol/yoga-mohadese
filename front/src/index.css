@@ -69,3 +69,7 @@ img,
 video {
   max-width: none;
 }
+
+#root{
+  max-width: 100vw;
+}

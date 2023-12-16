@@ -91,7 +91,7 @@ const Player: FC = (props) => {
         ]);
       });
     } else {
-      alert("Use Modern Browsers!");
+      alert("مرورگر خود را به روزرسانی کنید.");
     }
   }, [term.data, videoContext]);
 

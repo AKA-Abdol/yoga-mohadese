@@ -40,9 +40,8 @@ function App() {
             <Route path="store" element={<Store />} />
 
             <Route path="faq" element={<Faq />} />
-            
             <Route path="user" element={<User />} />
-
+            
             <Route path="admin/" element={<AdminContextProvider />}>
               <Route path="" element={<Navigate to={"/admin/users"} />} />
 
