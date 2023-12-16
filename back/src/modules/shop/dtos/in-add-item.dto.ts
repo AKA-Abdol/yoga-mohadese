@@ -1,9 +1,6 @@
-import { IsInt, IsPositive, IsString } from 'class-validator';
+import { IsInt, IsPositive } from 'class-validator';
 
 export class InAddItemBodyDto {
-  @IsString()
-  itemId: string;
-
   @IsInt()
   @IsPositive()
   quantity?: number = 1;

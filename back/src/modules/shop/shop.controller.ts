@@ -51,26 +51,26 @@ export class ShopController {
     return this.shopService.getProduct(id, userId);
   }
 
-  @Post('/cart/item')
+  @Post('/cart/item/:id')
   @Role('USER')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'add shop item to cart' })
   async addItem(
     @Req() { userId }: { userId: string },
-    @Body() input: InAddItemBodyDto,
+    @Param('id') productId: string,
   ): Promise<OutAddItemDto> {
-    return this.shopService.addItem(userId, input);
+    return this.shopService.addItem(userId, productId);
   }
 
-  @Delete('/cart/item')
+  @Delete('/cart/item/:id')
   @Role('USER')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'delete shop item from cart' })
   async deleteItem(
     @Req() { userId }: { userId: string },
-    @Body() input: InDeleteItemBodyDto,
+    @Param('id') productId: string,
   ) {
-    return this.shopService.deleteItem(userId, input);
+    return this.shopService.deleteItem(userId, productId);
   }
 
   @Get('/cart')
