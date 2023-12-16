@@ -15,6 +15,7 @@ import TermVideos from "./pages/Admin/Terms/[id]/videos";
 import TermEdit from "./pages/Admin/Terms/[id]/edit";
 import TicketForm from "./pages/TicketForm";
 import Store from "./pages/Store";
+import Faq from "./pages/Faq";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +39,8 @@ function App() {
             <Route path="ticket" element={<TicketForm />} />
             <Route path="store" element={<Store />} />
 
+            <Route path="faq" element={<Faq />} />
+            
             <Route path="user" element={<User />} />
 
             <Route path="admin/" element={<AdminContextProvider />}>
