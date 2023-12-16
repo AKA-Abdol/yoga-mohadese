@@ -8,5 +8,6 @@ export abstract class TicketDao {
     description: model.description,
     phone: model.phone,
     type: model.type,
+    username: model.username,
   });
 }

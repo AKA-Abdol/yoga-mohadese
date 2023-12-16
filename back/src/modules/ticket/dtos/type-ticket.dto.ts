@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class TypeTicketDto {
   @ApiProperty({ required: true, default: 'id' })
@@ -21,4 +21,6 @@ export class TypeTicketDto {
   @ApiProperty({ required: true, default: '09120000000' })
   @IsString()
   phone: string;
+
+  username: string;
 }

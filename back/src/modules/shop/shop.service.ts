@@ -11,18 +11,15 @@ import { OutGetShopCoursesDto } from './dtos/out-get-shop-courses.dto';
 import { CartService } from './cart/cart.service';
 import {
   OutCourseProduct,
-  OutProduct,
   ProductIdentifier,
   ProductType,
 } from './shop.entity';
-import { InAddItemBodyDto } from './dtos/in-add-item.dto';
 import { ID_JOIN_STR } from 'src/configs/statics';
 import mongoose from 'mongoose';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
 import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
 import { OrderService } from './order/order.service';
 import { InjectConnection } from '@nestjs/mongoose';
-import { InDeleteItemBodyDto } from './dtos/in-delete-item.dto';
 import { ShopProductDao } from './daos/shop-product.dao';
 import { OutGetProduct } from './dtos/out-get-product.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';

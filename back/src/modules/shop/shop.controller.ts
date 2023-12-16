@@ -1,5 +1,4 @@
 import {
-  Body,
   Controller,
   Delete,
   Get,
@@ -15,12 +14,10 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { OutGetCartDto } from './dtos/out-get-cart.dto';
 import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
 import { ShopService } from './shop.service';
-import { InAddItemBodyDto } from './dtos/in-add-item.dto';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
 import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
 import { TypeOrderDto } from './order/dtos/type-order.dto';
 import { OutProduct } from './shop.entity';
-import { InDeleteItemBodyDto } from './dtos/in-delete-item.dto';
 import { OutGetOrderDto } from './order/dtos/out-get-order.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
 import { OutGetOrdersDto } from './order/dtos/out-get-orders.dto';

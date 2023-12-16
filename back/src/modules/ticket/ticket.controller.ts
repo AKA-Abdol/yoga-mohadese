@@ -20,6 +20,7 @@ import {
   ApiBearerAuth,
   ApiNotFoundResponse,
   ApiOperation,
+  ApiTags,
 } from '@nestjs/swagger';
 import { NotFoundError } from '../../errors/not-found-error';
 import { BadRequestError } from '../../errors/bad-request-error';
@@ -33,6 +34,7 @@ import { BaseError } from '../../errors/base-error';
 import { InResolveForgetPassword } from './dtos/in-resolve-forget-password.dto';
 import { OutGetUserDto } from '../user/dtos/out-get-user.dto';
 
+@ApiTags('Ticket')
 @UseGuards(RolesGuard)
 @Controller('ticket')
 export class TicketController {
@@ -43,7 +45,6 @@ export class TicketController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'get all tickets' })
   async getPaginatedTickets(
-    @Req() { userId }: { userId: string },
     @Query() input: InGetPaginatedTickets,
   ): Promise<OutGetPaginatedTicketsDto> {
     const tickets = await this.ticketService.getPaginatedTickets(input);
@@ -53,10 +54,7 @@ export class TicketController {
 
   @Post('/')
   @ApiOperation({ summary: 'create ticket' })
-  async createTicket(
-    @Req() { userId }: { userId: string },
-    @Body() input: InCreateTicket,
-  ): Promise<OutGetTicketDto> {
+  async createTicket(@Body() input: InCreateTicket): Promise<OutGetTicketDto> {
     const ticket = await this.ticketService.createTicket(input);
     if (ticket instanceof DuplicateError) return ticket.throw();
     return { ticket };
