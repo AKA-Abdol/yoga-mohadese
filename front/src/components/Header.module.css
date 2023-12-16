@@ -1,44 +1,8 @@
-.header {
-    position: absolute;
-    background-color: transparent;
-    top: 0;
-    width: 100vw;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
 /* HAMBURGER MENU */
-.voroodBurgerContainer{
-    z-index: 1000;
-    position: relative;
-}
-.navBtn {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    cursor: pointer;
-    top: 0;
-}
-.menu-burguer {
-    display: block;
-    width: 100%;
-    box-shadow: 0 2px 10px 0 #58423A;
-    border-radius: 3px;
-    height: 1px;
-    background: #58423A;
-    transition: all .3s;
-    position: relative;
-}
 .menu-burguer+.menu-burguer {
-    /* margin-top: 14px; */
     margin-top: 10px;
 }
-.active .menu-burguer:nth-child(1) {
-    
+.active .menu-burguer:nth-child(1) {    
     box-shadow: 0 1px 5px 1px #58423a9d;
     transition: color 0.7s ease;
     animation: ease .7s top forwards;
@@ -63,17 +27,6 @@
 }
 .not-active .menu-burguer:nth-child(3) {
     animation: ease .7s bottom-2 forwards;
-}
-.vorood {
-    color: #58423A;
-    font-size: 20px;
-    z-index: 1;
-    position: absolute;
-    right: 110px;  
-    top: -20px;
-}
-.disNon {
-    display: none;
 }
 @keyframes top {
     0% {
@@ -161,78 +114,3 @@
         transform: scale(1);
     }
 }
-
-/* THE MENU AND THE CONTENT */
-.sidenav {
-    height: 100vh;
-    width: 0;
-    position: fixed;
-    z-index: 50;
-    top: 0;
-    right: 0;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    padding-top: 80px;
-    padding-bottom: 200px;
-    padding-right: 0;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    transition: all 1s ease-in-out;
-    background-color: rgba(254, 250, 247, 0.5);
-}
-
-.nav-links {
-    text-decoration: none;
-    opacity: 0;
-    font-size: 28px;
-    display: block;
-    z-index: 1000;
-    transition: all 1s ease;
-}
-
-.activeNavLinks {
-    opacity: 1;
-    color: #58423A;
-}
-
-.nav-links:hover {
-    color: #D6CCC2;
-}
-
-.activeNav {
-    width: 275px;
-    transition: 0.5s ease;
-    padding-right: 20px;
-    border: 1px solid #EDEEE8;
-    backdrop-filter: blur(10px);
-}
-
-.not-activeNav {
-    width: 0;
-    transition: 0.5s ease;
-}
-
-/* HOME LINK WITH LOGO */
-.home-link {
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all .5s ease-in-out;
-}
-
-.img-link {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    padding: 4px;
-    background-color: none;
-    transition: all 0.7s;
-}
-
-.home-link:hover {
-    transform: rotate(15deg);
-}
-
