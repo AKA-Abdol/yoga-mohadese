@@ -190,6 +190,7 @@ export class CourseService {
     )) as TypeVideoDto[][];
 
     if (
+      courseVideos.length !== 0 &&
       courseVideos.filter((videos) => videos instanceof BaseError).length !== 0
     )
       throw new InternalServerErrorException('خطای سرور رخ داده است');
