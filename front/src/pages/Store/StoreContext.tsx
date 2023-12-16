@@ -7,7 +7,7 @@ import React, {
   useMemo,
 } from "react";
 import api from "src/services";
-import { IShopData } from "./api.types";
+import { ICartItem, IShopData } from "./api.types";
 import { CART_URL, SHOP_URL } from "./api.data";
 
 interface IStoreContextData {
@@ -15,7 +15,7 @@ interface IStoreContextData {
   isShopError: boolean;
   isShopLoading: boolean;
   isShopSuccess: boolean;
-  cartData?: IShopData;
+  cartData?: ICartItem[];
   isCartError: boolean;
   isCartLoading: boolean;
   isCartSuccess: boolean;
@@ -32,7 +32,7 @@ export const StoreContext = createContext<IStoreContextData>({
   isShopError: false,
   isShopLoading: false,
   isShopSuccess: false,
-  cartData: { count: 0, courses: [] },
+  cartData: [],
   isCartError: false,
   isCartLoading: false,
   isCartSuccess: false,
@@ -66,7 +66,7 @@ const StoreContextProvider: React.FC<StoreContextProviderProps> = ({
     isSuccess: isCartSuccess,
   } = useQuery({
     queryKey: ["cart"],
-    queryFn: api.get<IShopData>(CART_URL),
+    queryFn: api.get<Array<ICartItem>>(CART_URL),
   });
 
   const contextValue = useMemo(

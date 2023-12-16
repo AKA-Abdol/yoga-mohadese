@@ -1,18 +1,20 @@
-import { FC, useEffect } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import StoreContextProvider from "./StoreContext";
 import Shop from "./Shop";
 import Cart from "./Cart";
-import { Default } from "react-toastify/dist/utils";
-import { useQuery } from "@tanstack/react-query";
-import api from "src/services";
+import { useLocation } from "react-router-dom";
 
 const Store: FC = () => {
-  return (
-    <StoreContextProvider>
-      <Shop />
-      <Cart />
-    </StoreContextProvider>
-  );
+  const location = useLocation();
+  let page: ReactNode;
+  if (location.pathname === "/store/shop") {
+    page = <Shop />;
+  }
+  if (location.pathname === "/store/cart") {
+    page = <Cart />;
+  }
+
+  return <StoreContextProvider>{page}</StoreContextProvider>;
 };
 
 export default Store;

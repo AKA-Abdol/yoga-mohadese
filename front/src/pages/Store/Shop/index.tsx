@@ -7,7 +7,6 @@ import ShopItemBG2 from "src/assets/images/shopItem2.png";
 import ShopItemBG3 from "src/assets/images/shopItem3.png";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../StoreContext";
-// import { useStore } from "../StoreContext";
 const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
 
 const Shop: React.FC = ({}) => {

@@ -1,16 +1,27 @@
-export interface IProductCourse {
+export interface ICartProductDetails {
   description: string;
-  level: number;
-  start_date: string;
   end_date: string;
   id: string;
+  level: number;
+  start_date: string;
+  price: number;
   title: string;
 }
 
+export interface ICartProduct {
+  detail: ICartProductDetails;
+  id: string;
+  images: string[];
+  maxQuantity: number;
+  price: number;
+  title: string;
+  type: "course";
+}
+
 export interface ICartItem {
-  count: number;
+  quantity: number;
   overallPrice: number;
-  product: IProductCourse;
+  product: ICartProduct;
 }
 
 export interface IShopItemDetails {
