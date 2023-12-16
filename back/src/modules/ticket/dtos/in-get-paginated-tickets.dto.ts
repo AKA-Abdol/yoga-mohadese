@@ -1,24 +1,23 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { InPaginatedDto } from '../../../dtos/in-paginated.dto';
-import { InSearchableDto } from '../../../dtos/in-searchable.dto';
+import { TicketType } from '../ticket.schema';
 
 export class InGetPaginatedTickets implements InPaginatedDto {
   @ApiProperty({ required: false, default: 1 })
   @Type(() => Number)
   @IsNumber()
   @IsOptional()
-  page: number = 1;
+  page = 1;
 
   @ApiProperty({ required: false, default: 20 })
   @Type(() => Number)
   @IsNumber()
   @IsOptional()
-  num: number = 20;
+  num = 20;
 
-  @ApiProperty({ required: false, default: 'forget-password' })
   @IsString()
-  @IsOptional()
-  type: string;
+  @IsEnum(TicketType)
+  type: TicketType;
 }

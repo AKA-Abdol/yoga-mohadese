@@ -23,5 +23,6 @@ export abstract class UserDao {
     username: model.username,
     password: model.password,
     is_admin: model.is_admin ?? false,
+    fullname: `${model.firstname} ${model.lastname}`,
   });
 }

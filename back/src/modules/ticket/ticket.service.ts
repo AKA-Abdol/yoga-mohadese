@@ -1,4 +1,9 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  forwardRef,
+} from '@nestjs/common';
 import mongoose from 'mongoose';
 import { TicketRepo as TicketRepo } from './ticket.repo';
 import { NotFoundError } from '../../errors/not-found-error';
@@ -14,6 +19,7 @@ import { OutGetTicketDto } from './dtos/out-get-ticket.dto';
 import { InResolveForgetPassword } from './dtos/in-resolve-forget-password.dto';
 import { UserService } from '../user/user.service';
 import { OutGetUserDto } from '../user/dtos/out-get-user.dto';
+import { TicketType } from './ticket.schema';
 
 @Injectable()
 export class TicketService {
@@ -25,7 +31,20 @@ export class TicketService {
   async createTicket(
     ticketInfo: InCreateTicket,
   ): Promise<TypeTicketDto | DuplicateError> {
-    const ticketModel = await this.ticketRepo.create(ticketInfo);
+    let username = '';
+    if (ticketInfo.type === TicketType.FORGET_PASSWORD) {
+      const user = await this.userService.getAuthInfoByPhone(ticketInfo.phone);
+      if (user === null)
+        throw new BadRequestException(
+          'وجود ندارد ' + `"${ticketInfo.phone}"` + ' اکانت با شماره',
+        );
+      ticketInfo.fullname = user.fullname ?? ticketInfo.fullname;
+      username = user.username;
+    }
+    const ticketModel = await this.ticketRepo.create({
+      ...ticketInfo,
+      username,
+    });
     const ticket = TicketDao.convertOne(ticketModel);
 
     return ticket;
@@ -73,15 +92,15 @@ export class TicketService {
 
     if (!ticket) return new NotFoundError('Ticket');
 
-    if (ticket.type !== 'forget-password')
+    if (ticket.type !== TicketType.FORGET_PASSWORD)
       return new BadRequestError('InvalidTicketTypeForForgotPasswordTicket');
 
-    let new_user = await this.userService.updatePasswordWithPhone(
+    const new_user = await this.userService.updatePasswordWithPhone(
       input.new_password,
       ticket.phone,
     );
 
-    let deleted_ticket = await this.deleteTicketById(ticket.id);
+    const deleted_ticket = await this.deleteTicketById(ticket.id);
 
     if (new_user instanceof BaseError) return new_user;
 

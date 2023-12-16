@@ -24,12 +24,9 @@ import { VideoService } from '../video/video.service';
 import { OutGetCourseDto } from './dtos/out-get-course.dto';
 import { OutGetCoursesDto } from './dtos/out-get-shop.dto';
 import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
-import { InCourseProduct, InProduct } from '../shop/shop.entity';
+import { InCourseProduct } from '../shop/shop.entity';
 import { CourseProductDao } from './daos/course-product.dao';
 import { TypeVideoDto } from '../video/dtos/type-video.dto';
-import { Course } from './course.schema';
-import { access } from 'fs';
-import { TypeAccessDto } from './dtos/type-access.dto';
 
 @Injectable()
 export class CourseService {
