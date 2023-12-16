@@ -1,4 +1,4 @@
-import React, { ReactElement, SetStateAction } from "react";
+import React, { ReactElement, SetStateAction, useEffect } from "react";
 import {
   addToman,
   addCommaEach3Digits,
@@ -17,12 +17,11 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
   id,
   level,
 }) => {
-  
-  const addToCart = (itemId: string): void => {
-    api.post(`${SHOP_ADD_ITEM_URL}/${itemId}`);
+  const addToCart = (itemId: string) => {
+    api.post(`${SHOP_ADD_ITEM_URL}/${itemId}`)({});
   };
   const deleteFromCart = (itemId: string): void => {
-    api.delete(`${SHOP_DELETE_ITEM_URL}/${itemId}`);
+    api.delete(`${SHOP_DELETE_ITEM_URL}/${itemId}`)({});
   };
 
   return (
