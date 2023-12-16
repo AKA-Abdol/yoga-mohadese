@@ -7,6 +7,9 @@ import ShopItemBG2 from "src/assets/images/shopItem2.png";
 import ShopItemBG3 from "src/assets/images/shopItem3.png";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../StoreContext";
+import api from "src/services";
+import { SHOP_ADD_ITEM_URL, SHOP_DELETE_ITEM_URL } from "../api.data";
+import { useMutation } from "@tanstack/react-query";
 const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
 
 const Shop: React.FC = ({}) => {
@@ -43,8 +46,8 @@ const Shop: React.FC = ({}) => {
               title={item.detail.title}
               price={item.detail.price}
               // month={currentJalaliMonth}
-              // addToBasket={addToBasket}
-              // deleteFromBasket={deleteFromBasket}
+              // addToCart={addToCart}
+              // deleteFromCart={deleteFromCart}
               // BGthumbURL={item.images[0]}
               BGthumbURL={BgList[item.detail.level + 1]} // for now that we dont have images it should be fine
             />

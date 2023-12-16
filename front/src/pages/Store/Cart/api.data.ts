@@ -1,1 +1,1 @@
-export const CART_URL = `/shop/cart`
+export {}
