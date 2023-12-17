@@ -35,7 +35,7 @@ export default function Header() {
           ورود
         </Link>
         <Link
-          to={"/shop/cart"}
+          to={"/store/cart"}
           className={`text-[#58423A] text-lg z-[1] absolute right-32 top-[-12px] ${
             showVorood ? "" : "hidden"
           }`}

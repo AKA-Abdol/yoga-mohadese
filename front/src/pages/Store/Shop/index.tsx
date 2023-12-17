@@ -9,19 +9,70 @@ import { Link } from "react-router-dom";
 import { StoreContext } from "../StoreContext";
 import api from "src/services";
 import { SHOP_ADD_ITEM_URL, SHOP_DELETE_ITEM_URL } from "../api.data";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ICartItem, IShopData } from "../api.types";
+import { CourseAvailability } from "./types";
+import { error } from "console";
 const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
 
 const Shop: React.FC = ({}) => {
-  // handle add to basket and handle delete from basket needed in here
   const {
     shopData,
+    cartData,
     isShopError,
     isShopLoading,
     isShopSuccess,
     userData,
     isUserLoading,
   } = useContext(StoreContext);
+  const [itemsAvailabilityList, setItemsAvailabilityList] = useState<
+    Array<CourseAvailability>
+  >([]);
+  const updateStatus = (itemIndex: number) => {
+    const newStatus = itemsAvailabilityList.map((item, index) =>
+      index === itemIndex
+        ? item === "purchased"
+          ? "purchased"
+          : item === "selected"
+          ? "available"
+          : "selected"
+        : item
+    );
+    setItemsAvailabilityList(newStatus);
+  };
+
+  const addToCart = (itemId: string, index: number) => {
+    api.post(`${SHOP_ADD_ITEM_URL}/${itemId}`)({});
+    updateStatus(index);
+  };
+
+  const deleteFromCart = (itemId: string, index: number): void => {
+    api.delete(`${SHOP_ADD_ITEM_URL}/${itemId}`)({});
+    updateStatus(index);
+  };
+  const findItemStatus = (shopData: IShopData, cartData: ICartItem[]) => {
+    const cartCoursesId = cartData.map((item) => item.product.id);
+    const courseAvailability = shopData.courses.map((course) => {
+      if (course.hasAccess) {
+        return "purchased";
+      } else if (cartCoursesId.includes(course.id)) {
+        return "selected";
+      } else {
+        return "available";
+      }
+    });
+    return courseAvailability;
+  };
+
+  useEffect(() => {
+    if (shopData && cartData) {
+      const shopItemsAvailabilityStatusList = findItemStatus(
+        shopData,
+        cartData
+      );
+      setItemsAvailabilityList(shopItemsAvailabilityStatusList);
+    }
+  }, [shopData, cartData]);
 
   return (
     <main className="max-w-[100vw] w-[100vw] min-w-[100vw]">
@@ -37,19 +88,19 @@ const Shop: React.FC = ({}) => {
           </Link>
         </div>
       ) : (
-        <div className="pt-28 mx-8 justify-center items-center">
-          {shopData?.courses.map((item) => (
+        <div className="pt-28 mx-8 justify-center items-center flex flex-col gap-y-4 ">
+          {shopData?.courses.map((item, index) => (
             <ShopCourseCard
               level={item.detail.level}
               id={item.id}
               key={item.id}
               title={item.detail.title}
+              index={index}
               price={item.detail.price}
-              // month={currentJalaliMonth}
-              // addToCart={addToCart}
-              // deleteFromCart={deleteFromCart}
-              // BGthumbURL={item.images[0]}
-              BGthumbURL={BgList[item.detail.level + 1]} // for now that we dont have images it should be fine
+              itemStatus={itemsAvailabilityList[index]}
+              BGthumbURL={BgList[item.detail.level + 1]}
+              addToCart={addToCart}
+              deleteFromCart={deleteFromCart}
             />
           ))}
         </div>
