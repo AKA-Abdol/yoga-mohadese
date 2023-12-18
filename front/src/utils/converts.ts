@@ -15,7 +15,7 @@ const addCommaEach3Digits = (s: string | number): string => {
   if (typeof s === "number") {
     s = s.toString();
   }
-  const reversedString = s.split('').reverse().join('');
+  const reversedString = s.split("").reverse().join("");
 
   // Add commas in groups of three digits
   const regex = /\d{1,3}/g;
@@ -23,14 +23,47 @@ const addCommaEach3Digits = (s: string | number): string => {
   const result = chunks.join(",");
 
   // Reverse the result back
-  return result.split('').reverse().join('');
+  return result.split("").reverse().join("");
 };
 
-const addToman = (s: string | number) => {  
+const addToman = (s: string | number) => {
   if (typeof s === "number") {
     s = s.toString();
   }
   return `${s} تومان`;
 };
 
-export { e2p as English2Persian, p2e as Persian2English, addToman, addCommaEach3Digits };
+const ordinalNumbers: string[] = [
+  "اول",
+  "دوم",
+  "سوم",
+  "چهارم",
+  "پنجم",
+  "ششم",
+  "هفتم",
+  "هشتم",
+  "نهم",
+  "دهم",
+  "یازدهم",
+  "دوازدهم",
+  "سیزدهم",
+  "چهاردهم",
+  "پانزدهم",
+  "شانزدهم",
+  "هفدهم",
+  "هجدهم",
+  "نوزدهم",
+  "بیستم",
+];
+
+const number2PersianOrdinal = (num: number): string => {
+  return ordinalNumbers[num];
+};
+
+export {
+  e2p as English2Persian,
+  p2e as Persian2English,
+  addToman,
+  addCommaEach3Digits,
+  number2PersianOrdinal,
+};

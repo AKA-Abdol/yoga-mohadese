@@ -24,12 +24,12 @@ const TermData: FC = () => {
 
   return (
     <div className="h-full w-full flex flex-col justify-around">
-      <TermDescription term={term} />
+      {/* THE DESCRIPTION IS GOING TO BE FOR EACH SESSION SO WE PROBABLY WE DONT NEED THE COURSE DESCRIPTION */}
+      {/* <TermDescription term={term} /> */}
       <SessionList term={term} />
-
-      <div className="flex flex-row justify-evenly items-center ">
-        <RemainedDays term={term} />
-        <div className="w-full flex justify-center">
+      {/* <div className="flex flex-row justify-evenly items-center "> */}
+        {/* <RemainedDays term={term} /> */}
+        {/* <div className="w-full flex justify-center">
           <Button
             className="w-fit btn-cancel px-10"
             onClick={() => {
@@ -39,8 +39,8 @@ const TermData: FC = () => {
           >
             خروج
           </Button>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 };
