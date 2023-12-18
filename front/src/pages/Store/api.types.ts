@@ -47,3 +47,7 @@ export interface IShopData {
   count: number;
   courses: IShopDataItem[];
 }
+
+export interface ISubmitOrderRes {
+  paymentLink: string;
+}

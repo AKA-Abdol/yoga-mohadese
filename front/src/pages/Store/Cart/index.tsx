@@ -1,5 +1,5 @@
 import Header from "src/components/Header";
-import { ICartItem } from "../api.types";
+import { ICartItem, ISubmitOrderRes } from "../api.types";
 import FactorItem from "./component/FactorItem";
 import {
   English2Persian,
@@ -8,13 +8,30 @@ import {
 } from "src/utils/converts";
 import { useContext } from "react";
 import { StoreContext } from "../StoreContext";
+import { SUBMIT_ORDER_URL } from "../api.data";
+import api from "src/services";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Cart: React.FC = ({}) => {
+  const navigate = useNavigate();
   const { cartData, isCartError, isCartLoading, isCartSuccess } =
     useContext(StoreContext);
 
   const totalOverallPrice = (cartItems: ICartItem[]): number => {
     return cartItems.reduce((total, item) => total + item.overallPrice, 0);
+  };
+
+  const submitOrder = () => {
+    const res = api.post<any, ISubmitOrderRes>(SUBMIT_ORDER_URL)({});
+    res.then((response) => {
+      if (response.paymentLink) {
+        console.log(
+          "WE ARE GETTING IN REDIRECTING PROCCESS",
+          response.paymentLink
+        );
+        navigate(`${response.paymentLink}`);
+      }
+    });
   };
 
   return (
@@ -44,7 +61,10 @@ const Cart: React.FC = ({}) => {
             </h5>
           </div>
         </div>
-        <button className="bg-[#D48B71] rounded-[32px] w-full py-4 text-[#fff] text-2xl  ">
+        <button
+          onClick={() => submitOrder()}
+          className="bg-[#D48B71] rounded-[32px] w-full py-4 text-[#fff] text-2xl  "
+        >
           پرداخت
         </button>
       </div>
