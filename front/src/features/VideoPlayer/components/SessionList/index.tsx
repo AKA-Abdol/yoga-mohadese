@@ -23,20 +23,7 @@ const SessionList: FC<WithTerm> = (props) => {
       ) : term.isLoading ? (
         <Loading textColor="light"/>
       ) : (
-        <div className="flex flex-col gap-4 over">
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
-          <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
+        <div className="flex flex-col gap-4 w-full">
           <SessionItem data={term.data.course.videos[0]} key={`video-${term.data.course.videos[0].id}`} />
             
           {/* {term.data.course.videos.length ? (

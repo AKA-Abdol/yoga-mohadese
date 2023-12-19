@@ -4,8 +4,8 @@ import VideoContextProvider from "src/features/VideoPlayer/VideoContext";
 
 const User: FC = () => {
   return (
-    <div className="w-full h-full flex justify-center items-center">
-      <div className="w-full h-full bg-black">
+    <div className="w-full flex justify-center items-center">
+      <div className="w-full bg-black">
         <VideoContextProvider>
           <VideoPlayer />
         </VideoContextProvider>

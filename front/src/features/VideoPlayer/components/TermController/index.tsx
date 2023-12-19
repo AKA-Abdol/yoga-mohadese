@@ -25,11 +25,10 @@ const TermController: FC<TermControllerProps> = (props) => {
       `${BASE_TERM_URL}/${videoContext.selected.termId}`
     ),
   });
-
   return (
     <div
       className={classNames(
-        "w-full min-h-screen",
+        " min-h-screen overflow-y-auto",
         "flex flex-col items-center space-y-sm",
         "py-sm",
         "bg-white"
@@ -38,7 +37,7 @@ const TermController: FC<TermControllerProps> = (props) => {
     >
       {/* SHOULD WE DELETE THIS? */}
       {/* <div className="border-4 flex flex-row justify-end w-full px-sm"> */}
-        {/* <HomeButton /> */}
+      {/* <HomeButton /> */}
       {/* </div> */}
       {/* NAME AND LOGOUT */}
       <div
@@ -67,9 +66,10 @@ const TermController: FC<TermControllerProps> = (props) => {
           </svg>
         </Button>
       </div>
+      <div className="w-full max-w-full min-w-full">
       <RemainedDays term={term} />
-      
-      <div className={classNames("w-full")}>
+      </div>
+      <div className={classNames("w-full ")}>
         <div className="w-full flex justify-center items-center">
           <TermSelect />
         </div>
