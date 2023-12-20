@@ -48,9 +48,7 @@ const get = <O>(
 const _delete = <T>(url: string) => {
   return async (queryParams: T) => {
     try {
-      console.log("deletiiing");
       const response = await instance.delete(url, { params: queryParams });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       const error = e as AxiosError;
