@@ -39,7 +39,7 @@ function App() {
             <Route path="terms" element={<Terms />} />
             <Route path="ticket" element={<TicketForm />} />
 
-            <Route path="Store/" element={<Store />}>
+            <Route path="store/" element={<Store />}>
               <Route path="shop" element={<Shop />} />
               <Route path="cart" element={<Cart />} />
             </Route>

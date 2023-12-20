@@ -1,4 +1,4 @@
-export interface IFactorItem {
+export interface ICartItem {
   level: number;
   month: string;
   price: number;

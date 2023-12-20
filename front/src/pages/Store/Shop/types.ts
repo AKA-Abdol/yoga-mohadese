@@ -8,9 +8,10 @@ export interface IShopCourseCard {
   level: number;
   price: number;
   month?: string;
-  BGthumbURL: string;
+  backgroundTuhmbURL: string;
   itemStatus: CourseAvailability;
   index?: number;
-  addToCart(itemId: string, index: number): void;
-  deleteFromCart: (itemId: string, index: number) => void;
+  onQuantityChange():void ;
+  // addToCart(itemId: string, index: number): void;
+  // deleteFromCart: (itemId: string, index: number) => void;
 }

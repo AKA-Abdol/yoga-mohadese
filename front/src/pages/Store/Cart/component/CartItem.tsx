@@ -1,13 +1,13 @@
 import React, { FC } from "react";
-import { IFactorItem } from "../types";
-import { getJalaliMonthName } from "src/utils/dates";
+import { ICartItem } from "../types";
+import { translateISOString2JalaliMonth } from "src/utils/dates";
 import { level2farsi } from "src/utils/shopTranslator";
 import {
   English2Persian,
-  addCommaEach3Digits,
+  insertDelimEveryThreeDigits,
   addToman,
-} from "src/utils/converts";
-const FactorItem: React.FC<IFactorItem> = ({ level, month, price, title }) => {
+} from "src/utils/convertors";
+const CartItem: React.FC<ICartItem> = ({ level, month, price, title }) => {
   return (
     <div className="flex justify-between items-center border-b border-[#58423a80] pb-1">
       <div className="flex items-center gap-2">
@@ -18,14 +18,14 @@ const FactorItem: React.FC<IFactorItem> = ({ level, month, price, title }) => {
         )}
         <span className="text-[#58423A] text-base "> | </span>
         <h5 className="text-[#58423a80] text-base ">
-          {getJalaliMonthName(month)} ماه
+          {translateISOString2JalaliMonth(month)} ماه
         </h5>
       </div>
       <h5 className="text-[#58423A] text-base ">
-        {addToman(English2Persian(addCommaEach3Digits(price)))}
+        {addToman(English2Persian(insertDelimEveryThreeDigits(price)))}
       </h5>
     </div>
   );
 };
 
-export default FactorItem;
+export default CartItem;

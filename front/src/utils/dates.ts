@@ -42,7 +42,7 @@ export const isoStringDateDiffFromNow = (second: string) => {
   return dateDiff(new Date(), new Date(second));
 }
 
-export const getJalaliMonthName = (isoDateString: string) => {
+export const translateISOString2JalaliMonth = (isoDateString: string) => {
   const date = new DateObject(isoDateString);
   const jalaliDate = date.convert(persian, persian_fa);
   const monthName = jalaliDate.format("MMMM");

@@ -4,7 +4,7 @@ import SubmitCancelButton from "../../../../../../components/ui/SubmitCancelButt
 import { useFormik } from "formik";
 import { FC } from "react";
 import { AddVideoItemProps, AddVideoSchema } from "./types";
-import { Persian2English } from "src/utils/converts";
+import { Persian2English } from "src/utils/convertors";
 
 const AddVideoItem: FC<AddVideoItemProps> = (props) => {
   const formik = useFormik({

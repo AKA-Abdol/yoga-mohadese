@@ -1,48 +1,61 @@
 import Header from "src/components/Header";
 import { ICartItem, ISubmitOrderRes } from "../api.types";
-import FactorItem from "./component/FactorItem";
+import CartItem from "./component/CartItem";
 import {
   English2Persian,
-  addCommaEach3Digits,
+  insertDelimEveryThreeDigits,
   addToman,
-} from "src/utils/converts";
-import { useContext } from "react";
+} from "src/utils/convertors";
+import { useCallback, useContext, useState } from "react";
 import { StoreContext } from "../StoreContext";
 import { SUBMIT_ORDER_URL } from "../api.data";
 import api from "src/services";
 import { redirect, useNavigate } from "react-router-dom";
+import Loading from "src/components/ui/Loading";
+import { ToastContainer, toast } from "react-toastify";
 
 const Cart: React.FC = ({}) => {
   const navigate = useNavigate();
+  const [redirectingStatus, setRedirectingStatus] = useState<
+    "loading" | "notRedirected"
+  >("notRedirected");
+
   const { cartData, isCartError, isCartLoading, isCartSuccess } =
     useContext(StoreContext);
 
-  const totalOverallPrice = (cartItems: ICartItem[]): number => {
+  const calculateTotalPay = (cartItems: ICartItem[]): number => {
     return cartItems.reduce((total, item) => total + item.overallPrice, 0);
   };
 
-  const submitOrder = () => {
+  const submitOrder = useCallback(() => {
+    setRedirectingStatus("loading");
     const res = api.post<any, ISubmitOrderRes>(SUBMIT_ORDER_URL)({});
-    res.then((response) => {
-      if (response.paymentLink) {
-        console.log(
-          "WE ARE GETTING IN REDIRECTING PROCCESS",
-          response.paymentLink
-        );
-        navigate(`${response.paymentLink}`);
-      }
-    });
-  };
+    res
+      .then((response) => {
+        console.log("THIS IS REPONSE OF SUBMIT ORDER", response);
+        if (response.paymentLink) {
+          navigate(`${response.paymentLink}`);
+        }
+      })
+      .catch((err) => {
+        console.log("THIS SHOULD BE POST ERROR FOR REDIRECTING", err);
+        toast.error("به درگاه پرداخت منتقل نشدید لطفا دوباره تلاش کنید", {
+          theme: "colored",
+        });
+        setRedirectingStatus("notRedirected");
+      });
+  }, []);
 
   return (
     <main>
       <Header />
+      <ToastContainer position="top-center" rtl={true} theme="light" />
       <div className="pt-32 px-12 flex flex-col gap-6">
         <h4 className="text-[#58423a] text-xl ">فاکتور</h4>
         <div className="border rounded-[8px] border-[#58423A] p-2">
           {isCartSuccess &&
             cartData?.map((item) => (
-              <FactorItem
+              <CartItem
                 level={item.product.detail.level}
                 month={item.product.detail.start_date}
                 price={item.overallPrice}
@@ -55,18 +68,25 @@ const Cart: React.FC = ({}) => {
               {cartData &&
                 addToman(
                   English2Persian(
-                    addCommaEach3Digits(totalOverallPrice(cartData))
+                    insertDelimEveryThreeDigits(calculateTotalPay(cartData))
                   )
                 )}
             </h5>
           </div>
         </div>
-        <button
-          onClick={() => submitOrder()}
-          className="bg-[#D48B71] rounded-[32px] w-full py-4 text-[#fff] text-2xl  "
-        >
-          پرداخت
-        </button>
+        {redirectingStatus === "notRedirected" ? (
+          <button
+            onClick={submitOrder}
+            className="bg-[#D48B71] rounded-[32px] w-full py-4 text-[#fff] text-2xl  "
+          >
+            "پرداخت"
+          </button>
+        ) : (
+          <div className="flex flex-col justify-center items-center fixed w-screen h-screen top-0 right-0 bg-[#FEFAF7] text-[#58423A]">
+            <p>شما در حال انتقال به درگاه پرداخت هستید</p>
+            <Loading size="lg"/>
+          </div>
+        )}
       </div>
     </main>
   );

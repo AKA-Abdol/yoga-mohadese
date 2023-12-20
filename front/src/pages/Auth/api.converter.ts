@@ -1,4 +1,4 @@
-import { Persian2English } from "src/utils/converts";
+import { Persian2English } from "src/utils/convertors";
 import { ILoginFormValues, ISignupFormValues } from "./types";
 
 export const signupFormValues2Api = (signupFormValues: ISignupFormValues) => ({

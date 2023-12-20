@@ -28,6 +28,15 @@ const Shop: React.FC = ({}) => {
   const [itemsAvailabilityList, setItemsAvailabilityList] = useState<
     Array<CourseAvailability>
   >([]);
+
+  const onQuantityChange = (itemId: string, index: number) => {
+    return () => {
+      api.post(`${SHOP_ADD_ITEM_URL}/${itemId}`)({});
+      updateStatus(index);
+    };
+  };
+
+
   const updateStatus = (itemIndex: number) => {
     const newStatus = itemsAvailabilityList.map((item, index) =>
       index === itemIndex
@@ -40,12 +49,10 @@ const Shop: React.FC = ({}) => {
     );
     setItemsAvailabilityList(newStatus);
   };
-
   const addToCart = (itemId: string, index: number) => {
     api.post(`${SHOP_ADD_ITEM_URL}/${itemId}`)({});
     updateStatus(index);
   };
-
   const deleteFromCart = (itemId: string, index: number): void => {
     api.delete(`${SHOP_ADD_ITEM_URL}/${itemId}`)({});
     updateStatus(index);
@@ -63,7 +70,6 @@ const Shop: React.FC = ({}) => {
     });
     return courseAvailability;
   };
-
   useEffect(() => {
     if (shopData && cartData) {
       const shopItemsAvailabilityStatusList = findItemStatus(
@@ -89,20 +95,27 @@ const Shop: React.FC = ({}) => {
         </div>
       ) : (
         <div className="pt-28 mx-8 justify-center items-center flex flex-col gap-y-4 ">
-          {shopData?.courses.map((item, index) => (
-            <ShopCourseCard
-              level={item.detail.level}
-              id={item.id}
-              key={item.id}
-              title={item.detail.title}
-              index={index}
-              price={item.detail.price}
-              itemStatus={itemsAvailabilityList[index]}
-              BGthumbURL={BgList[item.detail.level + 1]}
-              addToCart={addToCart}
-              deleteFromCart={deleteFromCart}
-            />
-          ))}
+          {isShopLoading ? (
+            <Loading />
+          ) : isShopSuccess && shopData ? (
+            shopData.courses.map((item, index) => (
+              <ShopCourseCard
+                level={item.detail.level}
+                id={item.id}
+                key={item.id}
+                title={item.detail.title}
+                index={index}
+                price={item.detail.price}
+                itemStatus={itemsAvailabilityList[index]}
+                backgroundTuhmbURL={BgList[item.detail.level + 1]}
+                // addToCart={addToCart}
+                onQuantityChange={() => onQuantityChange}
+                // deleteFromCart={deleteFromCart}
+              />
+            ))
+          ) : (
+            "در حال حاضر دوره فعالی نداریم بعدا به ما سر بزنید."
+          )}
         </div>
       )}
     </main>

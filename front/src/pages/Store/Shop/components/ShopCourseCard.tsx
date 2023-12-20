@@ -1,9 +1,9 @@
 import React, { ReactElement, SetStateAction, useEffect } from "react";
 import {
   addToman,
-  addCommaEach3Digits,
+  insertDelimEveryThreeDigits,
   English2Persian,
-} from "src/utils/converts";
+} from "src/utils/convertors";
 import { level2farsi } from "src/utils/shopTranslator";
 import { IShopCourseCard } from "../types";
 import api from "src/services";
@@ -13,19 +13,23 @@ import { useMutation } from "@tanstack/react-query";
 const ShopCourseCard: React.FC<IShopCourseCard> = ({
   title,
   price,
-  BGthumbURL,
+  backgroundTuhmbURL,
   id,
   level,
   index,
   itemStatus,
-  addToCart,
-  deleteFromCart,
+  onQuantityChange,
+  // addToCart,
+  // deleteFromCart,
 }) => {
+
+  
+
   return (
     <div
       className="rounded-[10px] flex flex-col items-start p-4 gap-2 w-full"
       style={{
-        backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${BGthumbURL})`,
+        backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${backgroundTuhmbURL})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -36,7 +40,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
           {title + " " + level2farsi(level)}
         </h3>
         <h4 className="text-center text-[#fef3e9] opacity-70 text-sm font-normal">
-          {addToman(English2Persian(addCommaEach3Digits(price)))}
+          {addToman(English2Persian(insertDelimEveryThreeDigits(price)))}
         </h4>
       </div>
       {itemStatus === "purchased" ? (
@@ -47,7 +51,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
         </button>
       ) : itemStatus === "available" ? (
         <button
-          onClick={() => addToCart(id, index as number)}
+          // onClick={() => addToCart(id, index as number)}
           className=" rounded-[4px] text-[#58423a] text-[10px] flex items-center gap-2 bg-none justify-center w-full py-1 bg-[#fef3e9d0]"
         >
           افزودن به سبد خرید
@@ -66,7 +70,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
         </button>
       ) : (
         <button
-          onClick={() => deleteFromCart(id, index as number)}
+          // onClick={() => deleteFromCart(id, index as number)}
           className=" rounded-[4px] text-[#58423a] text-[10px] flex items-center gap-2 bg-none justify-center w-full py-1 bg-[#D48B71]"
         >
           حذف از سبد خرید

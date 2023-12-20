@@ -1,5 +1,5 @@
 import { removeWhitespace } from ".";
-import { Persian2English } from "./converts";
+import { Persian2English } from "./convertors";
 
 export const PERSIAN_PHONE_NUMBER_SCHEMA =
   /(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/;

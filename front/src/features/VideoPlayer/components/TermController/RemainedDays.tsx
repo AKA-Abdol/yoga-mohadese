@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { FC, useContext } from "react";
-import { English2Persian } from "src/utils/converts";
+import { English2Persian } from "src/utils/convertors";
 import { VideoContext } from "../../VideoContext";
-import { getJalaliMonthName, isoStringDateDiffFromNow } from "src/utils/dates";
+import { translateISOString2JalaliMonth, isoStringDateDiffFromNow } from "src/utils/dates";
 import { WithTerm } from "./types";
 
 const RemainedDays: FC<WithTerm> = (props) => {
@@ -24,7 +24,7 @@ const RemainedDays: FC<WithTerm> = (props) => {
             )}
           </p>
           <p className="text-sm text-[#58423A50]">
-            {`از دوره ${term.data.course.title} ${getJalaliMonthName(
+            {`از دوره ${term.data.course.title} ${translateISOString2JalaliMonth(
               term.data.course.start_date
             )} ماه شما باقی مانده است.`}
           </p>{" "}

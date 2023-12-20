@@ -2,7 +2,7 @@ import { FC, ReactNode, useEffect } from "react";
 import StoreContextProvider from "./StoreContext";
 import Shop from "./Shop";
 import Cart from "./Cart";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 const Store: FC = () => {
   const location = useLocation();
@@ -14,7 +14,11 @@ const Store: FC = () => {
     page = <Cart />;
   }
 
-  return <StoreContextProvider>{page}</StoreContextProvider>;
+  return (
+    <StoreContextProvider>
+      <Outlet />
+    </StoreContextProvider>
+  );
 };
 
 export default Store;

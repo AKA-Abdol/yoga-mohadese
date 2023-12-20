@@ -1,5 +1,5 @@
 import { Ticket } from "src/types/tickets";
-import { Persian2English } from "src/utils/converts";
+import { Persian2English } from "src/utils/convertors";
 
 export const TICKET_URL = "ticket";
 
