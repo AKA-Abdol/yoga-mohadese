@@ -10,7 +10,7 @@ import { useCallback, useContext, useState } from "react";
 import { StoreContext } from "../StoreContext";
 import { SUBMIT_ORDER_URL } from "../api.data";
 import api from "src/services";
-import { redirect, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import Loading from "src/components/ui/Loading";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -20,7 +20,7 @@ const Cart: React.FC = ({}) => {
     "loading" | "notRedirected"
   >("notRedirected");
 
-  const { cartData, isCartError, isCartLoading, isCartSuccess } =
+  const { cartData, isCartSuccess, userData, isUserLoading } =
     useContext(StoreContext);
 
   const calculateTotalPay = (cartItems: ICartItem[]): number => {
@@ -32,13 +32,13 @@ const Cart: React.FC = ({}) => {
     const res = api.post<any, ISubmitOrderRes>(SUBMIT_ORDER_URL)({});
     res
       .then((response) => {
-        console.log("THIS IS REPONSE OF SUBMIT ORDER", response);
+        // console.log("THIS IS REPONSE OF SUBMIT ORDER", response);
         if (response.paymentLink) {
           navigate(`${response.paymentLink}`);
         }
       })
       .catch((err) => {
-        console.log("THIS SHOULD BE POST ERROR FOR REDIRECTING", err);
+        // console.log("THIS SHOULD BE POST ERROR FOR REDIRECTING", err);
         toast.error("به درگاه پرداخت منتقل نشدید لطفا دوباره تلاش کنید", {
           theme: "colored",
         });
@@ -51,40 +51,56 @@ const Cart: React.FC = ({}) => {
       <Header />
       <ToastContainer position="top-center" rtl={true} theme="light" />
       <div className="pt-32 px-12 flex flex-col gap-6">
-        <h4 className="text-[#58423a] text-xl ">فاکتور</h4>
-        <div className="border rounded-[8px] border-[#58423A] p-2">
-          {isCartSuccess &&
-            cartData?.map((item) => (
-              <CartItem
-                level={item.product.detail.level}
-                month={item.product.detail.start_date}
-                price={item.overallPrice}
-                title={item.product.title}
-              />
-            ))}
-          <div className="flex justify-between pt-1">
-            <h5 className="text-[#58423A] text-base">مجموع</h5>
-            <h5 className="text-[#58423A] text-base ">
-              {cartData &&
-                addToman(
-                  English2Persian(
-                    insertDelimEveryThreeDigits(calculateTotalPay(cartData))
-                  )
-                )}
-            </h5>
+        {isUserLoading ? (
+          <Loading />
+        ) : userData === undefined ? (
+          <div className="w-full flex items-center justify-center px-12">
+            <Link to="/auth" className=" text-center text-[#58423A]">
+              لطفا برای مشاهده سبد خرید
+              <span className=" underline text-[#D48B71]"> وارد </span> حساب
+              کاربری خود شوید.
+            </Link>
           </div>
-        </div>
-        {redirectingStatus === "notRedirected" ? (
+        ) : (
+          <>
+            <h4 className="text-[#58423a] text-xl ">فاکتور</h4>
+            <div className="border rounded-[8px] border-[#58423A] p-2">
+              {isCartSuccess &&
+                cartData?.map((item) => (
+                  <CartItem
+                    key={item.product.id}
+                    level={item.product.detail.level}
+                    month={item.product.detail.start_date}
+                    price={item.overallPrice}
+                    title={item.product.title}
+                  />
+                ))}
+              <div className="flex justify-between pt-1">
+                <h5 className="text-[#58423A] text-base">مجموع</h5>
+                <h5 className="text-[#58423A] text-base ">
+                  {cartData &&
+                    addToman(
+                      English2Persian(
+                        insertDelimEveryThreeDigits(calculateTotalPay(cartData))
+                      )
+                    )}
+                </h5>
+              </div>
+            </div>
+          </>
+        )}
+        {userData && redirectingStatus === "notRedirected" && (
           <button
             onClick={submitOrder}
             className="bg-[#D48B71] rounded-[32px] w-full py-4 text-[#fff] text-2xl  "
           >
             "پرداخت"
           </button>
-        ) : (
+        )}
+        {userData && redirectingStatus === "loading" && (
           <div className="flex flex-col justify-center items-center fixed w-screen h-screen top-0 right-0 bg-[#FEFAF7] text-[#58423A]">
             <p>شما در حال انتقال به درگاه پرداخت هستید</p>
-            <Loading size="lg"/>
+            <Loading size="lg" />
           </div>
         )}
       </div>
