@@ -3,7 +3,8 @@ import { SessionItemProps } from "./types";
 import { VideoContext } from "../../VideoContext";
 import { DrawerContext } from "../..";
 import classNames from "classnames";
-import { English2Persian } from "src/utils/converts";
+import { English2Persian, number2PersianOrdinal } from "src/utils/convertors";
+import PlayTriangleSVG from "src/assets/svgs/PlayTriangleSVG";
 
 const SessionItem: FC<SessionItemProps> = (props) => {
   const videoContext = useContext(VideoContext);
@@ -11,27 +12,36 @@ const SessionItem: FC<SessionItemProps> = (props) => {
   return (
     <div
       className={classNames(
-        "avatar ml-md flex flex-col items-center space-y-sm cursor-pointer w-60 min-w-60 max-w-60 h-52 min-h-52 max-h-52 md:w-80 md:min-w-80 md:max-w-80 md:h-72 md:min-h-72 md:max-h-72",
-        "py-sm px-sm rounded-lg",
-
+        "relative flex flex-col cursor-pointer w-full min-w-full max-w-full h-40 min-h-40 max-h-40 bg-[#383838]",
+        "p-4 rounded-[8px]",
         videoContext.selected.sessionNum === props.data.num
           ? "border-lg border-error"
-          : "border-normal border-primary-dark"
+          : ""
       )}
       onClick={() => {
-        videoContext.selected.sessionNum !== props.data.num && videoContext.selected.setSessionNum(props.data.num) ;
+        videoContext.selected.sessionNum !== props.data.num &&
+          videoContext.selected.setSessionNum(props.data.num);
         drawerContext.onClose();
       }}
     >
+      <img
+        src={props.data.thumbnail}
+        alt="thumbnail"
+        className=" absolute top-0 right-0 w-full h-full object-cover rounded-[8px] opacity-30"
+      />
       <p
-        className={`text-lg text-primary-light`}
-      >{`ویدیو شماره ${English2Persian(props.data.num)}`}</p>
-      <div className="h-full mask mask-squircle max-w-[60%]">
-        <img src={props.data.thumbnail} alt="thumbnail" />
+        className={` text-sm text-[#fef3e9] opacity-70`}
+      >{`جلسه ${number2PersianOrdinal(props.data.num - 1)}`}</p>
+      <p className=" text-lg text-[#fef3e9] mt-auto mb-2">{props.data.title}</p>
+      <div className="flex justify-between items-center border-t-2 border-[#fef3e9b6] pt-2">
+        <p className="text-[#fef3e9b6] text-sm">{"description"}</p> {/* it probably needs text shorter */}
+        <div className="flex gap-1 items-center">
+          <p className="text-[#fef3e9b6] text-sm flex-row gap-2">
+            {"time"}
+          </p>
+          <PlayTriangleSVG />
+        </div>
       </div>
-      <p className="text-xs text-primary-dark text-center">
-        {props.data.title}
-      </p>
     </div>
   );
 };

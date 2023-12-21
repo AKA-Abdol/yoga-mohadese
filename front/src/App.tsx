@@ -14,6 +14,8 @@ import AdminContextProvider from "./pages/Admin/ContextProvider";
 import TermVideos from "./pages/Admin/Terms/[id]/videos";
 import TermEdit from "./pages/Admin/Terms/[id]/edit";
 import TicketForm from "./pages/TicketForm";
+import Shop from "./pages/Store/Shop";
+import Cart from "./pages/Store/Cart";
 import Store from "./pages/Store";
 import Faq from "./pages/Faq";
 
@@ -37,7 +39,11 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="terms" element={<Terms />} />
             <Route path="ticket" element={<TicketForm />} />
-            <Route path="store" element={<Store />} />
+
+            <Route path="store/" element={<Store />}>
+              <Route path="shop" element={<Shop />} />
+              <Route path="cart" element={<Cart />} />
+            </Route>
 
             <Route path="faq" element={<Faq />} />
             

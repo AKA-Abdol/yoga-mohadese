@@ -1,9 +1,9 @@
 import React, { ReactElement, SetStateAction } from "react";
 import {
   addToman,
-  addCommaEach3Digits,
+  insertDelimEveryThreeDigits,
   English2Persian,
-} from "../../utils/converts";
+} from "../../utils/convertors";
 import { url } from "inspector";
 
 interface IStoreCard {
@@ -37,7 +37,7 @@ const StoreCard: React.FC<IStoreCard> = ({
           {title}
         </h3>
         <h4 className="text-center text-[#FEF3E9] text-xs font-normal">
-          {addToman(English2Persian(addCommaEach3Digits(price)))}
+          {addToman(English2Persian(insertDelimEveryThreeDigits(price)))}
         </h4>
       </div>
       <h4 className=" text-sm text-[#FEF3E9] ">{month}</h4>

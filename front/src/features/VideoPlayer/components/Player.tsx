@@ -173,7 +173,7 @@ const VideoController = (props: VideoControllerProps) => {
   return (
     <div
       className={classNames(
-        "absolute bottom-16 left-0 w-full h-full",
+        "absolute bottom-16 left-0 w-screen h-screen min-w-screen min-h-screen",
         "transition-opacity duration-500 delay-200",
         "opacity-0 hover:opacity-100",
         "lg:hidden"

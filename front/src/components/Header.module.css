@@ -1,4 +1,4 @@
-/* HAMBURGER MENU */
+
 .menu-burguer+.menu-burguer {
     margin-top: 10px;
 }
@@ -27,8 +27,7 @@
 }
 .not-active .menu-burguer:nth-child(3) {
     animation: ease .7s bottom-2 forwards;
-}
-@keyframes top {
+}@keyframes top {
     0% {
         top: 0;
         transform: rotate(0);
