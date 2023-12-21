@@ -1,11 +1,3 @@
-.body {
-    width: 100vw;
-    overflow-x: hidden;
-    background-color: #D6CCC2;
-    color:#31393C;
-    direction: rtl;
-    font-family: IRANRounded !important;
-}
 
 h1,
 h2,
@@ -23,7 +15,6 @@ button {
 
 .terms {
     padding: 2rem;
-    margin: 7rem 2rem 2rem 2rem;
     background: linear-gradient(0deg, #D6CCC2 0%, #EDEEE8 100%);
 }
 

@@ -79,6 +79,7 @@ const Player: FC = (props) => {
       hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         console.log("ready to play!");
+        console.log(hls.levels);
         setQualities([
           ...hls.levels.map((level, index) => ({
             name: `${level.height}p`,
@@ -90,8 +91,13 @@ const Player: FC = (props) => {
           },
         ]);
       });
+    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
+      videoRef.current.src = selectedSessionVideo.link;
+      videoRef.current.addEventListener("loadedmetadata", () =>
+        console.log("ready to play!")
+      );
     } else {
-      alert("Use Modern Browsers!");
+      alert("از مرورگر های مدرن استفاده کنید");
     }
   }, [term.data, videoContext]);
 

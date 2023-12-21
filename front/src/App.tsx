@@ -17,6 +17,7 @@ import TicketForm from "./pages/TicketForm";
 import Shop from "./pages/Store/Shop";
 import Cart from "./pages/Store/Cart";
 import Store from "./pages/Store";
+import Faq from "./pages/Faq";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,8 @@ function App() {
               <Route path="cart" element={<Cart />} />
             </Route>
 
+            <Route path="faq" element={<Faq />} />
+            
             <Route path="user" element={<User />} />
 
             <Route path="admin/" element={<AdminContextProvider />}>

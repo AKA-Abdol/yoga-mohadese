@@ -12,4 +12,6 @@ export class TypeAuthInfoDto {
 
   @ApiProperty({ required: true, default: false })
   is_admin: boolean;
+
+  fullname?: string;
 }

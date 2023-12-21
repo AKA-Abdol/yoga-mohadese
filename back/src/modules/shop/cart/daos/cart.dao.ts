@@ -9,6 +9,6 @@ export abstract class CartDao {
       type: model.productType,
       id: model.productId,
     },
-    count: model.count,
+    quantity: model.quantity,
   });
 }

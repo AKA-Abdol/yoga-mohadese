@@ -1,4 +1,6 @@
 import {
+  BadRequestException,
+  ConflictException,
   Inject,
   Injectable,
   InternalServerErrorException,
@@ -22,7 +24,7 @@ import { VideoService } from '../video/video.service';
 import { OutGetCourseDto } from './dtos/out-get-course.dto';
 import { OutGetCoursesDto } from './dtos/out-get-shop.dto';
 import { InPaginatedDto } from 'src/dtos/in-paginated.dto';
-import { InProduct } from '../shop/shop.entity';
+import { InCourseProduct } from '../shop/shop.entity';
 import { CourseProductDao } from './daos/course-product.dao';
 import { TypeVideoDto } from '../video/dtos/type-video.dto';
 
@@ -185,6 +187,7 @@ export class CourseService {
     )) as TypeVideoDto[][];
 
     if (
+      courseVideos.length !== 0 &&
       courseVideos.filter((videos) => videos instanceof BaseError).length !== 0
     )
       throw new InternalServerErrorException('خطای سرور رخ داده است');
@@ -192,16 +195,18 @@ export class CourseService {
     courseVideos;
     return {
       count: courses.count || 0,
-      courses: courses.values.map((course, index) => ({
-        ...CourseDao.convertOne(course),
-        videos: courseVideos[index],
-      })),
+      courses: courses.values.map((course, index) =>
+        CourseProductDao.convertOne(
+          course,
+          courseVideos[index].map((video) => video.thumbnail),
+        ),
+      ),
     };
   }
 
   async getCourseProduct(
     courseId: mongoose.Types.ObjectId,
-  ): Promise<InProduct> {
+  ): Promise<InCourseProduct> {
     const course = await this.courseRepo.getById(courseId);
     if (course === null) throw new NotFoundException('کورس یافت نشد');
     const videos = await this.videoService.getVideosByCourseId(
@@ -217,5 +222,38 @@ export class CourseService {
   async isAvailable(courseId: mongoose.Types.ObjectId): Promise<boolean> {
     const course = await this.courseRepo.getById(courseId);
     return course !== null;
+  }
+
+  async createAccessForUser(userId: string, courseIds: string[]) {
+    const accesses = await Promise.all(
+      courseIds.map((courseId) =>
+        this.accessService.createAccess({
+          user_id: userId,
+          course_id: courseId,
+        }),
+      ),
+    );
+    if (
+      accesses.filter((access) => access instanceof DuplicateError).length > 0
+    )
+      throw new ConflictException('قبلا به یکی از ترم ها دسترسی داشته اید');
+
+    return accesses;
+  }
+
+  async hasUserAccess(userId: string, courseId: string): Promise<boolean> {
+    const accessInfo = await this.accessService.checkUserAccessToCourse(
+      userId,
+      courseId,
+    );
+    if (accessInfo instanceof BadRequestError)
+      throw new BadRequestException(accessInfo.message);
+    return accessInfo;
+  }
+
+  async getAccessedCourseIdsByUserId(userId: string): Promise<string[]> {
+    const accesses = await this.accessService.getAccessesByUserId(userId);
+    if (accesses instanceof BaseError) return [];
+    return accesses.map((access) => access.course_id.toString());
   }
 }
