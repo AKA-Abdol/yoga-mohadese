@@ -1,0 +1,110 @@
+    @keyframes moveAnimationOne {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        10% {
+            transform: translate(30vw, 30vh);
+        }
+
+        20% {
+            transform: translate(15vw, 15vh);
+        }
+
+        30% {
+            transform: translate(42vw, 45vh);
+        }
+
+        40% {
+            transform: translate(12vw, 75vh);
+        }
+
+        50% {
+            transform: translate(0vw, 20vh);
+        }
+
+        60% {
+            transform: translate(82vw, 30vh);
+        }
+
+        60% {
+            transform: translate(22vw, 50vh);
+        }
+
+        60% {
+            transform: translate(13vw, 3vh);
+        }
+
+        60% {
+            transform: translate(5vw, 83vh);
+        }
+
+
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    @keyframes moveAnimationTwo {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        10% {
+            transform: translate(-30vw, 30vh);
+        }
+
+        20% {
+            transform: translate(-15vw, 15vh);
+        }
+
+        30% {
+            transform: translate(-42vw, 45vh);
+        }
+
+        40% {
+            transform: translate(-12vw, 75vh);
+        }
+
+        50% {
+            transform: translate(-0vw, 20vh);
+        }
+
+        60% {
+            transform: translate(-82vw, 30vh);
+        }
+
+        60% {
+            transform: translate(-22vw, 50vh);
+        }
+
+        60% {
+            transform: translate(-13vw, 3vh);
+        }
+
+        60% {
+            transform: translate(-5vw, 83vh);
+        }
+
+
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+
+    .cloudOne,
+    .cloudTwo {
+        position: fixed;
+        width: fit-content;
+        height: fit-content;
+        overflow: hidden;
+        top: 0;
+        right: 0;
+        animation: moveAnimationOne 30s linear infinite;
+        z-index: 0;
+    }
+
+    .cloudTwo {
+        animation: moveAnimationTwo 30s linear infinite;
+    }

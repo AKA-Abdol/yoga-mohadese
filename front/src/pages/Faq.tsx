@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "src/components/Header";
+import { BgCloudOne, BgCloudTwo } from "src/components/ui/BgClouds";
 import ClickToShowBox from "src/components/ui/ClickToShowBox";
 
 const faqList = [
@@ -60,14 +61,16 @@ const faqList = [
 
 const Faq = () => {
   return (
-    <main className=" bg-[#FEFAF7]">
+    <main className="bg-[#FEFAF7]">
       <Header />
+      <BgCloudOne />
+      <BgCloudTwo />
       <div className="pt-24 pb-8 px-12 flex flex-col gap-2">
-        <h2 className=" text-2xl text-[#58423A] text-center mb-6">
+        <h2 className=" text-2xl text-[#58423A] text-center mb-6 z-10">
           سوالات متداول
         </h2>
         {faqList.map((item) => (
-          <ClickToShowBox title={item.question} content={item.answer} />
+          <ClickToShowBox title={item.question} content={item.answer} boxClassNames="z-10" />
         ))}
       </div>
     </main>

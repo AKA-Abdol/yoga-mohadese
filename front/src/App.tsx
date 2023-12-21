@@ -46,9 +46,8 @@ function App() {
             </Route>
 
             <Route path="faq" element={<Faq />} />
-            
             <Route path="user" element={<User />} />
-
+            
             <Route path="admin/" element={<AdminContextProvider />}>
               <Route path="" element={<Navigate to={"/admin/users"} />} />
 

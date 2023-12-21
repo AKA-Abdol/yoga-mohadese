@@ -97,7 +97,7 @@ const Player: FC = (props) => {
         console.log("ready to play!")
       );
     } else {
-      alert("از مرورگر های مدرن استفاده کنید");
+      alert("مرورگر خود را به روزرسانی کنید.");
     }
   }, [term.data, videoContext]);
 
