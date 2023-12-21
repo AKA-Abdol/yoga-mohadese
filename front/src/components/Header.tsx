@@ -68,7 +68,7 @@ export default function Header() {
         <Link
           to={"/store/cart"}
           className={`text-[#58423A] text-lg z-[1] absolute right-32 top-[-12px] ${
-            showSignIn ? "" : "hidden"
+            showVorood ? "" : "hidden"
           }`}
         >
           <BasketSVG />
