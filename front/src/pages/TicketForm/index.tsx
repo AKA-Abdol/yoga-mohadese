@@ -10,13 +10,14 @@ import {
   TICKET_TYPE_VALUES,
   Ticket,
 } from "src/types/tickets";
-import { useMutation } from "@tanstack/react-query";
+import { isError, useMutation } from "@tanstack/react-query";
 import api from "src/services";
-import { TICKET_URL, localTicket2Api } from "./api";
+import { TICKET_URL, localTicket2Api} from "./api";
 import Header from "src/components/Header";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const TicketForm: FC = () => {
   const location = useLocation();
@@ -49,11 +50,14 @@ const TicketForm: FC = () => {
     validateOnChange: false,
   });
   const mutation = useMutation(api.post(TICKET_URL, localTicket2Api));
-
   if (mutation.isSuccess) {
     mutation.reset();
     formik.setValues(ticketInitialValues);
     toast.success("درخواست شما ارسال شد. با شما در ارتباط خواهیم بود.");
+  }
+  if (mutation.isError) {
+    console.log(" this is what Im looking for", mutation.error );
+    toast.error(`وجود ندارد "${formik.values.phoneNumber}" اکانت با شماره`)
   }
 
   return (
@@ -70,7 +74,7 @@ const TicketForm: FC = () => {
         >
           <Input
             onChange={formik.handleChange}
-            placeholder="نام و نام خانوادگی *"
+            placeholder="نام و نام خانوادگی"
             className="text-center w-full input-primary-theme"
             id="fullName"
             name="fullName"
@@ -79,7 +83,7 @@ const TicketForm: FC = () => {
           />
           <Input
             onChange={formik.handleChange}
-            placeholder="شماره تلفن *"
+            placeholder="شماره تلفن"
             className="text-center w-full input-primary-theme"
             id="phoneNumber"
             name="phoneNumber"
