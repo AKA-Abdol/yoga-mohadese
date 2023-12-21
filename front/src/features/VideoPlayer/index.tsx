@@ -17,7 +17,6 @@ const VideoPlayer: FC = () => {
   );
 
   const toggleDrawerState = useCallback(() => {
-    console.log(drawerShowState);
     setDrawerShowState((prevState) =>
       prevState === "show" ? "hidden" : "show"
     );
@@ -39,7 +38,7 @@ const VideoPlayer: FC = () => {
             show={drawerShowState === "show"}
           />
         </div>
-        <Player />
+        <Player drawerShowState={drawerShowState} />
       </div>
     </DrawerContext.Provider>
   );
