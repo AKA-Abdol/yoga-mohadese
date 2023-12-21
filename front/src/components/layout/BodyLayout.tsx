@@ -47,7 +47,7 @@ const BodyLayout: FC = () => {
     <MyContext.Provider
       value={{ firstname: myData.data?.user.firstname ?? "" }}
     >
-      <div className={"w-full h-screen bg-primary dark:bg-primary text-black"}>
+      <div className={"w-screen min-h-screen bg-primary dark:bg-primary text-black"}>
         <Outlet />
       </div>
     </MyContext.Provider>

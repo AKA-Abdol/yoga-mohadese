@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import homeIcon from "../assets/images/icon.png";
 import styles from "./Header.module.css";
+import BasketSVG from "src/assets/svgs/BasketSVG";
 import { Link, useLocation } from "react-router-dom";
-
 export default function Header() {
   const location = useLocation();
   const [isMenuLight, setIsMenuLight] = useState<boolean>(false);
@@ -58,11 +58,20 @@ export default function Header() {
         </div>
         <Link
           to={"/auth"}
+
           className={`text-[#58423A] text-lg z-10 absolute right-[110px] top-[-20px] ${
             isMenuLight ? "text-[#FEFAF7]" : "text-[#58423A]"
           } ${showVorood ? "" : "hidden"}`}
         >
           ورود
+        </Link>
+        <Link
+          to={"/store/cart"}
+          className={`text-[#58423A] text-lg z-[1] absolute right-32 top-[-12px] ${
+            showVorood ? "" : "hidden"
+          }`}
+        >
+          <BasketSVG />
         </Link>
       </div>
       <div

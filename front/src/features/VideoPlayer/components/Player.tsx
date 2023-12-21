@@ -79,6 +79,7 @@ const Player: FC = (props) => {
       hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         console.log("ready to play!");
+        console.log(hls.levels);
         setQualities([
           ...hls.levels.map((level, index) => ({
             name: `${level.height}p`,
@@ -90,6 +91,11 @@ const Player: FC = (props) => {
           },
         ]);
       });
+    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
+      videoRef.current.src = selectedSessionVideo.link;
+      videoRef.current.addEventListener("loadedmetadata", () =>
+        console.log("ready to play!")
+      );
     } else {
       alert("مرورگر خود را به روزرسانی کنید.");
     }
@@ -167,7 +173,7 @@ const VideoController = (props: VideoControllerProps) => {
   return (
     <div
       className={classNames(
-        "absolute bottom-16 left-0 w-full h-full",
+        "absolute bottom-16 left-0 w-screen h-screen min-w-screen min-h-screen",
         "transition-opacity duration-500 delay-200",
         "opacity-0 hover:opacity-100",
         "lg:hidden"

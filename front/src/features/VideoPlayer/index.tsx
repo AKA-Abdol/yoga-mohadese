@@ -17,6 +17,7 @@ const VideoPlayer: FC = () => {
   );
 
   const toggleDrawerState = useCallback(() => {
+    console.log(drawerShowState);
     setDrawerShowState((prevState) =>
       prevState === "show" ? "hidden" : "show"
     );
@@ -28,9 +29,9 @@ const VideoPlayer: FC = () => {
 
   return (
     <DrawerContext.Provider value={{ onClose: closeDrawerState }}>
-      <div className={classNames("w-full h-full", "relative", "bg-black")}>
+      <div className={classNames("w-full", "relative", "bg-black")}>
         <Drawer show={drawerShowState === "show"}>
-          <TermController title={`سلام ${myContext.firstname}`} />
+          <TermController title={`سلام ${myContext.firstname} عزیز`} />
         </Drawer>
         <div className="absolute top-0 right-0 p-sm z-10">
           <OpenCloseButton

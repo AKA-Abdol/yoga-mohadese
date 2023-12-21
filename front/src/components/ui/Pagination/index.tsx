@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Button from "../Button";
-import { English2Persian } from "src/utils/converts";
+import { English2Persian } from "src/utils/convertors";
 import classNames from "classnames";
 
 interface PaginationProps {

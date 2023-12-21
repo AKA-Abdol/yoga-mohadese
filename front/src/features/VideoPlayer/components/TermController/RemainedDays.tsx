@@ -1,26 +1,35 @@
 import classNames from "classnames";
 import { FC, useContext } from "react";
-import { English2Persian } from "src/utils/converts";
+import { English2Persian } from "src/utils/convertors";
 import { VideoContext } from "../../VideoContext";
-import { isoStringDateDiffFromNow } from "src/utils/dates";
+import { translateISOString2JalaliMonth, isoStringDateDiffFromNow } from "src/utils/dates";
 import { WithTerm } from "./types";
 
 const RemainedDays: FC<WithTerm> = (props) => {
   const videoContext = useContext(VideoContext);
   const term = props.term;
   return (
-    <div className={classNames("w-full flex justify-center ")}>
-      <p className="text-sm bg-primary-dark text-primary-light p-md rounded-md">
-        {!videoContext.selected.termId
-          ? "تعداد روز ترم مشخص نیست"
-          : term.isError
-          ? "خطایی رخ داده است"
-          : term.isLoading
-          ? "..."
-          : `${English2Persian(
-              `${isoStringDateDiffFromNow(term.data.course.end_date)}`
-            )} روز مانده`}
-      </p>
+    <div className={classNames("w-full flex px-8 py-2 text-sm")}>
+      {!videoContext.selected.termId ? (
+        "تعداد روز ترم مشخص نیست"
+      ) : term.isError ? ( 
+        "خطایی رخ داده است"
+      ) : term.isLoading ? (
+        "..."
+      ) : (
+        <div className="flex gap-1">
+          <p className="text-sm">
+            {English2Persian(
+              `${isoStringDateDiffFromNow(term.data.course.end_date)} روز`
+            )}
+          </p>
+          <p className="text-sm text-[#58423A50]">
+            {`از دوره ${term.data.course.title} ${translateISOString2JalaliMonth(
+              term.data.course.start_date
+            )} ماه شما باقی مانده است.`}
+          </p>{" "}
+        </div>
+      )}
     </div>
   );
 };
