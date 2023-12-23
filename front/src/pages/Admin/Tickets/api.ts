@@ -9,6 +9,7 @@ export const ticketApi2Local = (
   values: ticketData.values.map((ticket) => ({
     id: ticket.id,
     description: ticket.description,
+    username: ticket.username,
     fullName: ticket.fullname,
     phoneNumber: ticket.phone,
     type: ticket.type,

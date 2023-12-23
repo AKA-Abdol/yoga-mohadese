@@ -12,12 +12,13 @@ import {
 } from "src/types/tickets";
 import { isError, useMutation } from "@tanstack/react-query";
 import api from "src/services";
-import { TICKET_URL, localTicket2Api} from "./api";
+import { TICKET_URL, localTicket2Api } from "./api";
 import Header from "src/components/Header";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { error } from "console";
+import { getNumberFromMessage } from "src/utils/convertors";
 
 const TicketForm: FC = () => {
   const location = useLocation();
@@ -55,10 +56,22 @@ const TicketForm: FC = () => {
     formik.setValues(ticketInitialValues);
     toast.success("درخواست شما ارسال شد. با شما در ارتباط خواهیم بود.");
   }
-  if (mutation.isError) {
-    console.log(" this is what Im looking for", mutation.error );
-    toast.error(`وجود ندارد "${formik.values.phoneNumber}" اکانت با شماره`)
-  }
+
+  useEffect(() => {
+    if (mutation.isError) {
+      {
+        const { statusCode, message, error } = mutation.error as {
+          statusCode: number;
+          message: string;
+          error: string;
+        };
+        toast.error(
+          `متاسفانه اکانتی با این  شماره ساخته نشده است.
+          ${getNumberFromMessage(message)}`
+        );
+      }
+    }
+  }, [mutation.isError]);
 
   return (
     <main className={`w-full h-full px-lg py-sm flex justify-center`}>
@@ -116,7 +129,7 @@ const TicketForm: FC = () => {
               {mutation.isLoading ? (
                 <span className="loading loading-infinity loading-lg" />
               ) : (
-                "تایید"
+                "ارسال"
               )}
             </Button>
           </div>
