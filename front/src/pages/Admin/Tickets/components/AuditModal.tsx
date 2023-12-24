@@ -22,11 +22,14 @@ const AuditModal: FC<AuditModalProps> = (props) => {
     props.onClose();
   }
 
+  console.log("THIS IS AUDIT MODAL BIAAAAAAAAAAAAAATCH", props.data);
+
   return (
     <Modal show={props.show} onClose={props.onClose}>
       <div className="w-full flex flex-col">
-        <div className="w-full py-md bg-primary text-primary-dark flex items-center justify-around rounded-t-lg">
+        <div className="w-full py-md bg-primary text-primary-dark flex flex-wrap items-center justify-around rounded-t-lg">
           <p>{props.data.fullName}</p>
+          <p>{props.data.username}</p>
           <p>{props.data.phoneNumber}</p>
         </div>
         <div className="w-full bg-primary-light text-primary-dark p-sm">
@@ -141,7 +144,11 @@ const PasswordResolveBody: FC<PasswordResolveBodyProps> = (props) => {
           <Button type="submit" className="w-36 md:w-64 btn-primary-theme">
             رسیدگی شد
           </Button>
-          <Button type="button" onClick={props.onClose} className="w-36 md:w-64 btn-cancel">
+          <Button
+            type="button"
+            onClick={props.onClose}
+            className="w-36 md:w-64 btn-cancel"
+          >
             انصراف
           </Button>
         </div>

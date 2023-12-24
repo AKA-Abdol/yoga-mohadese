@@ -14,12 +14,14 @@ export const ticketName: Record<TicketType, string> = {
 
 export interface Ticket {
   fullName: string;
+  username: string;
   phoneNumber: string;
   description: string;
   type: TicketType;
 }
 
 export interface ApiTicket {
+  username: string;
   fullname: string;
   phone: string;
   description: string;
