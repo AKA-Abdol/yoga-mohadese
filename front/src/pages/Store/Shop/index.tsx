@@ -9,12 +9,10 @@ import { Link } from "react-router-dom";
 import { StoreContext } from "../StoreContext";
 import api from "src/services";
 import { SHOP_ADD_ITEM_URL, SHOP_DELETE_ITEM_URL } from "../api.data";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ICartItem, IShopData, IShopDataItem } from "../api.types";
-import { IShopCourseCard, IShopItemStatus, ShopCourseStatus } from "./types";
-import { error } from "console";
-const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
+import { IShopDataItem } from "../api.types";
+import { IShopItemStatus } from "./types";
 
+const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
 const Shop: React.FC = ({}) => {
   const {
     shopData,
@@ -114,7 +112,7 @@ const Shop: React.FC = ({}) => {
       ) : (
         <div className="pt-28 mx-8 justify-center items-center flex flex-col gap-y-4 ">
           {isShopLoading ? (
-            <Loading />
+              <Loading />
           ) : isShopSuccess && shopData && cartData && shopItemsStatusList ? (
             shopData.courses.map((item, index) => (
               <ShopCourseCard

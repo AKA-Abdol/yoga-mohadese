@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 interface IClickToShowBox {
-  title: string;
+  title: string | ReactNode;
   content: string;
   index?: number;
   titleClassNames?: string;
   boxClassNames?: string;
+  contentClassNames?: string;
+  backgroundColor?: string;
 }
 
 const ClickToShowBox: React.FC<IClickToShowBox> = ({
@@ -13,24 +15,31 @@ const ClickToShowBox: React.FC<IClickToShowBox> = ({
   content,
   index,
   titleClassNames,
-  boxClassNames
+  boxClassNames,
+  contentClassNames,
+  backgroundColor = "none",
 }) => {
   const [isExtended, setIsExtended] = useState<boolean>(false);
   useEffect(() => {
     if (index === 0) setIsExtended(true);
   }, []);
+
   return (
     <div
       onClick={() => setIsExtended((prev) => !prev)}
-      className={`${boxClassNames} text-[#58423A] rounded-[8px] border border-[#58423A] flex flex-col p-3 justify-center transition-all duration-300 ${
-        isExtended ? "bg-[#8ca78030]" : "bg-none"
-      }`}
+      className={`flex flex-col px-4 py-1 justify-center transition-all duration-300 ${
+        boxClassNames
+          ? boxClassNames
+          : "text-[#58423A] rounded-[8px] border border-[#58423A]"
+      }  ${isExtended ? `bg-[${backgroundColor}] bg-opacity-30` : "bg-none"}`}
     >
-      <h4 className={`text-base ${titleClassNames}`}>{title}</h4>
+      <h4 className={`${titleClassNames ? titleClassNames : "text-base"}`}>
+        {title}
+      </h4>
       <p
-        className={`${
-          isExtended ? "text-xs mt-2 opacity-100" : "text-[0px] mt-0 opacity-0"
-        } transition-all duration-300`}
+        className={`transition-all duration-300  ${
+          isExtended ? `${contentClassNames} pt-2` : "text-[0px] mt-0 opacity-0"
+        }`}
       >
         {content}
       </p>
