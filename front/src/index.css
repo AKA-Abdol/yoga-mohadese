@@ -45,7 +45,7 @@ div {
 }
 
 .btn-primary-theme {
-  @apply text-primary-dark border-normal border-primary-dark hover:bg-primary-dark hover:text-primary-light;
+  @apply text-[#ffffff] border-none  hover:border-primary-dark rounded-[32px] hover:text-primary-light bg-[#D48B71];
 }
 
 .btn-primary-active {

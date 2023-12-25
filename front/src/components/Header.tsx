@@ -7,7 +7,7 @@ export default function Header() {
   const location = useLocation();
   const [isMenuLight, setIsMenuLight] = useState<boolean>(false);
   const [menuState, setMenuState] = useState(false);
-  const [showVorood, setShowVorood] = useState(true);
+  const [showSignIn, setShowSignIn] = useState(true);
 
   useEffect(() => {
     if (location.pathname === "/contact") setIsMenuLight(true);
@@ -15,11 +15,11 @@ export default function Header() {
 
   function handleMenu() {
     setMenuState(!menuState);
-    setShowVorood(!showVorood);
+    setShowSignIn(!showSignIn);
   }
 
   return (
-    <div className=" absolute top-0 right-0 w-[100vw] px-8 py-4 flex items-center justify-between overflow-hidden">
+    <nav className=" absolute left-0 top-0 right-0 w-screen px-8 py-4 flex items-center justify-between overflow-hidden">
       <div className="z-[1000] relative">
         <div className={styles.box} onClick={handleMenu}>
           <div
@@ -58,24 +58,24 @@ export default function Header() {
         </div>
         <Link
           to={"/auth"}
-
-          className={`text-[#58423A] text-lg z-10 absolute right-[110px] top-[-20px] ${
+          className={`text-[#58423A] text-lg z-10 absolute right-20 top-[-20px] ${
             isMenuLight ? "text-[#FEFAF7]" : "text-[#58423A]"
-          } ${showVorood ? "" : "hidden"}`}
+          } ${showSignIn ? "" : "hidden"}`}
         >
           ورود
         </Link>
+        {/* IT SHOULD BE SHOWN WHEN THE USER SIGNED IN */}
         <Link
           to={"/store/cart"}
-          className={`text-[#58423A] text-lg z-[1] absolute right-32 top-[-12px] ${
-            showVorood ? "" : "hidden"
+          className={`text-[#58423A] text-lg z-[1] absolute right-32 top-[-14px] ${
+            showSignIn ? "" : "hidden"
           }`}
         >
           <BasketSVG />
         </Link>
       </div>
       <div
-        className={`z-100 flex justify-center items-center transition-all duration-500 ease-in-out`}
+        className={`z-[1000] flex justify-center items-center transition-all duration-500 ease-in-out`}
       >
         <Link to={"/home"} onClick={handleMenu}>
           <img
@@ -157,6 +157,6 @@ export default function Header() {
           ارتباط با ما
         </Link>
       </div>
-    </div>
+    </nav>
   );
 }

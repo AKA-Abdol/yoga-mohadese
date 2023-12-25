@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="w-full h-full overflow-hidden flex justify-center items-center flex-col">
-      {/* <div className={styles.bg}></div> */}
+    <main className="w-screen h-screen overflow-hidden flex justify-center items-center flex-col">
+      <div className={styles.bg}></div>
       <Header />
       <h2 className={`${styles.centerWords} ${styles.homeh2}`}>
         <span className={styles["three-words1"]}>برخیز</span>
@@ -17,7 +17,7 @@ export default function Home() {
           شروع کنید
         </Link>
       </div>
-    </div>
+    </main>
   );
 
 }
