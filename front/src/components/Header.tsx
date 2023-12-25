@@ -3,6 +3,7 @@ import homeIcon from "../assets/images/icon.png";
 import styles from "./Header.module.css";
 import BasketSVG from "src/assets/svgs/BasketSVG";
 import { Link, useLocation } from "react-router-dom";
+import NavbarLinks from "./ui/NavbarLinks";
 export default function Header() {
   const location = useLocation();
   const [isMenuLight, setIsMenuLight] = useState<boolean>(false);
@@ -17,6 +18,19 @@ export default function Header() {
     setMenuState(!menuState);
     setShowSignIn(!showSignIn);
   }
+
+  const linkObjects = [
+    { value: "خانه", to: "/home" },
+    { value: "ثبت نام / ورود", to: "/auth" },
+    { value: "یوگا با محدثه", to: "/about" },
+    { value: "فروشگاه", to: "/store/shop" },
+    { value: "ثبت درخواست", to: "/ticket" },
+    { value: "قوانین", to: "/terms" },
+    { value: "ارتباط با ما", to: "/contact" },
+    { value: "سوالات متداول", to: "/faq" },
+  ];
+
+  // You can now use the 'persianValues' array in your JavaScript code as needed.
 
   return (
     <nav className=" absolute left-0 top-0 right-0 w-screen px-8 py-4 flex items-center justify-between overflow-hidden">
@@ -86,76 +100,21 @@ export default function Header() {
         </Link>
       </div>
       <div
-        className={`h-screen w-0 fixed z-50 top-0 right-0 overflow-hidden pt-20 pb-52 pr-0 text-center flex flex-col justify-evenly transition-all duration-1000 ease-in-out bg-[rgba(254,250,247,0.5)] 
+        className={`h-screen w-0 fixed z-50 top-0 right-0 overflow-hidden pt-20 pb-52 pr-0 flex flex-col justify-evenly transition-all duration-1000 ease-in-out bg-[rgba(254,250,247,0.5)] 
         ${
           menuState
-            ? "w-[275px] transition-all duration-500 ease-in-out pr-5 border border-[#EDEEE8] backdrop-blur-[10px]"
+            ? "w-[275px] transition-all duration-500 ease-in-out pr-12 border border-[#EDEEE8] backdrop-blur-[10px]"
             : "w-0 transition-all duration-500 ease-in-out"
         }`}
       >
-        <Link
-          to={"/home"}
-          className={`no-underline opacity-0 text-2xl block z-[1000] transition-all duration-1000 ease-in-out hover:text-[#D6CCC2]  ${
-            menuState ? "opacity-100 text-[#58423A]" : ``
-          }`}
-          onClick={handleMenu}
-        >
-          خانه
-        </Link>
-        <Link
-          to={"/auth"}
-          className={`no-underline opacity-0 text-2xl block z-[1000] transition-all duration-1000 ease-in-out hover:text-[#D6CCC2]  ${
-            menuState ? "opacity-100 text-[#58423A]" : ``
-          }`}
-          onClick={handleMenu}
-        >
-          ثبت نام / ورود
-        </Link>
-        <Link
-          to={"/about"}
-          className={`no-underline opacity-0 text-2xl block z-[1000] transition-all duration-1000 ease-in-out hover:text-[#D6CCC2]  ${
-            menuState ? "opacity-100 text-[#58423A]" : ``
-          }`}
-          onClick={handleMenu}
-        >
-          یوگا با محدثه
-        </Link>
-        <Link
-          to={"/store"}
-          className={`no-underline opacity-0 text-2xl block z-[1000] transition-all duration-1000 ease-in-out hover:text-[#D6CCC2]  ${
-            menuState ? "opacity-100 text-[#58423A]" : ``
-          }`}
-          onClick={handleMenu}
-        >
-          فروشگاه
-        </Link>
-        <Link
-          to={"/ticket"}
-          className={`no-underline opacity-0 text-2xl block z-[1000] transition-all duration-1000 ease-in-out hover:text-[#D6CCC2]  ${
-            menuState ? "opacity-100 text-[#58423A]" : ``
-          }`}
-          onClick={handleMenu}
-        >
-          ثبت درخواست
-        </Link>
-        <Link
-          to={"/terms"}
-          className={`no-underline opacity-0 text-2xl block z-[1000] transition-all duration-1000 ease-in-out hover:text-[#D6CCC2]  ${
-            menuState ? "opacity-100 text-[#58423A]" : ``
-          }`}
-          onClick={handleMenu}
-        >
-          قوانین
-        </Link>
-        <Link
-          to={"/contact"}
-          className={`no-underline opacity-0 text-2xl block z-[1000] transition-all duration-1000 ease-in-out hover:text-[#D6CCC2]  ${
-            menuState ? "opacity-100 text-[#58423A]" : ``
-          }`}
-          onClick={handleMenu}
-        >
-          ارتباط با ما
-        </Link>
+        {linkObjects.map((link) => (
+          <NavbarLinks
+            to={link.to}
+            value={link.value}
+            handleMenu={handleMenu}
+            menuState={menuState}
+          />
+        ))}
       </div>
     </nav>
   );

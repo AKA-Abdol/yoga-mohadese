@@ -70,7 +70,13 @@ const Faq = () => {
           سوالات متداول
         </h2>
         {faqList.map((item) => (
-          <ClickToShowBox title={item.question} content={item.answer} boxClassNames="z-10" />
+          <ClickToShowBox
+            title={item.question}
+            content={item.answer}
+            boxClassNames="z-10 border border-[#58423A] rounded-[4px] py-2"
+            contentClassNames={"text-[12px] text-[#58423A]"}
+            titleClassNames={"text-[#58423A]"}
+          />
         ))}
       </div>
     </main>
