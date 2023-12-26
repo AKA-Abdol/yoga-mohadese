@@ -32,7 +32,7 @@ const TicketForm: FC = () => {
     } else if (historyPath && historyPath === "/about") {
       formik.setValues((prevState) => ({
         ...prevState,
-        type: "onSite-class",
+        type: "onsite-class",
       }));
     } else {
       formik.setValues((prevState) => ({
@@ -65,10 +65,11 @@ const TicketForm: FC = () => {
           message: string;
           error: string;
         };
-        toast.error(
-          `متاسفانه اکانتی با این  شماره ساخته نشده است.
-          ${getNumberFromMessage(message)}`
-        );
+        if (statusCode !== 400) {
+          toast.error(`${message} لطفا دقایقی دیگر تلاش کنید.`);
+        } else if (statusCode === 400) {
+          toast.error("متاسفانه اکانتی با این  شماره ساخته نشده است.");
+        }
       }
     }
   }, [mutation.isError]);
