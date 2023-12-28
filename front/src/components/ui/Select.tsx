@@ -30,7 +30,11 @@ const Select: FC<SelectProps> = (props) => {
         </option>
       )}
       {props.options.map((option, index) => (
-        <option value={option} key={`${option}-${props.id}`}>
+        <option
+          className={props.optionsClassnames}
+          value={option}
+          key={`${option}-${props.id}`}
+        >
           {props.optionTexts[index]}
         </option>
       ))}

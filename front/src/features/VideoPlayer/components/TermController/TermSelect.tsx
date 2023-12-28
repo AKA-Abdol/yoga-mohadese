@@ -28,8 +28,8 @@ const TermSelect: FC = () => {
         videoContext.selected.setTermId(event.target.value);
         videoContext.selected.setSessionNum(undefined);
       }}
-      classnames="w-4/5 text-center md:w-2/5"
-      optionsClassnames="text-center"
+      classnames="w-full text-center md:w-2/5 mt-2"
+      optionsClassnames=" text-center w-full max-w-full min-w-full"
     />
   );
 };
