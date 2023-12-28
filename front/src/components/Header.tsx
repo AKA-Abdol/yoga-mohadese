@@ -23,13 +23,13 @@ export default function Header() {
             isMenuLight ? "text-[#FEFAF7]" : "text-[#58423A]"
           }`}
         >
-          {firstname.length < 2 ? "ورود" : "ثبت نام"}
+          {firstname.length > 2 ? `${firstname}` : "ورود" }
         </Link>
         <Link
           to={"/store/cart"}
-          className={`text-[#58423A] text-lg z-10 absolute right-32 top-[-12px]`}
+          className={`text-[#58423A] text-lg z-10 absolute right-36 top-[-12px]`}
         >
-          {firstname.length < 2 && <BasketSVG />}
+          {firstname.length > 2 && <BasketSVG />}
         </Link>
       </div>
       <div

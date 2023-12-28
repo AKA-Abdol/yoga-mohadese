@@ -1,11 +1,12 @@
 import Header from "../components/Header";
 import styles from "../pages/styles/Home.module.css";
 import { Link } from "react-router-dom";
+import enamad from "src/assets/images/enamad.png";
 
 export default function Home() {
   return (
     <main className="w-screen h-screen overflow-hidden flex justify-center items-center flex-col">
-      <div className={styles.bg}></div>
+      {/* <div className={styles.bg}></div> */}
       <Header />
       <h2 className={`${styles.centerWords} ${styles.homeh2}`}>
         <span className={styles["three-words1"]}>برخیز</span>
@@ -17,7 +18,27 @@ export default function Home() {
           شروع کنید
         </Link>
       </div>
+      <footer>
+        <a
+          className="w-20 h-20 fixed bottom-0 left-0 border-2 border-gray-500 rounded-sm"
+          referrerPolicy="origin"
+          target="_blank"
+          href="https://trustseal.enamad.ir/?id=434829&Code=6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD"
+        >
+          <img
+            referrerPolicy="origin"
+            src="https://trustseal.enamad.ir/logo.aspx?id=434829&Code=6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD"
+            alt=""
+            className="w-20 h-20 cursor-pointer"
+          />
+        </a>
+      </footer>
     </main>
   );
+}
 
+{
+  /*         <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=434829&Code=6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD'>
+        <img referr erpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=434829&Code=6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD' alt='' style='cursor:pointer' Code='6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD'>
+      </a> */
 }

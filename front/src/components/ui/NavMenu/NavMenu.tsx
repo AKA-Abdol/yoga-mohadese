@@ -8,7 +8,7 @@ interface INavMenu {
 const NavMenu: React.FC<INavMenu> = ({ isMenuLight = false }) => {
   const linkObjects = [
     { value: "خانه", to: "/home" },
-    { value: "ثبت نام / ورود", to: "/auth" },
+    { value: "ورود", to: "/auth" },
     { value: "یوگا با محدثه", to: "/about" },
     { value: "فروشگاه", to: "/store/shop" },
     { value: "ثبت درخواست", to: "/ticket" },
@@ -28,35 +28,35 @@ const NavMenu: React.FC<INavMenu> = ({ isMenuLight = false }) => {
     <div>
       <div className={``} onClick={handleMenu}>
         <div
-          className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-[40px] cursor-pointer top-0 z-50 ${
+          className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-[32px] cursor-pointer top-0 z-50 ${
             menuState ? styles.active : styles["not-active"]
           }`}
         >
           <span
             className={`${
               styles["menu-burguer"]
-            } block w-full rounded h-[1px] transition-all duration-300 relative ${
+            } block w-full rounded h-[3px] transition-all duration-300 relative ${
               isMenuLight
-                ? "bg-[#FEFAF7] shadow-[0_2px_10px_0_#FEFAF7]"
-                : "bg-[#58423A] shadow-[0_2px_10px_0_#58423A]"
+                ? "bg-[#FEFAF7] shadow-[0_0px_0px_0_#FEFAF7]"
+                : "bg-[#58423A] shadow-[0_0px_0px_0_#58423A]"
             }`}
           ></span>
           <span
             className={`${
               styles["menu-burguer"]
-            } block w-full rounded h-[1px] transition-all duration-300 relative ${
+            } block w-full rounded h-[3px] transition-all duration-300 relative ${
               isMenuLight
-                ? "bg-[#FEFAF7] shadow-[0_2px_10px_0_#FEFAF7]"
-                : "bg-[#58423A] shadow-[0_2px_10px_0_#58423A]"
+                ? "bg-[#FEFAF7] shadow-[0_0px_0px_0_#FEFAF7]"
+                : "bg-[#58423A] shadow-[0_0px_0px_0_#58423A]"
             }`}
           ></span>
           <span
             className={`${
               styles["menu-burguer"]
-            } block w-full rounded h-[1px] transition-all duration-300 relative ${
+            } block w-full rounded h-[3px] transition-all duration-300 relative ${
               isMenuLight
-                ? "bg-[#FEFAF7] shadow-[0_2px_10px_0_#FEFAF7]"
-                : "bg-[#58423A] shadow-[0_2px_10px_0_#58423A]"
+                ? "bg-[#FEFAF7] shadow-[0_0px_0px_0_#FEFAF7]"
+                : "bg-[#58423A] shadow-[0_0px_0px_0_#58423A]"
             }`}
           ></span>
         </div>
