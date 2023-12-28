@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import homeIcon from "../assets/images/icon.png";
 import styles from "./Header.module.css";
 import BasketSVG from "src/assets/svgs/BasketSVG";
 import { Link, useLocation } from "react-router-dom";
 import NavbarLinks from "./ui/NavbarLinks";
+import { useQuery } from "@tanstack/react-query";
+import api from "src/services";
+import { MyContext } from "./layout/BodyLayout";
 export default function Header() {
   const location = useLocation();
   const [isMenuLight, setIsMenuLight] = useState<boolean>(false);
   const [menuState, setMenuState] = useState(false);
   const [showSignIn, setShowSignIn] = useState(true);
+
+  const { firstname } = useContext(MyContext);
 
   useEffect(() => {
     if (location.pathname === "/contact") setIsMenuLight(true);
@@ -72,20 +77,19 @@ export default function Header() {
         </div>
         <Link
           to={"/auth"}
-          className={`text-[#58423A] text-lg z-10 absolute right-20 top-[-20px] ${
+          className={`text-[#58423A] text-lg z-10 absolute right-20 top-[-16px] w-14 ${
             isMenuLight ? "text-[#FEFAF7]" : "text-[#58423A]"
           } ${showSignIn ? "" : "hidden"}`}
         >
-          ورود
+          {firstname.length < 2 ? "ورود" : "ثبت نام"}
         </Link>
-        {/* IT SHOULD BE SHOWN WHEN THE USER SIGNED IN */}
         <Link
           to={"/store/cart"}
-          className={`text-[#58423A] text-lg z-[1] absolute right-32 top-[-14px] ${
+          className={`text-[#58423A] text-lg z-10 absolute right-32 top-[-12px] ${
             showSignIn ? "" : "hidden"
           }`}
         >
-          <BasketSVG />
+          {firstname.length < 2 && <BasketSVG />}
         </Link>
       </div>
       <div

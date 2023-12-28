@@ -17,7 +17,7 @@ const VideoPlayer: FC = () => {
   );
 
   const toggleDrawerState = useCallback(() => {
-    console.log(drawerShowState);
+    // console.log(drawerShowState);
     setDrawerShowState((prevState) =>
       prevState === "show" ? "hidden" : "show"
     );
