@@ -10,9 +10,12 @@ import { StoreContext } from "../../StoreContext";
 import { IShopDataItem } from "../../api.types";
 import Loading from "src/components/ui/Loading";
 import BasketSVG from "src/assets/svgs/BasketSVG";
+import { useNavigate } from "react-router-dom";
 import DownArrow from "src/assets/svgs/DownArrow";
 import ClickToShowBox from "src/components/ui/ClickToShowBox";
 import { yogaLevels } from "src/assets/docs/yogaLevels";
+import Button from "src/components/ui/Button";
+import TrashSVG from "src/assets/svgs/TrashSVG";
 
 const ShopCourseCard: React.FC<IShopCourseCard> = ({
   id,
@@ -23,7 +26,8 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
   const [shopItem, setShopItem] = useState<IShopDataItem>();
   const { shopData, isShopError, isShopLoading, isShopSuccess, cartData } =
     useContext(StoreContext);
-  // USE USE REDUCER
+  const navigate = useNavigate()
+    // USE USE REDUCER
   useEffect(() => {
     if (shopData) {
       const thisCourseCart = shopData?.courses.find((item) => item.id === id);
@@ -31,8 +35,9 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
     }
   }, []);
 
-  const buttonsMutualStyles: string =
-    "h-6 rounded-[4px]  text-[10px] flex items-center gap-2 bg-none justify-center w-full ";
+  const navigateToUser = () => {
+    navigate("/user")
+  } 
 
   const moreInfo: ReactNode = (
     <>
@@ -71,13 +76,13 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
             </div>
             {status.isLoading ? (
               <div
-                className={`text-[#FEF4EA] bg-[#FEF3E9] ${buttonsMutualStyles}`}
+                className={`text-[#FEF4EA] bg-[#FEF3E9] btn-shop`}
               >
                 <Loading size="sm" />
               </div>
             ) : status.availability === "purchased" ? (
               <button
-                className={` text-[#FEF4EA] bg-[#58423A] ${buttonsMutualStyles}`}
+                className={` text-[#FEF4EA] bg-[#58423A] cursor-not-allowed btn-shop`}
               >
                 شما این دوره را دارید
               </button>
@@ -86,7 +91,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
                 onClick={() => {
                   onQuantityChange("add", status.id)(shopItem.id);
                 }}
-                className={`text-[#58423a] bg-[#FEF3E9] ${buttonsMutualStyles}`}
+                className={`text-[#58423a] bg-[#FEF3E9] btn-shop`}
               >
                 افزودن به سبد خرید
                 <BasketSVG />
@@ -96,19 +101,28 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
                 onClick={() => {
                   onQuantityChange("delete", status.id)(shopItem.id);
                 }}
-                className={`text-[#58423a] bg-[#D48B71] ${buttonsMutualStyles}`}
+                className={`text-[#58423a] bg-[#D48B71] btn-shop`}
               >
                 حذف از سبد خرید
+                <TrashSVG />
               </button>
             )}
-            <ClickToShowBox
-              title={moreInfo}
-              boxClassNames="rounded-[4px] border border-[#FEF3E9] flex items-center py-1 bg-none justify-center w-full"
-              titleClassNames="text-[#FEF3E9] text-[10px] flex items-center justify-center"
-              content={yogaLevels[index].content}
-              contentClassNames="text-[#FEFAF7] text-[10px] leading-[200%]"
-              backgroundColor="#58423A"
-            />
+            {status.availability === "purchased" ? (
+              <button 
+              onClick={navigateToUser}
+              className={`w-full border-[#8CA780CC] bg-[#8CA780CC] text-[#FEF3E9] btn-shop`}>
+                رفتن به کلاس
+              </button>
+            ) : (
+              <ClickToShowBox
+                title={moreInfo}
+                boxClassNames="rounded-[4px] border border-[#FEF3E9] flex items-center py-1 bg-none justify-center w-full"
+                titleClassNames="text-[#FEF3E9] text-[10px] flex items-center justify-center"
+                content={yogaLevels[index].content}
+                contentClassNames="text-[#FEFAF7] text-[10px] leading-[200%]"
+                backgroundColor="#58423A"
+              />
+            )}
           </div>
         )
       )}
