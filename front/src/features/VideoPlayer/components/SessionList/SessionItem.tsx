@@ -12,7 +12,7 @@ const SessionItem: FC<SessionItemProps> = (props) => {
   return (
     <div
       className={classNames(
-        "relative flex flex-col cursor-pointer w-full min-w-full max-w-full h-40 min-h-40 max-h-40 bg-[#383838]",
+        "relative flex flex-col cursor-pointer w-full min-w-full max-w-full h[150px] min-h[150px] max-h[150px] bg-[#383838]",
         "p-4 rounded-[8px]",
         videoContext.selected.sessionNum === props.data.num
           ? "border-lg border-error"

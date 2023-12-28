@@ -39,8 +39,9 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
   }
 
   return (
-    <form className="h-full w-full lg:w-2/3" onSubmit={formik.handleSubmit}>
+    <form className="h-full w-full lg:w-2/3 z-[1]" onSubmit={formik.handleSubmit}>
       <div className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg">
+        <h2 className=" text-[#58423A] text-2xl text-center">ورود</h2>
         <Error>{mutation.isError && (mutation.error as any).message}</Error>
         <Input
           onChange={formik.handleChange}
@@ -69,14 +70,14 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
-          <p className="text-primary-dark text-xs text-center">
+          <p className="text-primary-dark text-sm text-center">
             قبلا ثبت نام نکرده اید؟{" "}
             <AttentionSpan onClick={props.onToggleAuth}>ثبت نام</AttentionSpan>
           </p>
           <Link
             state={{ data: location.pathname }}
             to={"/ticket"}
-            className="text-primary-dark text-xs text-center"
+            className="text-primary-dark text-sm text-center"
           >
             رمز عبور خود را فراموش کرده‌اید ؟
             <AttentionSpan>فراموشی رمز عبور</AttentionSpan>

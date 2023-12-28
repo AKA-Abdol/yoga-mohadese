@@ -5,18 +5,22 @@
   scrollbar-width: auto;
   scrollbar-color: #D6CCC2 #31393C;
 }
+
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;
 }
+
 *::-webkit-scrollbar-track {
   background: #31393C;
 }
+
 *::-webkit-scrollbar-thumb {
   background-color: #D6CCC2;
   border-radius: 10px;
   border: 0px solid #31393C;
 }
+
 /* THIS IS A VERY HANDY CLASS */
 .bodyStyle {
   /* max-width: 100vw; */
@@ -105,48 +109,6 @@
   margin-bottom: 1rem;
 }
 
-/*  ARROW DOWN */
-:root {
-  --ani-speed: 5s;
-  --ani-delay: 1s;
-}
-
-.arrow {
-  opacity: 0;
-  transform-origin: 50% 50%;
-  transform: translate3d(-50%, -50%, 0);
-}
-
-.arrow-first {
-  animation: arrow-movement var(--ani-speed) ease-in-out infinite;
-}
-
-.arrow-second {
-  animation: arrow-movement var(--ani-speed) var(--ani-delay) ease-in-out infinite;
-}
-
-.arrow:before,
-.arrow:after {
-  background: #31393C;
-  content: '';
-  display: block;
-  height: 3px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 2px;
-  width: 30px;
-}
-
-.arrow:before {
-  transform: rotate(45deg) translateX(-23%);
-  transform-origin: top left;
-}
-
-.arrow:after {
-  transform: rotate(-45deg) translateX(23%);
-  transform-origin: top right;
-}
 
 @keyframes arrow-movement {
   0% {
@@ -189,15 +151,18 @@
   color: #31393C;
 }
 
-.customFlashing{
+.customFlashing {
   animation: colorToggle 3s ease-in infinite;
 }
 
 @keyframes colorToggle {
-  0%, 100% {
+
+  0%,
+  100% {
     background-color: #D6CCC2;
     color: #31393C;
   }
+
   50% {
     background-color: #31393C;
     color: #D6CCC2;
@@ -206,7 +171,7 @@
 
 /*    FOR IPAD */
 @media only screen and (min-width: 767px) {
- 
+
 
   .text-container p {
     font-size: 22px;
@@ -264,12 +229,13 @@
     margin-top: 100px;
   }
 
- 
+
 
   .img1-container {
     display: flex;
     justify-content: flex-start;
   }
+
   .img2 {
     width: 50%;
   }
@@ -293,6 +259,7 @@
 
 /* FOR PARALLEX SECTION FOR SMALLER THAN LAPTOP  */
 @media only screen and (max-width: 1020px) {
+
   /* PARALLEX */
   .parallax {
     background-image: url("../../assets/images/about-img1.jpg");
@@ -309,8 +276,10 @@
     align-items: center;
   }
 }
+
 /* FOR PARALLEX SECTION LAPTOP AND BIGGER */
 @media only screen and (min-width: 1020px) {
+
   /* PARALLEX */
   .parallax {
     background-image: url("../../assets/images/about-img2.jpg");
@@ -327,3 +296,5 @@
     align-items: center;
   }
 }
+
+/* NEW ABOUT NEW ABOUT NEW ABOUT NEW ABOUT NEW ABOUT NEW ABOUT NEW ABOUT NEW ABOUT NEW ABOUT  */

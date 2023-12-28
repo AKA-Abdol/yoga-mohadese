@@ -9,30 +9,20 @@ import { Link } from "react-router-dom";
 import { StoreContext } from "../StoreContext";
 import api from "src/services";
 import { SHOP_ADD_ITEM_URL, SHOP_DELETE_ITEM_URL } from "../api.data";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ICartItem, IShopData, IShopDataItem } from "../api.types";
-import { IShopCourseCard, IShopItemStatus, ShopCourseStatus } from "./types";
-import { error } from "console";
-const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
+import { IShopDataItem } from "../api.types";
+import { IShopItemStatus } from "./types";
 
+const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
 const Shop: React.FC = ({}) => {
   const {
     shopData,
     cartData,
-    isCartLoading,
-    isShopError,
     isShopLoading,
     isCartSuccess,
     isShopSuccess,
     userData,
     isUserLoading,
   } = useContext(StoreContext);
-
-  // FIRST WE NEED TO CONVERT THE SHOPITEMSSTATUSLIST TO AN OBJECT
-  // EACH COLLECTION HAS A LOADINGSTATE A STATUS AND ID
-  // THEN WE CAN HANDLE ACTIONS BASED ON THIS states on the child component
-  // also we need to remove index because we can handle the states using
-  // id
 
   const [shopItemsStatusList, setShopItemsStatusList] =
     useState<IShopItemStatus[]>();
@@ -43,7 +33,7 @@ const Shop: React.FC = ({}) => {
       cartData &&
       cartData.find((cartItem) => cartItem.product.id === shopItem.id);
     if (thisItemIsInCart && thisItemIsInCart.quantity > 0) {
-      console.log(thisItemIsInCart);
+      // console.log(thisItemIsInCart);
       return "inCart";
     } else {
       return "available";
@@ -82,7 +72,7 @@ const Shop: React.FC = ({}) => {
       shopItemsStatusList.map((item) =>
         item.id === id ? { ...item, isLoading: to } : item
       );
-    console.log(updatedList);
+    // console.log(updatedList);
     setShopItemsStatusList(updatedList as IShopItemStatus[]);
   };
 
@@ -95,13 +85,13 @@ const Shop: React.FC = ({}) => {
           : api.delete(`${SHOP_DELETE_ITEM_URL}/${itemId}`)({});
       apiCall
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           changeLoadingStatus(id, false);
           updateItemsStatus(id);
         })
         .catch((err) => {
           changeLoadingStatus(id, false);
-          console.log("API CALL CART ACTION ERR", err);
+          // console.log("API CALL CART ACTION ERR", err);
         });
     };
   };
@@ -122,7 +112,7 @@ const Shop: React.FC = ({}) => {
       ) : (
         <div className="pt-28 mx-8 justify-center items-center flex flex-col gap-y-4 ">
           {isShopLoading ? (
-            <Loading />
+              <Loading />
           ) : isShopSuccess && shopData && cartData && shopItemsStatusList ? (
             shopData.courses.map((item, index) => (
               <ShopCourseCard

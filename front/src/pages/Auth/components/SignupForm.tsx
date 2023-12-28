@@ -21,9 +21,9 @@ import { Link } from "react-router-dom";
 
 export const SignupForm: FC<AuthFormProps> = (props) => {
   const navigate = useNavigate();
-   
+
   let location = useLocation();
-  
+
   const mutation = useMutation(
     api.post<ISignupFormValues, IApiPostSignup>(
       SIGNUP_URL,
@@ -49,8 +49,12 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
   }
 
   return (
-    <form className="h-full w-full lg:w-2/3" onSubmit={formik.handleSubmit}>
+    <form
+      className="h-full w-full lg:w-2/3 z-[1]"
+      onSubmit={formik.handleSubmit}
+    >
       <div className="w-full h-full flex flex-col justify-center space-y-sm lg:space-y-md">
+        <h2 className=" text-[#58423A] text-2xl text-center">ثبت نام</h2>
         <Error>{mutation.isError && (mutation.error as any).message}</Error>
         <Input
           onChange={formik.handleChange}
@@ -125,13 +129,13 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
-          <p className="text-primary-dark text-xs text-center">
+          <p className="text-primary-dark text-sm text-center">
             قبلا اکانت داشتید؟{" "}
             <AttentionSpan onClick={props.onToggleAuth}>ورود</AttentionSpan>
           </p>
           <Link
             to={"/ticket"}
-            className="text-primary-dark text-xs text-center"
+            className="text-primary-dark text-sm text-center"
             state={{ data: location.pathname }}
           >
             رمز عبور خود را فراموش کرده‌اید ؟
