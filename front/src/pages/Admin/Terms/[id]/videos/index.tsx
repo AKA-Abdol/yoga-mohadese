@@ -50,16 +50,19 @@ const TermVideos: FC = () => {
         />
       </div>
       <div className="w-full lg:w-3/5 py-md flex flex-col space-y-sm">
-        {term.data.course.videos
-          .sort((first, second) => first.num - second.num)
-          .map((video) => (
-            <VideoItem
-              link={video.link}
-              num={video.num}
-              title={video.title}
-              id={video.id}
-            />
-          ))}
+        <div className="border-4 border-red-800">
+          {term.data.course.videos
+            .sort((first, second) => first.num - second.num)
+            .map((video) => (
+              <VideoItem
+                link={video.link}
+                num={video.num}
+                title={video.title}
+                id={video.id}
+                // description={video.description}
+              />
+            ))}
+        </div>
         {addState === "adding" && (
           <AddVideoItem
             onCancel={() => setAddState("readyToAdd")}

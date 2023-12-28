@@ -9,6 +9,7 @@ export interface VideoItemProps {
   num: number;
   title: string;
   link: string;
+  description?:string;
 }
 
 export interface AddVideoItemProps {

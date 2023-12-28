@@ -10,6 +10,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
   const formik = useFormik({
     initialValues: {
       title: "",
+      description: "",
       link: "",
       num: "",
       thumbnailLink: "",
@@ -18,6 +19,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
       props.onSubmit({
         link: values.link,
         title: values.title,
+        description: values.description,
         num: +Persian2English(values.num),
         thumbnail: values.thumbnailLink,
       });
@@ -44,7 +46,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             error={formik.errors.num}
           />
         </div>
-        <div className="w-1/3 h-full">
+        <div className="w-1/4 h-full">
           <Input
             name="title"
             id="title"
@@ -57,7 +59,20 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             error={formik.errors.title}
           />
         </div>
-        <div className="w-1/3 h-full">
+        <div className="w-1/4 h-full">
+          <Input
+            name="description"
+            id="description"
+            placeholder="توضیحات"
+            className="w-full h-full input-primary-theme text-center"
+            onChange={formik.handleChange}
+            value={formik.values.description}
+            containerClassName="h-full"
+            errorBorderOnly={true}
+            error={formik.errors.description}
+          />
+        </div>
+        <div className="w-1/4 h-full">
           <Input
             name="link"
             id="link"
@@ -70,7 +85,7 @@ const AddVideoItem: FC<AddVideoItemProps> = (props) => {
             error={formik.errors.link}
           />
         </div>
-        <div className="w-1/3 h-full">
+        <div className="w-1/4 h-full">
           <Input
             name="thumbnailLink"
             id="thumbnailLink"

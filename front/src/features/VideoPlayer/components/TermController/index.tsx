@@ -64,7 +64,7 @@ const TermController: FC<TermControllerProps> = (props) => {
         <RemainedDays term={term} />
       </div>
 
-      <div className="w-full px-8">
+      <div className="w-full px-8 flex items-center flex-col">
         <TermSelect />
       </div>
       <div className="w-full overflow-y-auto">
