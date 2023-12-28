@@ -23,6 +23,9 @@ import { InjectConnection } from '@nestjs/mongoose';
 import { ShopProductDao } from './daos/shop-product.dao';
 import { OutGetProduct } from './dtos/out-get-product.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
+import { TypeCart } from './cart/dtos/type-cart.dto';
+import { PaymentService } from 'src/payment/payment.service';
+import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
 
 @Injectable()
 export class ShopService {
@@ -30,6 +33,7 @@ export class ShopService {
     private readonly cartService: CartService,
     private readonly courseService: CourseService,
     private readonly orderService: OrderService,
+    private readonly paymentService: PaymentService,
     @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
@@ -133,11 +137,21 @@ export class ShopService {
     return { itemId: courseId.toString(), quantity: 1 };
   }
 
-  async submitOrder(userId: string) {
-    const cart = await this.cartService.getByUserId(userId);
+  async submitOrder(userId: string, input: InSubmitOrderBody): Promise<string> {
+    const cart = await this.getCart(userId);
     if (cart.length === 0)
       throw new BadRequestException('سبد خرید شما خالی است');
-    // needs to put data in redis for submitting and creating redirect to payment and redirect back
+    const totalAmount = cart.reduce(
+      (total, cartItem) => total + cartItem.overallPrice,
+      0,
+    );
+
+    const gatewayLink = this.paymentService.createGateway(
+      userId,
+      totalAmount,
+      input.gateway,
+    );
+    return gatewayLink;
   }
 
   async createOrder(input: InCompleteOrderQueryDto) {

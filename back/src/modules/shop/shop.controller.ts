@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -21,6 +22,7 @@ import { OutProduct } from './shop.entity';
 import { OutGetOrderDto } from './order/dtos/out-get-order.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
 import { OutGetOrdersDto } from './order/dtos/out-get-orders.dto';
+import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
 
 @ApiTags('Shop')
 @UseGuards(RolesGuard)
@@ -82,12 +84,11 @@ export class ShopController {
   @Role('USER')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'order all items in cart' })
-  async createOrder(@Req() { userId }: { userId: string }) {
-    this.shopService.submitOrder(userId);
-    return {
-      paymentLink: `api/shop/cart/order?userId=${userId}&secret=secret`,
-    };
-    // save files and order in the redis and waiting for payment
+  async createOrder(
+    @Req() { userId }: { userId: string },
+    @Body() input: InSubmitOrderBody,
+  ) {
+    return this.shopService.submitOrder(userId, input);
   }
 
   @Get('/cart/order')
