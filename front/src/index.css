@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,12 +14,13 @@
   font-style: normal;
   font-weight: 900;
   src: url("./assets/font/fonts/eot/IRAN-Rounded.eot");
-  src: url("./assets/font/fonts/eot/IRAN-Rounded.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-8 */ url("./assets/font/fonts/woff/IRAN-Rounded.woff") format("woff"),
+  src: url("./assets/font/fonts/eot/IRAN-Rounded.eot?#iefix") format("embedded-opentype"),
+    /* IE6-8 */
+    url("./assets/font/fonts/woff/IRAN-Rounded.woff") format("woff"),
     /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-      url("./assets/font/fonts/ttf/IRAN Rounded.ttf") format("truetype");
+    url("./assets/font/fonts/ttf/IRAN Rounded.ttf") format("truetype");
 }
+
 /*    FOR PERSIAN FONTS */
 h1,
 h2,
@@ -45,7 +46,7 @@ div {
 }
 
 .btn-primary-theme {
-  @apply text-[#ffffff] border-none  hover:border-primary-dark rounded-[32px] hover:text-primary-light bg-[#D48B71];
+  @apply text-[#ffffff] border-none hover:border-primary-dark rounded-[32px] hover:text-primary-light bg-[#D48B71];
 }
 
 .btn-primary-active {
@@ -54,6 +55,10 @@ div {
 
 .btn-cancel {
   @apply text-error border-normal border-error hover:bg-error hover:text-primary-dark;
+}
+
+.btn-shop {
+  @apply h-6 rounded-[4px] text-[10px] flex items-center gap-2 bg-none justify-center w-full;
 }
 
 /* dropdown multi select styles */
@@ -76,7 +81,7 @@ video {
   max-width: none;
 }
 
-#root{
+#root {
   max-width: 100vw;
   min-width: 100vw;
   width: 100vw;
