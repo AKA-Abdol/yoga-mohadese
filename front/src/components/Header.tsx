@@ -16,20 +16,20 @@ export default function Header() {
   return (
     <nav className=" absolute left-0 top-0 right-0 w-screen px-8 py-4 flex items-center justify-between overflow-hidden">
       <div className="z-[1000] relative">
-        <NavMenu isMenuLight={isMenuLight}/>
+        <NavMenu isMenuLight={isMenuLight} />
         <Link
           to={"/auth"}
           className={`text-[#58423A] text-lg z-10 absolute right-20 top-[-16px] w-14 ${
             isMenuLight ? "text-[#FEFAF7]" : "text-[#58423A]"
           }`}
         >
-          {firstname.length > 2 ? `${firstname}` : "ورود" }
+          {firstname.length > 2 ? `${firstname}` : "ورود"}
         </Link>
         <Link
           to={"/store/cart"}
           className={`text-[#58423A] text-lg z-10 absolute right-36 top-[-12px]`}
         >
-          {firstname.length > 2 && <BasketSVG />}
+          {firstname.length > 2 && <BasketSVG isMenuLight={isMenuLight} />}
         </Link>
       </div>
       <div
