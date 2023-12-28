@@ -62,7 +62,14 @@ const number2PersianOrdinal = (num: number): string => {
   return ordinalNumbers[num];
 };
 
+const getNumberFromMessage = (message: string) => {
+  const phoneRegex = /\b\d{2,3}\d{7,8}\b/;
+  const match = message.match(phoneRegex);
+  return match ? match[0] : null;
+};
+
 export {
+  getNumberFromMessage,
   e2p as English2Persian,
   p2e as Persian2English,
   addToman,

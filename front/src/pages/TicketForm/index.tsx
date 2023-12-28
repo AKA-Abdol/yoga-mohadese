@@ -10,13 +10,15 @@ import {
   TICKET_TYPE_VALUES,
   Ticket,
 } from "src/types/tickets";
-import { useMutation } from "@tanstack/react-query";
+import { isError, useMutation } from "@tanstack/react-query";
 import api from "src/services";
 import { TICKET_URL, localTicket2Api } from "./api";
 import Header from "src/components/Header";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { error } from "console";
+import { getNumberFromMessage } from "src/utils/convertors";
 
 const TicketForm: FC = () => {
   const location = useLocation();
@@ -30,7 +32,7 @@ const TicketForm: FC = () => {
     } else if (historyPath && historyPath === "/about") {
       formik.setValues((prevState) => ({
         ...prevState,
-        type: "onSite-class",
+        type: "onsite-class",
       }));
     } else {
       formik.setValues((prevState) => ({
@@ -49,12 +51,28 @@ const TicketForm: FC = () => {
     validateOnChange: false,
   });
   const mutation = useMutation(api.post(TICKET_URL, localTicket2Api));
-
   if (mutation.isSuccess) {
     mutation.reset();
     formik.setValues(ticketInitialValues);
     toast.success("درخواست شما ارسال شد. با شما در ارتباط خواهیم بود.");
   }
+
+  useEffect(() => {
+    if (mutation.isError) {
+      {
+        const { statusCode, message, error } = mutation.error as {
+          statusCode: number;
+          message: string;
+          error: string;
+        };
+        if (statusCode !== 400) {
+          toast.error(`${message} لطفا دقایقی دیگر تلاش کنید.`);
+        } else if (statusCode === 400) {
+          toast.error("متاسفانه اکانتی با این  شماره ساخته نشده است.");
+        }
+      }
+    }
+  }, [mutation.isError]);
 
   return (
     <main className={`w-full h-full px-lg py-sm flex justify-center`}>
@@ -70,7 +88,7 @@ const TicketForm: FC = () => {
         >
           <Input
             onChange={formik.handleChange}
-            placeholder="نام و نام خانوادگی *"
+            placeholder="نام و نام خانوادگی"
             className="text-center w-full input-primary-theme"
             id="fullName"
             name="fullName"
@@ -79,7 +97,7 @@ const TicketForm: FC = () => {
           />
           <Input
             onChange={formik.handleChange}
-            placeholder="شماره تلفن *"
+            placeholder="شماره تلفن"
             className="text-center w-full input-primary-theme"
             id="phoneNumber"
             name="phoneNumber"
@@ -112,7 +130,7 @@ const TicketForm: FC = () => {
               {mutation.isLoading ? (
                 <span className="loading loading-infinity loading-lg" />
               ) : (
-                "تایید"
+                "ارسال"
               )}
             </Button>
           </div>

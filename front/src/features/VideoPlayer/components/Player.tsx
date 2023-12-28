@@ -19,7 +19,11 @@ import { QualityItem } from "./Player.types";
 import qualitySettingIcon from "src/assets/images/setting-icon.png";
 import { TERM_VIDEO_URL } from "src/pages/Admin/Terms/[id]/videos/api.data";
 
-const Player: FC = (props) => {
+interface IPlayer {
+  drawerShowState: "show" | "hidden";
+}
+
+const Player: FC<IPlayer> = ({ drawerShowState }) => {
   const [videoState, setVideoState] = useState<"play" | "pause">("play");
   const [seenTime, setSeenTime] = useState(1);
   const [lastSeen, setLastSeen] = useState(0);
@@ -36,6 +40,10 @@ const Player: FC = (props) => {
       `${BASE_TERM_URL}/${videoContext.selected.termId}`
     ),
   });
+
+  useEffect(() => {
+    if (drawerShowState === "show" && videoState === "play") toggleVideoState();
+  }, [drawerShowState]);
 
   const CountUpSeenTime = useCallback(() => {
     const videoCurrentTime = videoRef.current?.currentTime ?? -2;
@@ -78,8 +86,8 @@ const Player: FC = (props) => {
       hls.loadSource(selectedSessionVideo.link);
       hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        console.log("ready to play!");
-        console.log(hls.levels);
+        // console.log("ready to play!");
+        // console.log(hls.levels);
         setQualities([
           ...hls.levels.map((level, index) => ({
             name: `${level.height}p`,
@@ -114,10 +122,9 @@ const Player: FC = (props) => {
 
   useEffect(() => {
     const handleSpacePress = (e: KeyboardEvent) => {
-      if (e.key === " ") toggleVideoState();
+      if (e.key === " " && drawerShowState === "hidden") toggleVideoState();
     };
     window.addEventListener("keypress", handleSpacePress);
-
     return () => window.removeEventListener("keypress", handleSpacePress);
   }, [toggleVideoState]);
 

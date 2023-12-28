@@ -19,6 +19,7 @@ import Pagination from "src/components/ui/Pagination";
 
 const initialAuditModalState: AuditModalState = {
   data: {
+    username: "",
     description: "",
     fullName: "",
     phoneNumber: "",
