@@ -17,7 +17,6 @@ import {
 import { ID_JOIN_STR } from 'src/configs/statics';
 import mongoose from 'mongoose';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
-import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
 import { OrderService } from './order/order.service';
 import { InjectConnection } from '@nestjs/mongoose';
 import { ShopProductDao } from './daos/shop-product.dao';
@@ -26,6 +25,7 @@ import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
 import { TypeCart } from './cart/dtos/type-cart.dto';
 import { PaymentService } from 'src/payment/payment.service';
 import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
+import { Gateway } from 'src/payment/enums/gateway.enum';
 
 @Injectable()
 export class ShopService {
@@ -137,6 +137,10 @@ export class ShopService {
     return { itemId: courseId.toString(), quantity: 1 };
   }
 
+  private getPaymentCallbackUrl(gateway: string): string {
+    return `shop/gateway/${gateway}/verify`;
+  }
+
   async submitOrder(userId: string, input: InSubmitOrderBody): Promise<string> {
     const cart = await this.getCart(userId);
     if (cart.length === 0)
@@ -150,12 +154,18 @@ export class ShopService {
       userId,
       totalAmount,
       input.gateway,
+      this.getPaymentCallbackUrl(input.gateway),
     );
     return gatewayLink;
   }
 
-  async createOrder(input: InCompleteOrderQueryDto) {
-    const cart = (await this.cartService.getByUserId(input.userId)).filter(
+  async verifyPayment(authority: string, gatewayType: Gateway) {
+    console.log('authority:', authority);
+    return this.paymentService.verify(authority, gatewayType);
+  }
+
+  async createOrder(userId: string) {
+    const cart = (await this.cartService.getByUserId(userId)).filter(
       (cartItem) => cartItem.product.type === ProductType.COURSE,
     );
     const products = await Promise.all(
@@ -166,14 +176,10 @@ export class ShopService {
     const transactionSession = await this.connection.startSession();
     transactionSession.startTransaction();
     try {
-      const order = await this.orderService.createOrder(
-        input.userId,
-        cart,
-        products,
-      );
-      await this.cartService.emptyCart(input.userId);
+      const order = await this.orderService.createOrder(userId, cart, products);
+      await this.cartService.emptyCart(userId);
       await this.courseService.createAccessForUser(
-        input.userId,
+        userId,
         products.map((product) => product.id.toString()),
       );
       return order;

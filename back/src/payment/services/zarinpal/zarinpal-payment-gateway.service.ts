@@ -6,10 +6,13 @@ import { PaymentVerificationStatus } from 'src/payment/enums/payment-verificatio
 
 @Injectable()
 export class ZarinpalPaymentGateway implements PaymentGateway {
-  async createGateway(amount: number): Promise<OutCreateGateway> {
+  async createGateway(
+    amount: number,
+    callbackUrl: string,
+  ): Promise<OutCreateGateway> {
     return {
-      authority: 'meh',
-      gatewayLink: 'another',
+      authority: `authority-${amount}`,
+      gatewayLink: `zarinpal-pay-${amount}`,
     };
   }
 
@@ -19,6 +22,8 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
   ): Promise<PaymentVerification> {
     return {
       status: PaymentVerificationStatus.VERIFIED,
+      maskedCardNo: '610433****1868',
+      transactionNo: 123,
     };
   }
 }

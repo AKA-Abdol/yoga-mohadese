@@ -38,9 +38,14 @@ export class PaymentService {
     }
   }
 
-  async createGateway(userId: string, amount: number, gatewayType: Gateway) {
+  async createGateway(
+    userId: string,
+    amount: number,
+    gatewayType: Gateway,
+    callbackUrl: string,
+  ) {
     const paymentGateway = this.getPaymentGateWay(gatewayType);
-    const gateway = await paymentGateway.createGateway(amount);
+    const gateway = await paymentGateway.createGateway(amount, callbackUrl);
 
     await this.paymentRepo.create({
       userId: new mongoose.Types.ObjectId(userId),
@@ -59,22 +64,31 @@ export class PaymentService {
     const paymentGateway = this.getPaymentGateWay(gatewayType);
     const payment = await this.paymentRepo.findByAuthority(authority);
     if (payment === null) return failedVerification;
+    if (payment.status === PaymentStatus.SUCCESSFUL)
+      return {
+        status: PaymentVerificationStatus.DOUBLE_VERIFIED,
+        amount: payment.amount,
+        transactionNo: payment.transactionNo,
+        userId: payment.userId.toString(),
+      };
     const paymentVerification = await paymentGateway.verify(
       payment.authority,
       payment.amount,
     );
-    const updatedPayment = await this.paymentRepo.update(payment.authority, {
+    await this.paymentRepo.update(payment.authority, {
       ...paymentVerification,
       status: this.convertVerificationStatus2PaymentStatus(
         paymentVerification.status,
       ),
     });
-    if (updatedPayment === null) return failedVerification;
+    if (paymentVerification.status === PaymentVerificationStatus.NOT_VERIFIED)
+      return failedVerification;
 
     return {
+      amount: payment.amount,
+      userId: payment.userId.toString(),
       status: paymentVerification.status,
-      amount: updatedPayment.amount,
-      transactionNo: updatedPayment.transactionNo,
+      transactionNo: paymentVerification.transactionNo,
     };
   }
 }

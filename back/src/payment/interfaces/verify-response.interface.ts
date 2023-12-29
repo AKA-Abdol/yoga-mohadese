@@ -7,6 +7,7 @@ interface SuccessfulVerification {
 
   amount: number;
   transactionNo: number;
+  userId: string;
 }
 
 interface FailedVerification {
