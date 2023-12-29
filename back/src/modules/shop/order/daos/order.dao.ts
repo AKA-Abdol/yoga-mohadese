@@ -10,7 +10,6 @@ export abstract class OrderDao {
   ): TypeOrderDto => ({
     id: order._id.toString(),
     createdAt: order.createdAt ?? new Date(),
-    paymentType: order.paymentType,
     userId: order.userId.toString(),
     items: items.map(OrderItemAbstractDao.convertOne),
     paymentAmount: items.reduce(

@@ -105,14 +105,14 @@ export class ShopController {
       Gateway.ZARINPAL,
     );
     if (paymentVerification.status === PaymentVerificationStatus.VERIFIED)
-      await this.shopService.createOrder(paymentVerification.userId);
-
-    if (paymentVerification.status === PaymentVerificationStatus.NOT_VERIFIED)
-      res.redirect(`http://yogamohadese.com/user/payment?status=failed`);
-    else
-      res.redirect(
-        `http://yogamohadese.com/user/payment?status=success&amount=${paymentVerification.amount}&transactionNo=${paymentVerification.transactionNo}`,
+      await this.shopService.createOrder(
+        paymentVerification.userId,
+        paymentVerification.paymentId,
       );
+
+    res.redirect(
+      `${process.env.PAYMENT_REDIRECT_URL}/${paymentVerification.paymentId}`,
+    );
   }
 
   @Get('/orders')

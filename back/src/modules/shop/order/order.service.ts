@@ -1,39 +1,37 @@
 import {
-  BadRequestException,
-  ForbiddenException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { OrderRepo } from './order.repo';
 import { OrderItemRepo } from './orderItem.repo';
-import { PaymentType } from './order.schema';
 import { TypeCart } from '../cart/dtos/type-cart.dto';
 import mongoose from 'mongoose';
 import { InProduct } from '../shop.entity';
 import { OrderDao } from './daos/order.dao';
-import { TypeOrderItemDto } from './dtos/type-orderItem.dto';
 import { OrderItemDao } from './daos/orderItem.dao';
 import { OutGetOrderDto } from './dtos/out-get-order.dto';
 import { InGetOrdersQueryDto } from './dtos/in-get-orders.dto';
 import { OutGetOrdersDto } from './dtos/out-get-orders.dto';
+import { PaymentService } from 'src/payment/payment.service';
 
 @Injectable()
 export class OrderService {
   constructor(
     private readonly orderRepo: OrderRepo,
     private readonly orderItemRepo: OrderItemRepo,
+    private readonly paymentService: PaymentService,
   ) {}
 
   async createOrder(
     userId: string,
     cart: TypeCart[],
     products: InProduct[],
-    paymentType: PaymentType = PaymentType.ONLINE,
+    paymentId: string,
   ) {
     const order = await this.orderRepo.create({
       userId: new mongoose.Types.ObjectId(userId),
-      paymentType,
+      paymentId: new mongoose.Types.ObjectId(paymentId),
     });
     if (order === null)
       throw new InternalServerErrorException('مشکلی در سرور رخ داده است');
@@ -93,13 +91,12 @@ export class OrderService {
       new mongoose.Types.ObjectId(orderId),
     );
 
+    const payment = await this.paymentService.getOne(
+      order.paymentId.toString(),
+    );
     return {
       createdAt: order.createdAt ?? new Date(),
-      paymentType: order.paymentType,
-      paymentAmount: orderItems.reduce(
-        (agg, item) => agg + item.price * item.quantity,
-        0,
-      ),
+      payment,
       items: orderItems.map(OrderItemDao.convertOne),
     };
   }

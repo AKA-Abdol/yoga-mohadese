@@ -4,6 +4,7 @@ import { Payment } from './payment.schema';
 import { Model } from 'mongoose';
 import { ICreatePayment } from './interfaces/create-payment.interface';
 import { IUpdatePayment } from './interfaces/update-payment.interface';
+import mongoose from 'mongoose';
 
 @Injectable()
 export class PaymentRepo {
@@ -26,5 +27,13 @@ export class PaymentRepo {
 
   async findByAuthority(authority: string) {
     return this.model.findOne({ authority });
+  }
+
+  async findById(_id: mongoose.Types.ObjectId) {
+    return this.model.findOne({ _id });
+  }
+
+  async findAllByUserId(userId: mongoose.Types.ObjectId) {
+    return this.model.find({ userId });
   }
 }

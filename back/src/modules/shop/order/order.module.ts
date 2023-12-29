@@ -5,6 +5,7 @@ import { OrderService } from './order.service';
 import { OrderRepo } from './order.repo';
 import { OrderItemRepo } from './orderItem.repo';
 import { OrderItem, OrderItemSchema } from './orderItem.schema';
+import { PaymentModule } from 'src/payment/payment.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { OrderItem, OrderItemSchema } from './orderItem.schema';
       { name: Order.name, schema: OrderSchema },
       { name: OrderItem.name, schema: OrderItemSchema },
     ]),
+    PaymentModule,
   ],
   providers: [OrderRepo, OrderService, OrderItemRepo],
   exports: [OrderService],

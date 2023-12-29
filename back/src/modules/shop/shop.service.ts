@@ -160,11 +160,10 @@ export class ShopService {
   }
 
   async verifyPayment(authority: string, gatewayType: Gateway) {
-    console.log('authority:', authority);
     return this.paymentService.verify(authority, gatewayType);
   }
 
-  async createOrder(userId: string) {
+  async createOrder(userId: string, paymentId: string) {
     const cart = (await this.cartService.getByUserId(userId)).filter(
       (cartItem) => cartItem.product.type === ProductType.COURSE,
     );
@@ -176,7 +175,12 @@ export class ShopService {
     const transactionSession = await this.connection.startSession();
     transactionSession.startTransaction();
     try {
-      const order = await this.orderService.createOrder(userId, cart, products);
+      const order = await this.orderService.createOrder(
+        userId,
+        cart,
+        products,
+        paymentId,
+      );
       await this.cartService.emptyCart(userId);
       await this.courseService.createAccessForUser(
         userId,

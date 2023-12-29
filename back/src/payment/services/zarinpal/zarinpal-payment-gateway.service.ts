@@ -12,7 +12,7 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
   ): Promise<OutCreateGateway> {
     return {
       authority: `authority-${amount}`,
-      gatewayLink: `zarinpal-pay-${amount}`,
+      gatewayLink: `zarinpal-auth=authority-${amount}`,
     };
   }
 

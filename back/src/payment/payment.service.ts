@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PaymentRepo } from './payment.repo';
 import { Gateway } from './enums/gateway.enum';
 import { ZarinpalPaymentGateway } from './services/zarinpal/zarinpal-payment-gateway.service';
@@ -10,6 +14,7 @@ import {
   IVerifyResponse,
   failedVerification,
 } from './interfaces/verify-response.interface';
+import { PaymentDto } from './dtos/payment.dto';
 
 @Injectable()
 export class PaymentService {
@@ -63,13 +68,12 @@ export class PaymentService {
   ): Promise<IVerifyResponse> {
     const paymentGateway = this.getPaymentGateWay(gatewayType);
     const payment = await this.paymentRepo.findByAuthority(authority);
-    if (payment === null) return failedVerification;
+    if (payment === null) return failedVerification();
     if (payment.status === PaymentStatus.SUCCESSFUL)
       return {
-        status: PaymentVerificationStatus.DOUBLE_VERIFIED,
-        amount: payment.amount,
-        transactionNo: payment.transactionNo,
+        paymentId: payment._id.toString(),
         userId: payment.userId.toString(),
+        status: PaymentVerificationStatus.DOUBLE_VERIFIED,
       };
     const paymentVerification = await paymentGateway.verify(
       payment.authority,
@@ -82,13 +86,30 @@ export class PaymentService {
       ),
     });
     if (paymentVerification.status === PaymentVerificationStatus.NOT_VERIFIED)
-      return failedVerification;
+      return failedVerification(payment._id.toString());
 
     return {
-      amount: payment.amount,
+      paymentId: payment._id.toString(),
       userId: payment.userId.toString(),
       status: paymentVerification.status,
-      transactionNo: paymentVerification.transactionNo,
     };
+  }
+
+  async getOne(paymentId: string): Promise<PaymentDto> {
+    if (!mongoose.Types.ObjectId.isValid(paymentId))
+      throw new NotFoundException('پرداخت یافت نشد');
+
+    const payment = await this.paymentRepo.findById(
+      new mongoose.Types.ObjectId(paymentId),
+    );
+    if (payment === null) throw new NotFoundException('پرداخت یافت نشد');
+    return PaymentDto.fromPayment(payment);
+  }
+
+  async getAll(userId: string): Promise<PaymentDto[]> {
+    const payments = await this.paymentRepo.findAllByUserId(
+      new mongoose.Types.ObjectId(userId),
+    );
+    return payments.map(PaymentDto.fromPayment);
   }
 }
