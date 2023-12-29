@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -6,6 +7,7 @@ import {
   Post,
   Query,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import { RolesGuard } from 'src/guards/roles.guard';
@@ -15,12 +17,15 @@ import { OutGetCartDto } from './dtos/out-get-cart.dto';
 import { InGetShopQueryDto } from './dtos/in-get-shop.dto';
 import { ShopService } from './shop.service';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
-import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
-import { TypeOrderDto } from './order/dtos/type-order.dto';
 import { OutProduct } from './shop.entity';
 import { OutGetOrderDto } from './order/dtos/out-get-order.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
 import { OutGetOrdersDto } from './order/dtos/out-get-orders.dto';
+import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
+import { ZarinpalCallbackQueryDto } from 'src/payment/services/zarinpal/zarinpal-callback.dto';
+import { Gateway } from 'src/payment/enums/gateway.enum';
+import { PaymentVerificationStatus } from 'src/payment/enums/payment-verification-status.enum';
+import { Response } from 'express';
 
 @ApiTags('Shop')
 @UseGuards(RolesGuard)
@@ -82,21 +87,32 @@ export class ShopController {
   @Role('USER')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'order all items in cart' })
-  async createOrder(@Req() { userId }: { userId: string }) {
-    this.shopService.submitOrder(userId);
-    return {
-      paymentLink: `api/shop/cart/order?userId=${userId}&secret=secret`,
-    };
-    // save files and order in the redis and waiting for payment
+  async createOrder(
+    @Req() { userId }: { userId: string },
+    @Body() input: InSubmitOrderBody,
+  ) {
+    return this.shopService.submitOrder(userId, input);
   }
 
-  @Get('/cart/order')
-  @ApiBearerAuth()
-  @ApiOperation({ summary: 'redirect for paying cart items and submit Orders' })
+  @Get('/gateway/zarinpal/verify')
+  @ApiOperation({ summary: 'verification of zarinpal payment' })
   async completeOrder(
-    @Query() input: InCompleteOrderQueryDto,
-  ): Promise<TypeOrderDto> {
-    return this.shopService.createOrder(input);
+    @Res() res: Response,
+    @Query() input: ZarinpalCallbackQueryDto,
+  ) {
+    const paymentVerification = await this.shopService.verifyPayment(
+      input.Authority,
+      Gateway.ZARINPAL,
+    );
+    if (paymentVerification.status === PaymentVerificationStatus.VERIFIED)
+      await this.shopService.createOrder(
+        paymentVerification.userId,
+        paymentVerification.paymentId,
+      );
+
+    res.redirect(
+      `${process.env.PAYMENT_REDIRECT_URL}/${paymentVerification.paymentId}`,
+    );
   }
 
   @Get('/orders')
