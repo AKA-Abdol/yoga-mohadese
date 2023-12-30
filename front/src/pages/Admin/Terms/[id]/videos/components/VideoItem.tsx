@@ -24,7 +24,7 @@ const VideoItem: FC<VideoItemProps & WithId> = (props) => {
         </p>
       </div>
       <p className="w-full text-center text-sm">{props.title}</p>
-
+      {/* <p className="w-full text-center text-sm">{props.description}</p> */}
       <div className={"h-full w-40 flex flex-row"}>
         <a
           href={props.link}

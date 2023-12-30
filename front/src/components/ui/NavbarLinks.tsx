@@ -17,7 +17,7 @@ const NavbarLinks: React.FC<INavbarLinks> = ({
   return (
     <Link
       to={to}
-      className={`no-underline opacity-0  block z-[1000] transition-all duration-500 ease-in-out hover:text-[#D6CCC2]  ${
+      className={`no-underline opacity-0  block z-[1000] transition-all duration-500 ease-in-out hover:text-[#D48B71]  ${
         menuState ? "opacity-100 text-[#58423A] text-xl" : `text-[0px]`
       }`}
       onClick={handleMenu}

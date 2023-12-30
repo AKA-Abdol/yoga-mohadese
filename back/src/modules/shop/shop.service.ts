@@ -17,12 +17,15 @@ import {
 import { ID_JOIN_STR } from 'src/configs/statics';
 import mongoose from 'mongoose';
 import { OutAddItemDto } from './dtos/out-add-item.dto';
-import { InCompleteOrderQueryDto } from './dtos/in-complete-order.dto';
 import { OrderService } from './order/order.service';
 import { InjectConnection } from '@nestjs/mongoose';
 import { ShopProductDao } from './daos/shop-product.dao';
 import { OutGetProduct } from './dtos/out-get-product.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
+import { TypeCart } from './cart/dtos/type-cart.dto';
+import { PaymentService } from 'src/payment/payment.service';
+import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
+import { Gateway } from 'src/payment/enums/gateway.enum';
 
 @Injectable()
 export class ShopService {
@@ -30,6 +33,7 @@ export class ShopService {
     private readonly cartService: CartService,
     private readonly courseService: CourseService,
     private readonly orderService: OrderService,
+    private readonly paymentService: PaymentService,
     @InjectConnection() private readonly connection: mongoose.Connection,
   ) {}
 
@@ -133,15 +137,34 @@ export class ShopService {
     return { itemId: courseId.toString(), quantity: 1 };
   }
 
-  async submitOrder(userId: string) {
-    const cart = await this.cartService.getByUserId(userId);
-    if (cart.length === 0)
-      throw new BadRequestException('سبد خرید شما خالی است');
-    // needs to put data in redis for submitting and creating redirect to payment and redirect back
+  private getPaymentCallbackUrl(gateway: string): string {
+    return `shop/gateway/${gateway}/verify`;
   }
 
-  async createOrder(input: InCompleteOrderQueryDto) {
-    const cart = (await this.cartService.getByUserId(input.userId)).filter(
+  async submitOrder(userId: string, input: InSubmitOrderBody): Promise<string> {
+    const cart = await this.getCart(userId);
+    if (cart.length === 0)
+      throw new BadRequestException('سبد خرید شما خالی است');
+    const totalAmount = cart.reduce(
+      (total, cartItem) => total + cartItem.overallPrice,
+      0,
+    );
+
+    const gatewayLink = this.paymentService.createGateway(
+      userId,
+      totalAmount,
+      input.gateway,
+      this.getPaymentCallbackUrl(input.gateway),
+    );
+    return gatewayLink;
+  }
+
+  async verifyPayment(authority: string, gatewayType: Gateway) {
+    return this.paymentService.verify(authority, gatewayType);
+  }
+
+  async createOrder(userId: string, paymentId: string) {
+    const cart = (await this.cartService.getByUserId(userId)).filter(
       (cartItem) => cartItem.product.type === ProductType.COURSE,
     );
     const products = await Promise.all(
@@ -153,13 +176,14 @@ export class ShopService {
     transactionSession.startTransaction();
     try {
       const order = await this.orderService.createOrder(
-        input.userId,
+        userId,
         cart,
         products,
+        paymentId,
       );
-      await this.cartService.emptyCart(input.userId);
+      await this.cartService.emptyCart(userId);
       await this.courseService.createAccessForUser(
-        input.userId,
+        userId,
         products.map((product) => product.id.toString()),
       );
       return order;
