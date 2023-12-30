@@ -79,6 +79,7 @@ const Terms: FC = () => {
                 range={term.range}
                 invokeModal={invokeModalWith}
                 key={`term-${term.id}`}
+                price={term.price}
               />
             ))
         )}

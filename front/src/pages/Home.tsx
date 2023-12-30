@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import styles from "../pages/styles/Home.module.css";
 import { Link } from "react-router-dom";
-import enamad from "src/assets/images/enamad.png";
 
 export default function Home() {
   return (
@@ -35,10 +34,4 @@ export default function Home() {
       </footer>
     </main>
   );
-}
-
-{
-  /*         <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=434829&Code=6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD'>
-        <img referr erpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=434829&Code=6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD' alt='' style='cursor:pointer' Code='6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD'>
-      </a> */
 }
