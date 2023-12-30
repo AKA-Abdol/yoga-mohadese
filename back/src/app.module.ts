@@ -6,7 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CourseModule } from './modules/course/course.module';
 import { TicketModule } from './modules/ticket/ticket.module';
 import { ShopModule } from './modules/shop/shop.module';
-import { PaymentModule } from './payment/payment.module';
+import { PaymentModule } from './modules/payment/payment.module';
 
 @Module({
   imports: [

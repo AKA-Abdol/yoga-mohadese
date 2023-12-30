@@ -5,7 +5,7 @@ import { OrderService } from './order.service';
 import { OrderRepo } from './order.repo';
 import { OrderItemRepo } from './orderItem.repo';
 import { OrderItem, OrderItemSchema } from './orderItem.schema';
-import { PaymentModule } from 'src/payment/payment.module';
+import { PaymentModule } from 'src/modules/payment/payment.module';
 
 @Module({
   imports: [

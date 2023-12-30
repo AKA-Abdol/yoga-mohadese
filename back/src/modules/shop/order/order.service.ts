@@ -13,7 +13,7 @@ import { OrderItemDao } from './daos/orderItem.dao';
 import { OutGetOrderDto } from './dtos/out-get-order.dto';
 import { InGetOrdersQueryDto } from './dtos/in-get-orders.dto';
 import { OutGetOrdersDto } from './dtos/out-get-orders.dto';
-import { PaymentService } from 'src/payment/payment.service';
+import { PaymentService } from 'src/modules/payment/payment.service';
 
 @Injectable()
 export class OrderService {

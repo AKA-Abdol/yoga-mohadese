@@ -23,9 +23,9 @@ import { ShopProductDao } from './daos/shop-product.dao';
 import { OutGetProduct } from './dtos/out-get-product.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
 import { TypeCart } from './cart/dtos/type-cart.dto';
-import { PaymentService } from 'src/payment/payment.service';
+import { PaymentService } from 'src/modules/payment/payment.service';
 import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
-import { Gateway } from 'src/payment/enums/gateway.enum';
+import { Gateway } from 'src/modules/payment/enums/gateway.enum';
 
 @Injectable()
 export class ShopService {

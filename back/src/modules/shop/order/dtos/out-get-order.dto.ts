@@ -1,4 +1,4 @@
-import { PaymentDto } from 'src/payment/dtos/payment.dto';
+import { PaymentDto } from 'src/modules/payment/dtos/payment.dto';
 import { TypeOrderItemDto } from './type-orderItem.dto';
 
 export class OutGetOrderDto {
