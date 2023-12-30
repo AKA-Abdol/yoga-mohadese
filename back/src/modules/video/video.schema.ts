@@ -19,6 +19,9 @@ export class Video {
   thumbnail: string;
 
   @Prop()
+  description: string;
+
+  @Prop()
   deletedAt?: Date;
 }
 

@@ -86,7 +86,6 @@ export class AccessService {
       new mongoose.Types.ObjectId(userId),
       new mongoose.Types.ObjectId(courseId),
     );
-    console.log(access);
     if (!access) return false;
     else return true;
   }

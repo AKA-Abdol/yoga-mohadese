@@ -21,4 +21,6 @@ export class TypeVideoDto {
 
   @ApiProperty({ required: true, default: 1 })
   num: number;
+
+  description: string;
 }

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class InCreateVideo {
   @ApiProperty({ required: true, default: 'title' })
@@ -17,4 +17,7 @@ export class InCreateVideo {
   @ApiProperty({ required: true, default: 'www.google.com' })
   @IsString()
   thumbnail: string;
+
+  @IsString()
+  description: string;
 }
