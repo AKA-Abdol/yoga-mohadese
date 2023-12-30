@@ -49,6 +49,7 @@ function App() {
 
             <Route path="faq" element={<Faq />} />
             <Route path="user/" element={<User />}>
+              <Route path="" element={<Navigate to={"/user/activeterms"} />} />
               <Route path="paymenthistory" element={<PaymentHistory />} />
               <Route path="activeterms" element={<ActiveTerms />} />
             </Route>

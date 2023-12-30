@@ -46,15 +46,12 @@ const User: FC = () => {
           </div>
           <p className="text-[#58423A] text-xl pr-8">{`سلام ${contextData.firstname} عزیز`}</p>
           {userPanelRoute === "activeterms" && <RemainedDays />}
-
           <UserPanel
             pages={["فاکتورهای گذشته", "دوره های فعال"]}
             routes={["paymenthistory", "activeterms"]}
             setUserPanelRoute={setUserPanelRoute}
           />
         </div>
-        {/* THE OUTLET IS GOING TO RENDER DRAWER AND TERM CONTROLLER FOR TODAY */}
-        {/* ILL HANDLE THE PAYMENT HISTORY FOR LATER */}
         <Outlet />
       </main>
     </VideoContextProvider>
@@ -62,11 +59,3 @@ const User: FC = () => {
 };
 
 export default User;
-
-// <div className="w-full flex justify-center items-center">
-// <div className="w-full bg-black">
-//   <VideoContextProvider>
-//     <VideoPlayer />
-//   </VideoContextProvider>
-// </div>
-// </div>

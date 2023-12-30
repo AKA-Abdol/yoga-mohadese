@@ -37,36 +37,9 @@ const TermController: FC<TermControllerProps> = (props) => {
       )}
     >
       <div className="w-full px-8">
-      {/* TOP PINK SECTION */}
-      <div className="bg-[#D48B7180] w-full">
-        {/* THE HEADER NAVBAR AND LOGOUT */}
-        <div
-          className={classNames(
-            "w-full flex items-center justify-between py-4 pl-6 pr-4"
-          )}
-        >
-          <div className="relative">
-            <NavMenu />
-          </div>
-          <Button
-            className="border-none text-base text-[#58423A] flex items-center p-0 m-0 h-fit min-h-fit max-h-fit"
-            onClick={() => {
-              tokenPersistor.delete();
-              navigate("/");
-            }}
-          >
-            خروج
-            <LogOut />
-          </Button>
+        <div className="w-full px-8 flex items-center flex-col">
+          <TermSelect />
         </div>
-        {/* HELLO TO USER */}
-        <p className="text-[#58423A] text-xl pr-8">{props.title}</p>
-        {/* REMAINED DAYS */}
-        <RemainedDays term={term} />
-      </div>
-
-      <div className="w-full px-8 flex items-center flex-col">
-        <TermSelect />
       </div>
       <div className="w-full overflow-y-auto">
         <SessionList term={term} />

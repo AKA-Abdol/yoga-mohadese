@@ -4,9 +4,8 @@ type Props = {};
 
 const PaymentHistory = (props: Props) => {
   useEffect(() => {
-    console.log("we are in payment history");
   }, []);
-  return <div>PaymentHistory</div>;
+  return <div>رکوردی وجود ندارد</div>;
 };
 
 export default PaymentHistory;
