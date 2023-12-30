@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PaymentGateway } from '../../interfaces/payment-gateway.interface';
 import { PaymentVerification } from '../../interfaces/payment-verification.interface';
 import { OutCreateGateway } from '../../interfaces/out-create-gateway.interface';
-import { PaymentVerificationStatus } from 'src/payment/enums/payment-verification-status.enum';
+import { PaymentVerificationStatus } from 'src/modules/payment/enums/payment-verification-status.enum';
 
 @Injectable()
 export class ZarinpalPaymentGateway implements PaymentGateway {

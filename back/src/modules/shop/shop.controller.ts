@@ -22,9 +22,9 @@ import { OutGetOrderDto } from './order/dtos/out-get-order.dto';
 import { InGetOrdersQueryDto } from './order/dtos/in-get-orders.dto';
 import { OutGetOrdersDto } from './order/dtos/out-get-orders.dto';
 import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
-import { ZarinpalCallbackQueryDto } from 'src/payment/services/zarinpal/zarinpal-callback.dto';
-import { Gateway } from 'src/payment/enums/gateway.enum';
-import { PaymentVerificationStatus } from 'src/payment/enums/payment-verification-status.enum';
+import { ZarinpalCallbackQueryDto } from 'src/modules/payment/services/zarinpal/zarinpal-callback.dto';
+import { Gateway } from 'src/modules/payment/enums/gateway.enum';
+import { PaymentVerificationStatus } from 'src/modules/payment/enums/payment-verification-status.enum';
 import { Response } from 'express';
 
 @ApiTags('Shop')
