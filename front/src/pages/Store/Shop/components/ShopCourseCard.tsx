@@ -60,14 +60,14 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
         shopItem && (
           <div
             className="rounded-[10px] flex flex-col items-start p-4 gap-2 w-full lg:w-[370px]"
-            style={{
-              backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${
-                BgList[index % 3]
-              })`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "bottom",
-            }}
+            // style={{
+            //   backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${
+            //     BgList[index % 3]
+            //   })`,
+            //   backgroundRepeat: "no-repeat",
+            //   backgroundSize: "cover",
+            //   backgroundPosition: "bottom",
+            // }}
           >
             <div className="flex justify-between items-center w-full">
               <h3 className=" text-center text-base font-normal text-[#FEF3E9]">
