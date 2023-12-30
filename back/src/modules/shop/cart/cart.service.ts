@@ -68,10 +68,17 @@ export class CartService {
   }
 
   async emptyCart(userId: string) {
-    const { deletedCount } = await this.cartRepo.deleteById(
+    const { deletedCount } = await this.cartRepo.deleteByUserId(
       new mongoose.Types.ObjectId(userId),
     );
     if (deletedCount === 0)
       throw new BadRequestException('سبد خرید خالی بوده است');
+  }
+
+  async deleteProduct(userId: string, productId: string) {
+    this.cartRepo.deleteOne(
+      new mongoose.Types.ObjectId(userId),
+      new mongoose.Types.ObjectId(productId),
+    );
   }
 }

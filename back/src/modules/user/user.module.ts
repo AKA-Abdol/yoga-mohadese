@@ -5,11 +5,13 @@ import { UserRepo } from './user.repo';
 import { User, UserSchema } from './user.schema';
 import { UserService } from './user.service';
 import { CourseModule } from '../course/course.module';
+import { CartModule } from '../shop/cart/cart.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     CourseModule,
+    CartModule,
   ],
   controllers: [UserController],
   providers: [UserService, UserRepo],

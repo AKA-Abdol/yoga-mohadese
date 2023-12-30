@@ -32,6 +32,7 @@ import { BaseError } from '../../errors/base-error';
 import { InGrantAccessDto } from './dtos/in-grant-access.dto';
 import { InNoteSetDto } from './dtos/in-note-set.dto';
 import { OutNoteDto } from './dtos/out-note.dto';
+import { CartService } from '../shop/cart/cart.service';
 
 @UseGuards(RolesGuard)
 @Controller('user')
@@ -39,6 +40,7 @@ export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly accessService: AccessService,
+    private readonly cartService: CartService,
   ) {}
   @Get('/')
   @Role('ADMIN')
@@ -96,6 +98,7 @@ export class UserController {
       user_id,
     });
     if (user instanceof BaseError) return user.throw();
+    await this.cartService.deleteProduct(user_id, course_id);
     return { status: true };
   }
 
