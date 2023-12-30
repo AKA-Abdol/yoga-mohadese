@@ -16,6 +16,11 @@ import ClickToShowBox from "src/components/ui/ClickToShowBox";
 import { yogaLevels } from "src/assets/docs/yogaLevels";
 import Button from "src/components/ui/Button";
 import TrashSVG from "src/assets/svgs/TrashSVG";
+import ShopItemBG1 from "src/assets/images/shopItem1.png";
+import ShopItemBG2 from "src/assets/images/shopItem2.png";
+import ShopItemBG3 from "src/assets/images/shopItem3.png";
+
+const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
 
 const ShopCourseCard: React.FC<IShopCourseCard> = ({
   id,
@@ -26,8 +31,8 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
   const [shopItem, setShopItem] = useState<IShopDataItem>();
   const { shopData, isShopError, isShopLoading, isShopSuccess, cartData } =
     useContext(StoreContext);
-  const navigate = useNavigate()
-    // USE USE REDUCER
+  const navigate = useNavigate();
+  // USE USE REDUCER
   useEffect(() => {
     if (shopData) {
       const thisCourseCart = shopData?.courses.find((item) => item.id === id);
@@ -36,8 +41,8 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
   }, []);
 
   const navigateToUser = () => {
-    navigate("/user")
-  } 
+    navigate("/user");
+  };
 
   const moreInfo: ReactNode = (
     <>
@@ -54,12 +59,14 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
       ) : (
         shopItem && (
           <div
-            className="rounded-[10px] flex flex-col items-start p-4 gap-2 w-full"
+            className="rounded-[10px] flex flex-col items-start p-4 gap-2 w-full lg:w-[370px]"
             style={{
-              backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${shopItem.images[0]})`,
+              backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${
+                BgList[index % 3]
+              })`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "bottom",
             }}
           >
             <div className="flex justify-between items-center w-full">
@@ -75,9 +82,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
               </h4>
             </div>
             {status.isLoading ? (
-              <div
-                className={`text-[#FEF4EA] bg-[#FEF3E9] btn-shop`}
-              >
+              <div className={`text-[#FEF4EA] bg-[#FEF3E9] btn-shop`}>
                 <Loading size="sm" />
               </div>
             ) : status.availability === "purchased" ? (
@@ -108,9 +113,10 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
               </button>
             )}
             {status.availability === "purchased" ? (
-              <button 
-              onClick={navigateToUser}
-              className={`w-full border-[#8CA780CC] bg-[#8CA780CC] text-[#FEF3E9] btn-shop`}>
+              <button
+                onClick={navigateToUser}
+                className={`w-full border-[#8CA780CC] bg-[#8CA780CC] text-[#FEF3E9] btn-shop`}
+              >
                 رفتن به کلاس
               </button>
             ) : (

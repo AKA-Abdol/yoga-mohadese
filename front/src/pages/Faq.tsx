@@ -65,7 +65,7 @@ const Faq = () => {
       <Header />
       <BgCloudOne />
       <BgCloudTwo />
-      <div className="pt-24 pb-8 px-12 flex flex-col gap-2">
+      <div className="pt-24 pb-8 px-12 flex flex-col gap-2 lg:mx-[15vw]">
         <h2 className=" text-2xl text-[#58423A] text-center mb-6 z-10">
           سوالات متداول
         </h2>

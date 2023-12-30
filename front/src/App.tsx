@@ -18,6 +18,8 @@ import Shop from "./pages/Store/Shop";
 import Cart from "./pages/Store/Cart";
 import Store from "./pages/Store";
 import Faq from "./pages/Faq";
+import PaymentHistory from "./pages/User/PaymentHistory";
+import ActiveTerms from "./pages/User/ActiveTerms";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,8 +48,11 @@ function App() {
             </Route>
 
             <Route path="faq" element={<Faq />} />
-            <Route path="user" element={<User />} />
-            
+            <Route path="user/" element={<User />}>
+              <Route path="paymenthistory" element={<PaymentHistory />} />
+              <Route path="activeterms" element={<ActiveTerms />} />
+            </Route>
+
             <Route path="admin/" element={<AdminContextProvider />}>
               <Route path="" element={<Navigate to={"/admin/users"} />} />
 

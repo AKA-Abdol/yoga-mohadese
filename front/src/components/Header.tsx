@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import homeIcon from "../assets/images/icon.png";
+import homeIconLight from "../assets/images/icon-light.png";
 import BasketSVG from "src/assets/svgs/BasketSVG";
 import { Link, useLocation } from "react-router-dom";
 import { MyContext } from "./layout/BodyLayout";
@@ -14,7 +15,7 @@ export default function Header() {
   }, []);
 
   return (
-    <nav className=" absolute left-0 top-0 right-0 w-screen px-8 py-4 flex items-center justify-between overflow-hidden">
+    <nav className=" absolute top-0 right-0 w-screen px-8 py-4 flex items-center justify-between overflow-hidden">
       <div className="z-[1000] relative">
         <NavMenu isMenuLight={isMenuLight} />
         <Link
@@ -37,7 +38,7 @@ export default function Header() {
       >
         <Link to={"/home"}>
           <img
-            src={homeIcon}
+            src={isMenuLight ? homeIconLight : homeIcon}
             alt="home"
             className="w-15 h-15 rounded-full p-1 bg-transparent transition-all duration-700"
           />
