@@ -59,8 +59,8 @@ const VideoContextProvider: FC<WithChildren<ReactNode>> = (props) => {
   );
 
   const setTermDescription = useCallback(
-    (termDescription: string | undefined) => 
-    setControllerState((prevState) => ({...prevState, termDescription})),
+    (termDescription: string | undefined) =>
+      setControllerState((prevState) => ({ ...prevState, termDescription })),
     []
   );
 

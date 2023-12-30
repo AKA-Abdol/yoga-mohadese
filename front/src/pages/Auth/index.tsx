@@ -1,9 +1,7 @@
 import { FC, useCallback, useState } from "react";
 
-import lgAuthImage from "../../assets/images/lg-auth-img.jpg";
-import smAuthImage from "../../assets/images/sm-auth-img.jpg";
-import AuthBackground from "../../assets/images/AuthBackground.png";
-import hijab from "../../assets/images/hijab.jpg";
+import AuthBackground from "src/assets/images/AuthBackground.png";
+import AuthDesktopBackground from "src/assets/images/authDesktopImage.png" 
 import { LoginForm } from "./components/LoginForm";
 import { SignupForm } from "./components/SignupForm";
 
@@ -26,7 +24,8 @@ const Auth: FC = () => {
           <SignupForm onToggleAuth={toggleAuthState} />
         )}
       </div>
-      <img src={AuthBackground} alt="yogaMinimalVector" className=" opacity-10 fixed left-0 bottom-0 " />
+      <img src={AuthDesktopBackground} alt="yogaMinimalVector" className="h-screen hidden lg:block" />
+      <img src={AuthBackground} alt="yogaMinimalVector" className=" opacity-10 fixed left-0 bottom-0 lg:hidden " />
       {/* <div className="_image_ w-full lg:w-2/3 flex flex-row-reverse">
         <img
           src={hijab}

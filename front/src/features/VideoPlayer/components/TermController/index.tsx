@@ -36,6 +36,7 @@ const TermController: FC<TermControllerProps> = (props) => {
         "bg-white w-full"
       )}
     >
+      <div className="w-full px-8">
       {/* TOP PINK SECTION */}
       <div className="bg-[#D48B7180] w-full">
         {/* THE HEADER NAVBAR AND LOGOUT */}

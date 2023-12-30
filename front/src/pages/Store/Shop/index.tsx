@@ -2,9 +2,6 @@ import { FC, useContext, useEffect, useState } from "react";
 import ShopCourseCard from "./components/ShopCourseCard";
 import Loading from "src/components/ui/Loading";
 import Header from "src/components/Header";
-import ShopItemBG1 from "src/assets/images/shopItem1.png";
-import ShopItemBG2 from "src/assets/images/shopItem2.png";
-import ShopItemBG3 from "src/assets/images/shopItem3.png";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../StoreContext";
 import api from "src/services";
@@ -12,7 +9,6 @@ import { SHOP_ADD_ITEM_URL, SHOP_DELETE_ITEM_URL } from "../api.data";
 import { IShopDataItem } from "../api.types";
 import { IShopItemStatus } from "./types";
 
-const BgList = [ShopItemBG1, ShopItemBG2, ShopItemBG3];
 const Shop: React.FC = ({}) => {
   const {
     shopData,
@@ -110,7 +106,7 @@ const Shop: React.FC = ({}) => {
           </Link>
         </div>
       ) : (
-        <div className="pt-28 mx-8 justify-center items-center flex flex-col gap-y-4 ">
+        <div className="pt-28 mx-12 justify-center items-center flex flex-col gap-y-4 lg:justify-start lg:gap-8 lg:flex-row lg:flex-wrap">
           {isShopLoading ? (
               <Loading />
           ) : isShopSuccess && shopData && cartData && shopItemsStatusList ? (
