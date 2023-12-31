@@ -93,7 +93,7 @@ const Shop: React.FC = ({}) => {
   };
 
   return (
-    <main className="max-w-[100vw] w-[100vw] min-w-[100vw]">
+    <main className="w-[100vw] h-screen">
       <Header />
       {isUserLoading ? (
         <Loading />

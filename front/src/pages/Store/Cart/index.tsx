@@ -47,7 +47,7 @@ const Cart: React.FC = ({}) => {
   }, []);
 
   return (
-    <main>
+    <main className="h-screen">
       <Header />
       <ToastContainer position="top-center" rtl={true} theme="light" />
       <div className="pt-32 px-12 flex flex-col gap-6">

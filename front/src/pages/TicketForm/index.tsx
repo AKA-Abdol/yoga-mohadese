@@ -75,7 +75,7 @@ const TicketForm: FC = () => {
   }, [mutation.isError]);
 
   return (
-    <main className={`w-full h-full px-lg py-sm flex justify-center`}>
+    <main className={`w-full h-screen px-lg py-sm flex justify-center`}>
       <Header />
       <ToastContainer position="top-center" rtl={true} theme="light" />
       <form

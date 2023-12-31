@@ -44,13 +44,13 @@ const BodyLayout: FC = () => {
     navigate("/user");
 
   return (
-    <MyContext.Provider
-      value={{ firstname: myData.data?.user.firstname ?? "" }}
-    >
-      <div className={"w-screen min-h-screen bg-primary dark:bg-primary text-black"}>
-        <Outlet />
-      </div>
-    </MyContext.Provider>
+      <MyContext.Provider
+        value={{ firstname: myData.data?.user.firstname ?? "" }}
+      >
+        <div className={"bg-primary dark:bg-primary text-black max-w-screen"}>
+          <Outlet />
+        </div>
+      </MyContext.Provider>
   );
 };
 

@@ -11,6 +11,7 @@ const NavMenu: React.FC<INavMenu> = ({ isMenuLight = false }) => {
     { value: "ورود", to: "/auth" },
     { value: "یوگا با محدثه", to: "/about" },
     { value: "فروشگاه", to: "/store/shop" },
+    { value: "سبد خرید", to: "/store/cart" },
     { value: "ثبت درخواست", to: "/ticket" },
     { value: "قوانین", to: "/terms" },
     { value: "ارتباط با ما", to: "/contact" },

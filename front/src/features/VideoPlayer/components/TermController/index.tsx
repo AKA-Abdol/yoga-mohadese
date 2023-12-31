@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect } from "react";
 import { TermControllerProps } from "./types";
 import TermSelect from "./TermSelect";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,7 @@ import { WithVideos } from "src/pages/Admin/Terms/[id]/videos/types";
 import { BASE_TERM_URL } from "src/pages/Admin/Terms/api.data";
 import SessionList from "../SessionList";
 
-const TermController: FC<TermControllerProps> = (props) => {
-  const navigate = useNavigate();
+const TermController: FC<TermControllerProps> = () => {
   const videoContext = useContext(VideoContext);
   const term = useQuery({
     queryKey: ["term-data", videoContext.selected.termId],
@@ -20,7 +19,7 @@ const TermController: FC<TermControllerProps> = (props) => {
       `${BASE_TERM_URL}/${videoContext.selected.termId}`
     ),
   });
-
+  
   return (
     <div
       className={classNames(
@@ -34,7 +33,7 @@ const TermController: FC<TermControllerProps> = (props) => {
           <TermSelect />
         </div>
       </div>
-      <div className="w-full overflow-y-auto">
+      <div className="w-full">
         <SessionList term={term} />
       </div>
     </div>

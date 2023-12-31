@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
+  box-sizing: border-box !important;
+} */
 
 /* FONT */
 @font-face {
@@ -36,6 +36,16 @@ p,
 div {
   font-family: IRANRounded !important;
 }
+
+body {
+  overflow-y: scroll; /* Ensures that vertical scroll is always present to prevent layout shift */
+  scrollbar-width: none; /* For Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* For WebKit browsers like Chrome and Safari */
+}
+
 
 * {
   direction: rtl;
@@ -90,8 +100,16 @@ video {
 }
 
 #root {
-  max-width: 100vw;
-  min-width: 100vw;
   width: 100vw;
   min-height: 100vh;
+}
+
+@keyframes fadeBackground {
+  0%   { opacity: 0.9; }
+  50%  { opacity: 0.1; }
+  100% { opacity: 0.9; }
+}
+
+.animated-bg {
+  animation: fadeBackground 4s infinite;
 }

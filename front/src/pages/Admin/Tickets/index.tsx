@@ -70,7 +70,7 @@ const Tickets: FC = () => {
   );
 
   return (
-    <div className={`w-full h-full p-sm flex flex-col items-center py-sm`}>
+    <div className={`w-full h-screen p-sm flex flex-col items-center py-sm`}>
       <div className="w-full h-[85%] lg:w-3/5 flex flex-col items-center space-y-sm">
         <FilterGroup
           activeFilter={filterType}

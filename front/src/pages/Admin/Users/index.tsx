@@ -33,7 +33,7 @@ const Users: FC = () => {
   }, [queryClient]);
 
   return (
-    <div className={`w-full h-full p-sm flex flex-col items-center`}>
+    <div className={`w-full h-screen p-sm flex flex-col items-center`}>
       <div className="w-full lg:w-3/5 flex justify-center">
         <SearchInput
           value={search}

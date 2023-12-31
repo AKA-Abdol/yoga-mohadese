@@ -11,7 +11,6 @@ export const DrawerContext = createContext<{ onClose: () => void }>({
 });
 
 const VideoPlayer: FC = () => {
-  const myContext = useContext(MyContext);
   const [drawerShowState, setDrawerShowState] = useState<"show" | "hidden">(
     "show"
   );
@@ -28,9 +27,9 @@ const VideoPlayer: FC = () => {
 
   return (
     <DrawerContext.Provider value={{ onClose: closeDrawerState }}>
-      <div className={classNames("w-screen", "relative", "bg-black")}>
+      <div className={"w-screen relative"}>
         <Drawer show={drawerShowState === "show"}>
-          <TermController title={`سلام ${myContext.firstname} عزیز`} />
+          <TermController />
         </Drawer>
         <div className="fixed top-2 left-0 p-sm z-[80]">
           <OpenCloseButton
