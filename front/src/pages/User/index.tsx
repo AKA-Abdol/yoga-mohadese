@@ -21,9 +21,8 @@ const User: FC = () => {
     <VideoContextProvider>
       <main
         className={classNames(
-          "min-h-screen overflow-y-auto",
-          "flex flex-col items-center space-y-sm",
-          "bg-white w-full"
+          "w-screen min-h-screen min-w-[100vw] max-w-[100vw] overflow-x-hidden",
+          "flex flex-col items-center",
         )}
       >
         <div className="bg-[#D48B7180] w-full">
@@ -48,10 +47,16 @@ const User: FC = () => {
           </div>
           <p className="text-[#58423A] text-xl pr-8">{`سلام ${contextData.firstname} عزیز`}</p>
           {userPanelRoute === "activeterms" && <RemainedDays />}
-          <UserPanelButtons
+          {/*           <UserPanelButtons
             pages={["فاکتورهای گذشته", "دوره های فعال"]}
             routes={["paymenthistory", "activeterms"]}
             svgs={[<Papers />, <GraduationHat />]}
+            setUserPanelRoute={setUserPanelRoute}
+          /> */}
+          <UserPanelButtons
+            pages={["دوره های فعال"]}
+            routes={["activeterms"]}
+            svgs={[<GraduationHat />]}
             setUserPanelRoute={setUserPanelRoute}
           />
         </div>

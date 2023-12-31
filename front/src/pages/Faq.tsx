@@ -61,7 +61,7 @@ const faqList = [
 
 const Faq = () => {
   return (
-    <main className="bg-[#FEFAF7]">
+    <div className="bg-[#FEFAF7]">
       <Header />
       <BgCloudOne />
       <BgCloudTwo />
@@ -79,7 +79,7 @@ const Faq = () => {
           />
         ))}
       </div>
-    </main>
+    </div>
   );
 };
 

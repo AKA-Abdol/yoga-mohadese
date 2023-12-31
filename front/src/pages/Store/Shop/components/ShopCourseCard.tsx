@@ -60,26 +60,29 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
         shopItem && (
           <div
             className="rounded-[10px] flex flex-col items-start p-4 gap-2 w-full lg:w-[370px]"
-            // style={{
-            //   backgroundImage: `linear-gradient(180deg, #38383850 0, #38383850 100%), url(${
-            //     BgList[index % 3]
-            //   })`,
-            //   backgroundRepeat: "no-repeat",
-            //   backgroundSize: "cover",
-            //   backgroundPosition: "bottom",
-            // }}
+            style={{
+              backgroundImage: `linear-gradient(180deg, #38383850 0, #38383899 100%), url(${
+                BgList[index % 3]
+              })`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "bottom",
+            }}
           >
             <div className="flex justify-between items-center w-full">
               <h3 className=" text-center text-base font-normal text-[#FEF3E9]">
                 {shopItem.title + " " + level2farsi(shopItem.detail.level)}
               </h3>
-              <h4 className="text-center text-[#fef3e9] opacity-70 text-sm font-normal">
+              <h4 className="text-center text-[#fef3e9] opacity-90 text-sm font-normal">
                 {addToman(
                   English2Persian(
-                    insertDelimEveryThreeDigits(shopItem.detail.level)
+                    insertDelimEveryThreeDigits(shopItem.detail.price)
                   )
                 )}
               </h4>
+            </div>
+            <div>
+              <h4 className="text-center text-[#fef3e9] opacity-90 text-sm font-normal">آذر ماه</h4>
             </div>
             {status.isLoading ? (
               <div className={`text-[#FEF4EA] bg-[#FEF3E9] btn-shop`}>
@@ -96,7 +99,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
                 onClick={() => {
                   onQuantityChange("add", status.id)(shopItem.id);
                 }}
-                className={`text-[#58423a] bg-[#FEF3E9] btn-shop`}
+                className={`text-[#58423a] bg-[#fef3e9b4] btn-shop`}
               >
                 افزودن به سبد خرید
                 <BasketSVG />
@@ -106,7 +109,7 @@ const ShopCourseCard: React.FC<IShopCourseCard> = ({
                 onClick={() => {
                   onQuantityChange("delete", status.id)(shopItem.id);
                 }}
-                className={`text-[#58423a] bg-[#D48B71] btn-shop`}
+                className={`text-[#58423a] bg-[#d48b71c2] btn-shop`}
               >
                 حذف از سبد خرید
                 <TrashSVG />

@@ -46,7 +46,7 @@ const Terms: FC = () => {
   }, []);
 
   return (
-    <div className={`w-full h-full p-sm flex flex-col items-center space-y-sm`}>
+    <div className={`w-full h-screen p-sm flex flex-col items-center space-y-sm`}>
       <div className="w-full lg:w-3/5 flex flex-col justify-center items-center space-y-sm">
         <SearchInput
           value={search}

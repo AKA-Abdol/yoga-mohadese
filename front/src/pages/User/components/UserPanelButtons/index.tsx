@@ -27,14 +27,12 @@ const UserPanelButtons: React.FC<IUserPanelButtons> = ({
     },
     [basePath, navigate]
   );
-
+  // ${endPath === routes[index] && "btn-user-panel-controller-active"}
   return (
     <div className="flex flex-nowrap gap-2 mt-2 mb-4 mr-4 overflow-y-auto">
       {pages.map((pages, index) => (
         <Button
-          className={`btn-user-panel-controller w-28 mr-2 ${
-            endPath === routes[index] && "btn-user-panel-controller-active"
-          } `}
+          className={`btn-user-panel-controller w-28 mr-2 `}
           onClick={handleButtonClick(routes[index])}
           key={`nav-${routes[index]}`}
         >

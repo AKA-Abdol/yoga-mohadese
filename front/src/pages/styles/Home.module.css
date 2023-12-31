@@ -1,7 +1,7 @@
 .bg {
   background-image: url(../../assets/images/homebg.jpg);
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: center;
   background-size: cover;
   opacity: 0;
   animation: fade-in 1s 2s forwards cubic-bezier(0.11, 0, 0.5, 0);
@@ -20,16 +20,19 @@
   flex-direction: column;
   color: #31393cca;
 }
+
 .homeh2 {
   transform: scale(0.94);
   animation: scale 1s forwards cubic-bezier(0.5, 1, 0.89, 1);
   background-color: none;
 }
+
 @keyframes scale {
   100% {
     transform: scale(1);
   }
 }
+
 .three-words1,
 .three-words2,
 .three-words3 {
@@ -37,26 +40,31 @@
   filter: blur(1);
   font-size: 36px;
 }
+
 .three-words1 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
   animation-delay: .5s;
 }
+
 .three-words2 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
   margin-right: 4rem;
   animation-delay: 1s;
 }
+
 .three-words3 {
   animation: fade-out 0.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
   margin-right: 4rem;
   animation-delay: 1.5s;
 }
+
 @keyframes fade-out {
   100% {
     opacity: 0;
     filter: blur(10px);
   }
 }
+
 /* CENTER BUTTON */
 .centerBtn {
   opacity: 0;
@@ -66,18 +74,20 @@
   background-color: transparent;
   padding: 0.75rem 1.75rem;
   border-radius: 50px;
-  border: 1px solid #31393C;
+  border: 1px solid #EDEEE8;
   font-family: inherit;
   transition: all 0.8s ease;
   animation: fade-in 1s 2.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
   position: fixed;
-  bottom: 6vh;
+  bottom: 5vh;
   left: calc(50vw - 80px);
 }
+
 .centerBtn:hover {
   background-color: #EDEEE8;
   border: 1px solid #EDEEE8;
 }
+
 .ywm {
   opacity: 0;
   transform: scale(0.94);
@@ -85,9 +95,15 @@
   text-decoration: none;
   font-family: inherit;
   font-size: 22px;
-  color: #31393C;
+  color: #EDEEE8;
   animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  transition: all 0.8s ease;
 }
+
+.ywm:hover {
+  color: #31393C;
+}
+
 @keyframes fade-in {
   100% {
     opacity: 1;

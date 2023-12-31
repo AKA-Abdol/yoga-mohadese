@@ -42,7 +42,9 @@ const Player: FC<IDrawerState> = ({ drawerShowState }) => {
   });
 
   useEffect(() => {
-    if (drawerShowState === "show" && videoState === "play") toggleVideoState();
+    if (drawerShowState === "show" && videoState === "play") {
+      toggleVideoState();
+    }
   }, [drawerShowState]);
 
   const CountUpSeenTime = useCallback(() => {
@@ -55,11 +57,14 @@ const Player: FC<IDrawerState> = ({ drawerShowState }) => {
 
   const toggleVideoState = useCallback(() => {
     if (!videoRef.current) return;
+    
     if (videoState === "pause") {
       videoRef.current.play();
+      console.log("NOW SETTING PLAY");
       setVideoState("play");
     } else {
       videoRef.current.pause();
+      console.log("NOW SETTING PAUSE");
       setVideoState("pause");
     }
   }, [videoState]);
@@ -171,8 +176,10 @@ const Player: FC<IDrawerState> = ({ drawerShowState }) => {
         onPause={() => setVideoState("pause")}
         autoPlay
       />
-      <VideoController onClick={toggleVideoState} />
-      <QualitySetting qualities={qualities} drawerShowState={drawerShowState} />
+      {drawerShowState === "hidden" && (
+        <VideoController onClick={toggleVideoState} />
+      )}
+      {drawerShowState === "hidden" && <QualitySetting qualities={qualities} />}
     </div>
   );
 };
@@ -197,7 +204,7 @@ const VideoController = (props: VideoControllerProps) => {
 interface QualitySettingProps {
   qualities: QualityItem[];
 }
-const QualitySetting = (props: QualitySettingProps & IDrawerState) => {
+const QualitySetting = (props: QualitySettingProps) => {
   const [dropdownState, setDropdownState] = useState<"show" | "hidden">(
     "hidden"
   );
@@ -207,7 +214,7 @@ const QualitySetting = (props: QualitySettingProps & IDrawerState) => {
   return (
     <div
       className={classNames(
-        `${props.drawerShowState === "show" ? "hidden" : "fixed top-2 right-2 z-[60]"}`,
+        "fixed top-2 right-2 z-[60]",
         "cursor-pointer",
         "flex flex-row-reverse"
       )}
@@ -237,7 +244,7 @@ const QualitySetting = (props: QualitySettingProps & IDrawerState) => {
         src={qualitySettingIcon}
         alt="Quality"
         onClick={toggleDropdownState}
-        className="w-14 h-14"
+        className="w-10 h-10"
       />
     </div>
   );

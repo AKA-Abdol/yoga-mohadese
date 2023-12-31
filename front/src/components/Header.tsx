@@ -5,13 +5,14 @@ import BasketSVG from "src/assets/svgs/BasketSVG";
 import { Link, useLocation } from "react-router-dom";
 import { MyContext } from "./layout/BodyLayout";
 import NavMenu from "./ui/NavMenu/NavMenu";
+
 export default function Header() {
   const location = useLocation();
   const [isMenuLight, setIsMenuLight] = useState<boolean>(false);
   const { firstname } = useContext(MyContext);
 
   useEffect(() => {
-    if (location.pathname === "/contact") setIsMenuLight(true);
+    if (location.pathname === "/contact" || location.pathname === "/home") setIsMenuLight(true);
   }, []);
 
   return (

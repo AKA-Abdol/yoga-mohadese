@@ -3,7 +3,6 @@ import { ITermApi } from "../../types";
 import { UseQueryResult } from "@tanstack/react-query";
 
 export interface TermControllerProps {
-  title?: string;
 }
 
 export interface WithTerm {

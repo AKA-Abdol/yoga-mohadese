@@ -24,7 +24,7 @@ const SessionList: FC<WithTerm> = (props) => {
       ) : term.isLoading ? (
         <Loading textColor="light" />
       ) : (
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-wrap flex-col items-center gap-4 w-full lg:flex-row lg:justify-between">
           {term.data.course.videos.length ? (
             term.data.course.videos.map((video) => (
               <SessionItem data={video} key={`${video.id}`} />

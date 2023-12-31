@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <main className="w-screen h-screen overflow-hidden flex justify-center items-center flex-col">
-      {/* <div className={styles.bg}></div> */}
+      <div className={styles.bg}></div>
       <Header />
       <h2 className={`${styles.centerWords} ${styles.homeh2}`}>
         <span className={styles["three-words1"]}>برخیز</span>
@@ -17,9 +17,9 @@ export default function Home() {
           شروع کنید
         </Link>
       </div>
-      <footer>
+      <footer className="z-10">
         <a
-          className="w-20 h-20 fixed bottom-0 left-0 border-2 border-gray-500 rounded-sm"
+          className="w-20 h-20 fixed bottom-2 left-2 border-2 border-gray-500 rounded-sm bg-[#ffffff50]"
           referrerPolicy="origin"
           target="_blank"
           href="https://trustseal.enamad.ir/?id=434829&Code=6tNi2vHC0VJSc5EjQb1Nwskrjs45M2jD"
