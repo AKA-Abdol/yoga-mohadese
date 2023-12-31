@@ -29,7 +29,7 @@ const AddTerm: FC = () => {
   }
 
   return (
-    <div className={`w-full h-full px-lg py-sm flex justify-center`}>
+    <div className={`w-full h-screen px-lg py-sm flex justify-center`}>
       <form className="h-full w-full lg:w-1/2" onSubmit={formik.handleSubmit}>
         <div
           className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg"
@@ -43,6 +43,16 @@ const AddTerm: FC = () => {
             name="title"
             error={formik.errors.title}
             value={formik.values.title}
+          />
+          <Input
+            onChange={formik.handleChange}
+            placeholder="قیمت"
+            className="text-center w-full input-primary-theme"
+            type="number"
+            id="price"
+            name="price"
+            error={formik.errors.price}
+            value={formik.values.price}
           />
           <SelectLevel
             onChange={formik.handleChange}

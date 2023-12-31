@@ -28,11 +28,11 @@ const VideoPlayer: FC = () => {
 
   return (
     <DrawerContext.Provider value={{ onClose: closeDrawerState }}>
-      <div className={classNames("w-full", "relative", "bg-black",)}>
+      <div className={classNames("w-screen", "relative", "bg-black")}>
         <Drawer show={drawerShowState === "show"}>
           <TermController title={`سلام ${myContext.firstname} عزیز`} />
         </Drawer>
-        <div className="absolute top-0 right-0 p-sm z-10">
+        <div className="fixed top-2 left-0 p-sm z-[80]">
           <OpenCloseButton
             onToggle={toggleDrawerState}
             show={drawerShowState === "show"}

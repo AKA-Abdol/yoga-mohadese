@@ -6,6 +6,7 @@ export interface ITerm {
   level: Level;
   description: string;
   range: DateRange;
+  price: number;
 }
 
 export interface ITermInput extends Omit<ITerm, "level"> {
@@ -17,4 +18,5 @@ export const TermInitialValues: ITermInput = {
   level: "",
   description: "",
   range: [],
+  price: 0,
 };

@@ -47,10 +47,11 @@ const TermVideos: FC = () => {
           title={term.data.course.title}
           description={makeTextShort(term.data.course.description, 40)}
           level={term.data.course.level}
+          price={term.data.course.price}
         />
       </div>
       <div className="w-full lg:w-3/5 py-md flex flex-col space-y-sm">
-        <div className="border-4 border-red-800">
+        <div>
           {term.data.course.videos
             .sort((first, second) => first.num - second.num)
             .map((video) => (

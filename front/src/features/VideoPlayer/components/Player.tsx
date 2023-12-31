@@ -19,11 +19,11 @@ import { QualityItem } from "./Player.types";
 import qualitySettingIcon from "src/assets/images/setting-icon.png";
 import { TERM_VIDEO_URL } from "src/pages/Admin/Terms/[id]/videos/api.data";
 
-interface IPlayer {
+interface IDrawerState {
   drawerShowState: "show" | "hidden";
 }
 
-const Player: FC<IPlayer> = ({ drawerShowState }) => {
+const Player: FC<IDrawerState> = ({ drawerShowState }) => {
   const [videoState, setVideoState] = useState<"play" | "pause">("play");
   const [seenTime, setSeenTime] = useState(1);
   const [lastSeen, setLastSeen] = useState(0);
@@ -156,10 +156,14 @@ const Player: FC<IPlayer> = ({ drawerShowState }) => {
   )[0];
 
   return (
-    <>
+    <div
+      className={`${
+        drawerShowState === "show" ? "" : "fixed top-0 right-0 z-[60]"
+      }`}
+    >
       <video
         ref={videoRef}
-        className={`max-w-[100vw] max-h-[100vh]  min-w-[100vw] min-h-[100vh] w-[100vw] h-[100vh] object-contain peer`}
+        className={`w-screen h-screen object-contain peer bg-black`}
         controls
         controlsList="nodownload"
         poster={selectedSessionVideo.thumbnail}
@@ -168,8 +172,8 @@ const Player: FC<IPlayer> = ({ drawerShowState }) => {
         autoPlay
       />
       <VideoController onClick={toggleVideoState} />
-      <QualitySetting qualities={qualities} />
-    </>
+      <QualitySetting qualities={qualities} drawerShowState={drawerShowState} />
+    </div>
   );
 };
 
@@ -193,7 +197,7 @@ const VideoController = (props: VideoControllerProps) => {
 interface QualitySettingProps {
   qualities: QualityItem[];
 }
-const QualitySetting = (props: QualitySettingProps) => {
+const QualitySetting = (props: QualitySettingProps & IDrawerState) => {
   const [dropdownState, setDropdownState] = useState<"show" | "hidden">(
     "hidden"
   );
@@ -201,7 +205,13 @@ const QualitySetting = (props: QualitySettingProps) => {
     setDropdownState((prevState) => (prevState === "show" ? "hidden" : "show"));
   }, []);
   return (
-    <div className={classNames("absolute top-2 left-2 cursor-pointer", "flex")}>
+    <div
+      className={classNames(
+        `${props.drawerShowState === "show" ? "hidden" : "fixed top-2 right-2 z-[60]"}`,
+        "cursor-pointer",
+        "flex flex-row-reverse"
+      )}
+    >
       <ul
         tabIndex={0}
         className={classNames(

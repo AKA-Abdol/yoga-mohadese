@@ -10,6 +10,7 @@ export interface ITermApi {
   description: string;
   start_date: string;
   end_date: string;
+  price: number;
 }
 
 export interface ApiTermSchema {

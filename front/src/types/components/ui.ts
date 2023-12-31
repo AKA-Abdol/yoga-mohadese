@@ -10,7 +10,7 @@ export interface InputProps {
   containerClassName?: string;
   type?: HTMLInputTypeAttribute;
   onChange: (e: ChangeEvent<any>) => void;
-  value: string;
+  value: string | number;
   placeholder: string;
   error?: string;
   id?: string;

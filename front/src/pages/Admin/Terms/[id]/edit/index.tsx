@@ -49,7 +49,7 @@ const TermEdit: FC = () => {
   }
 
   return (
-    <div className={`w-full h-full px-lg py-sm flex justify-center`}>
+    <div className={`w-full h-screen px-lg py-sm flex justify-center`}>
       <form className="h-full w-full lg:w-1/2" onSubmit={formik.handleSubmit}>
         <div
           className="w-full h-full flex flex-col justify-center space-y-md lg:space-y-lg"

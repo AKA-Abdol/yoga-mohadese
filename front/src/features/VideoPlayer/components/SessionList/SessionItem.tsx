@@ -5,6 +5,7 @@ import { DrawerContext } from "../..";
 import classNames from "classnames";
 import { English2Persian, number2PersianOrdinal } from "src/utils/convertors";
 import PlayTriangleSVG from "src/assets/svgs/PlayTriangleSVG";
+import { makeTextShort } from "src/utils/textManuplator";
 
 const SessionItem: FC<SessionItemProps> = (props) => {
   const videoContext = useContext(VideoContext);
@@ -34,11 +35,11 @@ const SessionItem: FC<SessionItemProps> = (props) => {
       >{`جلسه ${number2PersianOrdinal(props.data.num - 1)}`}</p>
       <p className=" text-lg text-[#fef3e9] mt-auto mb-2">{props.data.title}</p>
       <div className="flex justify-between items-center border-t-2 border-[#fef3e9b6] pt-2">
-        <p className="text-[#fef3e9b6] text-sm">{"description"}</p> {/* it probably needs text shorter */}
+        <p className="text-[#fef3e9b6] text-sm overflow-hidden">
+          {props.data.description && makeTextShort(props.data.description, 20)}
+        </p>
         <div className="flex gap-1 items-center">
-          <p className="text-[#fef3e9b6] text-sm flex-row gap-2">
-            {"time"}
-          </p>
+          <p className="text-[#fef3e9b6] text-sm flex-row gap-2">{"time"}</p>
           <PlayTriangleSVG />
         </div>
       </div>

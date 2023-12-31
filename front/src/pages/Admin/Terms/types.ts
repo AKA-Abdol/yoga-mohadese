@@ -17,6 +17,7 @@ export const termValidationSchema = Yup.object().shape({
   level: Yup.string().max(1, "انتخاب کنید").required("الزامی"),
   description: Yup.string().required("الزامی"),
   range: Yup.array().min(2, "بازه انتخاب کنید").required("الزامی"),
+  price: Yup.number().required("الزامی"),
 });
 
 export interface DeleteModalProps extends Omit<ModalProps, "children"> {
@@ -36,5 +37,6 @@ export const initialDeleteModalState: IDeleteModalState = {
     title: "",
     description: "",
     range: [],
+    price: 0,
   },
 };
