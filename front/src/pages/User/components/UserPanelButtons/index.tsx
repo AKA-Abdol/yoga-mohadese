@@ -6,6 +6,7 @@ import useCustomLocation from "src/hooks/useCustomLocation";
 interface IUserPanelButtons {
   pages: Array<string>;
   routes: Array<string>;
+  svgs: Array<ReactNode>;
   setUserPanelRoute: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -13,6 +14,7 @@ const UserPanelButtons: React.FC<IUserPanelButtons> = ({
   pages,
   routes,
   setUserPanelRoute,
+  svgs,
 }) => {
   const [basePath, endPath] = useCustomLocation();
   const navigate = useNavigate();
@@ -27,15 +29,16 @@ const UserPanelButtons: React.FC<IUserPanelButtons> = ({
   );
 
   return (
-    <div>
+    <div className="flex flex-nowrap gap-2 mt-2 mb-4 mr-4 overflow-y-auto">
       {pages.map((pages, index) => (
         <Button
-          className={`btn-primary-theme w-28 mr-2 ${
-            endPath === routes[index] && "btn-primary-active"
-          }`}
+          className={`btn-user-panel-controller w-28 mr-2 ${
+            endPath === routes[index] && "btn-user-panel-controller-active"
+          } `}
           onClick={handleButtonClick(routes[index])}
           key={`nav-${routes[index]}`}
         >
+          {svgs[index]}
           {pages}
         </Button>
       ))}

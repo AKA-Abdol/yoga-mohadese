@@ -61,6 +61,14 @@ div {
   @apply h-6 rounded-[4px] text-[10px] flex items-center gap-2 bg-none justify-center w-full;
 }
 
+.btn-user-panel-controller {
+  @apply border border-[#58423A] rounded-[32px] flex gap-2 items-center text-sm whitespace-nowrap text-[#58423A] px-2 py-1 w-auto
+}
+
+.btn-user-panel-controller-active {
+    @apply bg-[#58423A] text-[#D48B71] 
+}
+
 /* dropdown multi select styles */
 .rmsc {
   --rmsc-main: #D6CCC2 !important;

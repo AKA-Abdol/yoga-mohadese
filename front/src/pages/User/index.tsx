@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect, useState } from "react";
 import VideoContextProvider from "src/features/VideoPlayer/VideoContext";
-import UserPanel from "./components/UserPanelButtons";
+import UserPanelButtons from "./components/UserPanelButtons";
 import classNames from "classnames";
 import NavMenu from "src/components/ui/NavMenu/NavMenu";
 import Button from "react-multi-date-picker/components/button";
@@ -9,6 +9,8 @@ import LogOut from "src/assets/svgs/LogOut";
 import { Outlet, useNavigate } from "react-router-dom";
 import { MyContext } from "src/components/layout/BodyLayout";
 import RemainedDays from "src/features/VideoPlayer/components/TermController/RemainedDays";
+import GraduationHat from "src/assets/svgs/GraduationHat";
+import Papers from "src/assets/svgs/Papers";
 
 const User: FC = () => {
   const [userPanelRoute, setUserPanelRoute] = useState<string>("activeterms");
@@ -46,9 +48,10 @@ const User: FC = () => {
           </div>
           <p className="text-[#58423A] text-xl pr-8">{`سلام ${contextData.firstname} عزیز`}</p>
           {userPanelRoute === "activeterms" && <RemainedDays />}
-          <UserPanel
+          <UserPanelButtons
             pages={["فاکتورهای گذشته", "دوره های فعال"]}
             routes={["paymenthistory", "activeterms"]}
+            svgs={[<Papers />, <GraduationHat />]}
             setUserPanelRoute={setUserPanelRoute}
           />
         </div>
