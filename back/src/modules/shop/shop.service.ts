@@ -138,7 +138,7 @@ export class ShopService {
   }
 
   private getPaymentCallbackUrl(gateway: string): string {
-    return `shop/gateway/${gateway}/verify`;
+    return `${process.env.REDIRECT_BASE_URL}/shop/gateway/${gateway}/verify`;
   }
 
   async submitOrder(userId: string, input: InSubmitOrderBody): Promise<string> {
@@ -155,6 +155,7 @@ export class ShopService {
       totalAmount,
       input.gateway,
       this.getPaymentCallbackUrl(input.gateway),
+      'پرداخت سبد خرید فروشگاه یوگا محدثه',
     );
     return gatewayLink;
   }

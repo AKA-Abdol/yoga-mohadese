@@ -12,6 +12,10 @@ interface FailedPaymentVerification {
   status: PaymentVerificationStatus.NOT_VERIFIED;
 }
 
+export const failedPaymentVerification: FailedPaymentVerification = {
+  status: PaymentVerificationStatus.NOT_VERIFIED,
+};
+
 export type PaymentVerification =
   | SuccessfulPaymentVerification
   | FailedPaymentVerification;
