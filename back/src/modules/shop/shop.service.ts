@@ -155,6 +155,7 @@ export class ShopService {
       totalAmount,
       input.gateway,
       this.getPaymentCallbackUrl(input.gateway),
+      'پرداخت سبد خرید فروشگاه یوگا محدثه',
     );
     return gatewayLink;
   }

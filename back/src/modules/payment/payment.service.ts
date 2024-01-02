@@ -48,9 +48,14 @@ export class PaymentService {
     amount: number,
     gatewayType: Gateway,
     callbackUrl: string,
+    description = 'خرید از یوگا محدثه',
   ) {
     const paymentGateway = this.getPaymentGateWay(gatewayType);
-    const gateway = await paymentGateway.createGateway(amount, callbackUrl);
+    const gateway = await paymentGateway.createGateway(
+      amount,
+      callbackUrl,
+      description,
+    );
 
     await this.paymentRepo.create({
       userId: new mongoose.Types.ObjectId(userId),
