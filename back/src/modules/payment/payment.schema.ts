@@ -3,7 +3,7 @@ import { PaymentStatus } from './enums/payment-status.enum';
 import mongoose from 'mongoose';
 import { Gateway } from './enums/gateway.enum';
 
-@Schema()
+@Schema({ timestamps: true })
 export class Payment {
   @Prop()
   gateway: Gateway;
@@ -25,6 +25,12 @@ export class Payment {
 
   @Prop()
   maskedCardNo: string;
+
+  @Prop({ default: mongoose.now() })
+  createdAt: Date;
+
+  @Prop({ default: mongoose.now() })
+  updatedAt: Date;
 }
 
 export const PaymentSchema = SchemaFactory.createForClass(Payment);

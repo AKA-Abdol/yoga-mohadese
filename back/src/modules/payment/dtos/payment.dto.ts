@@ -9,6 +9,8 @@ export class PaymentDto {
   amount: number;
   transactionNo?: number;
   maskedCardNo?: string;
+  createdAt: Date;
+  updateAt: Date;
 
   static fromPayment(payment: MongoDoc<Payment>): PaymentDto {
     const dto = new PaymentDto();
@@ -18,6 +20,8 @@ export class PaymentDto {
     dto.amount = payment.amount;
     dto.transactionNo = payment.transactionNo;
     dto.maskedCardNo = payment.maskedCardNo;
+    dto.createdAt = payment.createdAt;
+    dto.updateAt = payment.updatedAt;
     return dto;
   }
 }
