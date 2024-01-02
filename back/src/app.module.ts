@@ -10,7 +10,9 @@ import { PaymentModule } from './modules/payment/payment.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     MongooseModule.forRoot(
       `mongodb://${process.env.MONGO_HOST}/${process.env.MONGO_DB}`,
     ),

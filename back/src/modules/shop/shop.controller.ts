@@ -26,12 +26,16 @@ import { ZarinpalCallbackQueryDto } from 'src/modules/payment/services/zarinpal/
 import { Gateway } from 'src/modules/payment/enums/gateway.enum';
 import { PaymentVerificationStatus } from 'src/modules/payment/enums/payment-verification-status.enum';
 import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @ApiTags('Shop')
 @UseGuards(RolesGuard)
 @Controller('shop')
 export class ShopController {
-  constructor(private readonly shopService: ShopService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly shopService: ShopService,
+  ) {}
 
   @Get('/courses')
   @ApiBearerAuth()
@@ -111,7 +115,9 @@ export class ShopController {
       );
 
     res.redirect(
-      `${process.env.PAYMENT_REDIRECT_URL}/${paymentVerification.paymentId}`,
+      `${this.configService.get<string>('PAYMENT_REDIRECT_URL')}/${
+        paymentVerification.paymentId
+      }`,
     );
   }
 

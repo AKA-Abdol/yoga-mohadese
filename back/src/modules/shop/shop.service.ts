@@ -26,10 +26,12 @@ import { TypeCart } from './cart/dtos/type-cart.dto';
 import { PaymentService } from 'src/modules/payment/payment.service';
 import { InSubmitOrderBody } from './dtos/in-submit-order.dto';
 import { Gateway } from 'src/modules/payment/enums/gateway.enum';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ShopService {
   constructor(
+    private readonly configService: ConfigService,
     private readonly cartService: CartService,
     private readonly courseService: CourseService,
     private readonly orderService: OrderService,
@@ -138,7 +140,9 @@ export class ShopService {
   }
 
   private getPaymentCallbackUrl(gateway: string): string {
-    return `http://yogamohadeseh.ir/api/shop/gateway/${gateway}/verify`;
+    return `${this.configService.get<string>(
+      'REDIRECT_BASE_URL',
+    )}/shop/gateway/${gateway}/verify`;
   }
 
   async submitOrder(userId: string, input: InSubmitOrderBody): Promise<string> {

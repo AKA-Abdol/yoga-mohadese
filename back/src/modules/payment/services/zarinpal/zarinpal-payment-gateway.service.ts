@@ -20,10 +20,14 @@ import {
 import { IZarinpalVerifyResponse } from './interfaces/verify-payment-res.interface';
 import { IZarinpalVerifyRequest } from './interfaces/verify-payment-req.interface';
 import { ZarinpalPaymentVerificationStatus } from './enums/payment-verification-status.enum';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ZarinpalPaymentGateway implements PaymentGateway {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly configService: ConfigService,
+  ) {}
   async createGateway(
     amount: number,
     callbackUrl: string,
@@ -33,7 +37,7 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
       amount,
       callback_url: callbackUrl,
       description,
-      merchant_id: getMerchantId(),
+      merchant_id: this.configService.get<string>('ZARINPAL_MERCHANT_ID') ?? '',
       currency: Currency.TOMAN,
     };
     console.log(requestBody);
@@ -61,7 +65,7 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
     const requestBody: IZarinpalVerifyRequest = {
       amount,
       authority: verificationId,
-      merchant_id: getMerchantId(),
+      merchant_id: this.configService.get<string>('ZARINPAL_MERCHANT_ID') ?? '',
     };
     const { data } = await firstValueFrom(
       this.httpService.post<IZarinpalVerifyResponse>(
