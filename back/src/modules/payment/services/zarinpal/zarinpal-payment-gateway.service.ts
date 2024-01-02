@@ -13,9 +13,9 @@ import { Currency } from './enums/currency.enum';
 import { IZarinpalCreateGatewayResponse } from './interfaces/create-gateway-res.interface';
 import {
   CREATE_GATEWAY_URL,
-  MERCHANT_ID,
   VERIFY_PAYMENT_URL,
   getGatewayLink,
+  getMerchantId,
 } from './zarinpal.config';
 import { IZarinpalVerifyResponse } from './interfaces/verify-payment-res.interface';
 import { IZarinpalVerifyRequest } from './interfaces/verify-payment-req.interface';
@@ -33,7 +33,7 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
       amount,
       callback_url: callbackUrl,
       description,
-      merchant_id: MERCHANT_ID,
+      merchant_id: getMerchantId(),
       currency: Currency.TOMAN,
     };
     const { data } = await firstValueFrom(
@@ -42,7 +42,7 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
         requestBody,
       ),
     );
-    if (data.errors.length > 0)
+    if (!data.data.authority)
       throw new BadRequestException(
         'در حال حاضر امکان ساخت درگاه وجود ندارد. لطفا دقایقی دیگر دوباره مراجعه کنید',
       );
@@ -59,7 +59,7 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
     const requestBody: IZarinpalVerifyRequest = {
       amount,
       authority: verificationId,
-      merchant_id: MERCHANT_ID,
+      merchant_id: getMerchantId(),
     };
     const { data } = await firstValueFrom(
       this.httpService.post<IZarinpalVerifyResponse>(
