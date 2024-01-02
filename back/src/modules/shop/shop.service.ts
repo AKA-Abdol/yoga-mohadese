@@ -138,7 +138,7 @@ export class ShopService {
   }
 
   private getPaymentCallbackUrl(gateway: string): string {
-    return `${process.env.REDIRECT_BASE_URL}/shop/gateway/${gateway}/verify`;
+    return `http://yogamohadeseh.ir/api/shop/gateway/${gateway}/verify`;
   }
 
   async submitOrder(userId: string, input: InSubmitOrderBody): Promise<string> {
