@@ -36,12 +36,14 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
       merchant_id: getMerchantId(),
       currency: Currency.TOMAN,
     };
+    console.log(requestBody);
     const { data } = await firstValueFrom(
       this.httpService.post<IZarinpalCreateGatewayResponse>(
         CREATE_GATEWAY_URL,
         requestBody,
       ),
     );
+    console.log(data);
     if (!data.data.authority)
       throw new BadRequestException(
         'در حال حاضر امکان ساخت درگاه وجود ندارد. لطفا دقایقی دیگر دوباره مراجعه کنید',
