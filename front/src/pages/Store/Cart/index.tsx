@@ -10,12 +10,11 @@ import { useCallback, useContext, useState } from "react";
 import { StoreContext } from "../StoreContext";
 import { SUBMIT_ORDER_URL } from "../api.data";
 import api from "src/services";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "src/components/ui/Loading";
 import { ToastContainer, toast } from "react-toastify";
 
 const Cart: React.FC = ({}) => {
-  const navigate = useNavigate();
   const [redirectingStatus, setRedirectingStatus] = useState<
     "loading" | "notRedirected"
   >("notRedirected");
@@ -29,12 +28,15 @@ const Cart: React.FC = ({}) => {
 
   const submitOrder = useCallback(() => {
     setRedirectingStatus("loading");
-    const res = api.post<any, ISubmitOrderRes>(SUBMIT_ORDER_URL)({});
+    const res = api.post<any, ISubmitOrderRes>(SUBMIT_ORDER_URL)({
+      gateway: "zarinpal",
+    });
     res
       .then((response) => {
-        // console.log("THIS IS REPONSE OF SUBMIT ORDER", response);
-        if (response.paymentLink) {
-          navigate(`${response.paymentLink}`);
+        console.log(response);
+
+        if (response) {
+          window.location.replace(`${response}`);
         }
       })
       .catch((err) => {
@@ -103,9 +105,10 @@ const Cart: React.FC = ({}) => {
             <Loading size="lg" />
           </div>
         )}
-      </div>
+      </div>  
     </main>
   );
 };
 
 export default Cart;
+// http://yogamohadeseh.ir/user/payments/659596a279c02329f64e36e0

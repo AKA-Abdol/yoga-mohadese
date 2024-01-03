@@ -7,7 +7,8 @@ import { StoreContext } from "../StoreContext";
 import api from "src/services";
 import { SHOP_ADD_ITEM_URL, SHOP_DELETE_ITEM_URL } from "../api.data";
 import { IShopDataItem } from "../api.types";
-import { IShopItemStatus } from "./types";
+import { IShopItemStatus  } from "./types";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Shop: React.FC = ({}) => {
   const {
@@ -19,6 +20,8 @@ const Shop: React.FC = ({}) => {
     userData,
     isUserLoading,
   } = useContext(StoreContext);
+
+  const queryClient = useQueryClient();
 
   const [shopItemsStatusList, setShopItemsStatusList] =
     useState<IShopItemStatus[]>();
@@ -72,6 +75,7 @@ const Shop: React.FC = ({}) => {
     setShopItemsStatusList(updatedList as IShopItemStatus[]);
   };
 
+
   const onQuantityChange = (action: "add" | "delete", id: string) => {
     return (itemId: string) => {
       changeLoadingStatus(id, true);
@@ -84,6 +88,7 @@ const Shop: React.FC = ({}) => {
           // console.log(res);
           changeLoadingStatus(id, false);
           updateItemsStatus(id);
+          queryClient.invalidateQueries(["cart"]);
         })
         .catch((err) => {
           changeLoadingStatus(id, false);

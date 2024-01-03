@@ -1,0 +1,1 @@
+export const PAYMENT_DATA_URL = "/api/payment/"   

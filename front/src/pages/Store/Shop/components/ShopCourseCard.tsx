@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import DownArrow from "src/assets/svgs/DownArrow";
 import ClickToShowBox from "src/components/ui/ClickToShowBox";
 import { yogaLevels } from "src/assets/docs/yogaLevels";
-import Button from "src/components/ui/Button";
 import TrashSVG from "src/assets/svgs/TrashSVG";
 import ShopItemBG1 from "src/assets/images/shopItem1.png";
 import ShopItemBG2 from "src/assets/images/shopItem2.png";
