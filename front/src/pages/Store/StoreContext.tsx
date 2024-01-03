@@ -20,7 +20,7 @@ interface IStoreContextData {
   isCartLoading: boolean;
   isCartSuccess: boolean;
   userData: any; //change it later on
-  isUserLoading:boolean;
+  isUserLoading: boolean;
 }
 
 interface StoreContextProviderProps {
@@ -69,32 +69,18 @@ const StoreContextProvider: React.FC<StoreContextProviderProps> = ({
     queryFn: api.get<Array<ICartItem>>(CART_URL),
   });
 
-  const contextValue = useMemo(
-    () => ({
-      shopData,
-      isShopError,
-      isShopLoading,
-      isShopSuccess,
-      cartData,
-      isCartError,
-      isCartLoading,
-      isCartSuccess,
-      userData,
-      isUserLoading,
-    }),
-    [
-      shopData,
-      isShopError,
-      isShopLoading,
-      isShopSuccess,
-      cartData,
-      isCartError,
-      isCartLoading,
-      isCartSuccess,
-      userData,
-      isUserLoading,
-    ]
-  ); 
+  const contextValue = {
+    shopData,
+    isShopError,
+    isShopLoading,
+    isShopSuccess,
+    cartData,
+    isCartError,
+    isCartLoading,
+    isCartSuccess,
+    userData,
+    isUserLoading,
+  };
 
   return (
     <StoreContext.Provider value={contextValue}>
