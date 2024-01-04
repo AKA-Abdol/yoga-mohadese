@@ -7,7 +7,7 @@ import {
 import { OutCreateGateway } from '../../interfaces/out-create-gateway.interface';
 import { PaymentVerificationStatus } from 'src/modules/payment/enums/payment-verification-status.enum';
 import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
+import { Observable, catchError, firstValueFrom } from 'rxjs';
 import { IZarinpalCreateGatewayRequest } from './interfaces/create-gateway-req.interface';
 import { Currency } from './enums/currency.enum';
 import { IZarinpalCreateGatewayResponse } from './interfaces/create-gateway-res.interface';
@@ -21,6 +21,7 @@ import { IZarinpalVerifyResponse } from './interfaces/verify-payment-res.interfa
 import { IZarinpalVerifyRequest } from './interfaces/verify-payment-req.interface';
 import { ZarinpalPaymentVerificationStatus } from './enums/payment-verification-status.enum';
 import { ConfigService } from '@nestjs/config';
+import { AxiosError } from 'axios';
 
 @Injectable()
 export class ZarinpalPaymentGateway implements PaymentGateway {
@@ -42,10 +43,15 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
     };
     console.log(requestBody);
     const { data } = await firstValueFrom(
-      this.httpService.post<IZarinpalCreateGatewayResponse>(
-        CREATE_GATEWAY_URL,
-        requestBody,
-      ),
+      this.httpService
+        .post<IZarinpalCreateGatewayResponse>(CREATE_GATEWAY_URL, requestBody)
+        .pipe(
+          catchError(() => {
+            throw new BadRequestException(
+              'در حال حاضر امکان ساخت درگاه وجود ندارد. لطفا دقایقی دیگر دوباره مراجعه کنید',
+            );
+          }),
+        ),
     );
     console.log(data);
     if (!data.data.authority)
@@ -67,20 +73,23 @@ export class ZarinpalPaymentGateway implements PaymentGateway {
       authority: verificationId,
       merchant_id: this.configService.get<string>('ZARINPAL_MERCHANT_ID') ?? '',
     };
-    const { data } = await firstValueFrom(
-      this.httpService.post<IZarinpalVerifyResponse>(
-        VERIFY_PAYMENT_URL,
-        requestBody,
-      ),
-    );
+    try {
+      const { data } = await firstValueFrom(
+        this.httpService.post<IZarinpalVerifyResponse>(
+          VERIFY_PAYMENT_URL,
+          requestBody,
+        ),
+      );
+      if (!data.data.card_pan) return failedPaymentVerification;
 
-    if (data.errors.length) return failedPaymentVerification;
-
-    return {
-      status: this.getVerificationStatus(data.data.code),
-      maskedCardNo: data.data.card_pan,
-      transactionNo: data.data.ref_id,
-    };
+      return {
+        status: this.getVerificationStatus(data.data.code),
+        maskedCardNo: data.data.card_pan,
+        transactionNo: data.data.ref_id,
+      };
+    } catch (err) {
+      return failedPaymentVerification;
+    }
   }
 
   private getVerificationStatus(code: ZarinpalPaymentVerificationStatus) {
