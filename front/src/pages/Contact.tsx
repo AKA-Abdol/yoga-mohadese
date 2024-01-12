@@ -11,7 +11,7 @@ export default function Contact() {
       />
       <div className="w-full h-[100vh] bg-[#58423a80] object-cover absolute top-0 mix-blend-multiply"></div>
       <Header />
-      <div className="flex justify-center items-center flex-col w-[100vw] h-[100vh]">
+      <div className="z-[1] flex justify-center items-center flex-col w-[100vw] h-[100vh]">
         <h2 className="text-2xl text-[#FEFAF7] lg:mb-12">با ما در ارتباط باشید</h2>
         <ul className="list-none flex flex-col lg:flex-row items-center lg:items-start lg:justify-center gap-3 lg:gap-[10vw]">
           <div className="flex items-center flex-col gap-2">
