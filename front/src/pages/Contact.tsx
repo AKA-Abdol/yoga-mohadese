@@ -1,22 +1,17 @@
 import { useState } from "react";
 import Header from "src/components/Header";
-import desktopbackground from "src/assets/images/contactUs.png";
+import desktopBackground from "src/assets/images/contactUs.png";
 
 export default function Contact() {
-  const [deg, setdeg] = useState(0);
-  setTimeout(() => {
-    setdeg((deg + 1) % 360);
-  }, 30);
-
   return (
     <div className="w-screen h-screen bg-[#FEFAF7] text-[#58423A] flex flex-col items-center overflow-x-hidden">
       <img
-        src={desktopbackground}
+        src={desktopBackground}
         className="w-[200vw] h-[100vh] object-cover fixed top-0 lg:w-screen lg:h-screen"
       />
       <div className="w-full h-[100vh] bg-[#58423a80] object-cover absolute top-0 mix-blend-multiply"></div>
       <Header />
-      <div className="z-[1] flex justify-center items-center flex-col w-[100vw] h-[100vh]">
+      <div className="flex justify-center items-center flex-col w-[100vw] h-[100vh]">
         <h2 className="text-2xl text-[#FEFAF7] lg:mb-12">با ما در ارتباط باشید</h2>
         <ul className="list-none flex flex-col lg:flex-row items-center lg:items-start lg:justify-center gap-3 lg:gap-[10vw]">
           <div className="flex items-center flex-col gap-2">
