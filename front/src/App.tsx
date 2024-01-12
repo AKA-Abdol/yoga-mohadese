@@ -21,6 +21,7 @@ import Faq from "./pages/Faq";
 import PaymentHistory from "./pages/User/PaymentHistory";
 import ActiveTerms from "./pages/User/ActiveTerms";
 import PaymentResult from "./pages/User/PaymentResult";
+import MyComponent from "./components/MyComponent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<BodyLayout />}>
+            
+            {/* <Route path="postcsstest" element={<MyComponent />} /> */}
             <Route path="auth" element={<Auth />} />
             <Route path="home" element={<Home />} />
             <Route path="about" element={<About />} />

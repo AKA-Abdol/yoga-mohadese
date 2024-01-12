@@ -1,0 +1,8 @@
+.someClass {
+    @apply text-center bg-blue-500 text-white;
+}
+
+.someOtherClasses{
+    color: red;
+    background-color: aquamarine;
+}
