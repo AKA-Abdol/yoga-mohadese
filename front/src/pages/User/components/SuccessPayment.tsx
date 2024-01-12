@@ -5,7 +5,7 @@ type Props = {};
 
 const successPayment = (props: Props) => {
   return (
-    <div className="bg-[#8ca780] w-full rounded-[8px] p-4 text-justify text-white mt-10">
+    <div className="bg-green w-full rounded-[8px] p-4 text-justify text-white mt-10">
       <p>کلاس سطح ماه شما با موفقیت خریداری شد. از کلاس خود لذت ببرید</p>
       <br />
       <Link to={"/user/activeterms"} className=" animated-bg">برای شروع دوره خود به پنل کاربری خود بروید</Link>

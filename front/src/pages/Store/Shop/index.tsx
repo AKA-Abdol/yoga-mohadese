@@ -32,7 +32,6 @@ const Shop: React.FC = ({}) => {
       cartData &&
       cartData.find((cartItem) => cartItem.product.id === shopItem.id);
     if (thisItemIsInCart && thisItemIsInCart.quantity > 0) {
-      // console.log(thisItemIsInCart);
       return "inCart";
     } else {
       return "available";
@@ -71,7 +70,6 @@ const Shop: React.FC = ({}) => {
       shopItemsStatusList.map((item) =>
         item.id === id ? { ...item, isLoading: to } : item
       );
-    // console.log(updatedList);
     setShopItemsStatusList(updatedList as IShopItemStatus[]);
   };
 

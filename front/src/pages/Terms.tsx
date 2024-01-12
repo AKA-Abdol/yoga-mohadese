@@ -1,15 +1,14 @@
 import { BgCloudOne, BgCloudTwo } from "src/components/ui/BgClouds";
 import Header from "../components/Header";
-import styles from "./styles/Terms.module.css";
 export default function Terms() {
   return (
-    <main className="w-screen min-h-screen bg-[#FEFAF7] text-[#58423A]">
+    <main className="w-screen min-h-screen bg-white text-brown">
       <Header />
       <BgCloudOne />
       <BgCloudTwo />
-      <div className="pt-24 px-10">
+      <div className="pt-24 px-xl">
         <h1 className="text-xl mb-6 z-10">قوانین و شرایط استفاده</h1>
-        <ul className="flex flex-col gap-4 list-disc pr-4 z-10">
+        <ul className="flex flex-col gap-4 list-disc pr-md z-10">
           <li className="text-sm z-10">
             پرتوجویانی که از خدمات کلاس آنلاین استفاده می‌کنند، اخلاقی و عرفی
             مجاز به ضبط، ‌دانلود، پخش کلاس‌ها و تحویل نام‌کاربری و رمز عبور خود
@@ -27,7 +26,7 @@ export default function Terms() {
             و پس از اتمام ماه دسترسی به کلاس‌ها به صورت خودکار قطع می‌شود.
           </li>
           <li className="text-sm z-10">لایسنس فونت سایت : ایران‌گرد</li>
-          <li className="text-sm z-10">لایسنس طراحی سایت : R.</li>
+          <li className="text-sm z-10">لایسنس طراحی سایت : VerveDevLab</li>
           <li className="text-sm z-10">
             سایت و تمامی محتویات آن مشمول قانون کپی رایت است و هرگونه استفاده از
             محتوای آن بدون اطلاع به صاحب اثر مجاز نخواهد بود.

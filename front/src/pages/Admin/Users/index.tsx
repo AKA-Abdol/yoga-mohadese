@@ -45,7 +45,7 @@ const Users: FC = () => {
       </div>
       <div className="w-full lg:w-3/5 h-full flex flex-col items-center space-y-sm py-md overflow-auto">
         {users.isLoading || users.isError ? (
-          <span className="loading loading-infinity loading-lg text-primary-dark" />
+          <span className="loading loading-infinity loading-lg text-brown" />
         ) : (
           users.data.values.map((user) => (
             <UserItem

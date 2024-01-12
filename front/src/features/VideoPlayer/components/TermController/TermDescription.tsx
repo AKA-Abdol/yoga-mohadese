@@ -9,7 +9,7 @@ const TermDescription: FC<WithTerm> = (props) => {
 
   return (
     <div className={classNames("w-full flex justify-center")}>
-      <p className="text-sm bg-primary-light text-primary-dark p-md rounded-md mb-4">
+      <p className="text-sm bg-primary-light text-brown p-md rounded-md mb-4">
         {!term.data?.course.description
           ? "محتوای مربوط به ترم در دسترس نیست"
           : term.isError

@@ -52,7 +52,7 @@ const UserItem: FC<UserItemProps> = (props) => {
           }
           className="h-full w-full flex items-center justify-center"
         >
-          <p className=" text-center text-xs md:text-sm text-primary-dark">
+          <p className=" text-center text-xs md:text-sm text-brown">
             {props.username}
           </p>
           <img alt="info" src={INFO_ICON} className="object-contain h-1/2" />

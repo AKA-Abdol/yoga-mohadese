@@ -17,7 +17,6 @@ const PaymentResult = (props: Props) => {
     queryKey: ["paymentResult"],
     queryFn: api.get<IPaymentResult>(`payments/${paymentId}`),
   });
-  console.log("THIS IS DATA FOR THE PAYMENT RESULT", data);
   return (
     <div>
       {isLoading ? (

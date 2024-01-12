@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "src/components/Header";
 import { BgCloudOne, BgCloudTwo } from "src/components/ui/BgClouds";
 import ClickToShowBox from "src/components/ui/ClickToShowBox";
@@ -61,21 +60,21 @@ const faqList = [
 
 const Faq = () => {
   return (
-    <div className="bg-[#FEFAF7]">
+    <div className="bg-white">
       <Header />
       <BgCloudOne />
       <BgCloudTwo />
-      <div className="pt-24 pb-8 px-12 flex flex-col gap-2 lg:mx-[15vw]">
-        <h2 className=" text-2xl text-[#58423A] text-center mb-6 z-10">
+      <div className="pt-24 pb-8 px-xl flex flex-col gap-2 lg:mx-[15vw]">
+        <h2 className="text-2xl text-brown text-center mb-6 z-10">
           سوالات متداول
         </h2>
         {faqList.map((item) => (
           <ClickToShowBox
             title={item.question}
             content={item.answer}
-            boxClassNames="z-10 border border-[#58423A] rounded-[4px] py-2"
-            contentClassNames={"text-[12px] text-[#58423A]"}
-            titleClassNames={"text-[#58423A]"}
+            boxClassNames="z-10 border border-brown rounded-sm py-sm"
+            contentClassNames={"text-[12px] text-brown"}
+            titleClassNames={"text-brown"}
           />
         ))}
       </div>

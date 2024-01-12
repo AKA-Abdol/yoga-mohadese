@@ -7,7 +7,7 @@ const Loading: FC<LoadingProps> = (props) => {
     <span
       className={classNames(
         "loading loading-infinity",
-        props.textColor ? `text-${props.textColor}` : "text-primary-dark",
+        props.textColor ? `text-${props.textColor}` : "text-brown",
         props.size ? `loading-${props.size}` : "loading-lg"
       )}
     />

@@ -10,7 +10,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { MyContext } from "src/components/layout/BodyLayout";
 import RemainedDays from "src/features/VideoPlayer/components/TermController/RemainedDays";
 import GraduationHat from "src/assets/svgs/GraduationHat";
-import Papers from "src/assets/svgs/Papers";
 
 const User: FC = () => {
   const [userPanelRoute, setUserPanelRoute] = useState<string>("activeterms");
@@ -21,21 +20,21 @@ const User: FC = () => {
     <VideoContextProvider>
       <main
         className={classNames(
-          "w-screen min-h-screen min-w-[100vw] max-w-[100vw] overflow-x-hidden",
+          "w-screen min-h-screen min-w-screen max-w-screen overflow-x-hidden",
           "flex flex-col items-center",
         )}
       >
-        <div className="bg-[#D48B7180] w-full">
+        <div className="bg-[#E9C3B4] w-full">
           <div
             className={classNames(
-              "w-full flex items-center justify-between py-4 pl-6 pr-4"
+              "w-full flex items-center justify-between py-md pl-6 pr-4"
             )}
           >
             <div className="relative">
               <NavMenu />
             </div>
             <Button
-              className="border-none text-base text-[#58423A] flex items-center p-0 m-0 h-fit min-h-fit max-h-fit"
+              className="border-none text-base text-brown flex items-center gap-2 p-0 m-0 h-fit min-h-fit max-h-fit"
               onClick={() => {
                 tokenPersistor.delete();
                 navigate("/");
@@ -45,14 +44,8 @@ const User: FC = () => {
               <LogOut />
             </Button>
           </div>
-          <p className="text-[#58423A] text-xl pr-8">{`سلام ${contextData.firstname} عزیز`}</p>
+          <p className="text-brown text-xl pr-8">{`سلام ${contextData.firstname} عزیز`}</p>
           {userPanelRoute === "activeterms" && <RemainedDays />}
-          {/*           <UserPanelButtons
-            pages={["فاکتورهای گذشته", "دوره های فعال"]}
-            routes={["paymenthistory", "activeterms"]}
-            svgs={[<Papers />, <GraduationHat />]}
-            setUserPanelRoute={setUserPanelRoute}
-          /> */}
           <UserPanelButtons
             pages={["دوره های فعال"]}
             routes={["activeterms"]}

@@ -38,19 +38,19 @@ export default function About() {
       <Header />
       <button
         onClick={() => setAboutState("about")}
-        className="text-[#58423A] text-4xl w-24 leading-[48px] fixed top-24 right-10 lg:right-[27vw] animated-bg"
+        className="text-brown text-4xl w-24 leading-[48px] fixed top-24 right-10 lg:right-[27vw] animated-bg"
       >
         درباره محدثه
       </button>
       <button
         onClick={() => setAboutState("classes")}
-        className="text-[#58423A] text-4xl w-24 leading-[48px] fixed top-24 left-10 lg:left-[27vw] animated-bg"
+        className="text-brown text-4xl w-24 leading-[48px] fixed top-24 left-10 lg:left-[27vw] animated-bg"
       >
         یوگا با محدثه
       </button>
       {aboutState === "about" && (
         <p
-          className={`text-justify text-[#58423A] text-sm leading-[200%] px-10 pt-60`}
+          className={`text-justify text-brown text-sm leading-[200%] px-10 pt-60`}
         >
           محدثه تلاش می‌کند آموزش‌های یوگا را برای همه کسانی که به دنبال یک پاسخ
           کامل برای ذهن و بدنشان هستند فراهم کند. پاسخی که خود محدثه بعد از یک
@@ -65,7 +65,7 @@ export default function About() {
         </p>
       )}
       {aboutState === "classes" && (
-        <div className="flex flex-col gap-4 justify-center mx-auto mb-8 pt-52 px-10">
+        <div className="flex flex-col gap-4 justify-center mx-auto mb-8 pt-52 px-xl">
           {coursesList.map((item, index) => (
             <ClickToShowBox
               key={index}
@@ -73,11 +73,11 @@ export default function About() {
               content={item.content}
               index={index}
               titleClassNames="text-center text-xl"
-              contentClassNames={"text-[12px]"}
+              contentClassNames={"text-xs mb-2"}
             />
           ))}
           <Link
-            className="text-xl text-center py-2 px-8 bg-[#c1795f] text-[#ffffff] rounded-[32px]"
+            className="text-xl text-center py-sm bg-ajori text-white rounded-md"
             state={{ data: location.pathname }}
             to={"/ticket"}
             preventScrollReset={false}

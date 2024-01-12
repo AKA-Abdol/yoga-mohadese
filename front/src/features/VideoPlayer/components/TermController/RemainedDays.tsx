@@ -35,16 +35,16 @@ const RemainedDays: FC = (props) => {
         <div className="flex gap-1">
           <p className="text-sm">
             {English2Persian(
-              `${isoStringDateDiffFromNow(term.data.course.end_date)} روز`
+              `${isoStringDateDiffFromNow(term.data.course.end_date)} روز `
             )}
+            <span className="text-sm text-white">
+              {`از دوره ${
+                term.data.course.title
+              } ${translateISOString2JalaliMonth(
+                term.data.course.start_date
+              )} ماه شما باقی مانده است.`}
+            </span>
           </p>
-          <p className="text-sm text-[#58423A50]">
-            {`از دوره ${
-              term.data.course.title
-            } ${translateISOString2JalaliMonth(
-              term.data.course.start_date
-            )} ماه شما باقی مانده است.`}
-          </p>{" "}
         </div>
       )}
     </div>

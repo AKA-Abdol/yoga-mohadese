@@ -129,13 +129,13 @@ export const SignupForm: FC<AuthFormProps> = (props) => {
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
-          <p className="text-primary-dark text-sm text-center">
+          <p className="text-brown text-sm text-center">
             قبلا اکانت داشتید؟{" "}
             <AttentionSpan onClick={props.onToggleAuth}>ورود</AttentionSpan>
           </p>
           <Link
             to={"/ticket"}
-            className="text-primary-dark text-sm text-center"
+            className="text-brown text-sm text-center"
             state={{ data: location.pathname }}
           >
             رمز عبور خود را فراموش کرده‌اید ؟

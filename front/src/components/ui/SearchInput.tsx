@@ -14,7 +14,7 @@ const SearchInput: FC<SearchInputProps> = (props) => {
           "h-full border-normal rounded-r-md bg-inherit px-3",
           "text-normal text-primary-light",
           "w-3/4 ",
-          "border-primary-dark focus:border-primary-light focus:outline-none focus:ring-0",
+          "border-brown focus:border-primary-light focus:outline-none focus:ring-0",
           "transition-colors duration-500"
         )}
         value={props.value}
@@ -22,7 +22,7 @@ const SearchInput: FC<SearchInputProps> = (props) => {
       />
       <button
         className={classNames(
-          "w-1/4 h-full bg-primary-dark rounded-l-md",
+          "w-1/4 h-full bg-brown rounded-l-md",
           "text-primary-light text-normal"
         )}
       >

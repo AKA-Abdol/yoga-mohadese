@@ -94,7 +94,7 @@ const Cart: React.FC = ({}) => {
         {userData && redirectingStatus === "notRedirected" && (
           <button
             onClick={submitOrder}
-            className="bg-[#D48B71] rounded-[32px] w-full py-4 text-[#fff] text-2xl  "
+            className="btn-primary-theme py-sm w-full md:w-1/2 self-center"
           >
             "پرداخت"
           </button>

@@ -18,7 +18,7 @@ const VideoItem: FC<VideoItemProps & WithId> = (props) => {
 
   return (
     <Card flexDirection="row" justify="between" classnames={`h-14`}>
-      <div className="h-full w-16 flex justify-center items-center rounded-md border-normal border-primary-dark">
+      <div className="h-full w-16 flex justify-center items-center rounded-md border-normal border-brown">
         <p className="text-xl text-center">
           <u>{props.num}</u>
         </p>

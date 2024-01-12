@@ -22,7 +22,7 @@ const SessionInfo: FC<SessionInfoProps> = (props) => {
 
 const Title = (props: { children: string }) => {
   return (
-    <div className="flex items-center h-full text-2xl bg-primary-light text-primary-dark px-sm rounded-r-lg">
+    <div className="flex items-center h-full text-2xl bg-primary-light text-brown px-sm rounded-r-lg">
       <p>{props.children}</p>
     </div>
   );

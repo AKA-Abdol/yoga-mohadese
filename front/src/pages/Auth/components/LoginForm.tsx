@@ -70,14 +70,14 @@ export const LoginForm: FC<AuthFormProps> = (props) => {
           )}
         </Button>
         <div className="flex flex-col justify-around gap-3">
-          <p className="text-primary-dark text-sm text-center">
+          <p className="text-brown text-sm text-center">
             قبلا ثبت نام نکرده اید؟{" "}
             <AttentionSpan onClick={props.onToggleAuth}>ثبت نام</AttentionSpan>
           </p>
           <Link
             state={{ data: location.pathname }}
             to={"/ticket"}
-            className="text-primary-dark text-sm text-center"
+            className="text-brown text-sm text-center"
           >
             رمز عبور خود را فراموش کرده‌اید ؟
             <AttentionSpan>فراموشی رمز عبور</AttentionSpan>

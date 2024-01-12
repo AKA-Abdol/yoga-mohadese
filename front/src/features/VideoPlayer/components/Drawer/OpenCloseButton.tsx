@@ -21,7 +21,7 @@ const OpenCloseButton: FC<OpenCloseButtonProps> = (props) => {
       ITS NOT USABLE IN NEW DESIGN
       <svg
         className={classNames(
-          "w-12 fill-primary-dark",
+          "w-12 fill-brown",
           props.show && "hidden"
         )}
         xmlns="http://www.w3.org/2000/svg"
