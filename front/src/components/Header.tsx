@@ -12,30 +12,29 @@ export default function Header() {
   const { firstname } = useContext(MyContext);
 
   useEffect(() => {
-    if (location.pathname === "/contact" || location.pathname === "/home") setIsMenuLight(true);
+    if (location.pathname === "/contact" || location.pathname === "/home")
+      setIsMenuLight(true);
   }, []);
 
   return (
-    <nav className=" absolute top-0 right-0 w-screen px-8 py-4 flex items-center justify-between overflow-hidden">
-      <div className="z-[1000] relative">
-        <NavMenu isMenuLight={isMenuLight} />
-        <Link
-          to={"/auth"}
-          className={`text-[#58423A] text-lg z-10 absolute right-20 top-[-16px] w-14 ${
-            isMenuLight ? "text-[#FEFAF7]" : "text-[#58423A]"
-          }`}
-        >
-          {firstname.length > 2 ? `${firstname}` : "ورود"}
-        </Link>
-        <Link
-          to={"/store/cart"}
-          className={`text-[#58423A] text-lg z-10 absolute right-36 top-[-12px]`}
-        >
-          {firstname.length > 2 && <BasketSVG isMenuLight={isMenuLight} />}
-        </Link>
-      </div>
+    <nav className="absolute top-0 right-0 w-screen px-8 py-4 flex items-center justify-between overflow-hidden">
+      <NavMenu isMenuLight={isMenuLight} />
+      <Link
+        to={"/auth"}
+        className={`text-[#58423A] text-lg z-10 absolute right-24 w-14 ${
+          isMenuLight ? "text-[#FEFAF7]" : "text-[#58423A]"
+        }`}
+      >
+        {firstname.length > 2 ? `${firstname}` : "ورود"}
+      </Link>
+      <Link
+        to={"/store/cart"}
+        className={`text-[#58423A] text-lg z-10 absolute right-40`}
+      >
+        {firstname.length > 2 && <BasketSVG isMenuLight={isMenuLight} />}
+      </Link>
       <div
-        className={`z-[1000] flex justify-center items-center transition-all duration-500 ease-in-out`}
+        className={`z-10 flex justify-center items-center transition-all duration-500 ease-in-out`}
       >
         <Link to={"/home"}>
           <img

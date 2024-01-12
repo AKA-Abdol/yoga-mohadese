@@ -18,18 +18,16 @@ const NavMenu: React.FC<INavMenu> = ({ isMenuLight = false }) => {
     { value: "سوالات متداول", to: "/faq" },
   ];
   const [menuState, setMenuState] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(true);
 
-  function handleMenu() {
+  function toggleMenuState() {
     setMenuState(!menuState);
-    setShowSignIn(!showSignIn);
   }
 
   return (
-    <div>
-      <div className={``} onClick={handleMenu}>
+    <>
+      <div onClick={toggleMenuState}>
         <div
-          className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-[32px] cursor-pointer top-0 z-50 ${
+          className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-[32px] cursor-pointer z-[100] ${
             menuState ? styles.active : styles["not-active"]
           }`}
         >
@@ -63,7 +61,7 @@ const NavMenu: React.FC<INavMenu> = ({ isMenuLight = false }) => {
         </div>
       </div>
       <div
-        className={`h-screen w-0 fixed z-40 top-0 right-0 overflow-hidden pt-20 pb-52 pr-0 flex flex-col justify-evenly transition-all duration-1000 ease-in-out bg-[rgba(254,250,247,0.5)] 
+        className={`h-screen w-0 fixed z-[99] top-0 right-0 overflow-hidden pt-20 pb-52 pr-0 flex flex-col justify-evenly transition-all duration-1000 ease-in-out bg-[rgba(254,250,247,0.5)] 
         ${
           menuState
             ? "w-[275px] transition-all duration-500 ease-in-out pr-12 border border-[#EDEEE8] backdrop-blur-[10px]"
@@ -74,12 +72,12 @@ const NavMenu: React.FC<INavMenu> = ({ isMenuLight = false }) => {
           <NavbarLinks
             to={link.to}
             value={link.value}
-            handleMenu={handleMenu}
+            handleMenu={toggleMenuState}
             menuState={menuState}
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
