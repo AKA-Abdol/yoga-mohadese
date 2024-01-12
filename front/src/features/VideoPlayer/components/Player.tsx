@@ -234,7 +234,7 @@ const QualitySetting = (props: QualitySettingProps) => {
             }}
             key={`quality-${quality.name}`}
           >
-            <a className="text-primary hover:text-primary-dark hover:bg-opacity-10 hover:bg-black">
+            <a className="text-primary hover:text-brown hover:bg-opacity-10 hover:bg-black">
               {quality.name}
             </a>
           </li>

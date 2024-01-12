@@ -5,7 +5,7 @@ type Props = {};
 
 const FailedPayment = (props: Props) => {
   return (
-    <div className="bg-[#D48B71]  w-full rounded-[8px] p-4 text-justify text-white mt-10">
+    <div className="bg-ajori  w-full rounded-[8px] p-4 text-justify text-white mt-10">
       <p>متاسفانه دوره شما با موفقیت خریداری نشد.</p>
       <br />
       <p>

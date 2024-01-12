@@ -27,7 +27,7 @@ const ClickToShowBox: React.FC<IClickToShowBox> = ({
   return (
     <div
       onClick={() => setIsExtended((prev) => !prev)}
-      className={`flex flex-col px-4 py-1 justify-center transition-all duration-300 ${
+      className={`flex flex-col px-4 py-1 justify-center transition-all duration-300 cursor-pointer ${
         boxClassNames
           ? boxClassNames
           : "text-[#58423A] rounded-[8px] border border-[#58423A]"

@@ -6,7 +6,7 @@ const Card: FC<CardProps> = (props) => {
   return (
     <div
       className={classNames(
-        "bg-primary-light text-primary-dark shadow-lg rounded-md",
+        "bg-primary-light text-brown shadow-lg rounded-md",
         `flex flex-${props.flexDirection} justify-${props.justify} items-center`,
         "p-2",
         props.onClick && "cursor-pointer",

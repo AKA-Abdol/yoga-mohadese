@@ -27,7 +27,7 @@ const DeleteModal: FC<DeleteModalProps> = (props) => {
       <div
         className={classNames(
           "w-full flex flex-col space-y-sm items-center",
-          "bg-primary-light text-primary-dark py-md",
+          "bg-primary-light text-brown py-md",
           "rounded-md"
         )}
       >

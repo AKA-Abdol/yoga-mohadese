@@ -17,8 +17,6 @@ import Header from "src/components/Header";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { error } from "console";
-import { getNumberFromMessage } from "src/utils/convertors";
 
 const TicketForm: FC = () => {
   const location = useLocation();
@@ -119,14 +117,14 @@ const TicketForm: FC = () => {
           <TextArea
             onChange={formik.handleChange}
             placeholder="توضیحات"
-            className="text-center w-full input-primary-theme text-le"
+            className="text-center w-full input-primary-theme"
             id="description"
             name="description"
             error={formik.errors.description}
             value={formik.values.description}
           />
           <div className="w-full flex flex-row justify-around">
-            <Button type="submit" className={"w-36 md:w-64 btn-primary-theme"}>
+            <Button type="submit" className={"w-full btn-primary-theme"}>
               {mutation.isLoading ? (
                 <span className="loading loading-infinity loading-lg" />
               ) : (

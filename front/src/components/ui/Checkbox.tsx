@@ -12,7 +12,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
       )}
     >
       {props.span && (
-        <span className="label-text mx-sm text-primary-dark text-center text-xs lg:text-sm">
+        <span className="label-text mx-sm text-brown text-center text-xs lg:text-sm">
           {props.span}
         </span>
       )}
@@ -22,7 +22,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           "checkbox disabled:opacity-60",
           `checkbox-${props.size}`,
           props.className,
-          "border-primary-dark"
+          "border-brown"
         )}
         checked={props.checked}
         onChange={props.onToggle}

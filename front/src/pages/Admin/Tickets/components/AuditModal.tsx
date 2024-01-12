@@ -27,12 +27,12 @@ const AuditModal: FC<AuditModalProps> = (props) => {
   return (
     <Modal show={props.show} onClose={props.onClose}>
       <div className="w-full flex flex-col">
-        <div className="w-full py-md bg-primary text-primary-dark flex flex-wrap items-center justify-around rounded-t-lg">
+        <div className="w-full py-md bg-primary text-brown flex flex-wrap items-center justify-around rounded-t-lg">
           <p>{props.data.fullName}</p>
           <p>{props.data.username}</p>
           <p>{props.data.phoneNumber}</p>
         </div>
-        <div className="w-full bg-primary-light text-primary-dark p-sm">
+        <div className="w-full bg-primary-light text-brown p-sm">
           {props.data.type === "forget-password" ? (
             <PasswordResolveBody
               ticketId={props.data.id}

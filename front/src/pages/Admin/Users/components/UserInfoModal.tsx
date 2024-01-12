@@ -33,10 +33,10 @@ const UserInfoModal: FC<UserInfoModalProps> = (props) => {
   return (
     <Modal show={props.show} onClose={props.onClose}>
       <div className="w-full flex flex-col">
-        <div className="w-full py-md bg-primary text-primary-dark flex items-center justify-around rounded-t-lg">
+        <div className="w-full py-md bg-primary text-brown flex items-center justify-around rounded-t-lg">
           <p>{props.fullName}</p>
         </div>
-        <div className="w-full bg-primary-light text-primary-dark p-sm">
+        <div className="w-full bg-primary-light text-brown p-sm">
           {isLoading || isError ? (
             <Loading />
           ) : (

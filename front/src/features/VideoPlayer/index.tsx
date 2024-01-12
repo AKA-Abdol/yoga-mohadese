@@ -31,7 +31,7 @@ const VideoPlayer: FC = () => {
         <Drawer show={drawerShowState === "show"}>
           <TermController />
         </Drawer>
-        <div className="fixed top-2 left-0 p-sm z-[80]">
+        <div className="fixed top-2 left-0 p-sm z-[120]">
           <OpenCloseButton
             onToggle={toggleDrawerState}
             show={drawerShowState === "show"}

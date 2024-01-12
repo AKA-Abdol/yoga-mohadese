@@ -38,12 +38,15 @@ div {
 }
 
 body {
-  overflow-y: scroll; /* Ensures that vertical scroll is always present to prevent layout shift */
-  scrollbar-width: none; /* For Firefox */
+  overflow-y: scroll;
+  /* Ensures that vertical scroll is always present to prevent layout shift */
+  scrollbar-width: none;
+  /* For Firefox */
 }
 
 body::-webkit-scrollbar {
-  display: none; /* For WebKit browsers like Chrome and Safari */
+  display: none;
+  /* For WebKit browsers like Chrome and Safari */
 }
 
 
@@ -52,19 +55,19 @@ body::-webkit-scrollbar {
 }
 
 .input-primary-theme {
-  @apply text-primary-dark border border-primary-dark placeholder-primary-dark focus:outline-1 focus:outline-primary-dark autofill:bg-primary-light;
+  @apply text-brown border border-primary-light placeholder-ajori focus:outline-1 focus:outline-primary autofill:bg-primary-light;
 }
 
 .btn-primary-theme {
-  @apply text-[#ffffff] border-none hover:border-primary-dark rounded-[32px] hover:text-primary-light bg-[#D48B71];
+  @apply text-white rounded-[32px] hover:text-ajori bg-ajori duration-300 hover:bg-brown hover:border-2 hover:border-ajori;
 }
 
 .btn-primary-active {
-  @apply text-primary-light border-primary-light bg-primary-dark;
+  @apply text-primary-light border-primary-light bg-brown;
 }
 
 .btn-cancel {
-  @apply text-error border-normal border-error hover:bg-error hover:text-primary-dark;
+  @apply text-error border-normal border-error hover:bg-error hover:text-brown;
 }
 
 .btn-shop {
@@ -72,11 +75,11 @@ body::-webkit-scrollbar {
 }
 
 .btn-user-panel-controller {
-  @apply border border-[#58423A] rounded-[32px] flex gap-2 items-center text-sm whitespace-nowrap text-[#58423A] px-2 py-1 w-auto
+  @apply border border-brown rounded-[32px] flex gap-2 items-center text-sm whitespace-nowrap text-brown px-2 py-1 w-auto
 }
 
 .btn-user-panel-controller-active {
-    @apply bg-[#58423A] text-[#D48B71] 
+  @apply bg-brown text-ajori
 }
 
 /* dropdown multi select styles */
@@ -105,9 +108,17 @@ video {
 }
 
 @keyframes fadeBackground {
-  0%   { opacity: 0.9; }
-  50%  { opacity: 0.1; }
-  100% { opacity: 0.9; }
+  0% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 0.9;
+  }
 }
 
 .animated-bg {

@@ -14,7 +14,7 @@ const TermSelect: FC = () => {
 
   if (videoContext.terms.length === 0)
     return (
-      <p className="text-primary-dark text-lg">
+      <p className="text-brown text-lg">
         ترمی به شما اختصاص داده نشده است!
       </p>
     );
