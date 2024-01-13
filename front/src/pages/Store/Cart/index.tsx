@@ -13,6 +13,7 @@ import api from "src/services";
 import { Link } from "react-router-dom";
 import Loading from "src/components/ui/Loading";
 import { ToastContainer, toast } from "react-toastify";
+import LoginNeeded from "../components/LoginNeeded";
 
 const Cart: React.FC = ({}) => {
   const [redirectingStatus, setRedirectingStatus] = useState<
@@ -49,24 +50,18 @@ const Cart: React.FC = ({}) => {
   }, []);
 
   return (
-    <main className="h-screen">
+    <main className="w-screen h-screen ">
       <Header />
       <ToastContainer position="top-center" rtl={true} theme="light" />
       <div className="pt-32 px-12 flex flex-col gap-6">
         {isUserLoading ? (
           <Loading />
         ) : userData === undefined ? (
-          <div className="w-full flex items-center justify-center px-12">
-            <Link to="/auth" className=" text-center text-[#58423A]">
-              لطفا برای مشاهده سبد خرید
-              <span className=" underline text-[#D48B71]"> وارد </span> حساب
-              کاربری خود شوید.
-            </Link>
-          </div>
+          <LoginNeeded />
         ) : (
           <>
-            <h4 className="text-[#58423a] text-xl ">فاکتور</h4>
-            <div className="border rounded-[8px] border-[#58423A] p-2">
+            <h4 className="text-brown text-xl ">فاکتور</h4>
+            <div className="border rounded-[8px] border-brown p-2">
               {isCartSuccess &&
                 cartData?.map((item) => (
                   <CartItem
@@ -78,8 +73,8 @@ const Cart: React.FC = ({}) => {
                   />
                 ))}
               <div className="flex justify-between pt-1">
-                <h5 className="text-[#58423A] text-base">مجموع</h5>
-                <h5 className="text-[#58423A] text-base ">
+                <h5 className="text-brown text-base">مجموع</h5>
+                <h5 className="text-brown text-base ">
                   {cartData &&
                     addToman(
                       English2Persian(
@@ -100,15 +95,14 @@ const Cart: React.FC = ({}) => {
           </button>
         )}
         {userData && redirectingStatus === "loading" && (
-          <div className="flex flex-col justify-center items-center fixed w-screen h-screen top-0 right-0 bg-[#FEFAF7] text-[#58423A]">
+          <div className="flex flex-col justify-center items-center fixed w-screen h-screen top-0 right-0 bg-[#FEFAF7] text-brown">
             <p>شما در حال انتقال به درگاه پرداخت هستید</p>
             <Loading size="lg" />
           </div>
         )}
-      </div>  
+      </div>
     </main>
   );
 };
 
 export default Cart;
-// http://yogamohadeseh.ir/user/payments/659596a279c02329f64e36e0

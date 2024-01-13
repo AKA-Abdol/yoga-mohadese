@@ -7,8 +7,9 @@ import { StoreContext } from "../StoreContext";
 import api from "src/services";
 import { SHOP_ADD_ITEM_URL, SHOP_DELETE_ITEM_URL } from "../api.data";
 import { IShopDataItem } from "../api.types";
-import { IShopItemStatus  } from "./types";
+import { IShopItemStatus } from "./types";
 import { useQueryClient } from "@tanstack/react-query";
+import LoginNeeded from "../components/LoginNeeded";
 
 const Shop: React.FC = ({}) => {
   const {
@@ -73,7 +74,6 @@ const Shop: React.FC = ({}) => {
     setShopItemsStatusList(updatedList as IShopItemStatus[]);
   };
 
-
   const onQuantityChange = (action: "add" | "delete", id: string) => {
     return (itemId: string) => {
       changeLoadingStatus(id, true);
@@ -96,22 +96,16 @@ const Shop: React.FC = ({}) => {
   };
 
   return (
-    <main className="w-[100vw] h-screen">
+    <main className="w-screen h-screen flex items-center justify-center ">
       <Header />
       {isUserLoading ? (
         <Loading />
       ) : userData == undefined ? (
-        <div className="w-full h-[100vh] flex items-center justify-center px-12">
-          <Link to="/auth" className=" text-center text-[#58423A]">
-            برای خرید دوره ها ابتدا باید
-            <span className=" underline text-[#D48B71]"> وارد </span> حساب
-            کاربری خود شوید.
-          </Link>
-        </div>
+        <LoginNeeded />
       ) : (
         <div className="pt-28 mx-12 justify-center items-center flex flex-col gap-y-4 lg:justify-start lg:gap-8 lg:flex-row lg:flex-wrap">
           {isShopLoading ? (
-              <Loading />
+            <Loading />
           ) : isShopSuccess && shopData && cartData && shopItemsStatusList ? (
             shopData.courses.map((item, index) => (
               <ShopCourseCard
